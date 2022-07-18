@@ -1,0 +1,125 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:Class="RedSharp.ClearDesign.Styles.Windows"
+                    xmlns:system="using:System"
+                    xmlns:utils="using:RedSharp.ClearDesign.Utils"
+                    xmlns:helpers="using:RedSharp.ClearDesign.Helpers">
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Colors.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Sizes.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Fonts.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/Buttons.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/Icons.axaml"/>
+  </ResourceDictionary.MergedDictionaries>
+
+  <Styles x:Key="S_WindowsStyles_">
+    <Style Selector="Window">
+      <Setter Property="ExtendClientAreaChromeHints" 
+              Value="NoChrome"/>
+      
+      <Setter Property="ExtendClientAreaToDecorationsHint" 
+              Value="True"/>
+      
+      <Setter Property="Background" 
+              Value="{StaticResource S_BackgroundColorBrush_}"/>
+      
+      <Setter Property="BorderBrush" 
+              Value="{StaticResource S_Dark5ColorBrush_}"/>
+      
+      <Setter Property="BorderThickness" 
+              Value="{Binding Source={StaticResource S_DefaultBorderThicknessFull_} Path=Value}"/>
+
+      <Setter Property="Template">
+        <ControlTemplate>
+          <VisualLayerManager>
+            <Border Name="PART_MainBorder"
+                    Background="{TemplateBinding Background}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    Padding="{TemplateBinding OffScreenMargin}">
+              <Grid Margin="{TemplateBinding Padding}">
+                <Rectangle VerticalAlignment="Top"
+                           Height="30"
+                           Fill="Transparent"
+                           PointerPressed="OnTitlePointerPressed"
+                           DoubleTapped="OnRestoreClick"/>
+
+                <ContentPresenter Name="PART_ContentPresenter"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  Content="{TemplateBinding Content}"
+                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+                <Grid VerticalAlignment="Top">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                  </Grid.ColumnDefinitions>
+
+                  <Button Grid.Column="1"
+                          Classes="menu"
+                          Width="45"
+                          Click="OnMinimizeClick"
+                          helpers:ContentHelper.LayoutRounding="True">
+                    <Path Classes="icon default"
+                          Stroke="{StaticResource S_CommonFontColorBrush_}"
+                          StrokeThickness="1"
+                          Data="{StaticResource S_MinimizeIconGeometry_}"/>
+                  </Button>
+
+                  <Button Grid.Column="2"
+                          Classes="menu"
+                          Width="45"
+                          Click="OnRestoreClick"
+                          helpers:ContentHelper.LayoutRounding="True">
+                    <Grid>
+                      <Path Classes="icon default"
+                            x:Name="PART_MaximizeIcon"
+                            Stroke="{StaticResource S_CommonFontColorBrush_}"
+                            StrokeThickness="1"
+                            Data="{StaticResource S_MaximizeIconGeometry_}"/>
+
+                      <Path Classes="icon default"
+                            x:Name="PART_RestoreIcon"
+                            Stroke="{StaticResource S_CommonFontColorBrush_}"
+                            StrokeThickness="1"
+                            Data="{StaticResource S_RestoreIconGeometry_}"/>
+                    </Grid>
+                  </Button>
+
+                  <Button Grid.Column="3"
+                          Classes="menu"
+                          Width="45"
+                          Click="OnCloseClick"
+                          helpers:ContentHelper.LayoutRounding="True">
+                    <Path Classes="icon default"
+                          Stroke="{StaticResource S_CommonFontColorBrush_}"
+                          StrokeThickness="1"
+                          Data="{StaticResource S_CloseIconGeometry_}"/>
+                  </Button>
+                </Grid>
+              </Grid>
+            </Border>
+          </VisualLayerManager>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <Style Selector="Window/template/ Path#PART_RestoreIcon">
+      <Setter Property="IsVisible" Value="False"/>
+    </Style>
+
+    <Style Selector="Window[WindowState=2]/template/ Path#PART_MaximizeIcon">
+      <Setter Property="IsVisible" Value="False"/>
+    </Style>
+    
+    <Style Selector="Window[WindowState=2]/template/ Path#PART_RestoreIcon">
+      <Setter Property="IsVisible" Value="True"/>
+    </Style>
+    
+  </Styles>
+
+</ResourceDictionary>

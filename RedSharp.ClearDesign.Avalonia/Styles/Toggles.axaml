@@ -1,0 +1,613 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="using:System"
+                    xmlns:utils="using:RedSharp.ClearDesign.Utils"
+                    xmlns:helpers="using:RedSharp.ClearDesign.Helpers">
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Colors.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Sizes.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Fonts.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/Icons.axaml"/>
+  </ResourceDictionary.MergedDictionaries>
+
+  <!--#################################################################################################-->
+  <!--CHECK-BOX-->
+
+  <!--REST-->
+  <Styles x:Key="S_TogglesStyles_">
+
+    <Style Selector="CheckBox">
+      <Setter Property="BorderBrush" 
+              Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
+      <Setter Property="BorderThickness"
+              Value="{Binding Source={StaticResource S_DefaultBorderThicknessFull_}, Path=Value}"/>
+      
+      <Setter Property="Background"
+              Value="{StaticResource S_FieldsColorBrush_}"/>
+      <Setter Property="Foreground"
+              Value="{StaticResource S_CommonFontColorBrush_}"/>
+      
+      <Setter Property="FontFamily"
+              Value="{DynamicResource D_DefaultCommonFontFamily_}"/>
+      <Setter Property="FontSize"
+              Value="{DynamicResource D_DefaultCommonFontSize_}"/>
+      <Setter Property="FontWeight"
+              Value="{DynamicResource D_DefaultCommonFontWeight_}"/>
+      
+      <Setter Property="HorizontalAlignment" 
+              Value="Left"/>
+      <Setter Property="VerticalAlignment" 
+              Value="Center"/>
+
+      <Setter Property="HorizontalContentAlignment" 
+              Value="Left"/>
+      <Setter Property="VerticalContentAlignment" 
+              Value="Center"/>
+    
+      <Setter Property="helpers:ContentHelper.LayoutRounding"
+              Value="False"/>
+      
+      <Setter Property="helpers:AccentHelper.Color"
+              Value="{StaticResource S_DefaultDarkAccentColorBrush_}"/>      
+      <Setter Property="helpers:AccentHelper.Opacity"
+              Value="0.0"/>
+      
+      <Setter Property="helpers:TogglesHelper.FalseIconColor"
+              Value="{StaticResource S_CommonFontColorBrush_}"/>      
+      <Setter Property="helpers:TogglesHelper.FalseIconVisibility"
+              Value="True"/>
+      
+      <Setter Property="helpers:TogglesHelper.NullIconColor"
+              Value="{StaticResource S_PrimaryFontColorBrush_}"/>      
+      <Setter Property="helpers:TogglesHelper.NullIconVisibility"
+              Value="False"/>
+      
+      <Setter Property="helpers:TogglesHelper.TrueIconColor"
+              Value="{StaticResource S_PrimaryFontColorBrush_}"/>      
+      <Setter Property="helpers:TogglesHelper.TrueIconVisibility"
+              Value="False"/>
+
+      <Setter Property="Transitions">
+        <Transitions>
+          <BrushTransition Property="Background" Duration="0:0:0.075"/>
+          <BrushTransition Property="BorderBrush" Duration="0:0:0.075"/>
+          <DoubleTransition Property="helpers:AccentHelper.Opacity" Duration="0:0:0.075"/>
+        </Transitions>
+      </Setter>
+
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid Background="Transparent"
+                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                Width="{TemplateBinding Width}"
+                Height="{TemplateBinding Height}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto"/>
+              <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!--BORDER-->
+            <Panel Grid.Column="0"
+                   UseLayoutRounding="True"
+                   Background="{TemplateBinding BorderBrush}"
+                   Width="{DynamicResource D_DefaultToggleHeight_}"
+                   Height="{DynamicResource D_DefaultToggleHeight_}">
+
+              <!--BACKGROUND-->
+              <Panel UseLayoutRounding="False"
+                     Margin="{TemplateBinding BorderThickness}"
+                     Background="{TemplateBinding Background}"/>
+
+              <!--ACCENT-->
+              <Panel UseLayoutRounding="True"
+                     Background="{TemplateBinding helpers:AccentHelper.Color}"
+                     Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
+
+              <!--ICONS-->
+              <Panel Margin="{TemplateBinding Padding}"
+                     UseLayoutRounding="False">
+                
+                <Path Classes="icon primary min"
+                      StrokeThickness="2"
+                      Stroke="{TemplateBinding helpers:TogglesHelper.TrueIconColor}"
+                      IsVisible="{TemplateBinding helpers:TogglesHelper.TrueIconVisibility}"
+                      Data="{StaticResource S_CheckIconGeometry_}"/>
+                
+                <Path Classes="icon primary min"
+                      StrokeThickness="2"
+                      Stroke="{TemplateBinding helpers:TogglesHelper.NullIconColor}"
+                      IsVisible="{TemplateBinding helpers:TogglesHelper.NullIconVisibility}"
+                      Data="{StaticResource S_NullIconGeometry_}"/>
+              </Panel>
+            </Panel>
+
+            <!--CONTENT-->
+            <ContentControl Grid.Column="1"
+                            UseLayoutRounding="{TemplateBinding helpers:ContentHelper.LayoutRounding}"
+                            Margin="{Binding Source={StaticResource S_DefaultPaddingThicknessLeft_} Path=Value}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            FontFamily="{TemplateBinding FontFamily}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            FontSize="{TemplateBinding FontSize}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Content="{TemplateBinding Content}"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+
+      <Setter Property="FocusAdorner">
+      	<FocusAdornerTemplate>
+          <Panel AdornerLayer.IsClipEnabled="False"
+                 HorizontalAlignment="Left"
+                 UseLayoutRounding="False"
+                 Width="{DynamicResource D_DefaultToggleHeight_}"
+                 Height="{DynamicResource D_DefaultToggleHeight_}">
+            <Border BorderBrush="{StaticResource S_FocusBorderColorBrush_}"
+            		    BorderThickness="{Binding Source={StaticResource S_DefaultFocusThicknessFull_}, Path=Value}"
+            		    Margin="{Binding Source={StaticResource S_OutstandingFocusThicknessFull_}, Path=Value}"/>
+          </Panel>
+      	</FocusAdornerTemplate>
+      </Setter>		
+    </Style>
+
+    <!--TRUE STATE-->
+    <Style Selector="CheckBox:checked">
+      <Setter Property="Background"
+              Value="{StaticResource S_PrimaryColorBrush_}"/>
+      <Setter Property="BorderBrush"
+              Value="{StaticResource S_PrimaryBorderColorBrush_}"/>
+      
+      <Setter Property="helpers:TogglesHelper.TrueIconVisibility"
+              Value="True"/>
+      <Setter Property="helpers:TogglesHelper.FalseIconVisibility"
+              Value="False"/>
+    </Style>
+
+    <!--NULL STATE-->
+    <Style Selector="CheckBox:indeterminate">
+      
+      <Setter Property="Background"
+              Value="{StaticResource S_PrimaryColorBrush_}"/>
+      <Setter Property="BorderBrush"
+              Value="{StaticResource S_PrimaryBorderColorBrush_}"/>
+      
+      <Setter Property="helpers:TogglesHelper.NullIconVisibility"
+              Value="True"/>
+      <Setter Property="helpers:TogglesHelper.FalseIconVisibility"
+              Value="False"/>
+    </Style>
+
+    <!--HOVER-->
+    <Style Selector="CheckBox:pointerover">
+      <Setter Property="helpers:AccentHelper.Opacity"
+              Value="{DynamicResource D_DefaultAccentHoverOpacity_}"/>
+    </Style>
+
+    <!--PRESSED-->
+    <Style Selector="CheckBox:pressed">
+      <Setter Property="helpers:AccentHelper.Opacity"
+              Value="{DynamicResource D_DefaultAccentPressedOpacity_}"/>
+    </Style>
+
+    <!--DISABLED-->
+    <Style Selector="CheckBox:disabled">
+      <Setter Property="OpacityMask"
+              Value="{StaticResource S_DisabledStateMaskColorBrush_}"/>
+
+      <Setter Property="Background"
+              Value="{StaticResource S_DefaultDisabledAccentColorBrush_}"/>
+
+      <Setter Property="BorderBrush"
+              Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+
+      <Setter Property="Foreground"
+              Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+      
+      <Setter Property="helpers:TogglesHelper.FalseIconColor"
+              Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+      
+      <Setter Property="helpers:TogglesHelper.NullIconColor"
+              Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+      
+      <Setter Property="helpers:TogglesHelper.TrueIconColor"
+              Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+    </Style>
+    
+    <!--#################################################################################################-->
+    <!--CHECK-BOX SWITCH-->
+
+      <Style Selector="CheckBox.switch">
+        
+        <Setter Property="IsThreeState" 
+                Value="False"/>
+        
+        <Setter Property="Template">
+          <ControlTemplate>
+            <Grid Background="Transparent"
+                  Width="{TemplateBinding Width}"
+                  Height="{TemplateBinding Height}">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+              </Grid.ColumnDefinitions>
+
+              <!--BORDER-->
+              <Border Width="{Binding Source={StaticResource S_SwitchToggleWidth_} Path=Value}"
+                      Height="{Binding Source={StaticResource S_RoundToggleHeight_} Path=Value}"
+                      UseLayoutRounding="True"
+                      CornerRadius="255"
+                      Background="{TemplateBinding BorderBrush}">
+                
+                <Panel>
+                  
+                  <!--BACKGROUND-->
+                  <Border UseLayoutRounding="False"
+                          CornerRadius="255"
+                          Background="{TemplateBinding Background}"
+                          Margin="{TemplateBinding BorderThickness}"/>
+                  
+                  <!--EFFECT-->
+                  <Border UseLayoutRounding="True"
+                          CornerRadius="255"
+                          Background="{TemplateBinding helpers:AccentHelper.Color}"
+                          Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
+
+                  <!--ICONS-->
+                  <Panel Margin="{TemplateBinding BorderThickness}"
+                         UseLayoutRounding="False">
+                    <Grid Margin="2">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="2"/>
+                        <ColumnDefinition/>
+                      </Grid.ColumnDefinitions>
+
+                      <Ellipse Grid.Column="0"
+                               VerticalAlignment="Stretch"
+                               HorizontalAlignment="Stretch"
+                               Fill="{TemplateBinding helpers:TogglesHelper.FalseIconColor}"
+                               IsVisible="{TemplateBinding helpers:TogglesHelper.FalseIconVisibility}"/>
+
+                      <Ellipse Grid.Column="2"
+                               VerticalAlignment="Stretch"
+                               HorizontalAlignment="Stretch"
+                               Fill="{TemplateBinding helpers:TogglesHelper.TrueIconColor}"
+                               IsVisible="{TemplateBinding helpers:TogglesHelper.TrueIconVisibility}"/>
+                    </Grid>
+                  </Panel>
+                </Panel>
+              </Border>
+              
+              <ContentControl x:Name="PART_Content"
+                              Grid.Column="1"
+                              UseLayoutRounding="{TemplateBinding helpers:ContentHelper.LayoutRounding}"
+                              Margin="{Binding Source={StaticResource S_DefaultPaddingThicknessLeft_} Path=Value}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              FontFamily="{TemplateBinding FontFamily}"
+                              FontWeight="{TemplateBinding FontWeight}"
+                              FontSize="{TemplateBinding FontSize}"
+                              Foreground="{TemplateBinding Foreground}"
+                              Content="{TemplateBinding Content}"/>
+            </Grid>
+          </ControlTemplate>
+        </Setter>
+
+        <Setter Property="FocusAdorner">
+          <FocusAdornerTemplate>
+            <Panel Width="{Binding Source={StaticResource S_SwitchToggleWidth_} Path=Value}"
+                   Height="{Binding Source={StaticResource S_RoundToggleHeight_} Path=Value}"
+                   UseLayoutRounding="False"
+                   HorizontalAlignment="Left"
+                   AdornerLayer.IsClipEnabled="False">
+              <Border CornerRadius="255"                      
+                      BorderBrush="{StaticResource S_FocusBorderColorBrush_}"
+                      BorderThickness="{Binding Source={StaticResource S_DefaultFocusThicknessFull_}, Path=Value}"
+                      Margin="{Binding Source={StaticResource S_OutstandingFocusThicknessFull_}, Path=Value}"/>
+
+            </Panel>
+          </FocusAdornerTemplate>
+        </Setter>
+      </Style>
+    
+    <!--#################################################################################################-->
+    <!--CHECK-BOX RADIO-->
+
+    <Style Selector="CheckBox.radio">
+      
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid Background="Transparent"
+                Width="{TemplateBinding Width}"
+                Height="{TemplateBinding Height}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto"/>
+              <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!--BORDER-->
+            <Border x:Name="PART_Border"
+                    Width="{Binding Source={StaticResource S_RoundToggleHeight_} Path=Value}"
+                    Height="{Binding Source={StaticResource S_RoundToggleHeight_} Path=Value}"
+                    CornerRadius="255"
+                    UseLayoutRounding="True"                    
+                    Background="{TemplateBinding BorderBrush}">
+              
+              <Panel>
+                <!--BACKGROUND-->
+                <Border CornerRadius="255"
+                        Background="{TemplateBinding Background}"
+                        UseLayoutRounding="False"
+                        Margin="{TemplateBinding BorderThickness}"/>
+
+                <!--EFFECT-->
+                <Border UseLayoutRounding="True"
+                        CornerRadius="255"
+                        Background="{TemplateBinding helpers:AccentHelper.Color}"
+                        Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
+
+                <!--ICONS-->
+                <Panel Margin="{TemplateBinding BorderThickness}"
+                       UseLayoutRounding="False">
+                  
+                  <Ellipse VerticalAlignment="Stretch"
+                           HorizontalAlignment="Stretch"
+                           Margin="4"                           
+                           Fill="{TemplateBinding helpers:TogglesHelper.TrueIconColor}"
+                           IsVisible="{TemplateBinding helpers:TogglesHelper.TrueIconVisibility}"/>
+
+                  <Path Classes="icon primary min"
+                        StrokeThickness="2"
+                        Fill="{TemplateBinding helpers:TogglesHelper.NullIconColor}"
+                        IsVisible="{TemplateBinding helpers:TogglesHelper.NullIconVisibility}"
+                        Data="{StaticResource S_NullIconGeometry_}"/>
+                </Panel>
+              </Panel>
+            </Border>
+
+            <ContentControl x:Name="PART_Content"
+                            Grid.Column="1"
+                            UseLayoutRounding="{TemplateBinding helpers:ContentHelper.LayoutRounding}"
+                            Margin="{Binding Source={StaticResource S_DefaultPaddingThicknessLeft_} Path=Value}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            FontFamily="{TemplateBinding FontFamily}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            FontSize="{TemplateBinding FontSize}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Content="{TemplateBinding Content}"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+
+      <Setter Property="FocusAdorner">
+        <FocusAdornerTemplate>
+          <Panel Width="{Binding Source={StaticResource S_RoundToggleHeight_} Path=Value}"
+                 Height="{Binding Source={StaticResource S_RoundToggleHeight_} Path=Value}"
+                 HorizontalAlignment="Left"
+                 AdornerLayer.IsClipEnabled="False">
+            <Border CornerRadius="255"
+                    UseLayoutRounding="False"
+                    BorderBrush="{StaticResource S_FocusBorderColorBrush_}"
+                    BorderThickness="{Binding Source={StaticResource S_DefaultFocusThicknessFull_}, Path=Value}"
+                    Margin="{Binding Source={StaticResource S_OutstandingFocusThicknessFull_}, Path=Value}"/>
+
+          </Panel>
+        </FocusAdornerTemplate>
+      </Setter>
+    </Style>
+
+    <!--#################################################################################################-->
+    <!--RADIO BUTTON-->
+
+    <Style Selector="RadioButton">
+
+      <Setter Property="BorderBrush"
+              Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
+      <Setter Property="BorderThickness"
+              Value="{Binding Source={StaticResource S_DefaultBorderThicknessFull_}, Path=Value}"/>
+
+      <Setter Property="Background"
+              Value="{StaticResource S_FieldsColorBrush_}"/>
+      <Setter Property="Foreground"
+              Value="{StaticResource S_CommonFontColorBrush_}"/>
+
+      <Setter Property="FontFamily"
+              Value="{DynamicResource D_DefaultCommonFontFamily_}"/>
+      <Setter Property="FontSize"
+              Value="{DynamicResource D_DefaultCommonFontSize_}"/>
+      <Setter Property="FontWeight"
+              Value="{DynamicResource D_DefaultCommonFontWeight_}"/>
+
+      <Setter Property="HorizontalAlignment"
+              Value="Left"/>
+      <Setter Property="VerticalAlignment"
+              Value="Center"/>
+
+      <Setter Property="HorizontalContentAlignment"
+              Value="Left"/>
+      <Setter Property="VerticalContentAlignment"
+              Value="Center"/>
+
+      <Setter Property="helpers:ContentHelper.LayoutRounding"
+              Value="False"/>
+
+      <Setter Property="helpers:AccentHelper.Color"
+              Value="{StaticResource S_DefaultDarkAccentColorBrush_}"/>
+      <Setter Property="helpers:AccentHelper.Opacity"
+              Value="0.0"/>
+
+      <Setter Property="helpers:TogglesHelper.FalseIconColor"
+              Value="{StaticResource S_CommonFontColorBrush_}"/>
+      <Setter Property="helpers:TogglesHelper.FalseIconVisibility"
+              Value="True"/>
+
+      <Setter Property="helpers:TogglesHelper.NullIconColor"
+              Value="{StaticResource S_PrimaryFontColorBrush_}"/>
+      <Setter Property="helpers:TogglesHelper.NullIconVisibility"
+              Value="False"/>
+
+      <Setter Property="helpers:TogglesHelper.TrueIconColor"
+              Value="{StaticResource S_PrimaryFontColorBrush_}"/>
+      <Setter Property="helpers:TogglesHelper.TrueIconVisibility"
+              Value="False"/>
+
+      <Setter Property="Transitions">
+        <Transitions>
+          <BrushTransition Property="Background" Duration="0:0:0.075"/>
+          <BrushTransition Property="BorderBrush" Duration="0:0:0.075"/>
+          <DoubleTransition Property="helpers:AccentHelper.Opacity" Duration="0:0:0.075"/>
+        </Transitions>
+      </Setter>
+      
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid Background="Transparent"
+                Width="{TemplateBinding Width}"
+                Height="{TemplateBinding Height}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="auto"/>
+              <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!--BORDER-->
+            <Border x:Name="PART_Border"
+                    Width="{Binding Source={StaticResource S_RoundToggleHeight_} Path=Value}"
+                    Height="{Binding Source={StaticResource S_RoundToggleHeight_} Path=Value}"
+                    CornerRadius="255"
+                    UseLayoutRounding="True"
+                    Background="{TemplateBinding BorderBrush}">
+
+              <Panel>
+                <!--BACKGROUND-->
+                <Border CornerRadius="255"
+                        Background="{TemplateBinding Background}"
+                        UseLayoutRounding="False"
+                        Margin="{TemplateBinding BorderThickness}"/>
+
+                <!--EFFECT-->
+                <Border UseLayoutRounding="True"
+                        CornerRadius="255"
+                        Background="{TemplateBinding helpers:AccentHelper.Color}"
+                        Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
+
+                <!--ICONS-->
+                <Panel Margin="{TemplateBinding BorderThickness}"
+                       UseLayoutRounding="False">
+
+                  <Ellipse VerticalAlignment="Stretch"
+                           HorizontalAlignment="Stretch"
+                           Margin="4"
+                           Fill="{TemplateBinding helpers:TogglesHelper.TrueIconColor}"
+                           IsVisible="{TemplateBinding helpers:TogglesHelper.TrueIconVisibility}"/>
+
+                  <Path Classes="icon primary min"
+                        StrokeThickness="2"
+                        Fill="{TemplateBinding helpers:TogglesHelper.NullIconColor}"
+                        IsVisible="{TemplateBinding helpers:TogglesHelper.NullIconVisibility}"
+                        Data="{StaticResource S_NullIconGeometry_}"/>
+                </Panel>
+              </Panel>
+            </Border>
+
+            <ContentControl x:Name="PART_Content"
+                            Grid.Column="1"
+                            UseLayoutRounding="{TemplateBinding helpers:ContentHelper.LayoutRounding}"
+                            Margin="{Binding Source={StaticResource S_DefaultPaddingThicknessLeft_} Path=Value}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            FontFamily="{TemplateBinding FontFamily}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            FontSize="{TemplateBinding FontSize}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Content="{TemplateBinding Content}"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+
+      <Setter Property="FocusAdorner">
+        <FocusAdornerTemplate>
+          <Panel Width="{Binding Source={StaticResource S_RoundToggleHeight_} Path=Value}"
+                 Height="{Binding Source={StaticResource S_RoundToggleHeight_} Path=Value}"
+                 HorizontalAlignment="Left"
+                 AdornerLayer.IsClipEnabled="False">
+            <Border CornerRadius="255"
+                    UseLayoutRounding="False"
+                    BorderBrush="{StaticResource S_FocusBorderColorBrush_}"
+                    BorderThickness="{Binding Source={StaticResource S_DefaultFocusThicknessFull_}, Path=Value}"
+                    Margin="{Binding Source={StaticResource S_OutstandingFocusThicknessFull_}, Path=Value}"/>
+
+          </Panel>
+        </FocusAdornerTemplate>
+      </Setter>
+    </Style>
+
+    <!--TRUE STATE-->
+    <Style Selector="RadioButton:checked">
+      <Setter Property="Background"
+              Value="{StaticResource S_PrimaryColorBrush_}"/>
+      <Setter Property="BorderBrush"
+              Value="{StaticResource S_PrimaryBorderColorBrush_}"/>
+
+      <Setter Property="helpers:TogglesHelper.TrueIconVisibility"
+              Value="True"/>
+      <Setter Property="helpers:TogglesHelper.FalseIconVisibility"
+              Value="False"/>
+    </Style>
+
+    <!--NULL STATE-->
+    <Style Selector="RadioButton:indeterminate">
+
+      <Setter Property="Background"
+              Value="{StaticResource S_PrimaryColorBrush_}"/>
+      <Setter Property="BorderBrush"
+              Value="{StaticResource S_PrimaryBorderColorBrush_}"/>
+
+      <Setter Property="helpers:TogglesHelper.NullIconVisibility"
+              Value="True"/>
+      <Setter Property="helpers:TogglesHelper.FalseIconVisibility"
+              Value="False"/>
+    </Style>
+
+    <!--HOVER-->
+    <Style Selector="RadioButton:pointerover">
+      <Setter Property="helpers:AccentHelper.Opacity"
+              Value="{DynamicResource D_DefaultAccentHoverOpacity_}"/>
+    </Style>
+
+    <!--PRESSED-->
+    <Style Selector="RadioButton:pressed">
+      <Setter Property="helpers:AccentHelper.Opacity"
+              Value="{DynamicResource D_DefaultAccentPressedOpacity_}"/>
+    </Style>
+
+    <!--DISABLED-->
+    <Style Selector="RadioButton:disabled">
+      <Setter Property="OpacityMask"
+              Value="{StaticResource S_DisabledStateMaskColorBrush_}"/>
+
+      <Setter Property="Background"
+              Value="{StaticResource S_DefaultDisabledAccentColorBrush_}"/>
+
+      <Setter Property="BorderBrush"
+              Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+
+      <Setter Property="Foreground"
+              Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+
+      <Setter Property="helpers:TogglesHelper.FalseIconColor"
+              Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+
+      <Setter Property="helpers:TogglesHelper.NullIconColor"
+              Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+
+      <Setter Property="helpers:TogglesHelper.TrueIconColor"
+              Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+    </Style>
+   
+  </Styles>
+  
+</ResourceDictionary>

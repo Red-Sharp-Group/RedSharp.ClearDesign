@@ -1,0 +1,85 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:Class="RedSharp.ClearDesign.Definitions.Sizes"
+                    xmlns:utils="using:RedSharp.ClearDesign.Utils"
+                    xmlns:system="using:System"
+                    xmlns:helpers="using:RedSharp.ClearDesign.Helpers">
+
+  <!--#################################################################################################-->
+  <!--DEFAULT SETTINGS-->
+
+  <system:Double x:Key="D_DefaultHeight_">30</system:Double>
+  <system:Double x:Key="D_DefaultWidth_">120</system:Double>
+  
+  <system:Double x:Key="D_DefaultToggleHeight_">14</system:Double>
+
+  <system:Double x:Key="D_DefaultMargin_">5</system:Double>
+  <system:Double x:Key="D_DefaultPadding_">8</system:Double>
+
+  <system:Double x:Key="D_DefaultBorder_">1</system:Double>
+  <system:Double x:Key="D_DefaultFocus_">3</system:Double>
+  
+  <system:Double x:Key="D_DefaultAccentHoverOpacity_">0.15</system:Double>
+  <system:Double x:Key="D_DefaultAccentPressedOpacity_">0.25</system:Double>
+
+  <!--#################################################################################################-->
+  <!--COMPUTED-->
+  
+  <utils:DoubleModifier x:Key="S_OutstandingFocus_" 
+                        Input="{DynamicResource D_DefaultFocus_}"
+                        Modifier="{DynamicResource D_DefaultBorder_}"
+                        Coerce="{StaticResource S_OutstandingFocusValueCoerceCallback_}"/>
+  
+  <utils:DoubleModifier x:Key="S_RoundToggleHeight_"
+                        Input="{DynamicResource D_DefaultToggleHeight_}"
+                        Modifier="{DynamicResource D_DefaultBorder_}"
+                        Coerce="{StaticResource S_RoundToggleHeightValueCoerceCallback_}"/>
+
+  <utils:DoubleModifier x:Key="S_SwitchToggleWidth_"
+                        Input="{DynamicResource D_DefaultToggleHeight_}"
+                        Coerce="{StaticResource S_SwitchToggleWidthValueCoerceCallback_}"/>
+
+  <!--####################-->
+  <!--MARGINS-->
+  
+  <utils:ThicknessModifier x:Key="S_DefaultMarginThicknessFull_"
+                           Modifier="{DynamicResource D_DefaultMargin_}"
+                           Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                           Input="1"/>
+
+  <utils:ThicknessModifier x:Key="S_OutstandingFocusThicknessFull_"
+                           Modifier="{Binding Source={StaticResource S_OutstandingFocus_} Path=Value}"
+                           Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                           Input="1"/>
+
+  <!--####################-->
+  <!--PADDINGS-->
+
+  <utils:ThicknessModifier x:Key="S_DefaultPaddingThicknessFull_"
+                           Modifier="{DynamicResource D_DefaultPadding_}"
+                           Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                           Input="1"/>
+
+  <utils:ThicknessModifier x:Key="S_DefaultPaddingThicknessLeft_"
+                           Modifier="{DynamicResource D_DefaultPadding_}"
+                           Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                           Input="1,0,0,0"/>
+
+  <utils:ThicknessModifier x:Key="S_DefaultPaddingThicknessLeftRight_"
+                           Modifier="{DynamicResource D_DefaultPadding_}"
+                           Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                           Input="1,0"/>
+
+  <!--####################-->
+  <!--BORDERS-->
+
+  <utils:ThicknessModifier x:Key="S_DefaultBorderThicknessFull_"
+                           Modifier="{DynamicResource D_DefaultBorder_}"
+                           Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                           Input="1"/>
+
+  <utils:ThicknessModifier x:Key="S_DefaultFocusThicknessFull_"
+                           Modifier="{DynamicResource D_DefaultFocus_}"
+                           Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                           Input="1"/>
+</ResourceDictionary>

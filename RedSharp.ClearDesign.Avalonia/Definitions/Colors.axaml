@@ -1,0 +1,229 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:utils="using:RedSharp.ClearDesign.Utils">
+
+  <Color x:Key="D_DefaultPrimaryColor_">#FF3B99FC</Color>
+  <Color x:Key="D_DefaultSecondaryColor_">#FFF1F1F1</Color>
+  
+  <Color x:Key="D_DefaultBackgroundColor_">#FFFAFAFA</Color>
+  <Color x:Key="D_DefaultFieldsColor_">#FFFFFFFF</Color>
+  <Color x:Key="D_DefaultToggleColor_">#FF444444</Color>
+  
+  <Color x:Key="D_DefaultPrimaryFontColor_">#FFFAFAFA</Color>
+  <Color x:Key="D_DefaultSecondaryFontColor_">#FF141414</Color>
+  
+  <Color x:Key="D_DefaultErrorColor_">#FFF54343</Color>
+  <Color x:Key="D_DefaultWarningColor_">#FFF4C343</Color>
+  <Color x:Key="D_DefaultSuccessColor_">#FF88DD60</Color>
+  
+  <Color x:Key="D_DefaultLightAccentColor_">#FFFFFFFF</Color>
+  <Color x:Key="D_DefaultDarkAccentColor_">#FF000000</Color>
+  <Color x:Key="D_DefaultDisabledAccentColor_">#FFBBBBBB</Color>
+  <Color x:Key="D_DefaultStepAccentColor_">#FF000000</Color>
+  
+  <Color x:Key="D_DisabledStateMaskColor_">#66FFFFFF</Color>
+
+  <!--################################################################################################################-->
+  <!--############################################### STANDARD COLOR #################################################-->
+
+  <!--========================================================-->
+  <!--MAIN COLOR-->
+  
+  <SolidColorBrush x:Key="S_PrimaryColorBrush_" 
+                   Color="{DynamicResource D_DefaultPrimaryColor_}"/>  
+  <SolidColorBrush x:Key="S_SecondaryColorBrush_" 
+                   Color="{DynamicResource D_DefaultSecondaryColor_}"/>
+  
+  <SolidColorBrush x:Key="S_BackgroundColorBrush_" 
+                   Color="{DynamicResource D_DefaultBackgroundColor_}"/>  
+  <SolidColorBrush x:Key="S_FieldsColorBrush_" 
+                   Color="{DynamicResource D_DefaultFieldsColor_}"/>  
+  <SolidColorBrush x:Key="S_ToggleColorBrush_" 
+                   Color="{DynamicResource D_DefaultToggleColor_}"/>
+  
+  <SolidColorBrush x:Key="S_PrimaryFontColorBrush_" 
+                   Color="{DynamicResource D_DefaultPrimaryFontColor_}"/>  
+  <SolidColorBrush x:Key="S_SecondaryFontColorBrush_" 
+                   Color="{DynamicResource D_DefaultSecondaryFontColor_}"/>
+  
+  <SolidColorBrush x:Key="S_ErrorColorBrush_" 
+                   Color="{DynamicResource D_DefaultErrorColor_}"/>  
+  <SolidColorBrush x:Key="S_WarningColorBrush_" 
+                   Color="{DynamicResource D_DefaultWarningColor_}"/>  
+  <SolidColorBrush x:Key="S_SuccessColorBrush_" 
+                   Color="{DynamicResource D_DefaultSuccessColor_}"/>
+  
+  <SolidColorBrush x:Key="S_DefaultLightAccentColorBrush_" 
+                   Color="{DynamicResource D_DefaultLightAccentColor_}"/>  
+  <SolidColorBrush x:Key="S_DefaultDarkAccentColorBrush_" 
+                   Color="{DynamicResource D_DefaultDarkAccentColor_}"/>
+  <SolidColorBrush x:Key="S_DefaultDisabledAccentColorBrush_" 
+                   Color="{DynamicResource D_DefaultDisabledAccentColor_}"/>
+  <SolidColorBrush x:Key="S_DefaultStepAccentColorBrush_" 
+                   Color="{DynamicResource D_DefaultStepAccentColor_}"/>
+
+  <SolidColorBrush x:Key="S_DisabledStateMaskColorBrush_"
+                   Color="{DynamicResource D_DisabledStateMaskColor_}"/>
+  
+  <!--========================================================-->
+  <!--LIGHT ACCENT COLOR-->
+
+  <utils:OpasityBrushColor x:Key="S_Light1ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultLightAccentColor_}"
+                           InputOpacity="0.05"/>
+  <utils:OpasityBrushColor x:Key="S_Light2ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultLightAccentColor_}"
+                           InputOpacity="0.10"/>
+  <utils:OpasityBrushColor x:Key="S_Light3ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultLightAccentColor_}"
+                           InputOpacity="0.15"/>
+  <utils:OpasityBrushColor x:Key="S_Light4ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultLightAccentColor_}"
+                           InputOpacity="0.20"/>
+  <utils:OpasityBrushColor x:Key="S_Light5ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultLightAccentColor_}"
+                           InputOpacity="0.25"/>
+
+  <!--========================================================-->
+  <!--DARK ACCENT COLOR-->
+
+  <utils:OpasityBrushColor x:Key="S_Dark1ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultDarkAccentColor_}"
+                           InputOpacity="0.05"/>
+  <utils:OpasityBrushColor x:Key="S_Dark2ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultDarkAccentColor_}"
+                           InputOpacity="0.10"/>
+  <utils:OpasityBrushColor x:Key="S_Dark3ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultDarkAccentColor_}"
+                           InputOpacity="0.15"/>
+  <utils:OpasityBrushColor x:Key="S_Dark4ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultDarkAccentColor_}"
+                           InputOpacity="0.20"/>
+  <utils:OpasityBrushColor x:Key="S_Dark5ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultDarkAccentColor_}"
+                           InputOpacity="0.25"/>
+
+  <!--========================================================-->
+  <!--DISABLED ACCENT COLOR-->
+
+  <utils:OpasityBrushColor x:Key="S_Disabled1ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultDisabledAccentColor_}"
+                           InputOpacity="0.10"/>
+  <utils:OpasityBrushColor x:Key="S_Disabled2ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultDisabledAccentColor_}"
+                           InputOpacity="0.25"/>
+  <utils:OpasityBrushColor x:Key="S_Disabled3ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultDisabledAccentColor_}"
+                           InputOpacity="0.40"/>
+  <utils:OpasityBrushColor x:Key="S_Disabled4ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultDisabledAccentColor_}"
+                           InputOpacity="0.55"/>
+  <utils:OpasityBrushColor x:Key="S_Disabled5ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultDisabledAccentColor_}"
+                           InputOpacity="0.70"/>
+
+  <!--========================================================-->
+  <!--STEP ACCENT COLOR-->
+
+  <utils:OpasityBrushColor x:Key="S_Step1ColorBrush_" 
+                           InputColor="{DynamicResource D_DefaultStepAccentColor_}"
+                           InputOpacity="0.03"/>
+  <utils:OpasityBrushColor x:Key="S_Step2ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultStepAccentColor_}"
+                           InputOpacity="0.06"/>
+  <utils:OpasityBrushColor x:Key="S_Step3ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultStepAccentColor_}"
+                           InputOpacity="0.09"/>
+  <utils:OpasityBrushColor x:Key="S_Step4ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultStepAccentColor_}"
+                           InputOpacity="0.12"/>
+  <utils:OpasityBrushColor x:Key="S_Step5ColorBrush_"
+                           InputColor="{DynamicResource D_DefaultStepAccentColor_}"
+                           InputOpacity="0.15"/>
+
+  <!--################################################################################################################-->
+  <!--################################################ ACTION COLOR ##################################################-->
+
+  <utils:BlendColorBrush x:Key="S_ScrollThumbBackgroundBrush_"
+                         BackgroundColor="{Binding Source={StaticResource S_Dark5ColorBrush_}, Path=Color}"
+                         ForegroundColor="{Binding Source={StaticResource S_Dark5ColorBrush_}, Path=Color}"/>
+  
+  <!--BORDER COLOR-->
+  
+  <utils:BlendColorBrush x:Key="S_FocusBorderColorBrush_"
+                         BackgroundColor="{DynamicResource D_DefaultPrimaryColor_}"
+                         ForegroundColor="{Binding Source={StaticResource S_Light5ColorBrush_}, Path=Color}"/>
+
+  
+  <utils:BlendColorBrush x:Key="S_PrimaryBorderColorBrush_"
+                         BackgroundColor="{DynamicResource D_DefaultPrimaryColor_}"
+                         ForegroundColor="{Binding Source={StaticResource S_Dark5ColorBrush_}, Path=Color}"/>
+  
+  <SolidColorBrush x:Key="S_SecondaryBorderColorBrush_"
+                   Color="{Binding Source={StaticResource S_Dark5ColorBrush_}, Path=Color}"/>
+  
+  <utils:BlendColorBrush x:Key="S_DisabledBorderColorBrush_"
+                         BackgroundColor="{Binding Source={StaticResource S_Disabled3ColorBrush_}, Path=Color}"
+                         ForegroundColor="{Binding Source={StaticResource S_Dark4ColorBrush_}, Path=Color}"/>
+
+  <utils:OpasityBrushColor x:Key="S_DisabledBorderColorNoOpacityBrush_"
+                           InputColor="{Binding Source={StaticResource S_DisabledBorderColorBrush_} Path=Color}"
+                           InputOpacity="1"/>
+  <!--HOVER-->
+  <utils:BlendColorBrush x:Key="S_HoverPrimaryBackgroundColorBrush_"
+                         BackgroundColor="{DynamicResource D_DefaultPrimaryColor_}"
+                         ForegroundColor="{Binding Source={StaticResource S_Dark3ColorBrush_}, Path=Color}"/>
+  
+  <utils:BlendColorBrush x:Key="S_HoverSecondaryBackgroundColorBrush_"
+                         BackgroundColor="{DynamicResource D_DefaultSecondaryColor_}"
+                         ForegroundColor="{Binding Source={StaticResource S_Dark3ColorBrush_}, Path=Color}"/>
+  
+  <utils:BlendColorBrush x:Key="S_HoverSecondaryBorderColorBrush_"
+                         BackgroundColor="{Binding Source={StaticResource S_SecondaryBorderColorBrush_}, Path=Color}"
+                         ForegroundColor="{Binding Source={StaticResource S_Dark3ColorBrush_}, Path=Color}"/>
+  
+  <utils:BlendColorBrush x:Key="S_HoverFieldsBackgroundColorBrush_"
+                         BackgroundColor="{DynamicResource D_DefaultFieldsColor_}"
+                         ForegroundColor="{Binding Source={StaticResource S_Dark3ColorBrush_}, Path=Color}"/>
+
+  <utils:BlendColorBrush x:Key="S_HoverScrollButtonBackgroundColorBrush_"
+                         BackgroundColor="{Binding Source={StaticResource S_Step3ColorBrush_}, Path=Color}"
+                         ForegroundColor="{Binding Source={StaticResource S_Dark3ColorBrush_}, Path=Color}"/>
+
+  <utils:BlendColorBrush x:Key="S_HoverScrollThumbBackgroundBrush_"
+                         BackgroundColor="{Binding Source={StaticResource S_ScrollThumbBackgroundBrush_}, Path=Color}"
+                         ForegroundColor="{Binding Source={StaticResource S_Dark3ColorBrush_}, Path=Color}"/>
+  <!--PRESSED-->
+
+  <utils:BlendColorBrush x:Key="S_PressedPrimaryBackgroundColorBrush_"
+                         BackgroundColor="{DynamicResource D_DefaultPrimaryColor_}"
+                         ForegroundColor="{Binding Source={StaticResource S_Dark5ColorBrush_}, Path=Color}"/>
+
+  <utils:BlendColorBrush x:Key="S_PressedSecondaryBackgroundColorBrush_"
+                         BackgroundColor="{DynamicResource D_DefaultSecondaryColor_}"
+                         ForegroundColor="{Binding Source={StaticResource S_Dark5ColorBrush_}, Path=Color}"/>
+
+  <utils:BlendColorBrush x:Key="S_PressedSecondaryBorderColorBrush_"
+                         BackgroundColor="{Binding Source={StaticResource S_SecondaryBorderColorBrush_}, Path=Color}"
+                         ForegroundColor="{Binding Source={StaticResource S_Dark5ColorBrush_}, Path=Color}"/>
+
+  <utils:BlendColorBrush x:Key="S_PressedFieldsBackgroundColorBrush_"
+                         BackgroundColor="{DynamicResource D_DefaultFieldsColor_}"
+                         ForegroundColor="{Binding Source={StaticResource S_Dark5ColorBrush_}, Path=Color}"/>
+
+  <utils:BlendColorBrush x:Key="S_PressedScrollButtonBackgroundColorBrush_"
+                         BackgroundColor="{Binding Source={StaticResource S_Step3ColorBrush_}, Path=Color}"
+                         ForegroundColor="{Binding Source={StaticResource S_Dark5ColorBrush_}, Path=Color}"/>
+
+  <utils:BlendColorBrush x:Key="S_PressedScrollThumbBackgroundBrush_"
+                         BackgroundColor="{Binding Source={StaticResource S_ScrollThumbBackgroundBrush_}, Path=Color}"
+                         ForegroundColor="{Binding Source={StaticResource S_Dark5ColorBrush_}, Path=Color}"/>
+
+  <!--FONT COLORS-->
+
+  <utils:BlendColorBrush x:Key="S_CommonFontColorBrush_"
+                         BackgroundColor="{DynamicResource D_DefaultSecondaryFontColor_}"
+                         ForegroundColor="{Binding Source={StaticResource S_Light3ColorBrush_}, Path=Color}"/>
+  
+
+</ResourceDictionary>

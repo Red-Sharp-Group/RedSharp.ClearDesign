@@ -1,0 +1,212 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="using:System"
+                    xmlns:utils="using:RedSharp.ClearDesign.Utils"
+                    xmlns:helpers="using:RedSharp.ClearDesign.Helpers">
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Colors.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Sizes.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Fonts.axaml"/>    
+  </ResourceDictionary.MergedDictionaries>
+
+  <Styles x:Key="S_ButtonsStyles_">
+
+    <!--#################################################################################################-->
+    <!--SECONDARY BUTTON-->
+    
+    <!--REST-->
+    <Style Selector="Button">
+      <Setter Property="Width"
+              Value="{DynamicResource D_DefaultWidth_}"/>
+      <Setter Property="Height"
+              Value="{DynamicResource D_DefaultHeight_}"/>
+
+      <Setter Property="Padding"
+              Value="{Binding Source={StaticResource S_DefaultPaddingThicknessLeftRight_} Path=Value}"/>
+
+      <Setter Property="HorizontalAlignment"
+              Value="Center"/>
+      <Setter Property="VerticalAlignment"
+              Value="Center"/>
+
+      <Setter Property="HorizontalContentAlignment"
+              Value="Center"/>
+      <Setter Property="VerticalContentAlignment"
+              Value="Center"/>
+
+      <Setter Property="Background"
+              Value="{StaticResource S_SecondaryColorBrush_}"/>
+      <Setter Property="Foreground"
+              Value="{StaticResource S_CommonFontColorBrush_}"/>
+
+      <Setter Property="BorderBrush"
+              Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
+      <Setter Property="BorderThickness"
+              Value="{Binding Source={StaticResource S_DefaultBorderThicknessFull_}, Path=Value}"/>
+
+      <Setter Property="FontFamily"
+              Value="{DynamicResource D_DefaultCommonFontFamily_}"/>
+      <Setter Property="FontSize"
+              Value="{DynamicResource D_DefaultCommonFontSize_}"/>
+      <Setter Property="FontWeight"
+              Value="{DynamicResource D_DefaultCommonFontWeight_}"/>
+      
+      <Setter Property="helpers:ContentHelper.LayoutRounding"
+              Value="False"/>
+      
+      <Setter Property="helpers:AccentHelper.Color"
+              Value="{StaticResource S_DefaultDarkAccentColorBrush_}"/>   
+      
+      <Setter Property="helpers:AccentHelper.Opacity"
+              Value="0.0"/>
+
+      <Setter Property="Transitions">
+        <Transitions>
+          <BrushTransition Property="Background" Duration="0:0:0.075"/>
+          <BrushTransition Property="BorderBrush" Duration="0:0:0.075"/>
+          <DoubleTransition Property="helpers:AccentHelper.Opacity" Duration="0:0:0.075"/>
+        </Transitions>
+      </Setter>
+
+      <Setter Property="Template">
+        <ControlTemplate>
+
+          <!--BORDER-->
+          <Panel UseLayoutRounding="True"
+                 Background="{TemplateBinding BorderBrush}">
+
+            <!--BACKGROUND-->
+            <Panel UseLayoutRounding="False"
+                   Background="{TemplateBinding Background}"
+                   Margin="{TemplateBinding BorderThickness}"/>
+
+            <!--ACCENT-->
+            <Panel UseLayoutRounding="True"
+                   Background="{TemplateBinding helpers:AccentHelper.Color}"
+                   Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
+
+            <!--CONTENT-->
+            <ContentControl Margin="{TemplateBinding Padding}"
+                            UseLayoutRounding="{TemplateBinding helpers:ContentHelper.LayoutRounding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            FontFamily="{TemplateBinding FontFamily}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            FontSize="{TemplateBinding FontSize}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Content="{TemplateBinding Content}"/>
+          </Panel>
+        </ControlTemplate>
+      </Setter>
+
+      <Setter Property="FocusAdorner">
+        <FocusAdornerTemplate>
+          <Border AdornerLayer.IsClipEnabled="False"
+                  UseLayoutRounding="False"
+                  BorderBrush="{StaticResource S_FocusBorderColorBrush_}"
+                  BorderThickness="{Binding Source={StaticResource S_DefaultFocusThicknessFull_}, Path=Value}"
+                  Margin="{Binding Source={StaticResource S_OutstandingFocusThicknessFull_}, Path=Value}"/>
+        </FocusAdornerTemplate>
+      </Setter>
+    </Style>
+
+    <!--HOVER-->
+    <Style Selector="Button:pointerover">
+      <Setter Property="helpers:AccentHelper.Opacity"
+              Value="{DynamicResource D_DefaultAccentHoverOpacity_}"/>
+    </Style>
+
+    <!--PRESSED-->
+    <Style Selector="Button:pressed">
+      <Setter Property="helpers:AccentHelper.Opacity"
+              Value="{DynamicResource D_DefaultAccentPressedOpacity_}"/>
+    </Style>
+
+    <!--DISABLED-->
+    <Style Selector="Button:disabled">
+      <Setter Property="OpacityMask"
+              Value="{StaticResource S_DisabledStateMaskColorBrush_}"/>
+
+      <Setter Property="Background"
+              Value="{StaticResource S_DefaultDisabledAccentColorBrush_}"/>
+
+      <Setter Property="BorderBrush"
+              Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+
+      <Setter Property="Foreground"
+              Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+    </Style>
+
+    <!--#################################################################################################-->
+    <!--SECONDARY ICON BUTTON-->
+
+    <!--REST-->
+    <Style Selector="Button.icon">
+      <Setter Property="Padding" Value="0"/>
+
+      <Setter Property="Width"
+              Value="{DynamicResource D_DefaultHeight_}"/>
+    </Style>
+
+    <!--#################################################################################################-->
+    <!--SECONDARY MENU BUTTON-->
+
+    <!--REST-->
+    <Style Selector="Button.menu">
+      <Setter Property="Width" Value="{x:Static system:Double.NaN}"/>
+      
+      <Setter Property="BorderBrush" Value="{x:Null}"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      
+      <Setter Property="Background" Value="Transparent"/>
+
+      <Setter Property="FocusAdorner">
+        <FocusAdornerTemplate>
+          <Border AdornerLayer.IsClipEnabled="False"
+                  BorderBrush="{StaticResource S_FocusBorderColorBrush_}"
+                  BorderThickness="{Binding Source={StaticResource S_DefaultFocusThicknessFull_}, Path=Value}"/>
+        </FocusAdornerTemplate>
+      </Setter>
+    </Style>
+
+    <!--#################################################################################################-->
+    <!--MENU ICON BUTTON-->
+
+    <!--REST-->
+    <Style Selector="Button.menu.icon">
+      <Setter Property="Padding" Value="0"/>
+
+      <Setter Property="Width"
+              Value="{DynamicResource D_DefaultHeight_}"/>
+    </Style>
+    
+    <!--#################################################################################################-->
+    <!--PRIMARY BUTTON-->
+    
+    <!--REST-->
+    <Style Selector="Button.primary">      
+      <Setter Property="Background"
+              Value="{StaticResource S_PrimaryColorBrush_}"/>
+      
+      <Setter Property="Foreground"
+              Value="{StaticResource S_PrimaryFontColorBrush_}"/>
+
+      <Setter Property="BorderBrush"
+              Value="{StaticResource S_PrimaryBorderColorBrush_}"/>
+    </Style>
+
+    <!--#################################################################################################-->
+    <!--PRIMARY ICON BUTTON-->
+
+    <!--REST-->
+    <Style Selector="Button.primary.icon">
+      <Setter Property="Padding" Value="0"/>
+
+      <Setter Property="Width"
+              Value="{DynamicResource D_DefaultHeight_}"/>
+    </Style>
+    
+  </Styles>
+    
+</ResourceDictionary>

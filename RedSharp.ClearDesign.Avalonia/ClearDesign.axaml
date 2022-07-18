@@ -1,0 +1,30 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Add Resources Here -->
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/ContentControls.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/Buttons.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/RepeatButtons.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/ScrollBars.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/ScrollViewers.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/Icons.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/Windows.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/Toggles.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/TextBoxes.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/Test.axaml"/>
+  </ResourceDictionary.MergedDictionaries>
+
+  <Styles x:Key="MergedStyles">
+    <StaticResource ResourceKey="S_ContentControlsStyles_"/>
+    <StaticResource ResourceKey="S_ButtonsStyles_"/>
+    <StaticResource ResourceKey="S_RepeatButtonsStyles_"/>
+    <StaticResource ResourceKey="S_ScrollBarsStyles_"/>
+    <StaticResource ResourceKey="S_ScrollViewersStyles_"/>
+    <StaticResource ResourceKey="S_WindowsStyles_"/>
+    <StaticResource ResourceKey="S_IconsStyles_"/>
+    <StaticResource ResourceKey="S_TogglesStyles_"/>
+    <StaticResource ResourceKey="S_TextBoxesStyles_"/>
+    <StaticResource ResourceKey="S_TestStyles_"/>
+  </Styles>
+</ResourceDictionary>

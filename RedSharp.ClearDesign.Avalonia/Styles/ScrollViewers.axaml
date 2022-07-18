@@ -1,0 +1,162 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="using:System"
+                    xmlns:utils="using:RedSharp.ClearDesign.Utils"
+                    xmlns:helpers="using:RedSharp.ClearDesign.Helpers">
+  
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Colors.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Sizes.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Fonts.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/ScrollBars.axaml"/>
+  </ResourceDictionary.MergedDictionaries>
+
+  <Styles x:Key="S_ScrollViewersStyles_">
+    
+    <Style Selector="ScrollViewer">
+      <Setter Property="Background"
+              Value="Transparent"/>
+      
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <AdornerLayer Grid.Column="0"
+                          Grid.Row="0"
+                          Grid.ColumnSpan="3"
+                          Grid.RowSpan="3">
+              <ScrollContentPresenter Name="PART_ContentPresenter"                                    
+                                      Background="{TemplateBinding Background}"
+                                      CanHorizontallyScroll="{TemplateBinding CanHorizontallyScroll}"
+                                      CanVerticallyScroll="{TemplateBinding CanVerticallyScroll}"
+                                      Content="{TemplateBinding Content}"
+                                      Extent="{TemplateBinding Extent, Mode=TwoWay}"
+                                      Margin="{TemplateBinding Padding}"
+                                      Offset="{TemplateBinding Offset, Mode=TwoWay}"
+                                      Viewport="{TemplateBinding Viewport, Mode=TwoWay}">
+                <ScrollContentPresenter.GestureRecognizers>
+                  <ScrollGestureRecognizer CanHorizontallyScroll="{TemplateBinding CanHorizontallyScroll}"
+                                           CanVerticallyScroll="{TemplateBinding CanVerticallyScroll}"/>
+                </ScrollContentPresenter.GestureRecognizers>
+              </ScrollContentPresenter>
+            </AdornerLayer>
+          
+            <ScrollBar Name="verticalScrollBar"
+                       Classes="vertical resizable full"
+                       Orientation="Vertical"
+                       LargeChange="{Binding LargeChange.Height, RelativeSource={RelativeSource TemplatedParent}}"
+                       SmallChange="{Binding SmallChange.Height, RelativeSource={RelativeSource TemplatedParent}}"
+                       Maximum="{TemplateBinding VerticalScrollBarMaximum}"
+                       Value="{TemplateBinding VerticalScrollBarValue, Mode=TwoWay}"
+                       ViewportSize="{TemplateBinding VerticalScrollBarViewportSize}"
+                       Visibility="{TemplateBinding VerticalScrollBarVisibility}"
+                       Grid.Column="2"
+                       Grid.Row="1"
+                       Focusable="False"/>
+
+            <ScrollBar Name="horizontalScrollBar"
+                       Classes="horizontal resizable full"
+                       LargeChange="{Binding LargeChange.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                       SmallChange="{Binding SmallChange.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                       Maximum="{TemplateBinding HorizontalScrollBarMaximum}"
+                       Value="{TemplateBinding HorizontalScrollBarValue, Mode=TwoWay}"
+                       ViewportSize="{TemplateBinding HorizontalScrollBarViewportSize}"
+                       Visibility="{TemplateBinding HorizontalScrollBarVisibility}"
+                       Grid.Column="1"
+                       Grid.Row="2"
+                       Focusable="False"/>
+            <Panel/>
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <Style Selector="ScrollViewer.min">
+      <Setter Property="Background"
+              Value="Transparent"/>
+
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <AdornerLayer Grid.Column="0"
+                          Grid.Row="0"
+                          Grid.ColumnSpan="3"
+                          Grid.RowSpan="3">
+              <ScrollContentPresenter Name="PART_ContentPresenter"
+                                      Background="{TemplateBinding Background}"
+                                      CanHorizontallyScroll="{TemplateBinding CanHorizontallyScroll}"
+                                      CanVerticallyScroll="{TemplateBinding CanVerticallyScroll}"
+                                      Content="{TemplateBinding Content}"
+                                      Extent="{TemplateBinding Extent, Mode=TwoWay}"
+                                      Margin="{TemplateBinding Padding}"
+                                      Offset="{TemplateBinding Offset, Mode=TwoWay}"
+                                      Viewport="{TemplateBinding Viewport, Mode=TwoWay}">
+                <ScrollContentPresenter.GestureRecognizers>
+                  <ScrollGestureRecognizer CanHorizontallyScroll="{TemplateBinding CanHorizontallyScroll}"
+                                           CanVerticallyScroll="{TemplateBinding CanVerticallyScroll}"/>
+                </ScrollContentPresenter.GestureRecognizers>
+              </ScrollContentPresenter>
+            </AdornerLayer>
+
+            <Panel Width="{Binding ElementName=verticalScrollBar, Path=Width}"
+                   Grid.Column="0"
+                   Grid.Row="1"
+                   IsVisible="{Binding ElementName=verticalScrollBar, Path=IsVisible}"/>
+
+            <ScrollBar Name="verticalScrollBar"
+                       Classes="vertical min"
+                       Orientation="Vertical"
+                       LargeChange="{Binding LargeChange.Height, RelativeSource={RelativeSource TemplatedParent}}"
+                       SmallChange="{Binding SmallChange.Height, RelativeSource={RelativeSource TemplatedParent}}"
+                       Maximum="{TemplateBinding VerticalScrollBarMaximum}"
+                       Value="{TemplateBinding VerticalScrollBarValue, Mode=TwoWay}"
+                       ViewportSize="{TemplateBinding VerticalScrollBarViewportSize}"
+                       Visibility="{TemplateBinding VerticalScrollBarVisibility}"
+                       Grid.Column="2"
+                       Grid.Row="1"
+                       Focusable="False"/>
+
+            <Panel Height="{Binding ElementName=horizontalScrollBar, Path=Height}"
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   IsVisible="{Binding ElementName=horizontalScrollBar, Path=IsVisible}"/>
+
+            <ScrollBar Name="horizontalScrollBar"
+                       Classes="horizontal min"
+                       LargeChange="{Binding LargeChange.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                       SmallChange="{Binding SmallChange.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                       Maximum="{TemplateBinding HorizontalScrollBarMaximum}"
+                       Value="{TemplateBinding HorizontalScrollBarValue, Mode=TwoWay}"
+                       ViewportSize="{TemplateBinding HorizontalScrollBarViewportSize}"
+                       Visibility="{TemplateBinding HorizontalScrollBarVisibility}"
+                       Grid.Column="1"
+                       Grid.Row="2"
+                       Focusable="False"/>
+            <Panel/>
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+  </Styles>
+</ResourceDictionary>

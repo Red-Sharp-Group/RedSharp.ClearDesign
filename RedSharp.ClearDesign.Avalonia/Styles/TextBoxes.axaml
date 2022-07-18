@@ -1,0 +1,193 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="using:System"
+                    xmlns:utils="using:RedSharp.ClearDesign.Utils"
+                    xmlns:helpers="using:RedSharp.ClearDesign.Helpers">
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Colors.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Sizes.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Fonts.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/ScrollViewers.axaml"/>
+  </ResourceDictionary.MergedDictionaries>
+  
+  <Styles x:Key="S_TextBoxesStyles_">
+    
+    <Style Selector="TextBox">
+
+      <Setter Property="Height"
+              Value="{DynamicResource D_DefaultHeight_}"/>
+
+      <Setter Property="Padding"
+              Value="{Binding Source={StaticResource S_DefaultPaddingThicknessLeftRight_} Path=Value}"/>
+
+      <Setter Property="HorizontalAlignment"
+              Value="Stretch"/>
+      
+      <Setter Property="HorizontalContentAlignment"
+              Value="Stretch"/>
+      <Setter Property="VerticalContentAlignment"
+              Value="Center"/>
+
+      <Setter Property="Background"
+              Value="{StaticResource S_FieldsColorBrush_}"/>
+      <Setter Property="Foreground"
+              Value="{StaticResource S_CommonFontColorBrush_}"/>
+      
+      <Setter Property="BorderBrush"
+              Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
+      <Setter Property="BorderThickness"
+              Value="{Binding Source={StaticResource S_DefaultBorderThicknessFull_}, Path=Value}"/>
+
+      <Setter Property="FontFamily"
+              Value="{DynamicResource D_DefaultCommonFontFamily_}"/>
+      <Setter Property="FontSize"
+              Value="{DynamicResource D_DefaultCommonFontSize_}"/>
+      <Setter Property="FontWeight"
+              Value="{DynamicResource D_DefaultCommonFontWeight_}"/>
+      
+      <Setter Property="CaretBrush"
+              Value="{StaticResource S_SecondaryFontColorBrush_}"/>
+      <Setter Property="SelectionBrush"
+              Value="{StaticResource S_HoverPrimaryBackgroundColorBrush_}"/>
+      <Setter Property="SelectionForegroundBrush"
+              Value="{StaticResource S_PrimaryFontColorBrush_}"/>
+      
+      <Setter Property="Cursor"
+              Value="Ibeam"/>
+
+      <Setter Property="helpers:AccentHelper.Color"
+              Value="{StaticResource S_DefaultDarkAccentColorBrush_}"/>
+
+      <Setter Property="helpers:AccentHelper.Opacity"
+              Value="0.0"/>
+      
+      <Setter Property="Transitions">
+        <Transitions>
+          <BrushTransition Property="Background" Duration="0:0:0.075"/>
+          <BrushTransition Property="BorderBrush" Duration="0:0:0.075"/>
+          <DoubleTransition Property="helpers:AccentHelper.Opacity" Duration="0:0:0.075"/>
+        </Transitions>
+      </Setter>
+      
+      <Setter Property="Template">
+        <ControlTemplate>
+          
+          <!--BORDER-->
+          <Panel x:Name="PART_Border"
+                 UseLayoutRounding="True"
+                 Background="{TemplateBinding BorderBrush}">
+
+            <!--ACCENT-->
+            <Panel UseLayoutRounding="True"
+                   Background="{TemplateBinding helpers:AccentHelper.Color}"
+                   Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
+
+            <!--BACKGROUND-->
+            <Panel Background="{TemplateBinding Background}"
+                   Margin="{TemplateBinding BorderThickness}"
+                   UseLayoutRounding="False">
+
+              <!--CONTENT-->
+              <ScrollViewer Name="PART_ScrollViewer"
+                            HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                            VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
+                            Classes="min"
+                            AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"
+                            Margin="{TemplateBinding Padding}">
+                <Panel>
+                  <TextBlock Name="PART_TextDecorator"
+                             Text="{TemplateBinding Text}"
+                             Width="{Binding ElementName=PART_ScrollViewer, Path=Bounds.Width}"
+                             VerticalAlignment="Center"
+                             TextTrimming="CharacterEllipsis"
+                             IsHitTestVisible="False"/>
+                  
+                  <TextPresenter Name="PART_TextPresenter"
+                                 Text="{TemplateBinding Text, Mode=TwoWay}"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Stretch"
+                                 CaretIndex="{TemplateBinding CaretIndex}"
+                                 SelectionStart="{TemplateBinding SelectionStart}"
+                                 SelectionEnd="{TemplateBinding SelectionEnd}"
+                                 TextAlignment="{TemplateBinding TextAlignment}"
+                                 TextWrapping="{TemplateBinding TextWrapping}"
+                                 PasswordChar="{TemplateBinding PasswordChar}"
+                                 RevealPassword="{TemplateBinding RevealPassword}"
+                                 SelectionBrush="{TemplateBinding SelectionBrush}"
+                                 SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                                 CaretBrush="{TemplateBinding CaretBrush}"/>
+
+                </Panel>
+              </ScrollViewer>
+            </Panel>
+          </Panel>
+        </ControlTemplate>
+      </Setter>
+
+      <Setter Property="FocusAdorner">
+        <FocusAdornerTemplate>
+          <Border AdornerLayer.IsClipEnabled="False"
+                  UseLayoutRounding="False"
+                  BorderBrush="{StaticResource S_FocusBorderColorBrush_}"
+                  BorderThickness="{Binding Source={StaticResource S_DefaultFocusThicknessFull_}, Path=Value}"
+                  Margin="{Binding Source={StaticResource S_OutstandingFocusThicknessFull_}, Path=Value}"/>
+        </FocusAdornerTemplate>
+      </Setter>
+    </Style>
+
+    <Style Selector="TextBox /template/ :is(TextBlock)#PART_TextDecorator">
+      <Setter Property="IsVisible"
+              Value="True"/>
+    </Style>
+
+    <Style Selector="TextBox /template/ :is(TextPresenter)#PART_TextPresenter">
+      <Setter Property="IsVisible"
+              Value="False"/>
+    </Style>
+
+    <!--HOVER-->
+    <Style Selector="TextBox:pointerover">
+      <Setter Property="helpers:AccentHelper.Opacity"
+              Value="{DynamicResource D_DefaultAccentHoverOpacity_}"/>
+    </Style>
+
+    <!--PRESSED-->
+    <Style Selector="TextBox:pressed">
+      <Setter Property="helpers:AccentHelper.Opacity"
+              Value="{DynamicResource D_DefaultAccentPressedOpacity_}"/>
+    </Style>
+
+    <!--FOCUSED-->
+    <Style Selector="TextBox:focus">
+      <Setter Property="helpers:AccentHelper.Opacity"
+              Value="{DynamicResource D_DefaultAccentPressedOpacity_}"/>
+    </Style>
+    
+    <Style Selector="TextBox:focus /template/ :is(TextBlock)#PART_TextDecorator">
+      <Setter Property="IsVisible"
+              Value="False"/>
+    </Style>
+
+    <Style Selector="TextBox:focus /template/ :is(TextPresenter)#PART_TextPresenter">
+      <Setter Property="IsVisible"
+              Value="True"/>
+    </Style>
+
+    <!--DISABLED-->
+    <Style Selector="TextBox:disabled">
+      <Setter Property="OpacityMask"
+              Value="{StaticResource S_DisabledStateMaskColorBrush_}"/>
+
+      <Setter Property="Background"
+              Value="{StaticResource S_DefaultDisabledAccentColorBrush_}"/>
+
+      <Setter Property="BorderBrush"
+              Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+
+      <Setter Property="Foreground"
+              Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+    </Style>
+    
+  </Styles>
+</ResourceDictionary>

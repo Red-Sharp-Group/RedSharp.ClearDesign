@@ -1,0 +1,268 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="using:System"
+                    xmlns:utils="using:RedSharp.ClearDesign.Utils"
+                    xmlns:helpers="using:RedSharp.ClearDesign.Helpers">
+  
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Colors.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Sizes.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Fonts.axaml"/>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Styles/ScrollViewers.axaml"/>
+  </ResourceDictionary.MergedDictionaries>
+  
+  <Styles x:Key="S_TestStyles_">
+    <Style Selector="Menu">
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="{TemplateBinding CornerRadius}"
+                  Padding="{TemplateBinding Padding}">
+            <ItemsPresenter Name="PART_ItemsPresenter"
+                            Items="{TemplateBinding Items}"
+                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                            ItemTemplate="{TemplateBinding ItemTemplate}"
+                            KeyboardNavigation.TabNavigation="Continue"/>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <Style Selector="MenuFlyoutPresenter">
+      <Setter Property="Background" Value="{DynamicResource ThemeBackgroundBrush}"/>
+      <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderMidBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+      <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Name="LayoutRoot"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="{TemplateBinding CornerRadius}">
+            <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                          VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+              <ItemsPresenter Name="PART_ItemsPresenter"
+                              Items="{TemplateBinding Items}"
+                              ItemsPanel="{TemplateBinding ItemsPanel}"
+                              ItemTemplate="{TemplateBinding ItemTemplate}"
+                              Margin="{TemplateBinding Padding}"
+                              KeyboardNavigation.TabNavigation="Continue"
+                              Grid.IsSharedSizeScope="True" />
+            </ScrollViewer>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <!--REST-->
+    <Style Selector="MenuItem">
+      <Setter Property="helpers:ContentLayout.ContentLayoutRounding"
+              Value="False"/>
+      
+      <Setter Property="Background" 
+              Value="Transparent"/>
+      
+      <Setter Property="Padding" 
+              Value="{Binding Source={StaticResource S_DefaultPaddingThicknessLeftRight_} Path=Value}"/>
+
+      <Setter Property="FontFamily"
+              Value="{DynamicResource D_DefaultCommonFontFamily_}"/>
+      <Setter Property="FontSize"
+              Value="{DynamicResource D_DefaultCommonFontSize_}"/>
+      <Setter Property="FontWeight"
+              Value="{DynamicResource D_DefaultCommonFontWeight_}"/>      
+      
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Name="root"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="{TemplateBinding CornerRadius}">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIGT"/>
+                <ColumnDefinition Width="20"/>
+              </Grid.ColumnDefinitions>
+              <ContentPresenter Name="icon"
+                                Content="{TemplateBinding Icon}"
+                                Width="16"
+                                Height="16"
+                                Margin="3"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+              <Path Name="check"
+                    Fill="{TemplateBinding Foreground}"
+                    Data="F1M10,1.2L4.7,9.1 4.5,9.1 0,5.2 1.3,3.5 4.3,6.1 8.3,0 10,1.2z"
+                    IsVisible="False"
+                    Margin="3"
+                    VerticalAlignment="Center"/>
+              <ContentPresenter Name="PART_HeaderPresenter"
+                                Content="{TemplateBinding Header}"
+                                Margin="{TemplateBinding Padding}"
+                                VerticalAlignment="Center"
+                                Grid.Column="2">
+                <ContentPresenter.DataTemplates>
+                  <DataTemplate DataType="system:String">
+                    <AccessText Text="{Binding}"/>
+                  </DataTemplate>
+                </ContentPresenter.DataTemplates>
+              </ContentPresenter>
+              <!--Text="{TemplateBinding InputGesture, Converter={StaticResource KeyGestureConverter}}"-->
+              <TextBlock x:Name="PART_InputGestureText"
+                         Grid.Column="3"
+                         VerticalAlignment="Center"/>
+              <Path Name="rightArrow"
+                    Data="M0,0L4,3.5 0,7z"
+                    Fill="{DynamicResource ThemeForegroundBrush}"
+                    Margin="10,0,0,0"
+                    VerticalAlignment="Center"
+                    Grid.Column="4"/>
+              <Popup Name="PART_Popup"
+                     PlacementMode="Right"
+                     IsLightDismissEnabled="False"
+                     Height="500"
+                     IsOpen="{TemplateBinding IsSubMenuOpen, Mode=TwoWay}">
+                <Border Background="{DynamicResource ThemeBackgroundBrush}"
+                        BorderBrush="{DynamicResource ThemeBorderMidBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                  <ScrollViewer>
+                    <ItemsPresenter Name="PART_ItemsPresenter"
+                                    Items="{TemplateBinding Items}"
+                                    ItemsPanel="{TemplateBinding ItemsPanel}"
+                                    ItemTemplate="{TemplateBinding ItemTemplate}"
+                                    Grid.IsSharedSizeScope="True"/>
+                  </ScrollViewer>
+                </Border>
+              </Popup>
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+
+      <Setter Property="FocusAdorner">
+        <FocusAdornerTemplate>
+          <Border AdornerLayer.IsClipEnabled="False"
+                  BorderBrush="{StaticResource S_FocusBorderColorBrush_}"
+                  BorderThickness="{Binding Source={StaticResource S_DefaultFocusThicknessFull_}, Path=Value}"/>
+        </FocusAdornerTemplate>
+      </Setter>
+    </Style>
+
+    <!--HOVER-->
+    <Style Selector="MenuItem:pointerover">
+      <Setter Property="Background"
+              Value="{StaticResource S_Dark3ColorBrush_}"/>
+    </Style>
+
+    <!--PRESSED-->
+    <Style Selector="MenuItem:pressed">
+      <Setter Property="Background"
+              Value="{StaticResource S_Dark5ColorBrush_}"/>
+    </Style>
+
+    <!--OPEN-->
+    <Style Selector="MenuItem:open">
+      <Setter Property="Background"
+              Value="{StaticResource S_Dark5ColorBrush_}"/>
+    </Style>
+
+    <Style Selector="MenuItem:separator">
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Separator Background="{DynamicResource ThemeControlMidBrush}"
+                     Margin="20,1,0,1"
+                     Height="1"/>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <!--REST-->
+    <Style Selector="Menu > MenuItem">
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Name="root"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="{TemplateBinding CornerRadius}"
+                  UseLayoutRounding="True">
+            <Panel>
+              <ContentPresenter Name="PART_HeaderPresenter"
+                                UseLayoutRounding="{TemplateBinding helpers:ContentLayout.ContentLayoutRounding}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Header}"
+                                Margin="{TemplateBinding Padding}">
+                <ContentPresenter.DataTemplates>
+                  <DataTemplate DataType="system:String">
+                    <AccessText Text="{Binding}"/>
+                  </DataTemplate>
+                </ContentPresenter.DataTemplates>
+              </ContentPresenter>
+              
+              <Popup Name="PART_Popup"
+                     IsLightDismissEnabled="True"
+                     OverlayInputPassThroughElement="{Binding $parent[Menu]}"
+                     IsOpen="{TemplateBinding IsSubMenuOpen, Mode=TwoWay}">
+                <Border Background="{StaticResource S_BackgroundColorBrush_}"
+                        BorderBrush="{StaticResource S_Dark5ColorBrush_}"
+                        BorderThickness="{Binding Source={StaticResource S_DefaultBorderThicknessFull_} Path=Value}">
+                  <ItemsPresenter Name="PART_ItemsPresenter"
+                                  Items="{TemplateBinding Items}"
+                                  ItemsPanel="{TemplateBinding ItemsPanel}"
+                                  ItemTemplate="{TemplateBinding ItemTemplate}"/>
+                </Border>
+              </Popup>
+            </Panel>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <Style Selector="MenuItem /template/ ItemsPresenter#PART_ItemsPresenter">
+      <Setter Property="Margin" Value="2"/>
+    </Style>
+
+    <Style Selector="MenuItem:empty /template/ Path#rightArrow">
+      <Setter Property="IsVisible" Value="False"/>
+    </Style>
+
+    <Style Selector="MenuItem:disabled">
+      <Setter Property="Opacity" Value="{DynamicResource ThemeDisabledOpacity}"/>
+    </Style>
+
+    <Style Selector="PopupRoot">
+      <Setter Property="Background" Value="{x:Null}"/>
+      <Setter Property="TransparencyLevelHint" Value="Transparent" />
+      <Setter Property="Foreground" Value="{DynamicResource ThemeForegroundBrush}"/>
+      <Setter Property="FontSize" Value="{DynamicResource FontSizeNormal}"/>
+      <Setter Property="FontFamily" Value="{x:Static FontFamily.Default}" />
+      <Setter Property="FontWeight" Value="400" />
+      <Setter Property="FontStyle" Value="Normal" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Panel>
+            <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
+            <VisualLayerManager IsPopup="True">
+              <ContentPresenter Name="PART_ContentPresenter"
+                                Background="{TemplateBinding Background}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                Content="{TemplateBinding Content}"
+                                Padding="{TemplateBinding Padding}"/>
+            </VisualLayerManager>
+          </Panel>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+
+  </Styles>
+</ResourceDictionary>

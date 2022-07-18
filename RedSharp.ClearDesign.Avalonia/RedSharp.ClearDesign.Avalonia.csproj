@@ -1,0 +1,75 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>RedSharp.ClearDesign</RootNamespace>
+    <AssemblyName>RedSharp.ClearDesign</AssemblyName>
+  </PropertyGroup>
+
+  <Import Project="$(ProjectDir)..\Definitions.props" />
+  
+  <ItemGroup>
+    <None Remove=".gitignore" />
+    <None Remove="Resources\Fonts\OpenSans\OpenSans-Bold.ttf" />
+    <None Remove="Resources\Fonts\OpenSans\OpenSans-BoldItalic.ttf" />
+    <None Remove="Resources\Fonts\OpenSans\OpenSans-ExtraBold.ttf" />
+    <None Remove="Resources\Fonts\OpenSans\OpenSans-ExtraBoldItalic.ttf" />
+    <None Remove="Resources\Fonts\OpenSans\OpenSans-Italic.ttf" />
+    <None Remove="Resources\Fonts\OpenSans\OpenSans-Light.ttf" />
+    <None Remove="Resources\Fonts\OpenSans\OpenSans-LightItalic.ttf" />
+    <None Remove="Resources\Fonts\OpenSans\OpenSans-Regular.ttf" />
+    <None Remove="Resources\Fonts\OpenSans\OpenSans-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\OpenSans\OpenSans-SemiBoldItalic.ttf" />
+    <None Remove="Resources\Fonts\Oswald\Oswald-Bold.ttf" />
+    <None Remove="Resources\Fonts\Oswald\Oswald-ExtraLight.ttf" />
+    <None Remove="Resources\Fonts\Oswald\Oswald-Light.ttf" />
+    <None Remove="Resources\Fonts\Oswald\Oswald-Medium.ttf" />
+    <None Remove="Resources\Fonts\Oswald\Oswald-Regular.ttf" />
+    <None Remove="Resources\Fonts\Oswald\Oswald-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-Black.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-Bold.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-Italic.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-Light.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-LightItalic.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-Medium.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-Regular.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-Thin.ttf" />
+    <None Remove="Resources\Fonts\Roboto\Roboto-ThinItalic.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\OpenSans\OpenSans-Bold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\OpenSans\OpenSans-BoldItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\OpenSans\OpenSans-ExtraBold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\OpenSans\OpenSans-ExtraBoldItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\OpenSans\OpenSans-Italic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\OpenSans\OpenSans-Light.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\OpenSans\OpenSans-LightItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\OpenSans\OpenSans-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\OpenSans\OpenSans-SemiBold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\OpenSans\OpenSans-SemiBoldItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Oswald\Oswald-Bold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Oswald\Oswald-ExtraLight.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Oswald\Oswald-Light.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Oswald\Oswald-Medium.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Oswald\Oswald-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Oswald\Oswald-SemiBold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-Black.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-Bold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-Italic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-Light.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-LightItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-Medium.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-Thin.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\Roboto-ThinItalic.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.10.14" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.14" />
+  </ItemGroup>
+</Project>

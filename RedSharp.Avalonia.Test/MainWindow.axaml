@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="RedSharp.Avalonia.Test.MainWindow"
+        Title="RedSharp.Avalonia.Test">
+  <Grid RowDefinitions="auto,*">
+
+    <Menu Height="30"
+          Grid.Row="0">
+      <MenuItem Header="_File">
+        <MenuItem Header="_Open..."/>
+        <Separator/>
+        <MenuItem Header="_Exit"/>
+      </MenuItem>
+      <MenuItem Header="_Edit">
+        <MenuItem Header="Copy"/>
+        <MenuItem Header="Paste"/>
+      </MenuItem>
+    </Menu>
+
+    <ScrollViewer Grid.Column="0"
+                  Grid.Row="1"
+                  HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto">
+      <StackPanel>
+
+        <TextBox Margin="50" PasswordChar="*"/>
+      </StackPanel>
+    </ScrollViewer>
+
+    <!--<TextBox Grid.Row="1"
+             Width="200"/>-->
+  </Grid>
+</Window>

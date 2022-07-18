@@ -1,0 +1,118 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="using:System"
+                    xmlns:utils="using:RedSharp.ClearDesign.Utils"
+                    xmlns:helpers="using:RedSharp.ClearDesign.Helpers">
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceInclude Source="avares://RedSharp.ClearDesign/Definitions/Colors.axaml"/>
+  </ResourceDictionary.MergedDictionaries>
+
+  <Styles x:Key="S_IconsStyles_">
+    <Style Selector="Path.icon.default">
+      
+      <Setter Property="Width" 
+              Value="16"/>
+      
+      <Setter Property="Height" 
+              Value="16"/>
+
+      <Setter Property="StrokeLineCap"
+              Value="Round"/>
+
+      <Setter Property="StrokeJoin"
+              Value="Round"/>
+    </Style>
+    
+    <Style Selector="Path.icon.primary.min">
+
+      <Setter Property="Width" 
+              Value="12"/>
+      
+      <Setter Property="Height" 
+              Value="12"/>
+      
+      <Setter Property="StrokeLineCap" 
+              Value="Round"/>
+      
+      <Setter Property="StrokeJoin" 
+              Value="Round"/>
+    </Style>
+  </Styles>
+
+  <PathGeometry x:Key="S_CheckIconGeometry_" 
+                Figures="M2 6.5L4.63421 9.0217L10 3.5" />
+  
+  <PathGeometry x:Key="S_NullIconGeometry_" 
+                Figures="M3 6H9" />
+  
+  <PathGeometry x:Key="S_CloseIconGeometry_" 
+                Figures="M3.5 3.5L12.5 12.5M12.5 3.5L3.5 12.5" />
+  
+  <PathGeometry x:Key="S_MaximizeIconGeometry_" 
+                Figures="M12.5 3.5H3.5V12.5H12.5V3.5Z" />
+
+  <GeometryGroup x:Key="S_RestoreIconGeometry_" >
+    <PathGeometry Figures="M11.5 5.5H3.5V13.5H11.5V5.5Z" />
+    <PathGeometry Figures="M5.5 5.5V3.5H13.5V11.5H11.5" />
+  </GeometryGroup>
+
+  <PathGeometry x:Key="S_MinimizeIconGeometry_"
+                Figures="M3 8.5H13" />
+
+  <PathGeometry x:Key="S_LeftArrowIconGeometry"
+                Figures="M4.87287 8.75593C4.41241 8.35716 4.41241 7.64284 4.87287 7.24407L8.34535 
+                         4.23682C8.99299 3.67594 10 4.136 10 4.99275L10 11.0073C10 11.864 8.99299 
+                         12.3241 8.34535 11.7632L4.87287 8.75593Z"/>
+
+  <PathGeometry x:Key="S_LeftArrowLineIconGeometry"
+                Figures="M8.51191 11.5694C8.8264 11.839 9.29988 11.8026 9.56944 11.4881C9.83901 
+                         11.1736 9.80259 10.7001 9.48809 10.4306L8.51191 11.5694ZM5.5 8L5.01191 
+                         7.43056C4.84567 7.57304 4.75 7.78106 4.75 8C4.75 8.21894 4.84567 8.42696 
+                         5.01191 8.56944L5.5 8ZM9.48809 5.56944C9.80259 5.29988 9.83901 4.8264 9.56944 
+                         4.51191C9.29988 4.19741 8.8264 4.16099 8.51191 4.43056L9.48809 5.56944ZM9.48809 
+                         10.4306L5.98809 7.43056L5.01191 8.56944L8.51191 11.5694L9.48809 10.4306ZM5.98809 
+                         8.56944L9.48809 5.56944L8.51191 4.43056L5.01191 7.43056L5.98809 8.56944Z"/>
+
+  <PathGeometry x:Key="S_TopArrowIconGeometry"
+                Figures="M7.24407 4.87287C7.64284 4.41241 8.35716 4.41241 8.75593 4.87287L11.7632 
+                         8.34535C12.3241 8.99299 11.864 10 11.0073 10L4.99275 10C4.136 10 3.67594 
+                         8.99299 4.23682 8.34535L7.24407 4.87287Z"/>
+
+  <PathGeometry x:Key="S_TopArrowLineIconGeometry"
+                Figures="M4.43056 8.51191C4.16099 8.8264 4.19741 9.29988 4.51191 9.56944C4.8264 9.83901 
+                         5.29988 9.80259 5.56944 9.48809L4.43056 8.51191ZM8 5.5L8.56944 5.01191C8.42696 
+                         4.84567 8.21894 4.75 8 4.75C7.78106 4.75 7.57304 4.84567 7.43056 5.01191L8 5.5ZM10.4306 
+                         9.48809C10.7001 9.80259 11.1736 9.83901 11.4881 9.56944C11.8026 9.29988 11.839 
+                         8.8264 11.5694 8.51191L10.4306 9.48809ZM5.56944 9.48809L8.56944 5.98809L7.43056 
+                         5.01191L4.43056 8.51191L5.56944 9.48809ZM7.43056 5.98809L10.4306 9.48809L11.5694 
+                         8.51191L8.56944 5.01191L7.43056 5.98809Z"/>
+
+  <PathGeometry x:Key="S_RightArrowIconGeometry"
+                Figures="M11.1271 7.24407C11.5876 7.64284 11.5876 8.35716 11.1271 8.75593L7.65465 
+                         11.7632C7.00701 12.3241 6 11.864 6 11.0073L6 4.99275C6 4.136 7.00701 
+                         3.67594 7.65465 4.23682L11.1271 7.24407Z"/>
+
+  <PathGeometry x:Key="S_RightArrowLineIconGeometry"
+                Figures="M7.48809 4.43056C7.1736 4.16099 6.70012 4.19741 6.43056 4.51191C6.16099 4.8264 
+                         6.19741 5.29988 6.51191 5.56944L7.48809 4.43056ZM10.5 8L10.9881 8.56944C11.1543 
+                         8.42696 11.25 8.21894 11.25 8C11.25 7.78106 11.1543 7.57304 10.9881 7.43056L10.5 
+                         8ZM6.51191 10.4306C6.19741 10.7001 6.16099 11.1736 6.43056 11.4881C6.70012 11.8026 
+                         7.1736 11.839 7.48809 11.5694L6.51191 10.4306ZM6.51191 5.56944L10.0119 8.56944L10.9881 
+                         7.43056L7.48809 4.43056L6.51191 5.56944ZM10.0119 7.43056L6.51191 10.4306L7.48809 
+                         11.5694L10.9881 8.56944L10.0119 7.43056Z"/>
+
+  <PathGeometry x:Key="S_BottomArrowIconGeometry"
+                Figures="M8.75593 11.1271C8.35716 11.5876 7.64284 11.5876 7.24407 11.1271L4.23682 
+                         7.65465C3.67594 7.00701 4.136 6 4.99275 6L11.0073 6C11.864 6 12.3241 
+                         7.00701 11.7632 7.65465L8.75593 11.1271Z"/>
+
+  <PathGeometry x:Key="S_BottomArrowLineIconGeometry"
+                Figures="M11.5694 7.48809C11.839 7.1736 11.8026 6.70012 11.4881 6.43056C11.1736 6.16099 10.7001 
+                         6.19741 10.4306 6.51191L11.5694 7.48809ZM8 10.5L7.43056 10.9881C7.57304 11.1543 7.78106 
+                         11.25 8 11.25C8.21894 11.25 8.42696 11.1543 8.56944 10.9881L8 10.5ZM5.56944 6.51191C5.29988 
+                         6.19741 4.8264 6.16099 4.51191 6.43056C4.19741 6.70012 4.16099 7.1736 4.43056 7.48809L5.56944 
+                         6.51191ZM10.4306 6.51191L7.43056 10.0119L8.56944 10.9881L11.5694 7.48809L10.4306 6.51191ZM8.56944 
+                         10.0119L5.56944 6.51191L4.43056 7.48809L7.43056 10.9881L8.56944 10.0119Z"/>
+
+</ResourceDictionary>
