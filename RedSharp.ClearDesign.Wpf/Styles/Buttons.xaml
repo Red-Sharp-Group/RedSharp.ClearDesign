@@ -1,0 +1,206 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Definitions/Colors.xaml"/>
+        <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
+        <ResourceDictionary Source="../Definitions/Fonts.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <BeginStoryboard x:Key="S_AccentHoverEnterAnimation">
+        <Storyboard>
+            <DoubleAnimation Storyboard.TargetProperty="(helpers:AccentHelper.Opacity)"
+                             To="0.15" 
+                             Duration="0:0:0.075" 
+                             AutoReverse="False"/>
+        </Storyboard>
+    </BeginStoryboard>
+
+    <BeginStoryboard x:Key="S_AccentHoverExitAnimation">
+        <Storyboard>
+            <DoubleAnimation Storyboard.TargetProperty="(helpers:AccentHelper.Opacity)"
+                             To="0.0" 
+                             Duration="0:0:0.075" 
+                             AutoReverse="False"
+                             FillBehavior="Stop"/>
+        </Storyboard>
+    </BeginStoryboard>
+
+    <BeginStoryboard x:Key="S_AccentPressedEnterAnimation">
+        <Storyboard>
+            <DoubleAnimation Storyboard.TargetProperty="(helpers:AccentHelper.Opacity)"
+                             To="0.25" 
+                             Duration="0:0:0.075" 
+                             AutoReverse="False"/>
+        </Storyboard>
+    </BeginStoryboard>
+
+    <BeginStoryboard x:Key="S_AccentPressedExitAnimation">
+        <Storyboard>
+            <DoubleAnimation Storyboard.TargetProperty="(helpers:AccentHelper.Opacity)"
+                             To="0.15" 
+                             Duration="0:0:0.075" 
+                             AutoReverse="False"
+                             FillBehavior="Stop"/>
+        </Storyboard>
+    </BeginStoryboard>
+
+    <Style x:Key="focus-default"
+           TargetType="{x:Type Control}">
+        <Style.Setters>
+            <Setter Property="BorderBrush"
+                    Value="{StaticResource S_FocusBorderColorBrush_}"/>
+
+            <Setter Property="BorderThickness"
+                    Value="{Binding Source={StaticResource S_DefaultFocusThicknessFull_}, Path=Value}"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Control}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="focus-outstanding"
+           TargetType="{x:Type Control}"
+           BasedOn="{StaticResource focus-default}">
+        <Style.Setters>
+            <Setter Property="Margin"
+                    Value="{Binding Source={StaticResource S_OutstandingFocus_}, Path=Value}"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="button-secondary" 
+           TargetType="{x:Type Button}">
+        <Style.Setters>
+            <Setter Property="Width"
+                    Value="{DynamicResource D_DefaultWidth_}"/>
+            <Setter Property="Height"
+                    Value="{DynamicResource D_DefaultHeight_}"/>
+            <Setter Property="Padding"
+                    Value="{Binding Source={StaticResource S_DefaultPaddingThicknessLeftRight_}, Path=Value}"/>
+
+            <Setter Property="HorizontalAlignment"
+                    Value="Center"/>
+            <Setter Property="VerticalAlignment"
+                    Value="Center"/>
+            
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Center"/>
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center"/>
+
+            <Setter Property="Background"
+                    Value="{StaticResource S_SecondaryColorBrush_}"/>
+            <Setter Property="Foreground"
+                    Value="{StaticResource S_CommonFontColorBrush_}"/>
+
+            <Setter Property="BorderBrush"
+                    Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
+            <Setter Property="BorderThickness"
+                    Value="{Binding Source={StaticResource S_DefaultBorderThicknessFull_}, Path=Value}"/>
+            
+            <Setter Property="FontFamily"
+                    Value="{DynamicResource D_DefaultCommonFontFamily_}"/>
+            <Setter Property="FontSize"
+                    Value="{DynamicResource D_DefaultCommonFontSize_}"/>
+            <Setter Property="FontWeight"
+                    Value="{DynamicResource D_DefaultCommonFontWeight_}"/>
+
+            <Setter Property="FocusVisualStyle"
+                    Value="{StaticResource focus-outstanding}"/>
+
+            <Setter Property="helpers:AccentHelper.Opacity"
+                    Value="0.0"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border UseLayoutRounding="True"
+                                    Background="{TemplateBinding BorderBrush}">
+                                <Border UseLayoutRounding="False"
+                                        Background="{TemplateBinding Background}"
+                                        Margin="{TemplateBinding BorderThickness}">
+                                </Border>
+                            </Border>
+                            
+                            <Border UseLayoutRounding="True"
+                                    Background="Black"
+                                    Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
+                            
+                            <ContentControl UseLayoutRounding="False" 
+                                            Focusable="False"
+                                            Margin="{TemplateBinding Padding}"
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                            FontFamily="{TemplateBinding FontFamily}"
+                                            FontWeight="{TemplateBinding FontWeight}"
+                                            Foreground="{TemplateBinding Foreground}"
+                                            Content="{TemplateBinding Content}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <StaticResource ResourceKey="S_AccentHoverEnterAnimation"/>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <StaticResource ResourceKey="S_AccentHoverExitAnimation"/>
+                </Trigger.ExitActions>
+            </Trigger>
+
+            <Trigger Property="IsMouseCaptured" Value="True">
+                <Trigger.EnterActions>
+                    <StaticResource ResourceKey="S_AccentPressedEnterAnimation"/>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <StaticResource ResourceKey="S_AccentPressedExitAnimation"/>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="button-primary"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource button-secondary}">
+        <Style.Setters>
+            <Setter Property="Background"
+                    Value="{StaticResource S_PrimaryColorBrush_}"/>
+            <Setter Property="Foreground"
+                    Value="{StaticResource S_PrimaryFontColorBrush_}"/>
+            <Setter Property="BorderBrush"
+                    Value="{StaticResource S_PrimaryBorderColorBrush_}"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="button-menu"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource button-secondary}">
+        <Style.Setters>
+            <Setter Property="Width"
+                    Value="{x:Static system:Double.NaN}"/>
+
+            <Setter Property="Background"
+                    Value="Transparent"/>
+            
+            <Setter Property="BorderBrush"
+                    Value="Transparent"/>
+            
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+            <Setter Property="FocusVisualStyle"
+                    Value="{StaticResource focus-default}"/>
+        </Style.Setters>
+    </Style>
+</ResourceDictionary>

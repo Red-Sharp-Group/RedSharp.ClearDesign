@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedSharp.ClearDesign.Avalonia", "RedSharp.ClearDesign.Avalonia\RedSharp.ClearDesign.Avalonia.csproj", "{C015FC49-C04D-4D3F-9F20-AC776615D64F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedSharp.Avalonia.Test", "RedSharp.Avalonia.Test\RedSharp.Avalonia.Test.csproj", "{5C504490-3590-44FD-90FE-EE63B237D03D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedSharp.Avalonia.Test", "RedSharp.Avalonia.Test\RedSharp.Avalonia.Test.csproj", "{5C504490-3590-44FD-90FE-EE63B237D03D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedSharp.ClearDesign.Wpf", "RedSharp.ClearDesign.Wpf\RedSharp.ClearDesign.Wpf.csproj", "{AFEED79A-1CA2-4A9E-91BF-D7D1C14EF32A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{5C504490-3590-44FD-90FE-EE63B237D03D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C504490-3590-44FD-90FE-EE63B237D03D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C504490-3590-44FD-90FE-EE63B237D03D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFEED79A-1CA2-4A9E-91BF-D7D1C14EF32A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFEED79A-1CA2-4A9E-91BF-D7D1C14EF32A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFEED79A-1CA2-4A9E-91BF-D7D1C14EF32A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFEED79A-1CA2-4A9E-91BF-D7D1C14EF32A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

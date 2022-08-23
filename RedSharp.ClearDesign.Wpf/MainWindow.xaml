@@ -1,0 +1,22 @@
+﻿<Window x:Class="RedSharp.ClearDesign.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RedSharp.ClearDesign.Wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="450" 
+        Width="800"
+        Style="{StaticResource Test}">
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <Button Style="{StaticResource button-secondary}"
+                    Margin="5">AWERSOME</Button>
+            <Button Style="{StaticResource button-primary}"
+                    Margin="5">AWERSOME</Button>
+            <Button Style="{StaticResource button-menu}"
+                    Margin="5">AWERSOME</Button>
+        </StackPanel>
+    </Grid>
+</Window>
