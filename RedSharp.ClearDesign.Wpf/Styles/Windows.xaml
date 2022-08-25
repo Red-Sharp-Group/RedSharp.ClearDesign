@@ -59,6 +59,14 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
+                                    <Rectangle Grid.Row="0"
+                                               Grid.Column="0"
+                                               Fill="Transparent"
+                                               Height="{DynamicResource D_DefaultHeight_}"
+                                               WindowChrome.IsHitTestVisibleInChrome="True"
+                                               MouseDown="TitleMouseDown"
+                                               MouseMove="TitleMouseMove"/>
+
                                     <ContentPresenter Grid.Row="0"
                                                       Grid.Column="0"
                                                       Grid.RowSpan="2" 
