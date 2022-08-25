@@ -9,14 +9,26 @@
         Height="450" 
         Width="800"
         Style="{StaticResource Test}">
-    <Grid>
-        <StackPanel VerticalAlignment="Center">
-            <Button Style="{StaticResource button-secondary}"
+    <TabControl Style="{StaticResource tabcontrol-title}">
+        <TabItem Style="{StaticResource tabitem-title}"
+                 Header="Jobs">
+            <StackPanel VerticalAlignment="Center">
+                <Button Style="{StaticResource button-secondary}"
                     Margin="5">AWERSOME</Button>
-            <Button Style="{StaticResource button-primary}"
+                <Button Style="{StaticResource button-primary}"
                     Margin="5">AWERSOME</Button>
-            <Button Style="{StaticResource button-menu}"
+                <Button Style="{StaticResource button-menu}"
                     Margin="5">AWERSOME</Button>
-        </StackPanel>
-    </Grid>
+            </StackPanel>
+        </TabItem>
+        <TabItem Style="{StaticResource tabitem-title}"
+                 Header="Printers">
+        </TabItem>
+        <TabItem Style="{StaticResource tabitem-title}"
+                 Header="Settings">
+        </TabItem>
+        <TabItem Style="{StaticResource tabitem-title}"
+                 Header="About">
+        </TabItem>
+    </TabControl>
 </Window>

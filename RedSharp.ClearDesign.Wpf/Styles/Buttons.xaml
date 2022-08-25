@@ -7,74 +7,8 @@
         <ResourceDictionary Source="../Definitions/Colors.xaml"/>
         <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
         <ResourceDictionary Source="../Definitions/Fonts.xaml"/>
+        <ResourceDictionary Source="../Styles/Common.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-
-    <BeginStoryboard x:Key="S_AccentHoverEnterAnimation">
-        <Storyboard>
-            <DoubleAnimation Storyboard.TargetProperty="(helpers:AccentHelper.Opacity)"
-                             To="0.15" 
-                             Duration="0:0:0.075" 
-                             AutoReverse="False"/>
-        </Storyboard>
-    </BeginStoryboard>
-
-    <BeginStoryboard x:Key="S_AccentHoverExitAnimation">
-        <Storyboard>
-            <DoubleAnimation Storyboard.TargetProperty="(helpers:AccentHelper.Opacity)"
-                             To="0.0" 
-                             Duration="0:0:0.075" 
-                             AutoReverse="False"
-                             FillBehavior="Stop"/>
-        </Storyboard>
-    </BeginStoryboard>
-
-    <BeginStoryboard x:Key="S_AccentPressedEnterAnimation">
-        <Storyboard>
-            <DoubleAnimation Storyboard.TargetProperty="(helpers:AccentHelper.Opacity)"
-                             To="0.25" 
-                             Duration="0:0:0.075" 
-                             AutoReverse="False"/>
-        </Storyboard>
-    </BeginStoryboard>
-
-    <BeginStoryboard x:Key="S_AccentPressedExitAnimation">
-        <Storyboard>
-            <DoubleAnimation Storyboard.TargetProperty="(helpers:AccentHelper.Opacity)"
-                             To="0.15" 
-                             Duration="0:0:0.075" 
-                             AutoReverse="False"
-                             FillBehavior="Stop"/>
-        </Storyboard>
-    </BeginStoryboard>
-
-    <Style x:Key="focus-default"
-           TargetType="{x:Type Control}">
-        <Style.Setters>
-            <Setter Property="BorderBrush"
-                    Value="{StaticResource S_FocusBorderColorBrush_}"/>
-
-            <Setter Property="BorderThickness"
-                    Value="{Binding Source={StaticResource S_DefaultFocusThicknessFull_}, Path=Value}"/>
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Control}">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style.Setters>
-    </Style>
-
-    <Style x:Key="focus-outstanding"
-           TargetType="{x:Type Control}"
-           BasedOn="{StaticResource focus-default}">
-        <Style.Setters>
-            <Setter Property="Margin"
-                    Value="{Binding Source={StaticResource S_OutstandingFocus_}, Path=Value}"/>
-        </Style.Setters>
-    </Style>
 
     <Style x:Key="button-secondary" 
            TargetType="{x:Type Button}">
@@ -116,6 +50,8 @@
             <Setter Property="FocusVisualStyle"
                     Value="{StaticResource focus-outstanding}"/>
 
+            <Setter Property="helpers:AccentHelper.Color"
+                    Value="{StaticResource S_DefaultDarkAccentColorBrush_}"/>
             <Setter Property="helpers:AccentHelper.Opacity"
                     Value="0.0"/>
 
@@ -132,7 +68,7 @@
                             </Border>
                             
                             <Border UseLayoutRounding="True"
-                                    Background="Black"
+                                    Background="{TemplateBinding helpers:AccentHelper.Color}"
                                     Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
                             
                             <ContentControl UseLayoutRounding="False" 
@@ -170,6 +106,15 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="button-secondary-icon"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource button-secondary}">
+        <Style.Setters>
+            <Setter Property="Width"
+                    Value="{DynamicResource D_DefaultHeight_}"/>
+        </Style.Setters>
+    </Style>
+
     <Style x:Key="button-primary"
            TargetType="{x:Type Button}"
            BasedOn="{StaticResource button-secondary}">
@@ -180,6 +125,15 @@
                     Value="{StaticResource S_PrimaryFontColorBrush_}"/>
             <Setter Property="BorderBrush"
                     Value="{StaticResource S_PrimaryBorderColorBrush_}"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="button-primary-icon"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource button-secondary}">
+        <Style.Setters>
+            <Setter Property="Width"
+                    Value="{DynamicResource D_DefaultHeight_}"/>
         </Style.Setters>
     </Style>
 
@@ -203,4 +157,13 @@
                     Value="{StaticResource focus-default}"/>
         </Style.Setters>
     </Style>
+
+    <Style x:Key="button-menu-icon"
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource button-secondary}">
+        <Style.Setters>
+            <Setter Property="Width"
+                    Value="{DynamicResource D_DefaultHeight_}"/>
+        </Style.Setters>
+    </Style>    
 </ResourceDictionary>

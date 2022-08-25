@@ -77,6 +77,21 @@
                              Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
                              Input="1"/>
 
+    <utils:ThicknessModifier x:Key="S_DefaultBorderThicknessTop_"
+                             Modifier="{DynamicResource D_DefaultBorder_}"
+                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Input="0,1,0,0"/>
+
+    <utils:ThicknessModifier x:Key="S_DefaultBorderThicknessLeftRight_"
+                             Modifier="{DynamicResource D_DefaultBorder_}"
+                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Input="1,0"/>
+
+    <utils:ThicknessModifier x:Key="S_DefaultBorderThicknessLeftTopRight_"
+                             Modifier="{DynamicResource D_DefaultBorder_}"
+                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Input="1,1,1,0"/>
+
     <utils:ThicknessModifier x:Key="S_DefaultFocusThicknessFull_"
                              Modifier="{DynamicResource D_DefaultFocus_}"
                              Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"

@@ -15,6 +15,12 @@ namespace RedSharp.ClearDesign.Styles
 {
     public partial class Windows : ResourceDictionary
     {
+        private const int MoveLimit = 5;
+
+        //Not a best solution, possible bad because it is the same for all windows,
+        //but I don't think that your level of magic so high that you can move two windows at the same time
+        private Point? _lastPosition;
+
         private void MinimizeButtonClick(Object sender, RoutedEventArgs arguments)
         {
             var window = FindParent<Window>(sender as Button);
@@ -72,25 +78,36 @@ namespace RedSharp.ClearDesign.Styles
 
             var window = FindParent<Window>(sender as Rectangle);
 
-
-            if (window.WindowState == WindowState.Maximized)
+            if (!_lastPosition.HasValue)
             {
-                //TODO this is not ok to move it to zero position.
-                var windowPosition = new Point(0, 0);
-                var windowSize = new Size(window.ActualWidth, window.ActualHeight);
-                var mousePosition = arguments.GetPosition(window);
-
-                var globalMousePosition = new Point(mousePosition.X + windowPosition.X, mousePosition.Y + windowPosition.Y);
-
-                window.WindowState = WindowState.Normal;
-
-                var newWindowSize = new Size(window.ActualWidth, window.ActualHeight);
-
-                window.Left = globalMousePosition.X - (mousePosition.X * newWindowSize.Width / windowSize.Width);
-                window.Top = windowPosition.Y;
+                _lastPosition = arguments.GetPosition(window);
             }
+            else if (Math.Abs(_lastPosition.Value.X) > MoveLimit || Math.Abs(_lastPosition.Value.Y) > MoveLimit)
+            {
+                if (window.WindowState == WindowState.Maximized)
+                {
+                    //TODO this is not ok to move it to zero position.
+                    var windowPosition = new Point(0, 0);
+                    var windowSize = new Size(window.ActualWidth, window.ActualHeight);
+                    var mousePosition = arguments.GetPosition(window);
 
-            window.DragMove();
+                    var globalMousePosition = new Point(mousePosition.X + windowPosition.X, mousePosition.Y + windowPosition.Y);
+
+                    window.WindowState = WindowState.Normal;
+
+                    var newWindowSize = new Size(window.ActualWidth, window.ActualHeight);
+
+                    window.Left = globalMousePosition.X - (mousePosition.X * newWindowSize.Width / windowSize.Width);
+                    window.Top = windowPosition.Y;
+                }
+
+                window.DragMove();
+            }
+        }
+
+        private void TitleMouseUp(Object sender, MouseButtonEventArgs arguments)
+        {
+            _lastPosition = null;
         }
     }
 }
