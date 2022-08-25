@@ -30,22 +30,35 @@
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            
-                            <TabPanel x:Name="HeaderPanel"
-                                      Grid.Column="0"
-                                      Grid.Row="0"
-                                      ZIndex="1"
-                                      IsItemsHost="True"
-                                      KeyboardNavigation.TabIndex="1"
-                                      Margin="50,0"/>
+
+                            <Grid Grid.Column="0"
+                                  Grid.Row="0"
+                                  Margin="50,0"
+                                  ZIndex="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Rectangle Grid.Column="0" 
+                                           HorizontalAlignment="Right" 
+                                           Margin="{Binding Source={StaticResource S_DefaultMarginThicknessTopBottom_}, Path=Value}"
+                                           Width="{DynamicResource D_DefaultBorder_}"
+                                           Fill="{StaticResource S_Dark5ColorBrush_}"/>
+                                
+                                <TabPanel x:Name="HeaderPanel"
+                                          Grid.Column="1"                                          
+                                          IsItemsHost="True"
+                                          KeyboardNavigation.TabIndex="1"/>
+                            </Grid>
 
                             <Border Grid.Column="0"
                                     Grid.Row="1"
-                                    Background="{TemplateBinding Background}"
-                                    Margin="0,-1,0,0">
+                                    Background="{TemplateBinding Background}">
                                 <Border BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
-                                    <ContentControl Content="{TemplateBinding SelectedContent}" />                                    
+                                    <ContentControl Focusable="False"
+                                                    Content="{TemplateBinding SelectedContent}" />                                    
                                 </Border>                            
                             </Border>
                             
@@ -65,7 +78,7 @@
             <Setter Property="MinWidth"
                     Value="80"/>
             <Setter Property="Height"
-                    Value="31"/>            
+                    Value="{DynamicResource D_DefaultHeight_}"/>            
             <Setter Property="Padding"
                     Value="{Binding Source={StaticResource S_DefaultPaddingThicknessLeftRight_}, Path=Value}"/>
 
@@ -101,12 +114,21 @@
             <Setter Property="helpers:AccentHelper.Opacity"
                     Value="0.0"/>
 
+            <Setter Property="FocusVisualStyle"
+                    Value="{StaticResource focus-default}"/>
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TabItem}">
                         <Grid>
+                            <Rectangle HorizontalAlignment="Right" 
+                                       Margin="{Binding Source={StaticResource S_DefaultMarginThicknessTopBottom_}, Path=Value}"
+                                       Width="{DynamicResource D_DefaultBorder_}"
+                                       Fill="{StaticResource S_Dark5ColorBrush_}"/>
+                            
                             <Border UseLayoutRounding="True"
-                                    Background="{TemplateBinding Background}">
+                                    Background="{TemplateBinding Background}"
+                                    Margin="-1,0,-1,-1">
                                 <Border UseLayoutRounding="False"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
@@ -115,7 +137,8 @@
 
                             <Border UseLayoutRounding="True"
                                     Background="{TemplateBinding helpers:AccentHelper.Color}"
-                                    Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
+                                    Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"
+                                    Margin="0,0,1,0"/>
 
                             <ContentControl UseLayoutRounding="False" 
                                             Focusable="False"
@@ -149,8 +172,11 @@
                     <StaticResource ResourceKey="S_AccentPressedExitAnimation"/>
                 </Trigger.ExitActions>
             </Trigger>
+            
             <Trigger Property="IsSelected"
                      Value="True">
+                <Setter Property="helpers:AccentHelper.Color"
+                        Value="Transparent"/>
                 <Setter Property="Background"
                         Value="{StaticResource S_BackgroundColorBrush_}"/>
                 <Setter Property="BorderBrush"

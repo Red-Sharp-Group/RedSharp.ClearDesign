@@ -46,6 +46,11 @@
                              Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
                              Input="1"/>
 
+    <utils:ThicknessModifier x:Key="S_DefaultMarginThicknessTopBottom_"
+                             Modifier="{DynamicResource D_DefaultMargin_}"
+                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Input="0,1"/>
+
     <utils:ThicknessModifier x:Key="S_OutstandingFocusThicknessFull_"
                              Modifier="{Binding Source={StaticResource S_OutstandingFocus_}, Path=Value}"
                              Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"

@@ -8,7 +8,9 @@
         Title="MainWindow" 
         Height="450" 
         Width="800"
-        Style="{StaticResource Test}">
+        Style="{StaticResource Test}"
+        Background="{StaticResource S_WindowBackgroundColorBrush_}">
+
     <TabControl Style="{StaticResource tabcontrol-title}">
         <TabItem Style="{StaticResource tabitem-title}"
                  Header="Jobs">

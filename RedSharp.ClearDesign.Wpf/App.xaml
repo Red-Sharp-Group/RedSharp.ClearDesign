@@ -2,6 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:RedSharp.ClearDesign.Wpf"
+             xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -11,6 +12,13 @@
                 <ResourceDictionary Source="Styles/Buttons.xaml"/>
                 <ResourceDictionary Source="Styles/Tabs.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <utils:ColorBlender x:Key="S_WindowBackgroundBlender_" 
+                            BackgroundColor="{DynamicResource D_DefaultBackgroundColor_}"
+                            ForegroundColor="{Binding Source={StaticResource S_Step1Blender_}, Path=Color}"/>
+
+            <SolidColorBrush x:Key="S_WindowBackgroundColorBrush_"
+                         Color="{Binding Source={StaticResource S_WindowBackgroundBlender_}, Path=Color}"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
