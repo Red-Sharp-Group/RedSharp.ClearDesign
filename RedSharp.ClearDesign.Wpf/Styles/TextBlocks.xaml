@@ -1,0 +1,69 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Definitions/Colors.xaml"/>
+        <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
+        <ResourceDictionary Source="../Definitions/Fonts.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="textblock-common"
+           TargetType="{x:Type TextBlock}">
+        <Style.Setters>
+            <Setter Property="Foreground"
+                    Value="{StaticResource S_CommonFontColorBrush_}"/>
+
+            <Setter Property="FontFamily"
+                    Value="{DynamicResource D_DefaultCommonFontFamily_}"/>
+            <Setter Property="FontSize"
+                    Value="{DynamicResource D_DefaultCommonFontSize_}"/>
+            <Setter Property="FontWeight"
+                    Value="{DynamicResource D_DefaultCommonFontWeight_}"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="textblock-title1"
+           TargetType="{x:Type TextBlock}">
+        <Style.Setters>
+            <Setter Property="Foreground"
+                    Value="{StaticResource S_CommonFontColorBrush_}"/>
+
+            <Setter Property="FontFamily"
+                    Value="{DynamicResource D_DefaultTitle1FontFamily_}"/>
+            <Setter Property="FontSize"
+                    Value="{DynamicResource D_DefaultTitle1FontSize_}"/>
+            <Setter Property="FontWeight"
+                    Value="{DynamicResource D_DefaultTitle1FontWeight_}"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="textblock-title2"
+           TargetType="{x:Type TextBlock}">
+        <Style.Setters>
+            <Setter Property="Foreground"
+                    Value="{StaticResource S_CommonFontColorBrush_}"/>
+
+            <Setter Property="FontFamily"
+                    Value="{DynamicResource D_DefaultTitle2FontFamily_}"/>
+            <Setter Property="FontSize"
+                    Value="{DynamicResource D_DefaultTitle2FontSize_}"/>
+            <Setter Property="FontWeight"
+                    Value="{DynamicResource D_DefaultTitle2FontWeight_}"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="textblock-title3"
+           TargetType="{x:Type TextBlock}">
+        <Style.Setters>
+            <Setter Property="Foreground"
+                    Value="{StaticResource S_CommonFontColorBrush_}"/>
+
+            <Setter Property="FontFamily"
+                    Value="{DynamicResource D_DefaultTitle3FontFamily_}"/>
+            <Setter Property="FontSize"
+                    Value="{DynamicResource D_DefaultTitle3FontSize_}"/>
+            <Setter Property="FontWeight"
+                    Value="{DynamicResource D_DefaultTitle3FontWeight_}"/>
+        </Style.Setters>
+    </Style>
+</ResourceDictionary>

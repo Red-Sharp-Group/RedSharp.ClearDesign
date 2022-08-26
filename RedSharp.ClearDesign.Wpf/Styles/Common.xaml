@@ -74,4 +74,32 @@
                     Value="{Binding Source={StaticResource S_OutstandingFocus_}, Path=Value}"/>
         </Style.Setters>
     </Style>
+
+    <Style x:Key="rectange-separator-vertical"
+           TargetType="{x:Type Rectangle}">
+        <Style.Setters>
+            <Setter Property="Width"
+                    Value="{DynamicResource D_DefaultBorder_}"/>
+
+            <Setter Property="Fill"
+                    Value="{StaticResource S_Dark5ColorBrush_}"/>
+
+            <Setter Property="Margin"
+                    Value="{Binding Source={StaticResource S_DefaultMarginThicknessTopBottom_}, Path=Value}"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="rectange-separator-horizontal"
+           TargetType="{x:Type Rectangle}">
+        <Style.Setters>
+            <Setter Property="Height"
+                    Value="{DynamicResource D_DefaultBorder_}"/>
+
+            <Setter Property="Fill"
+                    Value="{StaticResource S_Dark5ColorBrush_}"/>
+
+            <Setter Property="Margin"
+                    Value="{Binding Source={StaticResource S_DefaultMarginThicknessLeftRight_}, Path=Value}"/>
+        </Style.Setters>
+    </Style>
 </ResourceDictionary>

@@ -14,6 +14,9 @@
     <Style x:Key="tabcontrol-title"
            TargetType="{x:Type TabControl}">
         <Style.Setters>
+            <Setter Property="helpers:TabPanelHelper.Margin"
+                    Value="0"/>
+            
             <Setter Property="Background"
                     Value="{StaticResource S_BackgroundColorBrush_}"/>
             
@@ -33,18 +36,16 @@
 
                             <Grid Grid.Column="0"
                                   Grid.Row="0"
-                                  Margin="50,0"
+                                  Margin="{TemplateBinding helpers:TabPanelHelper.Margin}"
                                   ZIndex="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
                                 
-                                <Rectangle Grid.Column="0" 
-                                           HorizontalAlignment="Right" 
-                                           Margin="{Binding Source={StaticResource S_DefaultMarginThicknessTopBottom_}, Path=Value}"
-                                           Width="{DynamicResource D_DefaultBorder_}"
-                                           Fill="{StaticResource S_Dark5ColorBrush_}"/>
+                                <Rectangle Style="{StaticResource rectange-separator-vertical}" 
+                                           Grid.Column="0" 
+                                           HorizontalAlignment="Right"/>
                                 
                                 <TabPanel x:Name="HeaderPanel"
                                           Grid.Column="1"                                          
@@ -121,10 +122,8 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TabItem}">
                         <Grid>
-                            <Rectangle HorizontalAlignment="Right" 
-                                       Margin="{Binding Source={StaticResource S_DefaultMarginThicknessTopBottom_}, Path=Value}"
-                                       Width="{DynamicResource D_DefaultBorder_}"
-                                       Fill="{StaticResource S_Dark5ColorBrush_}"/>
+                            <Rectangle Style="{StaticResource rectange-separator-vertical}"
+                                       HorizontalAlignment="Right"/>
                             
                             <Border UseLayoutRounding="True"
                                     Background="{TemplateBinding Background}"
