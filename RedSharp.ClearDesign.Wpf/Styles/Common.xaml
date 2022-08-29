@@ -8,7 +8,8 @@
         <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <BeginStoryboard x:Key="S_AccentHoverEnterAnimation">
+    <BeginStoryboard x:Key="S_AccentHoverEnterAnimation"
+                     x:Shared="false">
         <Storyboard>
             <DoubleAnimation Storyboard.TargetProperty="(helpers:AccentHelper.Opacity)"
                              To="0.15" 
@@ -17,7 +18,8 @@
         </Storyboard>
     </BeginStoryboard>
 
-    <BeginStoryboard x:Key="S_AccentHoverExitAnimation">
+    <BeginStoryboard x:Key="S_AccentHoverExitAnimation"
+                     x:Shared="false">
         <Storyboard>
             <DoubleAnimation Storyboard.TargetProperty="(helpers:AccentHelper.Opacity)"
                              To="0.0" 
@@ -27,7 +29,8 @@
         </Storyboard>
     </BeginStoryboard>
 
-    <BeginStoryboard x:Key="S_AccentPressedEnterAnimation">
+    <BeginStoryboard x:Key="S_AccentPressedEnterAnimation"
+                     x:Shared="false">
         <Storyboard>
             <DoubleAnimation Storyboard.TargetProperty="(helpers:AccentHelper.Opacity)"
                              To="0.25" 
@@ -36,7 +39,8 @@
         </Storyboard>
     </BeginStoryboard>
 
-    <BeginStoryboard x:Key="S_AccentPressedExitAnimation">
+    <BeginStoryboard x:Key="S_AccentPressedExitAnimation"
+                     x:Shared="false">
         <Storyboard>
             <DoubleAnimation Storyboard.TargetProperty="(helpers:AccentHelper.Opacity)"
                              To="0.15" 

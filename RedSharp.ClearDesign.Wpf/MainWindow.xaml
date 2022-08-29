@@ -72,14 +72,29 @@
                 <StackPanel VerticalAlignment="Center">
                     <Button Style="{StaticResource button-secondary}"
                         Margin="5">AWERSOME</Button>
-                    <Button Style="{StaticResource button-primary}"
-                        Margin="5">AWERSOME</Button>
                     <Button Style="{StaticResource button-menu}"
                         Margin="5">AWERSOME</Button>
+
+                    <Grid Margin="5">
+
+                        <Button Style="{StaticResource button-primary}">AWERSOME</Button>
+
+                        <Rectangle x:Name="rectangle" 
+                                   Width="120" 
+                                   Height="30"
+                                   Margin="5"
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" 
+                                   StrokeThickness="1">
+                        </Rectangle>
+                    </Grid>
                 </StackPanel>
             </TabItem>
             <TabItem Style="{StaticResource tabitem-title}"
                      Header="Printers">
+                <Grid>
+                    <ScrollBar Style="{StaticResource scrollbar-vertical}"/>
+                </Grid>                
             </TabItem>
             <TabItem Style="{StaticResource tabitem-title}"
                      Header="Settings">
