@@ -92,9 +92,17 @@
             </TabItem>
             <TabItem Style="{StaticResource tabitem-title}"
                      Header="Printers">
-                <Grid>
-                    <ScrollBar Style="{StaticResource scrollbar-vertical}"/>
-                </Grid>                
+                <ScrollViewer Style="{StaticResource scrollviewer-default}"
+                              HorizontalScrollBarVisibility="Visible"
+                              VerticalScrollBarVisibility="Visible">
+                    <Grid Width="3600"
+                          Height="2048">
+                        <Rectangle Fill="red"
+                                   Margin="50"
+                                   Width="120"
+                                   Height="1920"/>
+                    </Grid>
+                </ScrollViewer>                
             </TabItem>
             <TabItem Style="{StaticResource tabitem-title}"
                      Header="Settings">

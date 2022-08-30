@@ -5,9 +5,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows;
+using System.Windows.Data;
+using System.Globalization;
 
 namespace RedSharp.ClearDesign.Helpers
 {
+    public class CornerRadiusConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var radius = 0.0;
+
+            try
+            {
+                var diameter = System.Convert.ToDouble(value);
+                
+                radius = diameter / 2;
+            }
+            catch
+            { }
+
+            return new CornerRadius(radius);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
+    }
+
     public static class ScrollHelper
     {
         public static DependencyProperty ThumbColorProperty;
@@ -27,7 +50,11 @@ namespace RedSharp.ClearDesign.Helpers
 
             TrackWidthProperty = DependencyProperty.RegisterAttached("TrackWidth", typeof(double), typeof(ScrollHelper));
             TrackHeightProperty = DependencyProperty.RegisterAttached("TrackHeight", typeof(double), typeof(ScrollHelper));
+
+            RadiusConverter = new CornerRadiusConverter();
         }
+
+        public static CornerRadiusConverter RadiusConverter { get; private set; }
 
         public static void SetThumbColor(DependencyObject element, Brush value)
         {

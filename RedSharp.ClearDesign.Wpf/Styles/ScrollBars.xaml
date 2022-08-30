@@ -38,17 +38,17 @@
                     <ControlTemplate TargetType="{x:Type RepeatButton}">
                         <Grid>
                             <Border UseLayoutRounding="True"
-                                    CornerRadius="4"
+                                    CornerRadius="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Converter={x:Static helpers:ScrollHelper.RadiusConverter}}"
                                     Background="{TemplateBinding BorderBrush}">
                                 <Border UseLayoutRounding="False"
-                                        CornerRadius="4"
+                                        CornerRadius="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Converter={x:Static helpers:ScrollHelper.RadiusConverter}}"
                                         Background="{TemplateBinding Background}"
                                         Margin="{TemplateBinding BorderThickness}">
                                 </Border>
                             </Border>
 
                             <Border UseLayoutRounding="True"
-                                    CornerRadius="4"
+                                    CornerRadius="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Converter={x:Static helpers:ScrollHelper.RadiusConverter}}"
                                     Background="{TemplateBinding helpers:AccentHelper.Color}"
                                     Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
 
@@ -109,19 +109,19 @@
 
                         <!--BORDER-->
                         <Border UseLayoutRounding="True"
-                                CornerRadius="255"
+                                CornerRadius="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Converter={x:Static helpers:ScrollHelper.RadiusConverter}}"
                                 Background="{TemplateBinding BorderBrush}">
                             <Grid>
 
                                 <!--BACKGROUND-->
                                 <Border UseLayoutRounding="False"
-                                        CornerRadius="255"
+                                        CornerRadius="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Converter={x:Static helpers:ScrollHelper.RadiusConverter}}"
                                         Background="{TemplateBinding Background}"
                                         Margin="{TemplateBinding BorderThickness}"/>
 
                                 <!--ACCENT-->
                                 <Border UseLayoutRounding="True"
-                                        CornerRadius="255"
+                                        CornerRadius="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Converter={x:Static helpers:ScrollHelper.RadiusConverter}}"
                                         Background="{TemplateBinding helpers:AccentHelper.Color}"
                                         Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
 
@@ -168,9 +168,9 @@
                     Value="{StaticResource S_Dark5ColorBrush_}"/>
 
             <Setter Property="helpers:ScrollHelper.RepeatButtonsVisible"
-                    Value="Hidden"/>
+                    Value="Visible"/>
             <Setter Property="helpers:ScrollHelper.RepeatButtonsOpacity"
-                    Value="0"/>
+                    Value="1"/>
 
             <Setter Property="helpers:ScrollHelper.TrackWidth"
                     Value="8"/>
@@ -192,7 +192,8 @@
                                               UseLayoutRounding="True"
                                               Style="{StaticResource repeatbutton-scroll}"
                                               Opacity="{TemplateBinding helpers:ScrollHelper.RepeatButtonsOpacity}"
-                                              Visibility="{TemplateBinding helpers:ScrollHelper.RepeatButtonsVisible}">
+                                              Visibility="{TemplateBinding helpers:ScrollHelper.RepeatButtonsVisible}"
+                                              Command="{x:Static ScrollBar.LineUpCommand}">
                                     <Path Style="{StaticResource icon-default}"
                                           Fill="{StaticResource S_CommonFontColorBrush_}"
                                           Data="{StaticResource S_TopArrowLineIconGeometry}"/>
@@ -200,7 +201,7 @@
 
                                 <Border Grid.Row="1"
                                         Margin="0,2"
-                                        CornerRadius="4"
+                                        CornerRadius="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth, Converter={x:Static helpers:ScrollHelper.RadiusConverter}}"
                                         Background="{TemplateBinding helpers:ScrollHelper.TrackColor}"
                                         Width="{TemplateBinding helpers:ScrollHelper.TrackWidth}"/>
 
@@ -217,14 +218,12 @@
                                     <Track.DecreaseRepeatButton>
                                         <RepeatButton Name="PART_PageUpButton"
                                                       Style="{StaticResource repeatbutton-scroll-track}"
-                                                      Command="{x:Static ScrollBar.PageUpCommand}"
-                                                      Background="Red"/>
+                                                      Command="{x:Static ScrollBar.PageUpCommand}"/>
                                     </Track.DecreaseRepeatButton>
                                     <Track.IncreaseRepeatButton>
                                         <RepeatButton Name="PART_PageDownButton"
                                                       Style="{StaticResource repeatbutton-scroll-track}"
-                                                      Command="{x:Static ScrollBar.PageDownCommand}"
-                                                      Background="Green"/>
+                                                      Command="{x:Static ScrollBar.PageDownCommand}"/>
                                     </Track.IncreaseRepeatButton>
                                     <Track.Thumb>
                                         <Thumb Style="{StaticResource thumb-scroll}"
@@ -237,7 +236,8 @@
                                               UseLayoutRounding="True"
                                               Style="{StaticResource repeatbutton-scroll}"
                                               Opacity="{TemplateBinding helpers:ScrollHelper.RepeatButtonsOpacity}"
-                                              Visibility="{TemplateBinding helpers:ScrollHelper.RepeatButtonsVisible}">
+                                              Visibility="{TemplateBinding helpers:ScrollHelper.RepeatButtonsVisible}"
+                                              Command="{x:Static ScrollBar.LineDownCommand}" >
                                     <Path Style="{StaticResource icon-default}"
                                           Fill="{StaticResource S_CommonFontColorBrush_}"
                                           Data="{StaticResource S_BottomArrowLineIconGeometry}"/>
@@ -250,6 +250,170 @@
         </Style.Setters>
         <Style.Triggers>
             
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="scrollbar-horizontal"
+           TargetType="{x:Type ScrollBar}">
+        <Style.Setters>
+            <Setter Property="Height"
+                    Value="16"/>
+
+            <Setter Property="Orientation"
+                    Value="Horizontal"/>
+
+            <Setter Property="helpers:ScrollHelper.TrackColor"
+                    Value="{StaticResource S_Step3ColorBrush_}"/>
+
+            <Setter Property="helpers:ScrollHelper.ThumbColor"
+                    Value="{StaticResource S_Dark5ColorBrush_}"/>
+
+            <Setter Property="helpers:ScrollHelper.RepeatButtonsVisible"
+                    Value="Visible"/>
+            <Setter Property="helpers:ScrollHelper.RepeatButtonsOpacity"
+                    Value="1"/>
+
+            <Setter Property="helpers:ScrollHelper.TrackHeight"
+                    Value="8"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Border>
+                            <Grid Height="{TemplateBinding Height}"
+                                  Background="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <RepeatButton Grid.Column="0"
+                                              Name="PART_LineUpButton"
+                                              UseLayoutRounding="True"
+                                              Style="{StaticResource repeatbutton-scroll}"
+                                              Opacity="{TemplateBinding helpers:ScrollHelper.RepeatButtonsOpacity}"
+                                              Visibility="{TemplateBinding helpers:ScrollHelper.RepeatButtonsVisible}"
+                                              Command="{x:Static ScrollBar.LineLeftCommand}">
+                                    <Path Style="{StaticResource icon-default}"
+                                          Fill="{StaticResource S_CommonFontColorBrush_}"
+                                          Data="{StaticResource S_LeftArrowLineIconGeometry}"/>
+                                </RepeatButton>
+
+                                <Border Grid.Column="1"
+                                        Margin="2,0"
+                                        CornerRadius="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight, Converter={x:Static helpers:ScrollHelper.RadiusConverter}}"
+                                        Background="{TemplateBinding helpers:ScrollHelper.TrackColor}"
+                                        Height="{TemplateBinding helpers:ScrollHelper.TrackHeight}"/>
+
+                                <Track Grid.Column="1"
+                                       Margin="2,0"
+                                       Name="PART_Track"
+                                       Height="{TemplateBinding helpers:ScrollHelper.TrackHeight}"
+                                       Minimum="{TemplateBinding Minimum}"
+                                       Maximum="{TemplateBinding Maximum}"
+                                       Value="{TemplateBinding Value}"
+                                       ViewportSize="{TemplateBinding ViewportSize}"
+                                       Orientation="{TemplateBinding Orientation}"
+                                       IsDirectionReversed="False">
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton Name="PART_PageUpButton"
+                                                      Style="{StaticResource repeatbutton-scroll-track}"
+                                                      Command="{x:Static ScrollBar.PageLeftCommand}"/>
+                                    </Track.DecreaseRepeatButton>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton Name="PART_PageDownButton"
+                                                      Style="{StaticResource repeatbutton-scroll-track}"
+                                                      Command="{x:Static ScrollBar.PageRightCommand}"/>
+                                    </Track.IncreaseRepeatButton>
+                                    <Track.Thumb>
+                                        <Thumb Style="{StaticResource thumb-scroll}"
+                                               Background="{TemplateBinding helpers:ScrollHelper.ThumbColor}"/>
+                                    </Track.Thumb>                                    
+                                </Track>
+
+                                <RepeatButton Grid.Column="2"
+                                              Name="PART_LineDownButton"
+                                              UseLayoutRounding="True"
+                                              Style="{StaticResource repeatbutton-scroll}"
+                                              Opacity="{TemplateBinding helpers:ScrollHelper.RepeatButtonsOpacity}"
+                                              Visibility="{TemplateBinding helpers:ScrollHelper.RepeatButtonsVisible}"
+                                              Command="{x:Static ScrollBar.LineRightCommand}" >
+                                    <Path Style="{StaticResource icon-default}"
+                                          Fill="{StaticResource S_CommonFontColorBrush_}"
+                                          Data="{StaticResource S_RightArrowLineIconGeometry}"/>
+                                </RepeatButton>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+        <Style.Triggers>
+            
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="scrollviewer-default"
+           TargetType="{x:Type ScrollViewer}">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <AdornerDecorator Grid.Column="0"
+                                              Grid.Row="0"
+                                              Grid.ColumnSpan="3"
+                                              Grid.RowSpan="3">
+                                <ScrollContentPresenter Name="PART_ScrollContentPresenter" 
+                                                        KeyboardNavigation.DirectionalNavigation="Local"
+                                                        Content="{TemplateBinding ContentControl.Content}"
+                                                        ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+                                                        CanContentScroll="{TemplateBinding ScrollViewer.CanContentScroll}"
+                                                        Margin="{TemplateBinding Padding}"/>
+                            </AdornerDecorator>
+
+                            <ScrollBar Name="PART_VerticalScrollBar"
+                                       Style="{StaticResource scrollbar-vertical}"
+                                       
+                                       Maximum="{TemplateBinding ScrollViewer.ScrollableHeight}"
+                                       Value="{Binding Path=VerticalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                       Visibility="{TemplateBinding ScrollViewer.ComputedVerticalScrollBarVisibility}"
+                                       ViewportSize="{TemplateBinding ScrollViewer.ViewportHeight}"
+                                       
+                                       Grid.Column="2"
+                                       Grid.Row="1"
+                                       Focusable="False"/>
+
+                            <ScrollBar Name="PART_HorizontalScrollBar"
+                                       Style="{StaticResource scrollbar-horizontal}"
+                                       
+                                       Maximum="{TemplateBinding ScrollViewer.ScrollableWidth}"
+                                       Value="{Binding Path=HorizontalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                       Visibility="{TemplateBinding ScrollViewer.ComputedHorizontalScrollBarVisibility}"
+                                       ViewportSize="{TemplateBinding ScrollViewer.ViewportWidth}"
+                                       
+                                       Grid.Column="1"
+                                       Grid.Row="2"
+                                       Focusable="False"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+        <Style.Triggers>
+
         </Style.Triggers>
     </Style>
 
