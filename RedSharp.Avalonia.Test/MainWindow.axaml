@@ -24,10 +24,10 @@
                   Grid.Row="1"
                   HorizontalScrollBarVisibility="Auto"
                   VerticalScrollBarVisibility="Auto">
-      <StackPanel>
-
-        <TextBox Margin="50" PasswordChar="*"/>
-      </StackPanel>
+      <Rectangle Fill="Red"
+                 Width="120"
+                 Height="1920"
+                 Margin="100"/>
     </ScrollViewer>
 
     <!--<TextBox Grid.Row="1"

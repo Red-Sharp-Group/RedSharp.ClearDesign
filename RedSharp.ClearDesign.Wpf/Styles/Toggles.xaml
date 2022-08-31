@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Definitions/Colors.xaml"/>
+        <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
+        <ResourceDictionary Source="../Definitions/Fonts.xaml"/>
+        <ResourceDictionary Source="../Styles/Common.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="checkbox-default"
+           TargetType="{x:Type CheckBox}">
+        <Style.Setters>
+            <Setter Property="BorderBrush" 
+                    Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
+            <Setter Property="BorderThickness"
+                    Value="{Binding Source={StaticResource S_DefaultBorderThicknessFull_}, Path=Value}"/>
+
+            <Setter Property="Background"
+                    Value="{StaticResource S_FieldsColorBrush_}"/>
+            <Setter Property="Foreground"
+                    Value="{StaticResource S_CommonFontColorBrush_}"/>
+
+            <Setter Property="FontFamily"
+                    Value="{DynamicResource D_DefaultCommonFontFamily_}"/>
+            <Setter Property="FontSize"
+                    Value="{DynamicResource D_DefaultCommonFontSize_}"/>
+            <Setter Property="FontWeight"
+                    Value="{DynamicResource D_DefaultCommonFontWeight_}"/>
+
+            <Setter Property="HorizontalAlignment" 
+                    Value="Left"/>
+            <Setter Property="VerticalAlignment" 
+                    Value="Center"/>
+
+            <Setter Property="HorizontalContentAlignment" 
+                    Value="Left"/>
+            <Setter Property="VerticalContentAlignment" 
+                    Value="Center"/>
+
+            <Setter Property="helpers:AccentHelper.Color"
+                    Value="{StaticResource S_DefaultDarkAccentColorBrush_}"/>
+            <Setter Property="helpers:AccentHelper.Opacity"
+                    Value="0.0"/>
+
+            <Setter Property="helpers:TogglesHelper.FalseIconColor"
+                    Value="{StaticResource S_CommonFontColorBrush_}"/>
+            <Setter Property="helpers:TogglesHelper.FalseIconVisibility"
+                    Value="Visible"/>
+
+            <Setter Property="helpers:TogglesHelper.NullIconColor"
+                    Value="{StaticResource S_PrimaryFontColorBrush_}"/>
+            <Setter Property="helpers:TogglesHelper.NullIconVisibility"
+                    Value="Hidden"/>
+
+            <Setter Property="helpers:TogglesHelper.TrueIconColor"
+                    Value="{StaticResource S_PrimaryFontColorBrush_}"/>
+            <Setter Property="helpers:TogglesHelper.TrueIconVisibility"
+                    Value="Hidden"/>
+        </Style.Setters>
+        <Style.Triggers>
+            
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>
