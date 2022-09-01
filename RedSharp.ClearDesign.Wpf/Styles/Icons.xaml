@@ -57,6 +57,14 @@
         </Style.Setters>
     </Style>
 
+    <!--MIN SIZE ICONS-->
+
+    <PathGeometry x:Key="S_CheckIconGeometry_" 
+                  Figures="M2 6.5L4.63421 9.0217L10 3.5" />
+
+    <PathGeometry x:Key="S_NullIconGeometry_" 
+                  Figures="M3 6H9" />
+
     <!--DEFAULT SIZE ICONS-->
     
     <PathGeometry x:Key="S_CloseIconGeometry_" 

@@ -75,19 +75,24 @@
                     <Button Style="{StaticResource button-menu}"
                         Margin="5">AWERSOME</Button>
 
-                    <Grid Margin="5">
+                    <StackPanel HorizontalAlignment="Center">
 
-                        <Button Style="{StaticResource button-primary}">AWERSOME</Button>
+                        <RadioButton Style="{StaticResource radiobutton-default}" 
+                                     Margin="5" 
+                                     Content="First awersome option"
+                                     HorizontalAlignment="Left"/>
 
-                        <Rectangle x:Name="rectangle" 
-                                   Width="120" 
-                                   Height="30"
-                                   Margin="5"
-                                   HorizontalAlignment="Center" 
-                                   VerticalAlignment="Center" 
-                                   StrokeThickness="1">
-                        </Rectangle>
-                    </Grid>
+                        <RadioButton Style="{StaticResource radiobutton-default}" 
+                                     Margin="5" 
+                                     Content="Second awersome option"
+                                     HorizontalAlignment="Left"/>
+
+                        <RadioButton Style="{StaticResource radiobutton-default}" 
+                                     Margin="5" 
+                                     Content="Third awersome option"
+                                     HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    
                 </StackPanel>
             </TabItem>
             <TabItem Style="{StaticResource tabitem-title}"
