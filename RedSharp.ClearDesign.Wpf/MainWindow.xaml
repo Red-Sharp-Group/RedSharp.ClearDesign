@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RedSharp.ClearDesign.Wpf"
         xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers"
+        xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="450" 
@@ -12,6 +14,10 @@
         Style="{StaticResource Test}"
         Background="{StaticResource S_WindowBackgroundColorBrush_}">
 
+    <Window.Resources>
+        <utils:ItemsControlStyleSelector x:Key="S_Selector_"/>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -74,6 +80,26 @@
                         Margin="5">AWERSOME</Button>
                     <Button Style="{StaticResource button-menu}"
                         Margin="5">AWERSOME</Button>
+
+                    <ItemsControl Style="{StaticResource itemscontrol-default}">
+                        
+                        <system:String>Option 1</system:String>
+                        <system:String>Option 2</system:String>
+                        <system:String>Option 3</system:String>
+                        <system:String>Option 4</system:String>
+                        <system:String>Option 5</system:String>
+                        <system:String>Option 6</system:String>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource itemscontrol-item-border-default}">
+                                    <ContentPresenter Content="{TemplateBinding DataContext}"
+                                                      HorizontalAlignment="Left"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
 
                     <StackPanel HorizontalAlignment="Center">
 

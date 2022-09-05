@@ -25,5 +25,10 @@ namespace RedSharp.ClearDesign.Wpf
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

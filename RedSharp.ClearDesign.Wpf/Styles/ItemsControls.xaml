@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Definitions/Colors.xaml"/>
+        <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
+        <ResourceDictionary Source="../Definitions/Fonts.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="itemscontrol-default"
+           TargetType="{x:Type ItemsControl}">
+        <Style.Setters>
+            <Setter Property="AlternationCount"
+                    Value="2"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="itemscontrol-item-border-default"
+           TargetType="{x:Type Border}">
+        <Style.Setters>
+            <Setter Property="Background"
+                    Value="Transparent"/>
+            <Setter Property="MinHeight"
+                    Value="{DynamicResource D_DefaultHeight_}"/>
+            <Setter Property="Padding"
+                    Value="{Binding Source={StaticResource S_DefaultPaddingThicknessLeftRight_}, Path=Value}"/>
+        </Style.Setters>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(ItemsControl.AlternationIndex)}"
+                         Value="1">
+                <Setter Property="Background" 
+                        Value="{StaticResource S_Step1ColorBrush_}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>
