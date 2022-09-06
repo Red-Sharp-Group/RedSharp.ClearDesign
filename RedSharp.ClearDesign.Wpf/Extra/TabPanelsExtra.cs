@@ -1,14 +1,14 @@
 ﻿using System.Windows;
 
-namespace RedSharp.ClearDesign.Helpers
+namespace RedSharp.ClearDesign.Extra
 {
-    public static class TabPanelHelper
+    public static class TabPanelsExtra
     {
         public static DependencyProperty MarginProperty;
 
-        static TabPanelHelper()
+        static TabPanelsExtra()
         {
-            MarginProperty = DependencyProperty.RegisterAttached("Margin", typeof(Thickness), typeof(TabPanelHelper));
+            MarginProperty = DependencyProperty.RegisterAttached("Margin", typeof(Thickness), typeof(TabPanelsExtra));
         }
 
         public static void SetMargin(DependencyObject element, Thickness value)

@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils"
                     xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:extra="clr-namespace:RedSharp.ClearDesign.Extra">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Definitions/Colors.xaml"/>
@@ -14,7 +15,7 @@
     <Style x:Key="tabcontrol-title"
            TargetType="{x:Type TabControl}">
         <Style.Setters>
-            <Setter Property="helpers:TabPanelHelper.Margin"
+            <Setter Property="extra:TabPanelsExtra.Margin"
                     Value="0"/>
             
             <Setter Property="Background"
@@ -23,7 +24,7 @@
             <Setter Property="BorderBrush"
                     Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
             <Setter Property="BorderThickness"
-                    Value="{Binding Source={StaticResource S_DefaultBorderThicknessTop_}, Path=Value}"/>
+                    Value="{utils:BindingResource B_DefaultBorderThicknessTop_}"/>
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -36,7 +37,7 @@
 
                             <Grid Grid.Column="0"
                                   Grid.Row="0"
-                                  Margin="{TemplateBinding helpers:TabPanelHelper.Margin}"
+                                  Margin="{TemplateBinding extra:TabPanelsExtra.Margin}"
                                   ZIndex="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"/>
@@ -81,7 +82,7 @@
             <Setter Property="Height"
                     Value="{DynamicResource D_DefaultHeight_}"/>            
             <Setter Property="Padding"
-                    Value="{Binding Source={StaticResource S_DefaultPaddingThicknessLeftRight_}, Path=Value}"/>
+                    Value="{utils:BindingResource B_DefaultPaddingThicknessLeftRight_}"/>
 
             <Setter Property="HorizontalAlignment"
                     Value="Center"/>
@@ -101,7 +102,7 @@
             <Setter Property="BorderBrush"
                     Value="Transparent"/>
             <Setter Property="BorderThickness"
-                    Value="{Binding Source={StaticResource S_DefaultBorderThicknessLeftRight_}, Path=Value}"/>
+                    Value="{utils:BindingResource B_DefaultBorderThicknessLeftRight_}"/>
 
             <Setter Property="FontFamily"
                     Value="{DynamicResource D_DefaultCommonFontFamily_}"/>
@@ -110,9 +111,9 @@
             <Setter Property="FontWeight"
                     Value="{DynamicResource D_DefaultCommonFontWeight_}"/>
 
-            <Setter Property="helpers:AccentHelper.Color"
+            <Setter Property="extra:AccentsExtra.Color"
                     Value="{StaticResource S_DefaultDarkAccentColorBrush_}"/>
-            <Setter Property="helpers:AccentHelper.Opacity"
+            <Setter Property="extra:AccentsExtra.Opacity"
                     Value="0.0"/>
 
             <Setter Property="FocusVisualStyle"
@@ -135,8 +136,8 @@
                             </Border>
 
                             <Border UseLayoutRounding="True"
-                                    Background="{TemplateBinding helpers:AccentHelper.Color}"
-                                    Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"
+                                    Background="{TemplateBinding extra:AccentsExtra.Color}"
+                                    Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"
                                     Margin="0,0,1,0"/>
 
                             <ContentControl UseLayoutRounding="False" 
@@ -174,7 +175,7 @@
             
             <Trigger Property="IsSelected"
                      Value="True">
-                <Setter Property="helpers:AccentHelper.Color"
+                <Setter Property="extra:AccentsExtra.Color"
                         Value="Transparent"/>
                 <Setter Property="Background"
                         Value="{StaticResource S_BackgroundColorBrush_}"/>

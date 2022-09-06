@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
-namespace RedSharp.ClearDesign.Helpers
+namespace RedSharp.ClearDesign.Extra
 {
-    public static class TogglesHelper
+    public static class TogglesExtra
     {
         public static readonly DependencyProperty FalseIconColorProperty;
         public static readonly DependencyProperty NullIconColorProperty;
@@ -18,15 +18,15 @@ namespace RedSharp.ClearDesign.Helpers
         public static readonly DependencyProperty NullIconVisibilityProperty;
         public static readonly DependencyProperty TrueIconVisibilityProperty;
 
-        static TogglesHelper()
+        static TogglesExtra()
         {
-            FalseIconColorProperty = DependencyProperty.RegisterAttached("FalseIconColor", typeof(Brush), typeof(TogglesHelper));
-            NullIconColorProperty = DependencyProperty.RegisterAttached("NullIconColor", typeof(Brush), typeof(TogglesHelper));
-            TrueIconColorProperty = DependencyProperty.RegisterAttached("TrueIconColor", typeof(Brush), typeof(TogglesHelper));
+            FalseIconColorProperty = DependencyProperty.RegisterAttached("FalseIconColor", typeof(Brush), typeof(TogglesExtra));
+            NullIconColorProperty = DependencyProperty.RegisterAttached("NullIconColor", typeof(Brush), typeof(TogglesExtra));
+            TrueIconColorProperty = DependencyProperty.RegisterAttached("TrueIconColor", typeof(Brush), typeof(TogglesExtra));
 
-            FalseIconVisibilityProperty = DependencyProperty.RegisterAttached("FalseIconVisibility", typeof(Visibility), typeof(TogglesHelper));
-            NullIconVisibilityProperty = DependencyProperty.RegisterAttached("NullIconVisibility", typeof(Visibility), typeof(TogglesHelper));
-            TrueIconVisibilityProperty = DependencyProperty.RegisterAttached("TrueIconVisibility", typeof(Visibility), typeof(TogglesHelper));
+            FalseIconVisibilityProperty = DependencyProperty.RegisterAttached("FalseIconVisibility", typeof(Visibility), typeof(TogglesExtra));
+            NullIconVisibilityProperty = DependencyProperty.RegisterAttached("NullIconVisibility", typeof(Visibility), typeof(TogglesExtra));
+            TrueIconVisibilityProperty = DependencyProperty.RegisterAttached("TrueIconVisibility", typeof(Visibility), typeof(TogglesExtra));
         }
 
         public static void SetFalseIconColor(DependencyObject element, Brush value)

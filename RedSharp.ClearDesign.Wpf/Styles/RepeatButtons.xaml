@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils"
+                    xmlns:extra="clr-namespace:RedSharp.ClearDesign.Extra">
     
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Definitions/Colors.xaml"/>
@@ -18,7 +20,7 @@
             <Setter Property="Height"
                     Value="{DynamicResource D_DefaultHeight_}"/>
             <Setter Property="Padding"
-                    Value="{Binding Source={StaticResource S_DefaultPaddingThicknessLeftRight_}, Path=Value}"/>
+                    Value="{utils:BindingResource B_DefaultPaddingThicknessLeftRight_}"/>
 
             <Setter Property="HorizontalAlignment"
                     Value="Center"/>
@@ -38,7 +40,7 @@
             <Setter Property="BorderBrush"
                     Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
             <Setter Property="BorderThickness"
-                    Value="{Binding Source={StaticResource S_DefaultBorderThicknessFull_}, Path=Value}"/>
+                    Value="{utils:BindingResource B_DefaultBorderThicknessFull_}"/>
 
             <Setter Property="FontFamily"
                     Value="{DynamicResource D_DefaultCommonFontFamily_}"/>
@@ -50,9 +52,9 @@
             <Setter Property="FocusVisualStyle"
                     Value="{StaticResource focus-outstanding}"/>
 
-            <Setter Property="helpers:AccentHelper.Color"
+            <Setter Property="extra:AccentsExtra.Color"
                     Value="{StaticResource S_DefaultDarkAccentColorBrush_}"/>
-            <Setter Property="helpers:AccentHelper.Opacity"
+            <Setter Property="extra:AccentsExtra.Opacity"
                     Value="0.0"/>
 
             <Setter Property="Template">
@@ -68,8 +70,8 @@
                             </Border>
 
                             <Border UseLayoutRounding="True"
-                                    Background="{TemplateBinding helpers:AccentHelper.Color}"
-                                    Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
+                                    Background="{TemplateBinding extra:AccentsExtra.Color}"
+                                    Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
 
                             <ContentControl UseLayoutRounding="False" 
                                             Focusable="False"

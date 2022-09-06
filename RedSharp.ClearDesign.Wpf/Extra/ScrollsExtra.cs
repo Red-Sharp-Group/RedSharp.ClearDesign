@@ -8,30 +8,9 @@ using System.Windows;
 using System.Windows.Data;
 using System.Globalization;
 
-namespace RedSharp.ClearDesign.Helpers
+namespace RedSharp.ClearDesign.Extra
 {
-    public class CornerRadiusConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var radius = 0.0;
-
-            try
-            {
-                var diameter = System.Convert.ToDouble(value);
-                
-                radius = diameter / 2;
-            }
-            catch
-            { }
-
-            return new CornerRadius(radius);
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotImplementedException();
-    }
-
-    public static class ScrollHelper
+    public static class ScrollsExtra
     {
         public static DependencyProperty ThumbColorProperty;
         public static DependencyProperty TrackColorProperty;
@@ -40,21 +19,17 @@ namespace RedSharp.ClearDesign.Helpers
         public static DependencyProperty TrackWidthProperty;
         public static DependencyProperty TrackHeightProperty;
 
-        static ScrollHelper()
+        static ScrollsExtra()
         {
-            ThumbColorProperty = DependencyProperty.RegisterAttached("ThumbColor", typeof(Brush), typeof(ScrollHelper));
-            TrackColorProperty = DependencyProperty.RegisterAttached("TrackColor", typeof(Brush), typeof(ScrollHelper));
+            ThumbColorProperty = DependencyProperty.RegisterAttached("ThumbColor", typeof(Brush), typeof(ScrollsExtra));
+            TrackColorProperty = DependencyProperty.RegisterAttached("TrackColor", typeof(Brush), typeof(ScrollsExtra));
 
-            RepeatButtonsVisibleProperty = DependencyProperty.RegisterAttached("RepeatButtonsVisible", typeof(Visibility), typeof(ScrollHelper));
-            RepeatButtonsOpacityProperty = DependencyProperty.RegisterAttached("RepeatButtonsOpacity", typeof(double), typeof(ScrollHelper));
+            RepeatButtonsVisibleProperty = DependencyProperty.RegisterAttached("RepeatButtonsVisible", typeof(Visibility), typeof(ScrollsExtra));
+            RepeatButtonsOpacityProperty = DependencyProperty.RegisterAttached("RepeatButtonsOpacity", typeof(double), typeof(ScrollsExtra));
 
-            TrackWidthProperty = DependencyProperty.RegisterAttached("TrackWidth", typeof(double), typeof(ScrollHelper));
-            TrackHeightProperty = DependencyProperty.RegisterAttached("TrackHeight", typeof(double), typeof(ScrollHelper));
-
-            RadiusConverter = new CornerRadiusConverter();
+            TrackWidthProperty = DependencyProperty.RegisterAttached("TrackWidth", typeof(double), typeof(ScrollsExtra));
+            TrackHeightProperty = DependencyProperty.RegisterAttached("TrackHeight", typeof(double), typeof(ScrollsExtra));
         }
-
-        public static CornerRadiusConverter RadiusConverter { get; private set; }
 
         public static void SetThumbColor(DependencyObject element, Brush value)
         {

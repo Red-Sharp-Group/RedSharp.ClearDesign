@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary x:Class="RedSharp.ClearDesign.Styles.Windows"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils"
+                    xmlns:extra="clr-namespace:RedSharp.ClearDesign.Extra">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Definitions/Colors.xaml"/>
@@ -9,6 +11,10 @@
         <ResourceDictionary Source="Buttons.xaml"/>
         <ResourceDictionary Source="Icons.xaml"/>
     </ResourceDictionary.MergedDictionaries>
+
+    <Binding x:Key="Internal_B_WindowStateBinding"
+             RelativeSource="{RelativeSource AncestorType=Window}"
+             Path="WindowState"/>
 
     <Style x:Key="Test" TargetType="{x:Type Window}">
         <Style.Setters>
@@ -19,7 +25,7 @@
                     Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
 
             <Setter Property="BorderThickness" 
-                    Value="{Binding Source={StaticResource S_DefaultBorderThicknessFull_}, Path=Value}"/>
+                    Value="{utils:BindingResource B_DefaultBorderThicknessFull_}"/>
 
             <Setter Property="WindowStyle"
                     Value="SingleBorderWindow"/>
@@ -45,7 +51,7 @@
                                                         Value="0"/>
                                             </Style.Setters>
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=WindowState}"
+                                                <DataTrigger Binding="{utils:BindingResource Internal_B_WindowStateBinding}"
                                                              Value="Maximized">
                                                     <Setter Property="Padding"
                                                             Value="7"/>
@@ -110,7 +116,7 @@
                                                                             Value="Visible"/>
                                                                 </Style.Setters>
                                                                 <Style.Triggers>
-                                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=WindowState}"
+                                                                    <DataTrigger Binding="{utils:BindingResource Internal_B_WindowStateBinding}"
                                                                                  Value="Maximized">
                                                                         <Setter Property="Visibility"
                                                                                 Value="Hidden"/>
@@ -131,7 +137,7 @@
                                                                             Value="Hidden"/>
                                                                 </Style.Setters>
                                                                 <Style.Triggers>
-                                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=WindowState}"
+                                                                    <DataTrigger Binding="{utils:BindingResource Internal_B_WindowStateBinding}"
                                                                                  Value="Maximized">
                                                                         <Setter Property="Visibility"
                                                                                 Value="Visible"/>

@@ -1,8 +1,8 @@
-﻿<ResourceDictionary x:Class="RedSharp.ClearDesign.Definitions.Sizes"
-                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils">
+                    xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils"
+                    xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers">
 
     <!--#################################################################################################-->
     <!--DEFAULT SETTINGS-->
@@ -27,89 +27,153 @@
     <utils:DoubleModifier x:Key="S_OutstandingFocus_" 
                           Input="{DynamicResource D_DefaultFocus_}"
                           Modifier="{DynamicResource D_DefaultBorder_}"
-                          Coerce="{StaticResource S_OutstandingFocusValueCoerceCallback_}"/>
+                          Coerce="{x:Static helpers:SizeCoerses.FocusOutstandingValueCoerce}"/>
 
     <utils:DoubleModifier x:Key="S_RoundToggleHeight_"
                           Input="{DynamicResource D_DefaultToggleHeight_}"
                           Modifier="{DynamicResource D_DefaultBorder_}"
-                          Coerce="{StaticResource S_RoundToggleHeightValueCoerceCallback_}"/>
+                          Coerce="{x:Static helpers:SizeCoerses.RoundToggleHeightValueCoerce}"/>
 
     <utils:DoubleModifier x:Key="S_SwitchToggleWidth_"
                           Input="{DynamicResource D_DefaultToggleHeight_}"
-                          Coerce="{StaticResource S_SwitchToggleWidthValueCoerceCallback_}"/>
+                          Coerce="{x:Static helpers:SizeCoerses.SwitcherToggleHeightValueCoerce}"/>
+
+    <Binding x:Key="B_OutstandingFocus_"
+             Source="{StaticResource S_OutstandingFocus_}"
+             Path="Value"/>
+
+    <Binding x:Key="B_RoundToggleHeight_"
+             Source="{StaticResource S_RoundToggleHeight_}"
+             Path="Value"/>
+
+    <Binding x:Key="B_SwitchToggleWidth_"
+             Source="{StaticResource S_OutstandingFocus_}"
+             Path="Value"/>
     
     <!--####################-->
     <!--MARGINS-->
 
     <utils:ThicknessModifier x:Key="S_DefaultMarginThicknessFull_"
                              Modifier="{DynamicResource D_DefaultMargin_}"
-                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
                              Input="1"/>
 
     <utils:ThicknessModifier x:Key="S_DefaultMarginThicknessLeftRight_"
                              Modifier="{DynamicResource D_DefaultMargin_}"
-                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
                              Input="1,0"/>
 
     <utils:ThicknessModifier x:Key="S_DefaultMarginThicknessTopBottom_"
                              Modifier="{DynamicResource D_DefaultMargin_}"
-                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
                              Input="0,1"/>
 
     <utils:ThicknessModifier x:Key="S_DefaultMarginThicknessRight_"
                              Modifier="{DynamicResource D_DefaultMargin_}"
-                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
                              Input="0,0,1,0"/>
 
     <utils:ThicknessModifier x:Key="S_OutstandingFocusThicknessFull_"
-                             Modifier="{Binding Source={StaticResource S_OutstandingFocus_}, Path=Value}"
-                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Modifier="{utils:BindingResource B_OutstandingFocus_}"
+                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
                              Input="1"/>
+
+    <Binding x:Key="B_DefaultMarginThicknessFull_"
+             Source="{StaticResource S_DefaultMarginThicknessFull_}"
+             Path="Value"/>
+
+    <Binding x:Key="B_DefaultMarginThicknessLeftRight_"
+             Source="{StaticResource S_DefaultMarginThicknessLeftRight_}"
+             Path="Value"/>
+
+    <Binding x:Key="B_DefaultMarginThicknessTopBottom_"
+             Source="{StaticResource S_DefaultMarginThicknessTopBottom_}"
+             Path="Value"/>
+
+    <Binding x:Key="B_DefaultMarginThicknessRight_"
+             Source="{StaticResource S_DefaultMarginThicknessRight_}"
+             Path="Value"/>
+
+    <Binding x:Key="B_OutstandingFocusThicknessFull_"
+             Source="{StaticResource S_OutstandingFocusThicknessFull_}"
+             Path="Value"/>
 
     <!--####################-->
     <!--PADDINGS-->
 
     <utils:ThicknessModifier x:Key="S_DefaultPaddingThicknessFull_"
                              Modifier="{DynamicResource D_DefaultPadding_}"
-                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
                              Input="1"/>
 
     <utils:ThicknessModifier x:Key="S_DefaultPaddingThicknessLeft_"
                              Modifier="{DynamicResource D_DefaultPadding_}"
-                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
                              Input="1,0,0,0"/>
 
     <utils:ThicknessModifier x:Key="S_DefaultPaddingThicknessLeftRight_"
                              Modifier="{DynamicResource D_DefaultPadding_}"
-                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
                              Input="1,0"/>
+
+    <Binding x:Key="B_DefaultPaddingThicknessFull_"
+             Source="{StaticResource S_DefaultPaddingThicknessFull_}"
+             Path="Value"/>
+
+    <Binding x:Key="B_DefaultPaddingThicknessLeft_"
+             Source="{StaticResource S_DefaultPaddingThicknessLeft_}"
+             Path="Value"/>
+
+    <Binding x:Key="B_DefaultPaddingThicknessLeftRight_"
+             Source="{StaticResource S_DefaultPaddingThicknessLeftRight_}"
+             Path="Value"/>
 
     <!--####################-->
     <!--BORDERS-->
 
     <utils:ThicknessModifier x:Key="S_DefaultBorderThicknessFull_"
                              Modifier="{DynamicResource D_DefaultBorder_}"
-                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
                              Input="1"/>
 
     <utils:ThicknessModifier x:Key="S_DefaultBorderThicknessTop_"
                              Modifier="{DynamicResource D_DefaultBorder_}"
-                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
                              Input="0,1,0,0"/>
 
     <utils:ThicknessModifier x:Key="S_DefaultBorderThicknessLeftRight_"
                              Modifier="{DynamicResource D_DefaultBorder_}"
-                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
                              Input="1,0"/>
 
     <utils:ThicknessModifier x:Key="S_DefaultBorderThicknessLeftTopRight_"
                              Modifier="{DynamicResource D_DefaultBorder_}"
-                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
                              Input="1,1,1,0"/>
 
     <utils:ThicknessModifier x:Key="S_DefaultFocusThicknessFull_"
                              Modifier="{DynamicResource D_DefaultFocus_}"
-                             Coerce="{StaticResource S_MultiplierThicknessCoerceCallback_}"
+                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
                              Input="1"/>
+
+    <Binding x:Key="B_DefaultBorderThicknessFull_"
+             Source="{StaticResource S_DefaultBorderThicknessFull_}"
+             Path="Value"/>
+
+    <Binding x:Key="B_DefaultBorderThicknessTop_"
+             Source="{StaticResource S_DefaultBorderThicknessTop_}"
+             Path="Value"/>
+
+    <Binding x:Key="B_DefaultBorderThicknessLeftRight_"
+             Source="{StaticResource S_DefaultBorderThicknessLeftRight_}"
+             Path="Value"/>
+
+    <Binding x:Key="B_DefaultBorderThicknessLeftTopRight_"
+             Source="{StaticResource S_DefaultBorderThicknessLeftTopRight_}"
+             Path="Value"/>
+
+    <Binding x:Key="B_DefaultFocusThicknessFull_"
+             Source="{StaticResource S_DefaultFocusThicknessFull_}"
+             Path="Value"/>
     
 </ResourceDictionary>

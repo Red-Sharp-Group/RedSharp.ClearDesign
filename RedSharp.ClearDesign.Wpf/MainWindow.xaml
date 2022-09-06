@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:RedSharp.ClearDesign.Wpf"
         xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers"
         xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils"
+        xmlns:extra="clr-namespace:RedSharp.ClearDesign.Extra"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" 
@@ -14,10 +15,6 @@
         Style="{StaticResource Test}"
         Background="{StaticResource S_WindowBackgroundColorBrush_}">
 
-    <Window.Resources>
-        <utils:ItemsControlStyleSelector x:Key="S_Selector_"/>
-    </Window.Resources>
-    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -72,7 +69,7 @@
         <TabControl Grid.Row="0"
                     Grid.RowSpan="2"
                     Style="{StaticResource tabcontrol-title}"
-                    helpers:TabPanelHelper.Margin="197,0,0,0">
+                    extra:TabPanelsExtra.Margin="197,0,0,0">
             <TabItem Style="{StaticResource tabitem-title}"
                      Header="Jobs">
                 <StackPanel VerticalAlignment="Center">

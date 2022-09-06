@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
-namespace RedSharp.ClearDesign.Helpers
+namespace RedSharp.ClearDesign.Extra
 {
-    public static class AccentHelper
+    public static class AccentsExtra
     {
         public static DependencyProperty ColorProperty;
         public static DependencyProperty OpacityProperty;
 
-        static AccentHelper()
+        static AccentsExtra()
         {
-            ColorProperty = DependencyProperty.RegisterAttached("Color", typeof(Brush), typeof(AccentHelper));
-            OpacityProperty = DependencyProperty.RegisterAttached("Opacity", typeof(double), typeof(AccentHelper));
+            ColorProperty = DependencyProperty.RegisterAttached("Color", typeof(Brush), typeof(AccentsExtra));
+            OpacityProperty = DependencyProperty.RegisterAttached("Opacity", typeof(double), typeof(AccentsExtra));
         }
 
         public static void SetColor(DependencyObject element, Brush value)

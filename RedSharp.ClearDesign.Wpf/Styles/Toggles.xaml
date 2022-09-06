@@ -2,7 +2,9 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers">
+                    xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers"
+                    xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils"
+                    xmlns:extra="clr-namespace:RedSharp.ClearDesign.Extra">
     
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Definitions/Colors.xaml"/>
@@ -18,7 +20,7 @@
             <Setter Property="BorderBrush" 
                     Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
             <Setter Property="BorderThickness"
-                    Value="{Binding Source={StaticResource S_DefaultBorderThicknessFull_}, Path=Value}"/>
+                    Value="{utils:BindingResource B_DefaultBorderThicknessFull_}"/>
 
             <Setter Property="Background"
                     Value="{StaticResource S_FieldsColorBrush_}"/>
@@ -42,24 +44,24 @@
             <Setter Property="VerticalContentAlignment" 
                     Value="Center"/>
 
-            <Setter Property="helpers:AccentHelper.Color"
+            <Setter Property="extra:AccentsExtra.Color"
                     Value="{StaticResource S_DefaultDarkAccentColorBrush_}"/>
-            <Setter Property="helpers:AccentHelper.Opacity"
+            <Setter Property="extra:AccentsExtra.Opacity"
                     Value="0.0"/>
 
-            <Setter Property="helpers:TogglesHelper.FalseIconColor"
+            <Setter Property="extra:TogglesExtra.FalseIconColor"
                     Value="{StaticResource S_CommonFontColorBrush_}"/>
-            <Setter Property="helpers:TogglesHelper.FalseIconVisibility"
+            <Setter Property="extra:TogglesExtra.FalseIconVisibility"
                     Value="Visible"/>
 
-            <Setter Property="helpers:TogglesHelper.NullIconColor"
+            <Setter Property="extra:TogglesExtra.NullIconColor"
                     Value="{StaticResource S_PrimaryFontColorBrush_}"/>
-            <Setter Property="helpers:TogglesHelper.NullIconVisibility"
+            <Setter Property="extra:TogglesExtra.NullIconVisibility"
                     Value="Hidden"/>
 
-            <Setter Property="helpers:TogglesHelper.TrueIconColor"
+            <Setter Property="extra:TogglesExtra.TrueIconColor"
                     Value="{StaticResource S_PrimaryFontColorBrush_}"/>
-            <Setter Property="helpers:TogglesHelper.TrueIconVisibility"
+            <Setter Property="extra:TogglesExtra.TrueIconVisibility"
                     Value="Hidden"/>
 
             <Setter Property="Template">
@@ -91,8 +93,8 @@
 
                                     <!--ACCENT-->
                                     <Border UseLayoutRounding="True"
-                                            Background="{TemplateBinding helpers:AccentHelper.Color}"
-                                            Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
+                                            Background="{TemplateBinding extra:AccentsExtra.Color}"
+                                            Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
 
                                     <!--ICONS-->
                                     <Border Margin="{TemplateBinding Padding}"
@@ -101,14 +103,14 @@
                                         <Grid> 
                                             <Path Style="{StaticResource icon-min}"
                                                   StrokeThickness="2"
-                                                  Stroke="{TemplateBinding helpers:TogglesHelper.TrueIconColor}"
-                                                  Visibility="{TemplateBinding helpers:TogglesHelper.TrueIconVisibility}"
+                                                  Stroke="{TemplateBinding extra:TogglesExtra.TrueIconColor}"
+                                                  Visibility="{TemplateBinding extra:TogglesExtra.TrueIconVisibility}"
                                                   Data="{StaticResource S_CheckIconGeometry_}"/>
 
                                             <Path Style="{StaticResource icon-min}"
                                                   StrokeThickness="2"
-                                                  Stroke="{TemplateBinding helpers:TogglesHelper.NullIconColor}"
-                                                  Visibility="{TemplateBinding helpers:TogglesHelper.NullIconVisibility}"
+                                                  Stroke="{TemplateBinding extra:TogglesExtra.NullIconColor}"
+                                                  Visibility="{TemplateBinding extra:TogglesExtra.NullIconVisibility}"
                                                   Data="{StaticResource S_NullIconGeometry_}"/>
                                         </Grid>
                                     </Border>
@@ -117,8 +119,9 @@
 
                             <!--CONTENT-->
                             <ContentControl Grid.Column="1"
+                                            Focusable="False"
                                             UseLayoutRounding="False"
-                                            Margin="{Binding Source={StaticResource S_DefaultPaddingThicknessLeft_}, Path=Value}"
+                                            Margin="{utils:BindingResource B_DefaultPaddingThicknessLeft_}"
                                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                             FontFamily="{TemplateBinding FontFamily}"
@@ -135,15 +138,15 @@
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="BorderBrush" Value="{StaticResource S_PrimaryBorderColorBrush_}"/>
                 <Setter Property="Background" Value="{StaticResource S_PrimaryColorBrush_}"/>
-                <Setter Property="helpers:TogglesHelper.FalseIconVisibility" Value="Hidden"/>
-                <Setter Property="helpers:TogglesHelper.TrueIconVisibility" Value="Visible"/>
+                <Setter Property="extra:TogglesExtra.FalseIconVisibility" Value="Hidden"/>
+                <Setter Property="extra:TogglesExtra.TrueIconVisibility" Value="Visible"/>
             </Trigger>
 
             <Trigger Property="IsChecked" Value="{x:Null}">
                 <Setter Property="BorderBrush" Value="{StaticResource S_PrimaryBorderColorBrush_}"/>
                 <Setter Property="Background" Value="{StaticResource S_PrimaryColorBrush_}"/>
-                <Setter Property="helpers:TogglesHelper.FalseIconVisibility" Value="Hidden"/>
-                <Setter Property="helpers:TogglesHelper.NullIconVisibility" Value="Visible"/>
+                <Setter Property="extra:TogglesExtra.FalseIconVisibility" Value="Hidden"/>
+                <Setter Property="extra:TogglesExtra.NullIconVisibility" Value="Visible"/>
             </Trigger>
             
             <Trigger Property="IsMouseOver" Value="True">
@@ -182,8 +185,8 @@
                             </Grid.ColumnDefinitions>
 
                             <!--BORDER-->
-                            <Border Width="{Binding Source={StaticResource S_SwitchToggleWidth_}, Path=Value}"
-                                    Height="{Binding Source={StaticResource S_RoundToggleHeight_}, Path=Value}"
+                            <Border Width="{utils:BindingResource B_SwitchToggleWidth_}"
+                                    Height="{utils:BindingResource B_RoundToggleHeight_}"
                                     UseLayoutRounding="True"
                                     SizeChanged="OnBorderSizeChanged"
                                     Background="{TemplateBinding BorderBrush}">
@@ -198,8 +201,8 @@
                                     <!--EFFECT-->
                                     <Border UseLayoutRounding="True"
                                             SizeChanged="OnBorderSizeChanged"
-                                            Background="{TemplateBinding helpers:AccentHelper.Color}"
-                                            Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
+                                            Background="{TemplateBinding extra:AccentsExtra.Color}"
+                                            Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
 
                                     <!--ICONS-->
                                     <Border Margin="{TemplateBinding BorderThickness}"
@@ -214,22 +217,23 @@
                                             <Ellipse Grid.Column="0"
                                                      VerticalAlignment="Stretch"
                                                      HorizontalAlignment="Stretch"
-                                                     Fill="{TemplateBinding helpers:TogglesHelper.FalseIconColor}"
-                                                     Visibility="{TemplateBinding helpers:TogglesHelper.FalseIconVisibility}"/>
+                                                     Fill="{TemplateBinding extra:TogglesExtra.FalseIconColor}"
+                                                     Visibility="{TemplateBinding extra:TogglesExtra.FalseIconVisibility}"/>
 
                                             <Ellipse Grid.Column="2"
                                                      VerticalAlignment="Stretch"
                                                      HorizontalAlignment="Stretch"
-                                                     Fill="{TemplateBinding helpers:TogglesHelper.TrueIconColor}"
-                                                     Visibility="{TemplateBinding helpers:TogglesHelper.TrueIconVisibility}"/>
+                                                     Fill="{TemplateBinding extra:TogglesExtra.TrueIconColor}"
+                                                     Visibility="{TemplateBinding extra:TogglesExtra.TrueIconVisibility}"/>
                                         </Grid>
                                     </Border>
                                 </Grid>
                             </Border>
 
                             <ContentControl x:Name="PART_Content"
+                                            Focusable="False"
                                             Grid.Column="1"
-                                            Margin="{Binding Source={StaticResource S_DefaultPaddingThicknessLeft_}, Path=Value}"
+                                            Margin="{utils:BindingResource B_DefaultPaddingThicknessLeft_}"
                                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                             FontFamily="{TemplateBinding FontFamily}"
@@ -261,8 +265,8 @@
 
                             <!--BORDER-->
                             <Border x:Name="PART_Border"
-                                    Width="{Binding Source={StaticResource S_RoundToggleHeight_}, Path=Value}"
-                                    Height="{Binding Source={StaticResource S_RoundToggleHeight_}, Path=Value}"
+                                    Width="{utils:BindingResource B_RoundToggleHeight_}"
+                                    Height="{utils:BindingResource B_RoundToggleHeight_}"
                                     SizeChanged="OnBorderSizeChanged"
                                     UseLayoutRounding="True"                    
                                     Background="{TemplateBinding BorderBrush}">
@@ -277,8 +281,8 @@
                                     <!--EFFECT-->
                                     <Border UseLayoutRounding="True"
                                             SizeChanged="OnBorderSizeChanged"
-                                            Background="{TemplateBinding helpers:AccentHelper.Color}"
-                                            Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
+                                            Background="{TemplateBinding extra:AccentsExtra.Color}"
+                                            Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
 
                                     <!--ICONS-->
                                     <Border Margin="{TemplateBinding BorderThickness}"
@@ -288,13 +292,13 @@
                                             <Ellipse VerticalAlignment="Stretch"
                                                      HorizontalAlignment="Stretch"
                                                      Margin="4"                           
-                                                     Fill="{TemplateBinding helpers:TogglesHelper.TrueIconColor}"
-                                                     Visibility="{TemplateBinding helpers:TogglesHelper.TrueIconVisibility}"/>
+                                                     Fill="{TemplateBinding extra:TogglesExtra.TrueIconColor}"
+                                                     Visibility="{TemplateBinding extra:TogglesExtra.TrueIconVisibility}"/>
 
                                             <Path Style="{StaticResource icon-min}"
                                                   StrokeThickness="2"
-                                                  Fill="{TemplateBinding helpers:TogglesHelper.NullIconColor}"
-                                                  Visibility="{TemplateBinding helpers:TogglesHelper.NullIconVisibility}"
+                                                  Fill="{TemplateBinding extra:TogglesExtra.NullIconColor}"
+                                                  Visibility="{TemplateBinding extra:TogglesExtra.NullIconVisibility}"
                                                   Data="{StaticResource S_NullIconGeometry_}"/>
 
                                         </Grid>
@@ -303,8 +307,9 @@
                             </Border>
 
                             <ContentControl x:Name="PART_Content"
+                                            Focusable="False"
                                             Grid.Column="1"
-                                            Margin="{Binding Source={StaticResource S_DefaultPaddingThicknessLeft_}, Path=Value}"
+                                            Margin="{utils:BindingResource B_DefaultPaddingThicknessLeft_}"
                                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                             FontFamily="{TemplateBinding FontFamily}"
@@ -326,7 +331,7 @@
             <Setter Property="BorderBrush" 
                     Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
             <Setter Property="BorderThickness"
-                    Value="{Binding Source={StaticResource S_DefaultBorderThicknessFull_}, Path=Value}"/>
+                    Value="{utils:BindingResource B_DefaultBorderThicknessFull_}"/>
 
             <Setter Property="Background"
                     Value="{StaticResource S_FieldsColorBrush_}"/>
@@ -350,24 +355,24 @@
             <Setter Property="VerticalContentAlignment" 
                     Value="Center"/>
 
-            <Setter Property="helpers:AccentHelper.Color"
+            <Setter Property="extra:AccentsExtra.Color"
                     Value="{StaticResource S_DefaultDarkAccentColorBrush_}"/>
-            <Setter Property="helpers:AccentHelper.Opacity"
+            <Setter Property="extra:AccentsExtra.Opacity"
                     Value="0.0"/>
 
-            <Setter Property="helpers:TogglesHelper.FalseIconColor"
+            <Setter Property="extra:TogglesExtra.FalseIconColor"
                     Value="{StaticResource S_CommonFontColorBrush_}"/>
-            <Setter Property="helpers:TogglesHelper.FalseIconVisibility"
+            <Setter Property="extra:TogglesExtra.FalseIconVisibility"
                     Value="Visible"/>
 
-            <Setter Property="helpers:TogglesHelper.NullIconColor"
+            <Setter Property="extra:TogglesExtra.NullIconColor"
                     Value="{StaticResource S_PrimaryFontColorBrush_}"/>
-            <Setter Property="helpers:TogglesHelper.NullIconVisibility"
+            <Setter Property="extra:TogglesExtra.NullIconVisibility"
                     Value="Hidden"/>
 
-            <Setter Property="helpers:TogglesHelper.TrueIconColor"
+            <Setter Property="extra:TogglesExtra.TrueIconColor"
                     Value="{StaticResource S_PrimaryFontColorBrush_}"/>
-            <Setter Property="helpers:TogglesHelper.TrueIconVisibility"
+            <Setter Property="extra:TogglesExtra.TrueIconVisibility"
                     Value="Hidden"/>
 
             <Setter Property="Template">
@@ -383,8 +388,8 @@
 
                             <!--BORDER-->
                             <Border x:Name="PART_Border"
-                                    Width="{Binding Source={StaticResource S_RoundToggleHeight_}, Path=Value}"
-                                    Height="{Binding Source={StaticResource S_RoundToggleHeight_}, Path=Value}"
+                                    Width="{utils:BindingResource B_RoundToggleHeight_}"
+                                    Height="{utils:BindingResource B_RoundToggleHeight_}"
                                     SizeChanged="OnBorderSizeChanged"
                                     UseLayoutRounding="True"                    
                                     Background="{TemplateBinding BorderBrush}">
@@ -399,8 +404,8 @@
                                     <!--EFFECT-->
                                     <Border UseLayoutRounding="True"
                                             SizeChanged="OnBorderSizeChanged"
-                                            Background="{TemplateBinding helpers:AccentHelper.Color}"
-                                            Opacity="{TemplateBinding helpers:AccentHelper.Opacity}"/>
+                                            Background="{TemplateBinding extra:AccentsExtra.Color}"
+                                            Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
 
                                     <!--ICONS-->
                                     <Border Margin="{TemplateBinding BorderThickness}"
@@ -410,13 +415,13 @@
                                             <Ellipse VerticalAlignment="Stretch"
                                                      HorizontalAlignment="Stretch"
                                                      Margin="4"                           
-                                                     Fill="{TemplateBinding helpers:TogglesHelper.TrueIconColor}"
-                                                     Visibility="{TemplateBinding helpers:TogglesHelper.TrueIconVisibility}"/>
+                                                     Fill="{TemplateBinding extra:TogglesExtra.TrueIconColor}"
+                                                     Visibility="{TemplateBinding extra:TogglesExtra.TrueIconVisibility}"/>
 
                                             <Path Style="{StaticResource icon-min}"
                                                   StrokeThickness="2"
-                                                  Fill="{TemplateBinding helpers:TogglesHelper.NullIconColor}"
-                                                  Visibility="{TemplateBinding helpers:TogglesHelper.NullIconVisibility}"
+                                                  Fill="{TemplateBinding extra:TogglesExtra.NullIconColor}"
+                                                  Visibility="{TemplateBinding extra:TogglesExtra.NullIconVisibility}"
                                                   Data="{StaticResource S_NullIconGeometry_}"/>
 
                                         </Grid>
@@ -425,8 +430,9 @@
                             </Border>
 
                             <ContentControl x:Name="PART_Content"
+                                            Focusable="False"
                                             Grid.Column="1"
-                                            Margin="{Binding Source={StaticResource S_DefaultPaddingThicknessLeft_}, Path=Value}"
+                                            Margin="{utils:BindingResource B_DefaultPaddingThicknessLeft_}"
                                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                             FontFamily="{TemplateBinding FontFamily}"
@@ -443,15 +449,15 @@
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="BorderBrush" Value="{StaticResource S_PrimaryBorderColorBrush_}"/>
                 <Setter Property="Background" Value="{StaticResource S_PrimaryColorBrush_}"/>
-                <Setter Property="helpers:TogglesHelper.FalseIconVisibility" Value="Hidden"/>
-                <Setter Property="helpers:TogglesHelper.TrueIconVisibility" Value="Visible"/>
+                <Setter Property="extra:TogglesExtra.FalseIconVisibility" Value="Hidden"/>
+                <Setter Property="extra:TogglesExtra.TrueIconVisibility" Value="Visible"/>
             </Trigger>
 
             <Trigger Property="IsChecked" Value="{x:Null}">
                 <Setter Property="BorderBrush" Value="{StaticResource S_PrimaryBorderColorBrush_}"/>
                 <Setter Property="Background" Value="{StaticResource S_PrimaryColorBrush_}"/>
-                <Setter Property="helpers:TogglesHelper.FalseIconVisibility" Value="Hidden"/>
-                <Setter Property="helpers:TogglesHelper.NullIconVisibility" Value="Visible"/>
+                <Setter Property="extra:TogglesExtra.FalseIconVisibility" Value="Hidden"/>
+                <Setter Property="extra:TogglesExtra.NullIconVisibility" Value="Visible"/>
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="True">

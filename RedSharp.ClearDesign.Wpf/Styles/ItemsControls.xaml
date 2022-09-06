@@ -1,5 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils">
+    
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Definitions/Colors.xaml"/>
         <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
@@ -22,7 +24,7 @@
             <Setter Property="MinHeight"
                     Value="{DynamicResource D_DefaultHeight_}"/>
             <Setter Property="Padding"
-                    Value="{Binding Source={StaticResource S_DefaultPaddingThicknessLeftRight_}, Path=Value}"/>
+                    Value="{utils:BindingResource B_DefaultPaddingThicknessLeftRight_}"/>
         </Style.Setters>
         <Style.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(ItemsControl.AlternationIndex)}"
