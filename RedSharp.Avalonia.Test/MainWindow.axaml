@@ -24,10 +24,7 @@
                   Grid.Row="1"
                   HorizontalScrollBarVisibility="Auto"
                   VerticalScrollBarVisibility="Auto">
-      <Rectangle Fill="Red"
-                 Width="120"
-                 Height="1920"
-                 Margin="100"/>
+      <Button IsEnabled="False">Test</Button>
     </ScrollViewer>
 
     <!--<TextBox Grid.Row="1"

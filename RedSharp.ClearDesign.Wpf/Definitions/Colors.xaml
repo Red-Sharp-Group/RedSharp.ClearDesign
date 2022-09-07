@@ -3,6 +3,11 @@
                     xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils"
                     xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers">
 
+    <!--################################################################################################################-->
+    <!--COLORS DEFINITIONS-->
+    <!--The next set of colors is all colors that used in the application on they are basic for another colors.-->
+    <!--If you want to modify your theme you have to change only that colors.-->
+    
     <Color x:Key="D_DefaultPrimaryColor_">#FF3B99FC</Color>
     <Color x:Key="D_DefaultSecondaryColor_">#FFF1F1F1</Color>
 
@@ -25,9 +30,10 @@
     <Color x:Key="D_DisabledStateMaskColor_">#66FFFFFF</Color>
 
     <!--################################################################################################################-->
-    <!--############################################### STANDARD COLOR #################################################-->
+    <!--COLORS DEFINITIONS BRUSHERS-->
+    <!--The brushes for the previous set of colors, has to be used in the styling.-->
 
-    <!--========================================================-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--MAIN COLOR-->
 
     <SolidColorBrush x:Key="S_PrimaryColorBrush_" 
@@ -66,30 +72,27 @@
     <SolidColorBrush x:Key="S_DisabledStateMaskColorBrush_"
                      Color="{DynamicResource D_DisabledStateMaskColor_}"/>
 
-    <!--========================================================-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--LIGHT ACCENT COLOR-->
 
+    <!--Modifiers for the auto computing-->
     <utils:ColorOpacityModifier x:Key="S_Light1Blender_"
                                 Input="{DynamicResource D_DefaultLightAccentColor_}"
-                                Modifier="0.05"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.05"/>
     <utils:ColorOpacityModifier x:Key="S_Light2Blender_"
                                 Input="{DynamicResource D_DefaultLightAccentColor_}"
-                                Modifier="0.10"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.10"/>
     <utils:ColorOpacityModifier x:Key="S_Light3Blender_"
                                 Input="{DynamicResource D_DefaultLightAccentColor_}"
-                                Modifier="0.15"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.15"/>
     <utils:ColorOpacityModifier x:Key="S_Light4Blender_"
                                 Input="{DynamicResource D_DefaultLightAccentColor_}"
-                                Modifier="0.20"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.20"/>
     <utils:ColorOpacityModifier x:Key="S_Light5Blender_"
                                 Input="{DynamicResource D_DefaultLightAccentColor_}"
-                                Modifier="0.25"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.25"/>
 
+    <!--Brush from the modifiers (you have to use them instead of modifiers)-->
     <SolidColorBrush x:Key="S_Light1ColorBrush_"
                      Color="{Binding Source={StaticResource S_Light1Blender_}, Path=Value}"/>
     <SolidColorBrush x:Key="S_Light2ColorBrush_"
@@ -101,30 +104,27 @@
     <SolidColorBrush x:Key="S_Light5ColorBrush_"
                      Color="{Binding Source={StaticResource S_Light5Blender_}, Path=Value}"/>
 
-    <!--========================================================-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--DARK ACCENT COLOR-->
 
+    <!--Modifiers for the auto computing-->
     <utils:ColorOpacityModifier x:Key="S_Dark1Blender_"
                                 Input="{DynamicResource D_DefaultDarkAccentColor_}"
-                                Modifier="0.05"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.05"/>
     <utils:ColorOpacityModifier x:Key="S_Dark2Blender_"
                                 Input="{DynamicResource D_DefaultDarkAccentColor_}"
-                                Modifier="0.10"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.10"/>
     <utils:ColorOpacityModifier x:Key="S_Dark3Blender_"
                                 Input="{DynamicResource D_DefaultDarkAccentColor_}"
-                                Modifier="0.15"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.15"/>
     <utils:ColorOpacityModifier x:Key="S_Dark4Blender_"
                                 Input="{DynamicResource D_DefaultDarkAccentColor_}"
-                                Modifier="0.20"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.20"/>
     <utils:ColorOpacityModifier x:Key="S_Dark5Blender_"
                                 Input="{DynamicResource D_DefaultDarkAccentColor_}"
-                                Modifier="0.25"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.25"/>
 
+    <!--Brush from the modifiers (you have to use them instead of modifiers)-->
     <SolidColorBrush x:Key="S_Dark1ColorBrush_"
                      Color="{Binding Source={StaticResource S_Dark1Blender_}, Path=Value}"/>
     <SolidColorBrush x:Key="S_Dark2ColorBrush_"
@@ -136,30 +136,27 @@
     <SolidColorBrush x:Key="S_Dark5ColorBrush_"
                      Color="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
 
-    <!--========================================================-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--DISABLED ACCENT COLOR-->
 
+    <!--Modifiers for the auto computing-->
     <utils:ColorOpacityModifier x:Key="S_Disabled1Blender_"
                                 Input="{DynamicResource D_DefaultDisabledAccentColor_}"
-                                Modifier="0.10"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.10"/>
     <utils:ColorOpacityModifier x:Key="S_Disabled2Blender_"
                                 Input="{DynamicResource D_DefaultDisabledAccentColor_}"
-                                Modifier="0.25"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.25"/>
     <utils:ColorOpacityModifier x:Key="S_Disabled3Blender_"
                                 Input="{DynamicResource D_DefaultDisabledAccentColor_}"
-                                Modifier="0.40"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.40"/>
     <utils:ColorOpacityModifier x:Key="S_Disabled4Blender_"
                                 Input="{DynamicResource D_DefaultDisabledAccentColor_}"
-                                Modifier="0.55"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.55"/>
     <utils:ColorOpacityModifier x:Key="S_Disabled5Blender_"
                                 Input="{DynamicResource D_DefaultDisabledAccentColor_}"
-                                Modifier="0.70"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.70"/>
 
+    <!--Brush from the modifiers (you have to use them instead of modifiers)-->
     <SolidColorBrush x:Key="S_Disabled1ColorBrush_"
                      Color="{Binding Source={StaticResource S_Disabled1Blender_}, Path=Value}"/>
     <SolidColorBrush x:Key="S_Disabled2ColorBrush_"
@@ -171,30 +168,27 @@
     <SolidColorBrush x:Key="S_Disabled5ColorBrush_"
                      Color="{Binding Source={StaticResource S_Disabled5Blender_}, Path=Value}"/>
 
-    <!--========================================================-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--STEP ACCENT COLOR-->
 
+    <!--Modifiers for the auto computing-->
     <utils:ColorOpacityModifier x:Key="S_Step1Blender_"
                                 Input="{DynamicResource D_DefaultStepAccentColor_}"
-                                Modifier="0.03"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.03"/>
     <utils:ColorOpacityModifier x:Key="S_Step2Blender_"
                                 Input="{DynamicResource D_DefaultStepAccentColor_}"
-                                Modifier="0.06"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.06"/>
     <utils:ColorOpacityModifier x:Key="S_Step3Blender_"
                                 Input="{DynamicResource D_DefaultStepAccentColor_}"
-                                Modifier="0.09"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.09"/>
     <utils:ColorOpacityModifier x:Key="S_Step4Blender_"
                                 Input="{DynamicResource D_DefaultStepAccentColor_}"
-                                Modifier="0.12"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.12"/>
     <utils:ColorOpacityModifier x:Key="S_Step5Blender_"
                                 Input="{DynamicResource D_DefaultStepAccentColor_}"
-                                Modifier="0.15"
-                                Coerce="{x:Static helpers:ColorCoerses.ColorOpacityCoerce}"/>
+                                Modifier="0.15"/>
 
+    <!--Brush from the modifiers (you have to use them instead of modifiers)-->
     <SolidColorBrush x:Key="S_Step1ColorBrush_" 
                      Color="{Binding Source={StaticResource S_Step1Blender_}, Path=Value}"/>
     <SolidColorBrush x:Key="S_Step2ColorBrush_"
@@ -205,35 +199,45 @@
                      Color="{Binding Source={StaticResource S_Step4Blender_}, Path=Value}"/>
     <SolidColorBrush x:Key="S_Step5ColorBrush_"
                      Color="{Binding Source={StaticResource S_Step5Blender_}, Path=Value}"/>
-    
-    <!--################################################################################################################-->
-    <!--################################################ ACTION COLOR ##################################################-->
 
+    <!--################################################################################################################-->
+    <!--ACTION COLORS-->
+    <!--Colors that was computed form another colors-->
+
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--SPECIAL COLORS-->
+    
+    <!--Modifiers for the auto computing-->
     <utils:ColorBlendingModifier x:Key="S_ScrollThumbBackgroundBlender_"
                                  Input="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
 
+    <!--Brush from the modifiers (you have to use them instead of modifiers)-->
     <SolidColorBrush x:Key="S_ScrollThumbBackgroundBrush_"
                      Color="{Binding Source={StaticResource S_ScrollThumbBackgroundBlender_}, Path=Value}"/>
-    <!--BORDER COLOR-->
 
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--BORDER COLORS-->
+
+    <!--Modifiers for the auto computing-->
     <utils:ColorBlendingModifier x:Key="S_FocusBorderBlender_"
                                  Input="{DynamicResource D_DefaultPrimaryColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Light5Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Light5Blender_}, Path=Value}"/>
 
 
     <utils:ColorBlendingModifier x:Key="S_PrimaryBorderBlender_"
                                  Input="{DynamicResource D_DefaultPrimaryColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
 
     <utils:ColorBlendingModifier x:Key="S_DisabledBorderBlender_"
                                  Input="{Binding Source={StaticResource S_Disabled3Blender_}, Path=Value}"
-                                 Modifier="{Binding Source={StaticResource S_Dark4Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Dark4Blender_}, Path=Value}"/>
 
+    <utils:ColorOpacityModifier x:Key="S_DisabledBorderColorNoOpacityBlender_"
+                                Input="{Binding Source={StaticResource S_DisabledBorderBlender_}, Path=Value}"
+                                Modifier="1"/>
+
+    <!--Brush from the modifiers (you have to use them instead of modifiers)-->
     <SolidColorBrush x:Key="S_FocusBorderColorBrush_"
                      Color="{Binding Source={StaticResource S_FocusBorderBlender_}, Path=Value}"/>
 
@@ -247,39 +251,37 @@
                      Color="{Binding Source={StaticResource S_DisabledBorderBlender_}, Path=Value}"/>
 
     <SolidColorBrush x:Key="S_DisabledBorderColorNoOpacityBrush_"
-                     Color="{DynamicResource D_DefaultDisabledAccentColor_}"/>
+                     Color="{Binding Source={StaticResource S_DisabledBorderColorNoOpacityBlender_}, Path=Value}"/>
 
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--HOVER-->
+    
+    <!--Modifiers for the auto computing-->
     <utils:ColorBlendingModifier x:Key="S_HoverPrimaryBackgroundBlender_"
                                  Input="{DynamicResource D_DefaultPrimaryColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"/>
 
     <utils:ColorBlendingModifier x:Key="S_HoverSecondaryBackgroundBlender_"
                                  Input="{DynamicResource D_DefaultSecondaryColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"/>
 
     <utils:ColorBlendingModifier x:Key="S_HoverSecondaryBorderBlender_"
                                  Input="{Binding Source={StaticResource S_SecondaryBorderColorBrush_}, Path=Color}"
-                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"/>
 
     <utils:ColorBlendingModifier x:Key="S_HoverFieldsBackgroundBlender_"
                                  Input="{DynamicResource D_DefaultFieldsColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"/>
 
     <utils:ColorBlendingModifier x:Key="S_HoverScrollButtonBackgroundBlender_"
                                  Input="{Binding Source={StaticResource S_Step3Blender_}, Path=Value}"
-                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"/>
 
     <utils:ColorBlendingModifier x:Key="S_HoverScrollThumbBackgroundBlender_"
                                  Input="{Binding Source={StaticResource S_ScrollThumbBackgroundBrush_}, Path=Value}"
-                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
-    
+                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"/>
+
+    <!--Brush from the modifiers (you have to use them instead of modifiers)-->
     <SolidColorBrush x:Key="S_HoverPrimaryBackgroundColorBrush_"
                      Color="{Binding Source={StaticResource S_HoverPrimaryBackgroundBlender_}, Path=Value}"/>
 
@@ -298,38 +300,35 @@
     <SolidColorBrush x:Key="S_HoverScrollThumbBackgroundBrush_"
                      Color="{Binding Source={StaticResource S_HoverScrollThumbBackgroundBlender_}, Path=Value}"/>
 
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--PRESSED-->
 
+    <!--Modifiers for the auto computing-->
     <utils:ColorBlendingModifier x:Key="S_PressedPrimaryBackgroundBlender_"
                                  Input="{DynamicResource D_DefaultPrimaryColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
 
     <utils:ColorBlendingModifier x:Key="S_PressedSecondaryBackgroundBlender_"
                                  Input="{DynamicResource D_DefaultSecondaryColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
 
     <utils:ColorBlendingModifier x:Key="S_PressedSecondaryBorderBlender_"
                                  Input="{Binding Source={StaticResource S_SecondaryBorderColorBrush_}, Path=Color}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
 
     <utils:ColorBlendingModifier x:Key="S_PressedFieldsBackgroundBlender_"
                                  Input="{DynamicResource D_DefaultFieldsColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
 
     <utils:ColorBlendingModifier x:Key="S_PressedScrollButtonBackgroundBlender_"
                                  Input="{Binding Source={StaticResource S_Step3Blender_}, Path=Value}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
 
     <utils:ColorBlendingModifier x:Key="S_PressedScrollThumbBackgroundBlender_"
                                  Input="{Binding Source={StaticResource S_ScrollThumbBackgroundBrush_}, Path=Color}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
 
+    <!--Brush from the modifiers (you have to use them instead of modifiers)-->
     <SolidColorBrush x:Key="S_PressedPrimaryBackgroundColorBrush_"
                      Color="{Binding Source={StaticResource S_PressedPrimaryBackgroundBlender_}, Path=Value}"/>
 
@@ -348,13 +347,15 @@
     <SolidColorBrush x:Key="S_PressedScrollThumbBackgroundBrush_"
                      Color="{Binding Source={StaticResource S_PressedScrollThumbBackgroundBlender_}, Path=Value}"/>
 
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--FONT COLORS-->
 
+    <!--Modifiers for the auto computing-->
     <utils:ColorBlendingModifier x:Key="S_CommonFontBlender_"
                                  Input="{DynamicResource D_DefaultSecondaryFontColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Light3Blender_}, Path=Value}"
-                                 Coerce="{x:Static helpers:ColorCoerses.AlphaBlendingCoerce}"/>
+                                 Modifier="{Binding Source={StaticResource S_Light3Blender_}, Path=Value}"/>
 
+    <!--Brush from the modifiers (you have to use them instead of modifiers)-->
     <SolidColorBrush x:Key="S_CommonFontColorBrush_"
                      Color="{Binding Source={StaticResource S_CommonFontBlender_}, Path=Value}"/>
 

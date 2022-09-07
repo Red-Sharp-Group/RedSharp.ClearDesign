@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:RedSharp.ClearDesign.Wpf"
              xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils"
+             xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -21,12 +22,12 @@
                 <ResourceDictionary Source="Styles/Common.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <utils:ColorBlender x:Key="S_WindowBackgroundBlender_" 
-                            BackgroundColor="{DynamicResource D_DefaultBackgroundColor_}"
-                            ForegroundColor="{Binding Source={StaticResource S_Step1Blender_}, Path=Value}"/>
+            <utils:ColorBlendingModifier x:Key="S_WindowBackgroundBlender_" 
+                                         Input="{DynamicResource D_DefaultBackgroundColor_}"
+                                         Modifier="{Binding Source={StaticResource S_Step1Blender_}, Path=Value}"/>
 
             <SolidColorBrush x:Key="S_WindowBackgroundColorBrush_"
-                         Color="{Binding Source={StaticResource S_WindowBackgroundBlender_}, Path=Color}"/>
+                             Color="{Binding Source={StaticResource S_WindowBackgroundBlender_}, Path=Value}"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

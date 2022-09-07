@@ -64,7 +64,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Control}">
-                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                        <Border SnapsToDevicePixels="True" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"/>
                     </ControlTemplate>
                 </Setter.Value>

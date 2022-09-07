@@ -5,7 +5,9 @@
                     xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers">
 
     <!--#################################################################################################-->
-    <!--DEFAULT SETTINGS-->
+    <!--SIZES DEFINITIONS-->
+    <!--The next set of sizes is all sizes that used in the application on they are basic for another sizes.-->
+    <!--If you want to modify your theme you have to change only that sizes.-->
 
     <system:Double x:Key="D_DefaultHeight_">30</system:Double>
     <system:Double x:Key="D_DefaultWidth_">120</system:Double>
@@ -22,22 +24,26 @@
     <system:Double x:Key="D_DefaultAccentPressedOpacity_">0.25</system:Double>
     
     <!--#################################################################################################-->
-    <!--COMPUTED-->
+    <!--COMPUTED SIZES-->
+    <!--All next sizes has to be computed using the sizes above.-->
+    
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--COMPUTED SIZES-->
 
-    <utils:DoubleModifier x:Key="S_OutstandingFocus_" 
-                          Input="{DynamicResource D_DefaultFocus_}"
-                          Modifier="{DynamicResource D_DefaultBorder_}"
-                          Coerce="{x:Static helpers:SizeCoerses.FocusOutstandingValueCoerce}"/>
+    <!--Modifiers for the auto computing-->
+    <utils:FocusOutstandingModifier x:Key="S_OutstandingFocus_" 
+                                    Input="{DynamicResource D_DefaultFocus_}"
+                                    Modifier="{DynamicResource D_DefaultBorder_}"/>
 
-    <utils:DoubleModifier x:Key="S_RoundToggleHeight_"
-                          Input="{DynamicResource D_DefaultToggleHeight_}"
-                          Modifier="{DynamicResource D_DefaultBorder_}"
-                          Coerce="{x:Static helpers:SizeCoerses.RoundToggleHeightValueCoerce}"/>
+    <utils:ToggleHeightModifier x:Key="S_RoundToggleHeight_"
+                                Input="{DynamicResource D_DefaultToggleHeight_}"
+                                Modifier="{DynamicResource D_DefaultBorder_}"/>
 
-    <utils:DoubleModifier x:Key="S_SwitchToggleWidth_"
-                          Input="{DynamicResource D_DefaultToggleHeight_}"
-                          Coerce="{x:Static helpers:SizeCoerses.SwitcherToggleHeightValueCoerce}"/>
-
+    <utils:ToggleHeightModifier x:Key="S_SwitchToggleWidth_"
+                                Input="{DynamicResource D_DefaultToggleHeight_}"
+                                Modifier="1"/>
+    
+    <!--Cached bindings to the modifiers (see {utils:BindingResource ...})-->
     <Binding x:Key="B_OutstandingFocus_"
              Source="{StaticResource S_OutstandingFocus_}"
              Path="Value"/>
@@ -50,34 +56,31 @@
              Source="{StaticResource S_OutstandingFocus_}"
              Path="Value"/>
     
-    <!--####################-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--MARGINS-->
 
-    <utils:ThicknessModifier x:Key="S_DefaultMarginThicknessFull_"
-                             Modifier="{DynamicResource D_DefaultMargin_}"
-                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
-                             Input="1"/>
+    <!--Modifiers for the auto computing-->
+    <utils:MultiplierThicknessModifier x:Key="S_DefaultMarginThicknessFull_"
+                                       Modifier="{DynamicResource D_DefaultMargin_}"
+                                       Input="1"/>
 
-    <utils:ThicknessModifier x:Key="S_DefaultMarginThicknessLeftRight_"
-                             Modifier="{DynamicResource D_DefaultMargin_}"
-                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
-                             Input="1,0"/>
+    <utils:MultiplierThicknessModifier x:Key="S_DefaultMarginThicknessLeftRight_"
+                                       Modifier="{DynamicResource D_DefaultMargin_}"
+                                       Input="1,0"/>
 
-    <utils:ThicknessModifier x:Key="S_DefaultMarginThicknessTopBottom_"
-                             Modifier="{DynamicResource D_DefaultMargin_}"
-                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
-                             Input="0,1"/>
+    <utils:MultiplierThicknessModifier x:Key="S_DefaultMarginThicknessTopBottom_"
+                                       Modifier="{DynamicResource D_DefaultMargin_}"
+                                       Input="0,1"/>
 
-    <utils:ThicknessModifier x:Key="S_DefaultMarginThicknessRight_"
-                             Modifier="{DynamicResource D_DefaultMargin_}"
-                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
-                             Input="0,0,1,0"/>
+    <utils:MultiplierThicknessModifier x:Key="S_DefaultMarginThicknessRight_"
+                                       Modifier="{DynamicResource D_DefaultMargin_}"
+                                       Input="0,0,1,0"/>
 
-    <utils:ThicknessModifier x:Key="S_OutstandingFocusThicknessFull_"
-                             Modifier="{utils:BindingResource B_OutstandingFocus_}"
-                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
-                             Input="1"/>
+    <utils:MultiplierThicknessModifier x:Key="S_OutstandingFocusThicknessFull_"
+                                       Modifier="{utils:BindingResource B_OutstandingFocus_}"
+                                       Input="1"/>
 
+    <!--Cached bindings to the modifiers (see {utils:BindingResource ...})-->
     <Binding x:Key="B_DefaultMarginThicknessFull_"
              Source="{StaticResource S_DefaultMarginThicknessFull_}"
              Path="Value"/>
@@ -98,24 +101,23 @@
              Source="{StaticResource S_OutstandingFocusThicknessFull_}"
              Path="Value"/>
 
-    <!--####################-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--PADDINGS-->
 
-    <utils:ThicknessModifier x:Key="S_DefaultPaddingThicknessFull_"
-                             Modifier="{DynamicResource D_DefaultPadding_}"
-                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
-                             Input="1"/>
+    <!--Modifiers for the auto computing-->
+    <utils:MultiplierThicknessModifier x:Key="S_DefaultPaddingThicknessFull_"
+                                       Modifier="{DynamicResource D_DefaultPadding_}"
+                                       Input="1"/>
 
-    <utils:ThicknessModifier x:Key="S_DefaultPaddingThicknessLeft_"
-                             Modifier="{DynamicResource D_DefaultPadding_}"
-                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
-                             Input="1,0,0,0"/>
+    <utils:MultiplierThicknessModifier x:Key="S_DefaultPaddingThicknessLeft_"
+                                       Modifier="{DynamicResource D_DefaultPadding_}"
+                                       Input="1,0,0,0"/>
 
-    <utils:ThicknessModifier x:Key="S_DefaultPaddingThicknessLeftRight_"
-                             Modifier="{DynamicResource D_DefaultPadding_}"
-                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
-                             Input="1,0"/>
+    <utils:MultiplierThicknessModifier x:Key="S_DefaultPaddingThicknessLeftRight_"
+                                       Modifier="{DynamicResource D_DefaultPadding_}"
+                                       Input="1,0"/>
 
+    <!--Cached bindings to the modifiers (see {utils:BindingResource ...})-->
     <Binding x:Key="B_DefaultPaddingThicknessFull_"
              Source="{StaticResource S_DefaultPaddingThicknessFull_}"
              Path="Value"/>
@@ -128,34 +130,31 @@
              Source="{StaticResource S_DefaultPaddingThicknessLeftRight_}"
              Path="Value"/>
 
-    <!--####################-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--BORDERS-->
 
-    <utils:ThicknessModifier x:Key="S_DefaultBorderThicknessFull_"
-                             Modifier="{DynamicResource D_DefaultBorder_}"
-                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
-                             Input="1"/>
+    <!--Modifiers for the auto computing-->
+    <utils:MultiplierThicknessModifier x:Key="S_DefaultBorderThicknessFull_"
+                                       Modifier="{DynamicResource D_DefaultBorder_}"
+                                       Input="1"/>
 
-    <utils:ThicknessModifier x:Key="S_DefaultBorderThicknessTop_"
-                             Modifier="{DynamicResource D_DefaultBorder_}"
-                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
-                             Input="0,1,0,0"/>
+    <utils:MultiplierThicknessModifier x:Key="S_DefaultBorderThicknessTop_"
+                                       Modifier="{DynamicResource D_DefaultBorder_}"
+                                       Input="0,1,0,0"/>
 
-    <utils:ThicknessModifier x:Key="S_DefaultBorderThicknessLeftRight_"
-                             Modifier="{DynamicResource D_DefaultBorder_}"
-                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
-                             Input="1,0"/>
+    <utils:MultiplierThicknessModifier x:Key="S_DefaultBorderThicknessLeftRight_"
+                                       Modifier="{DynamicResource D_DefaultBorder_}"
+                                       Input="1,0"/>
 
-    <utils:ThicknessModifier x:Key="S_DefaultBorderThicknessLeftTopRight_"
-                             Modifier="{DynamicResource D_DefaultBorder_}"
-                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
-                             Input="1,1,1,0"/>
+    <utils:MultiplierThicknessModifier x:Key="S_DefaultBorderThicknessLeftTopRight_"
+                                       Modifier="{DynamicResource D_DefaultBorder_}"
+                                       Input="1,1,1,0"/>
 
-    <utils:ThicknessModifier x:Key="S_DefaultFocusThicknessFull_"
-                             Modifier="{DynamicResource D_DefaultFocus_}"
-                             Coerce="{x:Static helpers:SizeCoerses.MultiplierThicknessCoerce}"
-                             Input="1"/>
+    <utils:MultiplierThicknessModifier x:Key="S_DefaultFocusThicknessFull_"
+                                       Modifier="{DynamicResource D_DefaultFocus_}"
+                                       Input="1"/>
 
+    <!--Cached bindings to the modifiers (see {utils:BindingResource ...})-->
     <Binding x:Key="B_DefaultBorderThicknessFull_"
              Source="{StaticResource S_DefaultBorderThicknessFull_}"
              Path="Value"/>

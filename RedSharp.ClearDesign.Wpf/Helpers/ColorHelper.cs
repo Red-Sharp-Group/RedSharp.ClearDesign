@@ -10,6 +10,7 @@ namespace RedSharp.ClearDesign.Helpers
 {
     public static class ColorHelper
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Color AlphaBlending(Color background, Color foreground)
         {
             var alphaF = (float)foreground.A / byte.MaxValue;
@@ -22,6 +23,7 @@ namespace RedSharp.ClearDesign.Helpers
             return Color.FromArgb(resultAlpha, resultColor.R, resultColor.G, resultColor.B);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Color SumColor(Color first, Color second)
         {
             var alpha = SumChannel(first.A, second.A);
@@ -32,6 +34,7 @@ namespace RedSharp.ClearDesign.Helpers
             return Color.FromArgb(alpha, red, green, blue);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Color MultiplyColor(Color input, float coefficient)
         {
             var alpha = MultiplyChannel(input.A, coefficient);

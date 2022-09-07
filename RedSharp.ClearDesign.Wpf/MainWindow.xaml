@@ -74,7 +74,8 @@
                      Header="Jobs">
                 <StackPanel VerticalAlignment="Center">
                     <Button Style="{StaticResource button-secondary}"
-                        Margin="5">AWERSOME</Button>
+                            Margin="5"
+                            IsEnabled="False">AWERSOME</Button>
                     <Button Style="{StaticResource button-menu}"
                         Margin="5">AWERSOME</Button>
 

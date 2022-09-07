@@ -5,28 +5,28 @@
     <!--#################################################################################################-->
     <!--DEFAULT SETTINGS-->
 
-    <!--####################-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--TITLE1-->
 
     <system:Double x:Key="D_DefaultTitle1FontSize_">20</system:Double>
     <FontWeight x:Key="D_DefaultTitle1FontWeight_">400</FontWeight>
     <FontFamily x:Key="D_DefaultTitle1FontFamily_">/Resources/Fonts/Roboto/#Roboto</FontFamily>
 
-    <!--####################-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--TITLE2-->
 
     <system:Double x:Key="D_DefaultTitle2FontSize_">16</system:Double>
     <FontWeight x:Key="D_DefaultTitle2FontWeight_">400</FontWeight>
     <FontFamily x:Key="D_DefaultTitle2FontFamily_">/Resources/Fonts/Roboto/#Roboto</FontFamily>
 
-    <!--####################-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--TITLE3-->
 
     <system:Double x:Key="D_DefaultTitle3FontSize_">14</system:Double>
     <FontWeight x:Key="D_DefaultTitle3FontWeight_">400</FontWeight>
     <FontFamily x:Key="D_DefaultTitle3FontFamily_">/Resources/Fonts/Roboto/#Roboto</FontFamily>
 
-    <!--####################-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--COMMON-->
 
     <system:Double x:Key="D_DefaultCommonFontSize_">12</system:Double>
