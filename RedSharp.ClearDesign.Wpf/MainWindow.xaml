@@ -75,11 +75,11 @@
                 <StackPanel VerticalAlignment="Center">
                     <Button Style="{StaticResource button-secondary}"
                             Margin="5"
-                            IsEnabled="False">AWERSOME</Button>
+                            >AWERSOME</Button>
                     <Button Style="{StaticResource button-menu}"
-                        Margin="5">AWERSOME</Button>
+                            Margin="5">AWERSOME</Button>
 
-                    <ItemsControl Style="{StaticResource itemscontrol-default}">
+                    <!--<ItemsControl Style="{StaticResource itemscontrol-default}">
                         
                         <system:String>Option 1</system:String>
                         <system:String>Option 2</system:String>
@@ -97,7 +97,21 @@
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    </ItemsControl>-->
+
+                    <CheckBox Style="{StaticResource checkbox-default}" 
+                              HorizontalAlignment="Center"
+                              IsThreeState="True"
+                              Margin="5">First checkbox option</CheckBox>
+
+                    <CheckBox Style="{StaticResource checkbox-switch}" 
+                              HorizontalAlignment="Center"
+                              Margin="5">First checkbox option</CheckBox>
+
+                    <CheckBox Style="{StaticResource checkbox-radio}" 
+                              HorizontalAlignment="Center"
+                              IsThreeState="True"
+                              Margin="5">First checkbox option</CheckBox>
 
                     <StackPanel HorizontalAlignment="Center">
 

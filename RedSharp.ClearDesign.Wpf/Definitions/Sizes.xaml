@@ -39,9 +39,8 @@
                                 Input="{DynamicResource D_DefaultToggleHeight_}"
                                 Modifier="{DynamicResource D_DefaultBorder_}"/>
 
-    <utils:ToggleHeightModifier x:Key="S_SwitchToggleWidth_"
-                                Input="{DynamicResource D_DefaultToggleHeight_}"
-                                Modifier="1"/>
+    <utils:SwitchWidthModifier x:Key="S_SwitchToggleWidth_"
+                               Input="{DynamicResource D_DefaultToggleHeight_}"/>
     
     <!--Cached bindings to the modifiers (see {utils:BindingResource ...})-->
     <Binding x:Key="B_OutstandingFocus_"
@@ -53,7 +52,7 @@
              Path="Value"/>
 
     <Binding x:Key="B_SwitchToggleWidth_"
-             Source="{StaticResource S_OutstandingFocus_}"
+             Source="{StaticResource S_SwitchToggleWidth_}"
              Path="Value"/>
     
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->

@@ -34,6 +34,9 @@
             <Setter Property="FontWeight"
                     Value="{DynamicResource D_DefaultCommonFontWeight_}"/>
 
+            <Setter Property="Padding"
+                    Value="{utils:BindingResource B_DefaultPaddingThicknessLeft_}"/>
+
             <Setter Property="HorizontalAlignment" 
                     Value="Left"/>
             <Setter Property="VerticalAlignment" 
@@ -64,6 +67,14 @@
             <Setter Property="extra:TogglesExtra.TrueIconVisibility"
                     Value="Hidden"/>
 
+            <Setter Property="SnapsToDevicePixels" 
+                    Value="False"/>
+            <Setter Property="UseLayoutRounding" 
+                    Value="True"/>
+
+            <Setter Property="FocusVisualStyle"
+                    Value="{StaticResource focus-outstanding-checkbox}"/>
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type CheckBox}">
@@ -71,57 +82,52 @@
                               HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                               VerticalAlignment="{TemplateBinding VerticalAlignment}"
                               Width="{TemplateBinding Width}"
-                              Height="{TemplateBinding Height}"
-                              SnapsToDevicePixels="True">
+                              Height="{TemplateBinding Height}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <!--BORDER-->
-                            <Border Grid.Column="0"
-                                    UseLayoutRounding="True"
-                                    Background="{TemplateBinding BorderBrush}"
-                                    Width="{DynamicResource D_DefaultToggleHeight_}"
-                                    Height="{DynamicResource D_DefaultToggleHeight_}">
-
-                                <Grid>    
-                                    <!--BACKGROUND-->
+                            <Grid Grid.Column="0"
+                                  Width="{DynamicResource D_DefaultToggleHeight_}"
+                                  Height="{DynamicResource D_DefaultToggleHeight_}">    
+                                
+                                <!--BACKGROUND-->
+                                <Border UseLayoutRounding="True"
+                                        Background="{TemplateBinding BorderBrush}">
                                     <Border UseLayoutRounding="False"
-                                            Margin="{TemplateBinding BorderThickness}"
-                                            Background="{TemplateBinding Background}"/>
+                                            Background="{TemplateBinding Background}"
+                                            Margin="{TemplateBinding BorderThickness}"/>
+                                </Border>
 
-                                    <!--ACCENT-->
-                                    <Border UseLayoutRounding="True"
-                                            Background="{TemplateBinding extra:AccentsExtra.Color}"
-                                            Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
+                                <!--ACCENT-->
+                                <Border UseLayoutRounding="True"
+                                        Background="{TemplateBinding extra:AccentsExtra.Color}"
+                                        Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
 
-                                    <!--ICONS-->
-                                    <Border Margin="{TemplateBinding Padding}"
-                                            UseLayoutRounding="False">
+                                <!--ICONS-->
+                                <Grid UseLayoutRounding="False"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Center">
+                                    <Path Style="{StaticResource icon-min}"
+                                          StrokeThickness="2"
+                                          Stroke="{TemplateBinding extra:TogglesExtra.TrueIconColor}"
+                                          Visibility="{TemplateBinding extra:TogglesExtra.TrueIconVisibility}"
+                                          Data="{StaticResource S_CheckIconGeometry_}"/>
 
-                                        <Grid> 
-                                            <Path Style="{StaticResource icon-min}"
-                                                  StrokeThickness="2"
-                                                  Stroke="{TemplateBinding extra:TogglesExtra.TrueIconColor}"
-                                                  Visibility="{TemplateBinding extra:TogglesExtra.TrueIconVisibility}"
-                                                  Data="{StaticResource S_CheckIconGeometry_}"/>
-
-                                            <Path Style="{StaticResource icon-min}"
-                                                  StrokeThickness="2"
-                                                  Stroke="{TemplateBinding extra:TogglesExtra.NullIconColor}"
-                                                  Visibility="{TemplateBinding extra:TogglesExtra.NullIconVisibility}"
-                                                  Data="{StaticResource S_NullIconGeometry_}"/>
-                                        </Grid>
-                                    </Border>
+                                    <Path Style="{StaticResource icon-min}"
+                                          StrokeThickness="2"
+                                          Stroke="{TemplateBinding extra:TogglesExtra.NullIconColor}"
+                                          Visibility="{TemplateBinding extra:TogglesExtra.NullIconVisibility}"
+                                          Data="{StaticResource S_NullIconGeometry_}"/>
                                 </Grid>
-                            </Border>
+                            </Grid>
 
                             <!--CONTENT-->
-                            <ContentControl Grid.Column="1"
-                                            Focusable="False"
-                                            UseLayoutRounding="False"
-                                            Margin="{utils:BindingResource B_DefaultPaddingThicknessLeft_}"
+                            <ContentControl UseLayoutRounding="False"
+                                            Grid.Column="1"
+                                            Focusable="False"                                            
+                                            Margin="{TemplateBinding Padding}"
                                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                             FontFamily="{TemplateBinding FontFamily}"
@@ -166,6 +172,24 @@
                     <StaticResource ResourceKey="S_AccentPressedExitAnimation"/>
                 </Trigger.ExitActions>
             </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="OpacityMask"
+                        Value="{StaticResource S_DisabledStateMaskColorBrush_}"/>
+                <Setter Property="Background"
+                        Value="{StaticResource S_DefaultDisabledAccentColorBrush_}"/>
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+                <Setter Property="Foreground"
+                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+                
+                <Setter Property="extra:TogglesExtra.TrueIconColor"
+                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+                <Setter Property="extra:TogglesExtra.NullIconColor"
+                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+                <Setter Property="extra:TogglesExtra.FalseIconColor"
+                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -173,6 +197,9 @@
            TargetType="{x:Type CheckBox}"
            BasedOn="{StaticResource checkbox-default}">
         <Style.Setters>
+            <Setter Property="FocusVisualStyle"
+                    Value="{StaticResource focus-outstanding-switch}"/>
+            
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type CheckBox}">
@@ -184,56 +211,53 @@
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <!--BORDER-->
-                            <Border Width="{utils:BindingResource B_SwitchToggleWidth_}"
-                                    Height="{utils:BindingResource B_RoundToggleHeight_}"
-                                    UseLayoutRounding="True"
-                                    SizeChanged="OnBorderSizeChanged"
-                                    Background="{TemplateBinding BorderBrush}">
-
-                                <Grid>
-                                    <!--BACKGROUND-->
+                            <Grid Grid.Column="0"
+                                  Width="{utils:BindingResource B_SwitchToggleWidth_}"
+                                  Height="{utils:BindingResource B_RoundToggleHeight_}">
+                                
+                                <!--BACKGROUND-->
+                                <Border UseLayoutRounding="True"
+                                        SizeChanged="OnBorderSizeChanged"                                        
+                                        Background="{TemplateBinding BorderBrush}">
                                     <Border UseLayoutRounding="False"
-                                            SizeChanged="OnBorderSizeChanged"
+                                            SizeChanged="OnBorderSizeChanged"                                            
                                             Background="{TemplateBinding Background}"
-                                            Margin="{TemplateBinding BorderThickness}"/>
+                                            Margin="{TemplateBinding BorderThickness}"/>                                    
+                                </Border>
 
-                                    <!--EFFECT-->
-                                    <Border UseLayoutRounding="True"
-                                            SizeChanged="OnBorderSizeChanged"
-                                            Background="{TemplateBinding extra:AccentsExtra.Color}"
-                                            Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
+                                <!--ACCENT-->
+                                <Border UseLayoutRounding="True"
+                                        SizeChanged="OnBorderSizeChanged"                                        
+                                        Background="{TemplateBinding extra:AccentsExtra.Color}"
+                                        Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
 
-                                    <!--ICONS-->
-                                    <Border Margin="{TemplateBinding BorderThickness}"
-                                            UseLayoutRounding="False">
-                                        <Grid Margin="2">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition Width="2"/>
-                                                <ColumnDefinition/>
-                                            </Grid.ColumnDefinitions>
+                                <!--ICONS-->
+                                <Grid UseLayoutRounding="False" 
+                                      Margin="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
 
-                                            <Ellipse Grid.Column="0"
-                                                     VerticalAlignment="Stretch"
-                                                     HorizontalAlignment="Stretch"
-                                                     Fill="{TemplateBinding extra:TogglesExtra.FalseIconColor}"
-                                                     Visibility="{TemplateBinding extra:TogglesExtra.FalseIconVisibility}"/>
+                                    <Ellipse Grid.Column="0"
+                                             VerticalAlignment="Stretch"
+                                             HorizontalAlignment="Stretch"
+                                             Fill="{TemplateBinding extra:TogglesExtra.FalseIconColor}"
+                                             Visibility="{TemplateBinding extra:TogglesExtra.FalseIconVisibility}"/>
 
-                                            <Ellipse Grid.Column="2"
-                                                     VerticalAlignment="Stretch"
-                                                     HorizontalAlignment="Stretch"
-                                                     Fill="{TemplateBinding extra:TogglesExtra.TrueIconColor}"
-                                                     Visibility="{TemplateBinding extra:TogglesExtra.TrueIconVisibility}"/>
-                                        </Grid>
-                                    </Border>
+                                    <Ellipse Grid.Column="2"
+                                             VerticalAlignment="Stretch"
+                                             HorizontalAlignment="Stretch"
+                                             Fill="{TemplateBinding extra:TogglesExtra.TrueIconColor}"
+                                             Visibility="{TemplateBinding extra:TogglesExtra.TrueIconVisibility}"/>
                                 </Grid>
-                            </Border>
+                            </Grid>
 
-                            <ContentControl x:Name="PART_Content"
-                                            Focusable="False"
+                            <ContentControl UseLayoutRounding="False"
                                             Grid.Column="1"
-                                            Margin="{utils:BindingResource B_DefaultPaddingThicknessLeft_}"
+                                            Focusable="False"                                            
+                                            Margin="{TemplateBinding Padding}"
                                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                             FontFamily="{TemplateBinding FontFamily}"
@@ -252,6 +276,9 @@
            TargetType="{x:Type CheckBox}"
            BasedOn="{StaticResource checkbox-default}">
         <Style.Setters>
+            <Setter Property="FocusVisualStyle"
+                    Value="{StaticResource focus-outstanding-radio}"/>
+            
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type CheckBox}">
@@ -263,50 +290,43 @@
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <!--BORDER-->
-                            <Border x:Name="PART_Border"
-                                    Width="{utils:BindingResource B_RoundToggleHeight_}"
-                                    Height="{utils:BindingResource B_RoundToggleHeight_}"
-                                    SizeChanged="OnBorderSizeChanged"
-                                    UseLayoutRounding="True"                    
-                                    Background="{TemplateBinding BorderBrush}">
-
-                                <Grid>
-                                    <!--BACKGROUND-->
-                                    <Border SizeChanged="OnBorderSizeChanged"
-                                            Background="{TemplateBinding Background}"
-                                            UseLayoutRounding="False"
-                                            Margin="{TemplateBinding BorderThickness}"/>
-
-                                    <!--EFFECT-->
-                                    <Border UseLayoutRounding="True"
+                            <Grid Width="{utils:BindingResource B_RoundToggleHeight_}"
+                                  Height="{utils:BindingResource B_RoundToggleHeight_}">
+                                
+                                <!--BACKGROUND-->
+                                <Border UseLayoutRounding="True"
+                                        SizeChanged="OnBorderSizeChanged"
+                                        Background="{TemplateBinding BorderBrush}">
+                                    <Border UseLayoutRounding="False"
                                             SizeChanged="OnBorderSizeChanged"
-                                            Background="{TemplateBinding extra:AccentsExtra.Color}"
-                                            Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
+                                            Background="{TemplateBinding Background}"
+                                            Margin="{TemplateBinding BorderThickness}"/>
+                                </Border>
 
-                                    <!--ICONS-->
-                                    <Border Margin="{TemplateBinding BorderThickness}"
-                                            UseLayoutRounding="False">
+                                <!--ACCENT-->
+                                <Border UseLayoutRounding="True"
+                                        SizeChanged="OnBorderSizeChanged"
+                                        Background="{TemplateBinding extra:AccentsExtra.Color}"
+                                        Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
 
-                                        <Grid>
-                                            <Ellipse VerticalAlignment="Stretch"
-                                                     HorizontalAlignment="Stretch"
-                                                     Margin="4"                           
-                                                     Fill="{TemplateBinding extra:TogglesExtra.TrueIconColor}"
-                                                     Visibility="{TemplateBinding extra:TogglesExtra.TrueIconVisibility}"/>
+                                <!--ICONS-->
+                                <Grid UseLayoutRounding="False">
+                                    <Ellipse VerticalAlignment="Stretch"
+                                             HorizontalAlignment="Stretch"
+                                             Margin="5"                           
+                                             Fill="{TemplateBinding extra:TogglesExtra.TrueIconColor}"
+                                             Visibility="{TemplateBinding extra:TogglesExtra.TrueIconVisibility}"/>
 
-                                            <Path Style="{StaticResource icon-min}"
-                                                  StrokeThickness="2"
-                                                  Fill="{TemplateBinding extra:TogglesExtra.NullIconColor}"
-                                                  Visibility="{TemplateBinding extra:TogglesExtra.NullIconVisibility}"
-                                                  Data="{StaticResource S_NullIconGeometry_}"/>
-
-                                        </Grid>
-                                    </Border>
+                                    <Path Style="{StaticResource icon-min}"
+                                          StrokeThickness="2"
+                                          Margin="1"
+                                          Stroke="{TemplateBinding extra:TogglesExtra.NullIconColor}"
+                                          Visibility="{TemplateBinding extra:TogglesExtra.NullIconVisibility}"
+                                          Data="{StaticResource S_NullIconGeometry_}"/>
                                 </Grid>
-                            </Border>
+                            </Grid>
 
-                            <ContentControl x:Name="PART_Content"
+                            <ContentControl UseLayoutRounding="False" 
                                             Focusable="False"
                                             Grid.Column="1"
                                             Margin="{utils:BindingResource B_DefaultPaddingThicknessLeft_}"
@@ -375,6 +395,14 @@
             <Setter Property="extra:TogglesExtra.TrueIconVisibility"
                     Value="Hidden"/>
 
+            <Setter Property="SnapsToDevicePixels" 
+                    Value="False"/>
+            <Setter Property="UseLayoutRounding" 
+                    Value="True"/>
+
+            <Setter Property="FocusVisualStyle"
+                    Value="{StaticResource focus-outstanding-radio}"/>
+            
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type RadioButton}">
@@ -386,50 +414,43 @@
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <!--BORDER-->
-                            <Border x:Name="PART_Border"
-                                    Width="{utils:BindingResource B_RoundToggleHeight_}"
-                                    Height="{utils:BindingResource B_RoundToggleHeight_}"
-                                    SizeChanged="OnBorderSizeChanged"
-                                    UseLayoutRounding="True"                    
-                                    Background="{TemplateBinding BorderBrush}">
+                            <Grid Width="{utils:BindingResource B_RoundToggleHeight_}"
+                                  Height="{utils:BindingResource B_RoundToggleHeight_}">
 
-                                <Grid>
-                                    <!--BACKGROUND-->
-                                    <Border SizeChanged="OnBorderSizeChanged"
-                                            Background="{TemplateBinding Background}"
-                                            UseLayoutRounding="False"
-                                            Margin="{TemplateBinding BorderThickness}"/>
-
-                                    <!--EFFECT-->
-                                    <Border UseLayoutRounding="True"
+                                <!--BACKGROUND-->
+                                <Border UseLayoutRounding="True"
+                                        SizeChanged="OnBorderSizeChanged"
+                                        Background="{TemplateBinding BorderBrush}">
+                                    <Border UseLayoutRounding="False"
                                             SizeChanged="OnBorderSizeChanged"
-                                            Background="{TemplateBinding extra:AccentsExtra.Color}"
-                                            Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
+                                            Background="{TemplateBinding Background}"
+                                            Margin="{TemplateBinding BorderThickness}"/>
+                                </Border>
 
-                                    <!--ICONS-->
-                                    <Border Margin="{TemplateBinding BorderThickness}"
-                                            UseLayoutRounding="False">
+                                <!--ACCENT-->
+                                <Border UseLayoutRounding="True"
+                                        SizeChanged="OnBorderSizeChanged"
+                                        Background="{TemplateBinding extra:AccentsExtra.Color}"
+                                        Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
 
-                                        <Grid>
-                                            <Ellipse VerticalAlignment="Stretch"
-                                                     HorizontalAlignment="Stretch"
-                                                     Margin="4"                           
-                                                     Fill="{TemplateBinding extra:TogglesExtra.TrueIconColor}"
-                                                     Visibility="{TemplateBinding extra:TogglesExtra.TrueIconVisibility}"/>
+                                <!--ICONS-->
+                                <Grid UseLayoutRounding="False">
+                                    <Ellipse VerticalAlignment="Stretch"
+                                             HorizontalAlignment="Stretch"
+                                             Margin="5"                           
+                                             Fill="{TemplateBinding extra:TogglesExtra.TrueIconColor}"
+                                             Visibility="{TemplateBinding extra:TogglesExtra.TrueIconVisibility}"/>
 
-                                            <Path Style="{StaticResource icon-min}"
-                                                  StrokeThickness="2"
-                                                  Fill="{TemplateBinding extra:TogglesExtra.NullIconColor}"
-                                                  Visibility="{TemplateBinding extra:TogglesExtra.NullIconVisibility}"
-                                                  Data="{StaticResource S_NullIconGeometry_}"/>
-
-                                        </Grid>
-                                    </Border>
+                                    <Path Style="{StaticResource icon-min}"
+                                          StrokeThickness="2"
+                                          Margin="1"
+                                          Stroke="{TemplateBinding extra:TogglesExtra.NullIconColor}"
+                                          Visibility="{TemplateBinding extra:TogglesExtra.NullIconVisibility}"
+                                          Data="{StaticResource S_NullIconGeometry_}"/>
                                 </Grid>
-                            </Border>
+                            </Grid>
 
-                            <ContentControl x:Name="PART_Content"
+                            <ContentControl UseLayoutRounding="False" 
                                             Focusable="False"
                                             Grid.Column="1"
                                             Margin="{utils:BindingResource B_DefaultPaddingThicknessLeft_}"
@@ -476,6 +497,24 @@
                 <Trigger.ExitActions>
                     <StaticResource ResourceKey="S_AccentPressedExitAnimation"/>
                 </Trigger.ExitActions>
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="OpacityMask"
+                        Value="{StaticResource S_DisabledStateMaskColorBrush_}"/>
+                <Setter Property="Background"
+                        Value="{StaticResource S_DefaultDisabledAccentColorBrush_}"/>
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+                <Setter Property="Foreground"
+                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+
+                <Setter Property="extra:TogglesExtra.TrueIconColor"
+                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+                <Setter Property="extra:TogglesExtra.NullIconColor"
+                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+                <Setter Property="extra:TogglesExtra.FalseIconColor"
+                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

@@ -60,21 +60,19 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type RepeatButton}">
-                        <Grid>
-                            <Border UseLayoutRounding="True"
-                                    Background="{TemplateBinding BorderBrush}">
-                                <Border UseLayoutRounding="False"
-                                        Background="{TemplateBinding Background}"
-                                        Margin="{TemplateBinding BorderThickness}">
-                                </Border>
-                            </Border>
+                        <Grid SnapsToDevicePixels="True"
+                              UseLayoutRounding="True">
+                            
+                            <!--BACKGROUND-->
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"/>
 
-                            <Border UseLayoutRounding="True"
-                                    Background="{TemplateBinding extra:AccentsExtra.Color}"
+                            <!--ACCENT-->
+                            <Border Background="{TemplateBinding extra:AccentsExtra.Color}"
                                     Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
 
-                            <ContentControl UseLayoutRounding="False" 
-                                            Focusable="False"
+                            <ContentControl Focusable="False"
                                             Margin="{TemplateBinding Padding}"
                                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -104,6 +102,17 @@
                 <Trigger.ExitActions>
                     <StaticResource ResourceKey="S_AccentPressedExitAnimation"/>
                 </Trigger.ExitActions>
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="OpacityMask"
+                        Value="{StaticResource S_DisabledStateMaskColorBrush_}"/>
+                <Setter Property="Background"
+                        Value="{StaticResource S_DefaultDisabledAccentColorBrush_}"/>
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+                <Setter Property="Foreground"
+                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

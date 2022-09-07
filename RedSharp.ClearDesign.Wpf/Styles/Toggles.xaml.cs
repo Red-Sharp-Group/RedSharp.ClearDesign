@@ -20,7 +20,7 @@ namespace RedSharp.ClearDesign.Styles
             if (Math.Abs(newDiameter - previousDiameter) < 0.01)
                 return;
 
-            var radius = newDiameter / 2;
+            var radius = Math.Floor(newDiameter / 2);
 
             border.CornerRadius = new CornerRadius(radius);
         }
