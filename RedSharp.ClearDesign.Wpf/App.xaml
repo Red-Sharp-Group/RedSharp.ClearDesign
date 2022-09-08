@@ -25,7 +25,7 @@
 
             <utils:ColorBlendingModifier x:Key="S_WindowBackgroundBlender_" 
                                          Input="{DynamicResource D_DefaultBackgroundColor_}"
-                                         Modifier="{Binding Source={StaticResource S_Step1Blender_}, Path=Value}"/>
+                                         Modifier="{DynamicResource D_Step1Color_}"/>
 
             <SolidColorBrush x:Key="S_WindowBackgroundColorBrush_"
                              Color="{Binding Source={StaticResource S_WindowBackgroundBlender_}, Path=Value}"/>

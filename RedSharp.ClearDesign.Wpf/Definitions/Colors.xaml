@@ -178,156 +178,47 @@
 
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--SPECIAL COLORS-->
-    
-    <!--Modifiers for the auto computing-->
-    <utils:ColorBlendingModifier x:Key="S_ScrollThumbBackgroundBlender_"
-                                 Input="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
 
-    <!--Brush from the modifiers (you have to use them instead of modifiers)-->
+    <!--COMPUTED: D_Dark5Color_ + D_Dark5Color_-->
+    <Color x:Key="D_ScrollThumbBackgroundColor_">#6F000000</Color>
+    
     <SolidColorBrush x:Key="S_ScrollThumbBackgroundBrush_"
-                     Color="{Binding Source={StaticResource S_ScrollThumbBackgroundBlender_}, Path=Value}"/>
+                     Color="{DynamicResource D_ScrollThumbBackgroundColor_}"/>
 
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--BORDER COLORS-->
 
-    <!--Modifiers for the auto computing-->
-    <utils:ColorBlendingModifier x:Key="S_FocusBorderBlender_"
-                                 Input="{DynamicResource D_DefaultPrimaryColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Light5Blender_}, Path=Value}"/>
+    <!--COMPUTED: D_DefaultPrimaryColor_ + D_Light5Color_-->
+    <Color x:Key="D_FocusBorderColor_">#FF6DB3FD</Color>    
+    <!--COMPUTED: D_DefaultPrimaryColor_ + D_Dark5Color_-->
+    <Color x:Key="D_PrimaryBorderColor_">#FF2D73BD</Color>
+    <!--COMPUTED: D_Dark5Color_-->
+    <Color x:Key="D_SecondaryBorderColor_">#40000000</Color>
+    <!--COMPUTED: D_Disabled3Color_ + D_Dark4Color_-->
+    <Color x:Key="D_DisabledBorderColor_">#843C3C3C</Color>
+    <!--COMPUTED: D_PrimaryBorderColor_(Alpha 100%)-->
+    <Color x:Key="D_DisabledBorderNoOpacityColor_">#FF3C3C3C</Color>
+    
 
-    <utils:ColorBlendingModifier x:Key="S_PrimaryBorderBlender_"
-                                 Input="{DynamicResource D_DefaultPrimaryColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
-
-    <utils:ColorBlendingModifier x:Key="S_DisabledBorderBlender_"
-                                 Input="{Binding Source={StaticResource S_Disabled3Blender_}, Path=Value}"
-                                 Modifier="{Binding Source={StaticResource S_Dark4Blender_}, Path=Value}"/>
-
-    <utils:ColorOpacityModifier x:Key="S_DisabledBorderColorNoOpacityBlender_"
-                                Input="{Binding Source={StaticResource S_DisabledBorderBlender_}, Path=Value}"
-                                Modifier="1"/>
-
-    <!--Brush from the modifiers (you have to use them instead of modifiers)-->
     <SolidColorBrush x:Key="S_FocusBorderColorBrush_"
-                     Color="{Binding Source={StaticResource S_FocusBorderBlender_}, Path=Value}"/>
-    
+                     Color="{DynamicResource D_FocusBorderColor_}"/>    
     <SolidColorBrush x:Key="S_PrimaryBorderColorBrush_"
-                     Color="{Binding Source={StaticResource S_PrimaryBorderBlender_}, Path=Value}"/>
-
+                     Color="{DynamicResource D_PrimaryBorderColor_}"/>
     <SolidColorBrush x:Key="S_SecondaryBorderColorBrush_"
-                     Color="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
-
+                     Color="{DynamicResource D_SecondaryBorderColor_}"/>
     <SolidColorBrush x:Key="S_DisabledBorderColorBrush_"
-                     Color="{Binding Source={StaticResource S_DisabledBorderBlender_}, Path=Value}"/>
-
+                     Color="{DynamicResource D_DisabledBorderColor_}"/>
     <SolidColorBrush x:Key="S_DisabledBorderColorNoOpacityBrush_"
-                     Color="{Binding Source={StaticResource S_DisabledBorderColorNoOpacityBlender_}, Path=Value}"/>
-
-    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-    <!--HOVER-->
-    
-    <!--Modifiers for the auto computing-->
-    <utils:ColorBlendingModifier x:Key="S_HoverPrimaryBackgroundBlender_"
-                                 Input="{DynamicResource D_DefaultPrimaryColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"/>
-
-    <utils:ColorBlendingModifier x:Key="S_HoverSecondaryBackgroundBlender_"
-                                 Input="{DynamicResource D_DefaultSecondaryColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"/>
-
-    <utils:ColorBlendingModifier x:Key="S_HoverSecondaryBorderBlender_"
-                                 Input="{Binding Source={StaticResource S_SecondaryBorderColorBrush_}, Path=Color}"
-                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"/>
-
-    <utils:ColorBlendingModifier x:Key="S_HoverFieldsBackgroundBlender_"
-                                 Input="{DynamicResource D_DefaultFieldsColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"/>
-
-    <utils:ColorBlendingModifier x:Key="S_HoverScrollButtonBackgroundBlender_"
-                                 Input="{Binding Source={StaticResource S_Step3Blender_}, Path=Value}"
-                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"/>
-
-    <utils:ColorBlendingModifier x:Key="S_HoverScrollThumbBackgroundBlender_"
-                                 Input="{Binding Source={StaticResource S_ScrollThumbBackgroundBrush_}, Path=Value}"
-                                 Modifier="{Binding Source={StaticResource S_Dark3Blender_}, Path=Value}"/>
-
-    <!--Brush from the modifiers (you have to use them instead of modifiers)-->
-    <SolidColorBrush x:Key="S_HoverPrimaryBackgroundColorBrush_"
-                     Color="{Binding Source={StaticResource S_HoverPrimaryBackgroundBlender_}, Path=Value}"/>
-
-    <SolidColorBrush x:Key="S_HoverSecondaryBackgroundColorBrush_"
-                     Color="{Binding Source={StaticResource S_HoverSecondaryBackgroundBlender_}, Path=Value}"/>
-
-    <SolidColorBrush x:Key="S_HoverSecondaryBorderColorBrush_"
-                     Color="{Binding Source={StaticResource S_HoverSecondaryBorderBlender_}, Path=Value}"/>
-
-    <SolidColorBrush x:Key="S_HoverFieldsBackgroundColorBrush_"
-                     Color="{Binding Source={StaticResource S_HoverFieldsBackgroundBlender_ }, Path=Value}"/>
-
-    <SolidColorBrush x:Key="S_HoverScrollButtonBackgroundColorBrush_"
-                     Color="{Binding Source={StaticResource S_HoverScrollButtonBackgroundBlender_}, Path=Value}"/>
-
-    <SolidColorBrush x:Key="S_HoverScrollThumbBackgroundBrush_"
-                     Color="{Binding Source={StaticResource S_HoverScrollThumbBackgroundBlender_}, Path=Value}"/>
-
-    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-    <!--PRESSED-->
-
-    <!--Modifiers for the auto computing-->
-    <utils:ColorBlendingModifier x:Key="S_PressedPrimaryBackgroundBlender_"
-                                 Input="{DynamicResource D_DefaultPrimaryColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
-
-    <utils:ColorBlendingModifier x:Key="S_PressedSecondaryBackgroundBlender_"
-                                 Input="{DynamicResource D_DefaultSecondaryColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
-
-    <utils:ColorBlendingModifier x:Key="S_PressedSecondaryBorderBlender_"
-                                 Input="{Binding Source={StaticResource S_SecondaryBorderColorBrush_}, Path=Color}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
-
-    <utils:ColorBlendingModifier x:Key="S_PressedFieldsBackgroundBlender_"
-                                 Input="{DynamicResource D_DefaultFieldsColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
-
-    <utils:ColorBlendingModifier x:Key="S_PressedScrollButtonBackgroundBlender_"
-                                 Input="{Binding Source={StaticResource S_Step3Blender_}, Path=Value}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
-
-    <utils:ColorBlendingModifier x:Key="S_PressedScrollThumbBackgroundBlender_"
-                                 Input="{Binding Source={StaticResource S_ScrollThumbBackgroundBrush_}, Path=Color}"
-                                 Modifier="{Binding Source={StaticResource S_Dark5Blender_}, Path=Value}"/>
-
-    <!--Brush from the modifiers (you have to use them instead of modifiers)-->
-    <SolidColorBrush x:Key="S_PressedPrimaryBackgroundColorBrush_"
-                     Color="{Binding Source={StaticResource S_PressedPrimaryBackgroundBlender_}, Path=Value}"/>
-
-    <SolidColorBrush x:Key="S_PressedSecondaryBackgroundColorBrush_"
-                     Color="{Binding Source={StaticResource S_PressedSecondaryBackgroundBlender_}, Path=Value}"/>
-
-    <SolidColorBrush x:Key="S_PressedSecondaryBorderColorBrush_"
-                     Color="{Binding Source={StaticResource S_PressedSecondaryBorderBlender_}, Path=Value}"/>
-
-    <SolidColorBrush x:Key="S_PressedFieldsBackgroundColorBrush_"
-                     Color="{Binding Source={StaticResource S_PressedFieldsBackgroundBlender_}, Path=Value}"/>
-
-    <SolidColorBrush x:Key="S_PressedScrollButtonBackgroundColorBrush_"
-                     Color="{Binding Source={StaticResource S_PressedScrollButtonBackgroundBlender_}, Path=Value}"/>
-
-    <SolidColorBrush x:Key="S_PressedScrollThumbBackgroundBrush_"
-                     Color="{Binding Source={StaticResource S_PressedScrollThumbBackgroundBlender_}, Path=Value}"/>
+                     Color="{DynamicResource D_DisabledBorderNoOpacityColor_}"/>
 
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--FONT COLORS-->
 
-    <!--Modifiers for the auto computing-->
-    <utils:ColorBlendingModifier x:Key="S_CommonFontBlender_"
-                                 Input="{DynamicResource D_DefaultSecondaryFontColor_}"
-                                 Modifier="{Binding Source={StaticResource S_Light3Blender_}, Path=Value}"/>
-
+    <!--COMPUTED: D_DefaultSecondaryFontColor_ + D_Light3Color_-->
+    <Color x:Key="D_CommonFontColor_">#FF383838</Color>
+    
     <!--Brush from the modifiers (you have to use them instead of modifiers)-->
     <SolidColorBrush x:Key="S_CommonFontColorBrush_"
-                     Color="{Binding Source={StaticResource S_CommonFontBlender_}, Path=Value}"/>
+                     Color="{DynamicResource D_CommonFontColor_}"/>
 
 </ResourceDictionary>

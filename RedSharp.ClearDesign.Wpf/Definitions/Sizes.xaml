@@ -30,148 +30,53 @@
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--COMPUTED SIZES-->
 
-    <!--Modifiers for the auto computing-->
-    <utils:FocusOutstandingModifier x:Key="S_OutstandingFocus_" 
-                                    Input="{DynamicResource D_DefaultFocus_}"
-                                    Modifier="{DynamicResource D_DefaultBorder_}"/>
-
-    <utils:ToggleHeightModifier x:Key="S_RoundToggleHeight_"
-                                Input="{DynamicResource D_DefaultToggleHeight_}"
-                                Modifier="{DynamicResource D_DefaultBorder_}"/>
-
-    <utils:SwitchWidthModifier x:Key="S_SwitchToggleWidth_"
-                               Input="{DynamicResource D_DefaultToggleHeight_}"/>
     
-    <!--Cached bindings to the modifiers (see {utils:BindingResource ...})-->
-    <Binding x:Key="B_OutstandingFocus_"
-             Source="{StaticResource S_OutstandingFocus_}"
-             Path="Value"/>
+    <!--COMPUTED: D_DefaultBorder_ - D_DefaultFocus_-->
+    <system:Double x:Key="D_OutstandingFocus_">-2</system:Double>
+    <!--COMPUTED: D_DefaultToggleHeight_ + 2 * D_DefaultBorder_-->
+    <system:Double x:Key="D_RoundToggleHeight_">16</system:Double>
+    <!--COMPUTED: D_DefaultToggleHeight_ * 2-->
+    <system:Double x:Key="D_SwitchToggleWidth_">28</system:Double>
 
-    <Binding x:Key="B_RoundToggleHeight_"
-             Source="{StaticResource S_RoundToggleHeight_}"
-             Path="Value"/>
-
-    <Binding x:Key="B_SwitchToggleWidth_"
-             Source="{StaticResource S_SwitchToggleWidth_}"
-             Path="Value"/>
-    
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--MARGINS-->
 
-    <!--Modifiers for the auto computing-->
-    <utils:MultiplierThicknessModifier x:Key="S_DefaultMarginThicknessFull_"
-                                       Modifier="{DynamicResource D_DefaultMargin_}"
-                                       Input="1"/>
-
-    <utils:MultiplierThicknessModifier x:Key="S_DefaultMarginThicknessLeftRight_"
-                                       Modifier="{DynamicResource D_DefaultMargin_}"
-                                       Input="1,0"/>
-
-    <utils:MultiplierThicknessModifier x:Key="S_DefaultMarginThicknessTopBottom_"
-                                       Modifier="{DynamicResource D_DefaultMargin_}"
-                                       Input="0,1"/>
-
-    <utils:MultiplierThicknessModifier x:Key="S_DefaultMarginThicknessRight_"
-                                       Modifier="{DynamicResource D_DefaultMargin_}"
-                                       Input="0,0,1,0"/>
-
-    <utils:MultiplierThicknessModifier x:Key="S_OutstandingFocusThicknessFull_"
-                                       Modifier="{utils:BindingResource B_OutstandingFocus_}"
-                                       Input="1"/>
-
-    <!--Cached bindings to the modifiers (see {utils:BindingResource ...})-->
-    <Binding x:Key="B_DefaultMarginThicknessFull_"
-             Source="{StaticResource S_DefaultMarginThicknessFull_}"
-             Path="Value"/>
-
-    <Binding x:Key="B_DefaultMarginThicknessLeftRight_"
-             Source="{StaticResource S_DefaultMarginThicknessLeftRight_}"
-             Path="Value"/>
-
-    <Binding x:Key="B_DefaultMarginThicknessTopBottom_"
-             Source="{StaticResource S_DefaultMarginThicknessTopBottom_}"
-             Path="Value"/>
-
-    <Binding x:Key="B_DefaultMarginThicknessRight_"
-             Source="{StaticResource S_DefaultMarginThicknessRight_}"
-             Path="Value"/>
-
-    <Binding x:Key="B_OutstandingFocusThicknessFull_"
-             Source="{StaticResource S_OutstandingFocusThicknessFull_}"
-             Path="Value"/>
+    
+    <!--COMPUTED: Thickness(1) * D_DefaultMargin_-->
+    <Thickness x:Key="D_DefaultMarginThicknessFull_">5</Thickness>
+    <!--COMPUTED: Thickness(1,0) * D_DefaultMargin_-->
+    <Thickness x:Key="D_DefaultMarginThicknessLeftRight_">5,0</Thickness>
+    <!--COMPUTED: Thickness(0,1) * D_DefaultMargin_-->
+    <Thickness x:Key="D_DefaultMarginThicknessTopBottom_">0,5</Thickness>
+    <!--COMPUTED: Thickness(0,0,1,0) * D_DefaultMargin_-->
+    <Thickness x:Key="D_DefaultMarginThicknessRight_">0,0,5,0</Thickness>
+    <!--COMPUTED: Thickness(1) * D_OutstandingFocus_-->
+    <Thickness x:Key="D_OutstandingFocusThicknessFull_">-2</Thickness>
 
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--PADDINGS-->
+    
 
-    <!--Modifiers for the auto computing-->
-    <utils:MultiplierThicknessModifier x:Key="S_DefaultPaddingThicknessFull_"
-                                       Modifier="{DynamicResource D_DefaultPadding_}"
-                                       Input="1"/>
-
-    <utils:MultiplierThicknessModifier x:Key="S_DefaultPaddingThicknessLeft_"
-                                       Modifier="{DynamicResource D_DefaultPadding_}"
-                                       Input="1,0,0,0"/>
-
-    <utils:MultiplierThicknessModifier x:Key="S_DefaultPaddingThicknessLeftRight_"
-                                       Modifier="{DynamicResource D_DefaultPadding_}"
-                                       Input="1,0"/>
-
-    <!--Cached bindings to the modifiers (see {utils:BindingResource ...})-->
-    <Binding x:Key="B_DefaultPaddingThicknessFull_"
-             Source="{StaticResource S_DefaultPaddingThicknessFull_}"
-             Path="Value"/>
-
-    <Binding x:Key="B_DefaultPaddingThicknessLeft_"
-             Source="{StaticResource S_DefaultPaddingThicknessLeft_}"
-             Path="Value"/>
-
-    <Binding x:Key="B_DefaultPaddingThicknessLeftRight_"
-             Source="{StaticResource S_DefaultPaddingThicknessLeftRight_}"
-             Path="Value"/>
+    <!--COMPUTED: Thickness(1) * D_DefaultPadding_-->
+    <Thickness x:Key="D_DefaultPaddingThicknessFull_">8</Thickness>
+    <!--COMPUTED: Thickness(1,0,0,0) * D_DefaultPadding_-->
+    <Thickness x:Key="D_DefaultPaddingThicknessLeft_">8,0,0,0</Thickness>
+    <!--COMPUTED: Thickness(1,0) * D_DefaultPadding_-->
+    <Thickness x:Key="D_DefaultPaddingThicknessLeftRight_">8,0</Thickness>
 
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--BORDERS-->
 
-    <!--Modifiers for the auto computing-->
-    <utils:MultiplierThicknessModifier x:Key="S_DefaultBorderThicknessFull_"
-                                       Modifier="{DynamicResource D_DefaultBorder_}"
-                                       Input="1"/>
-
-    <utils:MultiplierThicknessModifier x:Key="S_DefaultBorderThicknessTop_"
-                                       Modifier="{DynamicResource D_DefaultBorder_}"
-                                       Input="0,1,0,0"/>
-
-    <utils:MultiplierThicknessModifier x:Key="S_DefaultBorderThicknessLeftRight_"
-                                       Modifier="{DynamicResource D_DefaultBorder_}"
-                                       Input="1,0"/>
-
-    <utils:MultiplierThicknessModifier x:Key="S_DefaultBorderThicknessLeftTopRight_"
-                                       Modifier="{DynamicResource D_DefaultBorder_}"
-                                       Input="1,1,1,0"/>
-
-    <utils:MultiplierThicknessModifier x:Key="S_DefaultFocusThicknessFull_"
-                                       Modifier="{DynamicResource D_DefaultFocus_}"
-                                       Input="1"/>
-
-    <!--Cached bindings to the modifiers (see {utils:BindingResource ...})-->
-    <Binding x:Key="B_DefaultBorderThicknessFull_"
-             Source="{StaticResource S_DefaultBorderThicknessFull_}"
-             Path="Value"/>
-
-    <Binding x:Key="B_DefaultBorderThicknessTop_"
-             Source="{StaticResource S_DefaultBorderThicknessTop_}"
-             Path="Value"/>
-
-    <Binding x:Key="B_DefaultBorderThicknessLeftRight_"
-             Source="{StaticResource S_DefaultBorderThicknessLeftRight_}"
-             Path="Value"/>
-
-    <Binding x:Key="B_DefaultBorderThicknessLeftTopRight_"
-             Source="{StaticResource S_DefaultBorderThicknessLeftTopRight_}"
-             Path="Value"/>
-
-    <Binding x:Key="B_DefaultFocusThicknessFull_"
-             Source="{StaticResource S_DefaultFocusThicknessFull_}"
-             Path="Value"/>
     
+    <!--COMPUTED: Thickness(1) * D_DefaultBorder_-->
+    <Thickness x:Key="D_DefaultBorderThicknessFull_">1</Thickness>
+    <!--COMPUTED: Thickness(0,1,0,0) * D_DefaultBorder_-->
+    <Thickness x:Key="D_DefaultBorderThicknessTop_">0,1,0,0</Thickness>
+    <!--COMPUTED: Thickness(1,0) * D_DefaultBorder_-->
+    <Thickness x:Key="D_DefaultBorderThicknessLeftRight_">1,0</Thickness>
+    <!--COMPUTED: Thickness(1,1,1,0) * D_DefaultBorder_-->
+    <Thickness x:Key="D_DefaultBorderThicknessLeftTopRight_">1,1,1,0</Thickness>
+    <!--COMPUTED: Thickness(1) * D_DefaultFocus_-->
+    <Thickness x:Key="D_DefaultFocusThicknessFull_">3</Thickness>
+
 </ResourceDictionary>

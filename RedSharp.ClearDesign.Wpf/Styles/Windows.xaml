@@ -25,7 +25,7 @@
                     Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
 
             <Setter Property="BorderThickness" 
-                    Value="{utils:BindingResource B_DefaultBorderThicknessFull_}"/>
+                    Value="{DynamicResource D_DefaultBorderThicknessFull_}"/>
 
             <Setter Property="WindowStyle"
                     Value="SingleBorderWindow"/>

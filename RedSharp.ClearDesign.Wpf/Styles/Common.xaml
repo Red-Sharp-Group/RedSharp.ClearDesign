@@ -59,7 +59,7 @@
             <Setter Property="BorderBrush"
                     Value="{StaticResource S_FocusBorderColorBrush_}"/>
             <Setter Property="BorderThickness"
-                    Value="{utils:BindingResource B_DefaultFocusThicknessFull_}"/>
+                    Value="{DynamicResource D_DefaultFocusThicknessFull_}"/>
 
             <Setter Property="SnapsToDevicePixels" 
                     Value="False"/>
@@ -82,7 +82,7 @@
            BasedOn="{StaticResource focus-default}">
         <Style.Setters>
             <Setter Property="Margin"
-                    Value="{utils:BindingResource B_OutstandingFocus_}"/>
+                    Value="{DynamicResource D_OutstandingFocusThicknessFull_}"/>
         </Style.Setters>
     </Style>
 
@@ -99,7 +99,7 @@
                                 Height="{DynamicResource D_DefaultToggleHeight_}">
                             <Border BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
-                                    Margin="{utils:BindingResource B_OutstandingFocus_}"/>
+                                    Margin="{DynamicResource D_OutstandingFocusThicknessFull_}"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -116,12 +116,12 @@
                     <ControlTemplate TargetType="{x:Type Control}">
                         <Border HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
-                                Width="{utils:BindingResource B_SwitchToggleWidth_}"
-                                Height="{utils:BindingResource B_RoundToggleHeight_}">
+                                Width="{DynamicResource D_SwitchToggleWidth_}"
+                                Height="{DynamicResource D_RoundToggleHeight_}">
                             <Border SizeChanged="OnBorderSizeChanged"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
-                                    Margin="{utils:BindingResource B_OutstandingFocus_}"/>
+                                    Margin="{DynamicResource D_OutstandingFocusThicknessFull_}"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -138,12 +138,12 @@
                     <ControlTemplate TargetType="{x:Type Control}">
                         <Border HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
-                                Width="{utils:BindingResource B_RoundToggleHeight_}"
-                                Height="{utils:BindingResource B_RoundToggleHeight_}">
+                                Width="{DynamicResource D_RoundToggleHeight_}"
+                                Height="{DynamicResource D_RoundToggleHeight_}">
                             <Border SizeChanged="OnBorderSizeChanged"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
-                                    Margin="{utils:BindingResource B_OutstandingFocus_}"/>
+                                    Margin="{DynamicResource D_OutstandingFocusThicknessFull_}"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -161,7 +161,7 @@
                     Value="{StaticResource S_Dark5ColorBrush_}"/>
 
             <Setter Property="Margin"
-                    Value="{utils:BindingResource B_DefaultMarginThicknessTopBottom_}"/>
+                    Value="{DynamicResource D_DefaultMarginThicknessTopBottom_}"/>
         </Style.Setters>
     </Style>
 
@@ -175,7 +175,7 @@
                     Value="{StaticResource S_Dark5ColorBrush_}"/>
 
             <Setter Property="Margin"
-                    Value="{utils:BindingResource B_DefaultMarginThicknessLeftRight_}"/>
+                    Value="{DynamicResource D_DefaultMarginThicknessLeftRight_}"/>
         </Style.Setters>
     </Style>
 </ResourceDictionary>

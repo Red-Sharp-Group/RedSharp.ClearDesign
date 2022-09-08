@@ -24,7 +24,7 @@
             <Setter Property="MinHeight"
                     Value="{DynamicResource D_DefaultHeight_}"/>
             <Setter Property="Padding"
-                    Value="{utils:BindingResource B_DefaultPaddingThicknessLeftRight_}"/>
+                    Value="{DynamicResource D_DefaultPaddingThicknessLeftRight_}"/>
         </Style.Setters>
         <Style.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(ItemsControl.AlternationIndex)}"

@@ -20,7 +20,7 @@
             <Setter Property="BorderBrush" 
                     Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
             <Setter Property="BorderThickness"
-                    Value="{utils:BindingResource B_DefaultBorderThicknessFull_}"/>
+                    Value="{DynamicResource D_DefaultBorderThicknessFull_}"/>
 
             <Setter Property="Background"
                     Value="{StaticResource S_FieldsColorBrush_}"/>
@@ -35,7 +35,7 @@
                     Value="{DynamicResource D_DefaultCommonFontWeight_}"/>
 
             <Setter Property="Padding"
-                    Value="{utils:BindingResource B_DefaultPaddingThicknessLeft_}"/>
+                    Value="{DynamicResource D_DefaultPaddingThicknessLeft_}"/>
 
             <Setter Property="HorizontalAlignment" 
                     Value="Left"/>
@@ -212,8 +212,8 @@
                             </Grid.ColumnDefinitions>
 
                             <Grid Grid.Column="0"
-                                  Width="{utils:BindingResource B_SwitchToggleWidth_}"
-                                  Height="{utils:BindingResource B_RoundToggleHeight_}">
+                                  Width="{DynamicResource D_SwitchToggleWidth_}"
+                                  Height="{DynamicResource D_RoundToggleHeight_}">
                                 
                                 <!--BACKGROUND-->
                                 <Border UseLayoutRounding="True"
@@ -290,8 +290,8 @@
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <Grid Width="{utils:BindingResource B_RoundToggleHeight_}"
-                                  Height="{utils:BindingResource B_RoundToggleHeight_}">
+                            <Grid Width="{DynamicResource D_RoundToggleHeight_}"
+                                  Height="{DynamicResource D_RoundToggleHeight_}">
                                 
                                 <!--BACKGROUND-->
                                 <Border UseLayoutRounding="True"
@@ -329,7 +329,7 @@
                             <ContentControl UseLayoutRounding="False" 
                                             Focusable="False"
                                             Grid.Column="1"
-                                            Margin="{utils:BindingResource B_DefaultPaddingThicknessLeft_}"
+                                            Margin="{DynamicResource D_DefaultPaddingThicknessLeft_}"
                                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                             FontFamily="{TemplateBinding FontFamily}"
@@ -351,7 +351,7 @@
             <Setter Property="BorderBrush" 
                     Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
             <Setter Property="BorderThickness"
-                    Value="{utils:BindingResource B_DefaultBorderThicknessFull_}"/>
+                    Value="{DynamicResource D_DefaultBorderThicknessFull_}"/>
 
             <Setter Property="Background"
                     Value="{StaticResource S_FieldsColorBrush_}"/>
@@ -414,8 +414,8 @@
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <Grid Width="{utils:BindingResource B_RoundToggleHeight_}"
-                                  Height="{utils:BindingResource B_RoundToggleHeight_}">
+                            <Grid Width="{DynamicResource D_RoundToggleHeight_}"
+                                  Height="{DynamicResource D_RoundToggleHeight_}">
 
                                 <!--BACKGROUND-->
                                 <Border UseLayoutRounding="True"
@@ -453,7 +453,7 @@
                             <ContentControl UseLayoutRounding="False" 
                                             Focusable="False"
                                             Grid.Column="1"
-                                            Margin="{utils:BindingResource B_DefaultPaddingThicknessLeft_}"
+                                            Margin="{DynamicResource D_DefaultPaddingThicknessLeft_}"
                                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                             FontFamily="{TemplateBinding FontFamily}"

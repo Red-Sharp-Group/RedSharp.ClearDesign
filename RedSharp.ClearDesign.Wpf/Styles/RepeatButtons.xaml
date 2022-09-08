@@ -20,7 +20,7 @@
             <Setter Property="Height"
                     Value="{DynamicResource D_DefaultHeight_}"/>
             <Setter Property="Padding"
-                    Value="{utils:BindingResource B_DefaultPaddingThicknessLeftRight_}"/>
+                    Value="{DynamicResource D_DefaultPaddingThicknessLeftRight_}"/>
 
             <Setter Property="HorizontalAlignment"
                     Value="Center"/>
@@ -40,7 +40,7 @@
             <Setter Property="BorderBrush"
                     Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
             <Setter Property="BorderThickness"
-                    Value="{utils:BindingResource B_DefaultBorderThicknessFull_}"/>
+                    Value="{DynamicResource D_DefaultBorderThicknessFull_}"/>
 
             <Setter Property="FontFamily"
                     Value="{DynamicResource D_DefaultCommonFontFamily_}"/>

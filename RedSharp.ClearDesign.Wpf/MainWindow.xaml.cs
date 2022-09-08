@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
+using RedSharp.ClearDesign.Helpers;
 using RedSharp.ClearDesign.Utils;
 
 namespace RedSharp.ClearDesign.Wpf
@@ -29,8 +30,11 @@ namespace RedSharp.ClearDesign.Wpf
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Resources["D_DefaultPrimaryColor_"] = Color.FromRgb(218, 36, 123);
-            ((ColorBlendingModifier)Application.Current.Resources["S_PrimaryBorderBlender_"]).Recalculate();
+            var color = Color.FromRgb(218, 36, 123);
+
+            Application.Current.Resources["D_DefaultPrimaryColor_"] = color;
+            Application.Current.Resources["D_PrimaryBorderColor_"] = ColorHelper.AlphaBlending(color, (Color)Application.Current.Resources["D_Dark5Color_"]);
+            Application.Current.Resources["D_FocusBorderColor_"] = ColorHelper.AlphaBlending(color, (Color)Application.Current.Resources["D_Light5Color_"]);
         }
     }
 }

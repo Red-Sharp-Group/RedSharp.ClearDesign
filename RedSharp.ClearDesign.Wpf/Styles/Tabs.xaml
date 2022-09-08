@@ -24,7 +24,7 @@
             <Setter Property="BorderBrush"
                     Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
             <Setter Property="BorderThickness"
-                    Value="{utils:BindingResource B_DefaultBorderThicknessTop_}"/>
+                    Value="{DynamicResource D_DefaultBorderThicknessTop_}"/>
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -82,7 +82,7 @@
             <Setter Property="Height"
                     Value="{DynamicResource D_DefaultHeight_}"/>            
             <Setter Property="Padding"
-                    Value="{utils:BindingResource B_DefaultPaddingThicknessLeftRight_}"/>
+                    Value="{DynamicResource D_DefaultPaddingThicknessLeftRight_}"/>
 
             <Setter Property="HorizontalAlignment"
                     Value="Center"/>
@@ -102,7 +102,7 @@
             <Setter Property="BorderBrush"
                     Value="Transparent"/>
             <Setter Property="BorderThickness"
-                    Value="{utils:BindingResource B_DefaultBorderThicknessLeftRight_}"/>
+                    Value="{DynamicResource D_DefaultBorderThicknessLeftRight_}"/>
 
             <Setter Property="FontFamily"
                     Value="{DynamicResource D_DefaultCommonFontFamily_}"/>
