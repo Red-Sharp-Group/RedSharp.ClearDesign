@@ -98,18 +98,25 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type RepeatButton}">
-                        <Grid SnapsToDevicePixels="True"
-                              UseLayoutRounding="True">
-                            <Border SizeChanged="OnBorderSizeChanged"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"/>
+                        <Grid>
+                            <!--BACKGROUND-->
+                            <Border UseLayoutRounding="True" 
+                                    SizeChanged="OnBorderSizeChanged"
+                                    Background="{TemplateBinding BorderBrush}">
+                                <Border UseLayoutRounding="False" 
+                                        SizeChanged="OnBorderSizeChanged"
+                                        Background="{TemplateBinding Background}"
+                                        Margin="{TemplateBinding BorderThickness}"/>
+                            </Border>
 
-                            <Border SizeChanged="OnBorderSizeChanged"
+                            <!--ACCENT-->
+                            <Border UseLayoutRounding="True"
+                                    SizeChanged="OnBorderSizeChanged"
                                     Background="{TemplateBinding extra:AccentsExtra.Color}"
                                     Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
 
-                            <ContentControl Focusable="False"
+                            <ContentControl UseLayoutRounding="False"
+                                            Focusable="False"
                                             Margin="{TemplateBinding Padding}"
                                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -162,14 +169,16 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Thumb}">
-                        <Grid SnapsToDevicePixels="True"
-                              UseLayoutRounding="True">
-
+                        <Grid>
                             <!--BACKGROUND-->
-                            <Border SizeChanged="OnBorderSizeChanged"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"/>
+                            <Border UseLayoutRounding="True" 
+                                    SizeChanged="OnBorderSizeChanged"
+                                    Background="{TemplateBinding BorderBrush}">
+                                <Border UseLayoutRounding="False" 
+                                        SizeChanged="OnBorderSizeChanged"
+                                        Background="{TemplateBinding Background}"
+                                        Margin="{TemplateBinding BorderThickness}"/>
+                            </Border>
 
                             <!--ACCENT-->
                             <Border UseLayoutRounding="True"

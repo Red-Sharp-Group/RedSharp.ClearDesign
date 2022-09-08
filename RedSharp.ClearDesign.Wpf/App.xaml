@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Styles/Windows.xaml"/>
                 <ResourceDictionary Source="Styles/Buttons.xaml"/>
                 <ResourceDictionary Source="Styles/ItemsControls.xaml"/>
+                <ResourceDictionary Source="Styles/GroupBoxes.xaml"/>
                 <ResourceDictionary Source="Styles/RepeatButtons.xaml"/>
                 <ResourceDictionary Source="Styles/ScrollBars.xaml"/>
                 <ResourceDictionary Source="Styles/ScrollViewers.xaml"/>

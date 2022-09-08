@@ -28,8 +28,10 @@
                             <AdornerDecorator Grid.Column="0"
                                               Grid.Row="0"
                                               Grid.ColumnSpan="3"
-                                              Grid.RowSpan="3">
+                                              Grid.RowSpan="3"
+                                              Focusable="False">
                                 <ScrollContentPresenter Name="PART_ScrollContentPresenter" 
+                                                        Focusable="False"
                                                         KeyboardNavigation.DirectionalNavigation="Local"
                                                         Content="{TemplateBinding ContentControl.Content}"
                                                         ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"

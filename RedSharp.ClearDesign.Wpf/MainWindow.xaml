@@ -16,13 +16,17 @@
         Background="{StaticResource S_WindowBackgroundColorBrush_}">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="79*"/>
+            <ColumnDefinition Width="721*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0"
-              Height="30">
+              Height="30" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30"/>
                 <ColumnDefinition Width="auto"/>
@@ -65,17 +69,17 @@
                       Fill="#656565"/>
             </Button>
         </Grid>
-        
+
         <TabControl Grid.Row="0"
                     Grid.RowSpan="2"
                     Style="{StaticResource tabcontrol-title}"
-                    extra:TabPanelsExtra.Margin="197,0,0,0">
+                    extra:TabPanelsExtra.Margin="197,0,0,0" Grid.ColumnSpan="2">
             <TabItem Style="{StaticResource tabitem-title}"
                      Header="Jobs">
-                <StackPanel VerticalAlignment="Center">
-                    <Button Style="{StaticResource button-secondary}"
+                <StackPanel VerticalAlignment="Center" Name="Panel">
+                    <Button Style="{StaticResource button-primary}"
                             Margin="5"
-                            >AWERSOME</Button>
+                            Click="Button_Click">AWERSOME</Button>
                     <Button Style="{StaticResource button-menu}"
                             Margin="5">AWERSOME</Button>
 
@@ -130,7 +134,7 @@
                                      Content="Third awersome option"
                                      HorizontalAlignment="Left"/>
                     </StackPanel>
-                    
+
                 </StackPanel>
             </TabItem>
             <TabItem Style="{StaticResource tabitem-title}"
@@ -145,7 +149,7 @@
                                    Width="120"
                                    Height="1920"/>
                     </Grid>
-                </ScrollViewer>                
+                </ScrollViewer>
             </TabItem>
             <TabItem Style="{StaticResource tabitem-title}"
                      Header="Settings">

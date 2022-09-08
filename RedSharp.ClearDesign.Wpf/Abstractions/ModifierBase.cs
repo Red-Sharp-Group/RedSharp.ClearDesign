@@ -8,8 +8,6 @@ using System.Windows;
 
 namespace RedSharp.ClearDesign.Abstractions
 {
-    public delegate TValue Coerce<TValue, TModifier>(TValue value, TModifier modifier);
-
     public abstract class ModifierBase<TValue, TModifier> : DependencyObject
     {
         public static readonly DependencyProperty ModifierProperty;
@@ -49,7 +47,7 @@ namespace RedSharp.ClearDesign.Abstractions
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private void Recalculate()
+        public void Recalculate()
         {
             Value = Process(Input, Modifier);
         }

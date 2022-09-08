@@ -118,7 +118,7 @@
                                 VerticalAlignment="Top"
                                 Width="{utils:BindingResource B_SwitchToggleWidth_}"
                                 Height="{utils:BindingResource B_RoundToggleHeight_}">
-                            <Border CornerRadius="8"
+                            <Border SizeChanged="OnBorderSizeChanged"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     Margin="{utils:BindingResource B_OutstandingFocus_}"/>
@@ -140,7 +140,7 @@
                                 VerticalAlignment="Top"
                                 Width="{utils:BindingResource B_RoundToggleHeight_}"
                                 Height="{utils:BindingResource B_RoundToggleHeight_}">
-                            <Border CornerRadius="8"
+                            <Border SizeChanged="OnBorderSizeChanged"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     Margin="{utils:BindingResource B_OutstandingFocus_}"/>

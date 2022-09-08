@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using RedSharp.ClearDesign.Helpers;
 
 namespace RedSharp.ClearDesign.Styles
 {
@@ -12,17 +13,7 @@ namespace RedSharp.ClearDesign.Styles
     {
         private void OnBorderSizeChanged(Object sender, SizeChangedEventArgs arguments)
         {
-            var border = (Border)sender;
-
-            var newDiameter = Math.Min(arguments.NewSize.Width, arguments.NewSize.Height);
-            var previousDiameter = Math.Min(arguments.PreviousSize.Width, arguments.PreviousSize.Height);
-
-            if (Math.Abs(newDiameter - previousDiameter) < 0.01)
-                return;
-
-            var radius = Math.Floor(newDiameter / 2);
-
-            border.CornerRadius = new CornerRadius(radius);
+            ControlsHelper.SetCornerRadiusForBorder((Border)sender, arguments.NewSize, arguments.PreviousSize);
         }
     }
 }
