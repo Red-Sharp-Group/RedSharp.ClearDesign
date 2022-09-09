@@ -11,6 +11,14 @@ namespace RedSharp.ClearDesign.Helpers
     public static class ColorHelper
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Color ChangeOpacity(Color input, double opacity)
+        {
+            var alpha = (byte)Math.Round(byte.MaxValue * opacity);
+
+            return Color.FromArgb(alpha, input.R, input.G, input.B);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Color AlphaBlending(Color background, Color foreground)
         {
             var alphaF = (float)foreground.A / byte.MaxValue;

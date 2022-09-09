@@ -233,7 +233,7 @@
 
                                 <!--ICONS-->
                                 <Grid UseLayoutRounding="False" 
-                                      Margin="3">
+                                      Margin="{TemplateBinding BorderThickness}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
                                         <ColumnDefinition Width="2"/>
@@ -243,12 +243,14 @@
                                     <Ellipse Grid.Column="0"
                                              VerticalAlignment="Stretch"
                                              HorizontalAlignment="Stretch"
+                                             Margin="2,2,0,2"
                                              Fill="{TemplateBinding extra:TogglesExtra.FalseIconColor}"
                                              Visibility="{TemplateBinding extra:TogglesExtra.FalseIconVisibility}"/>
 
                                     <Ellipse Grid.Column="2"
                                              VerticalAlignment="Stretch"
                                              HorizontalAlignment="Stretch"
+                                             Margin="0,2,2,2"
                                              Fill="{TemplateBinding extra:TogglesExtra.TrueIconColor}"
                                              Visibility="{TemplateBinding extra:TogglesExtra.TrueIconVisibility}"/>
                                 </Grid>

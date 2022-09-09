@@ -34,8 +34,8 @@ namespace RedSharp.ClearDesign.Helpers
         {
             return new Size()
             {
-                Width = Math.Max(size.Width + margin.Left + margin.Right, 0),
-                Height = Math.Max(size.Height + margin.Top + margin.Bottom, 0)
+                Width = Math.Max(size.Width + Math.Min(0, margin.Left) + Math.Min(0, margin.Right), 0),
+                Height = Math.Max(size.Height + Math.Min(0, margin.Top) + Math.Min(0, margin.Bottom), 0)
             };
         }
     }
