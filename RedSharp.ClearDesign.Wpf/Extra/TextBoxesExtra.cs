@@ -9,6 +9,8 @@ namespace RedSharp.ClearDesign.Extra
         public static DependencyProperty PlaceholderVisibilityProperty;
         public static DependencyProperty PresenterVisibilityProperty;
         public static DependencyProperty WrapperVisibilityProperty;
+        public static DependencyProperty PseudoAccentVisibilityProperty;
+        public static DependencyProperty FieldVisibilityProperty;
 
         static TextBoxesExtra()
         {
@@ -16,6 +18,8 @@ namespace RedSharp.ClearDesign.Extra
             PlaceholderVisibilityProperty = DependencyProperty.RegisterAttached("PlaceholderVisibility", typeof(Visibility), typeof(TextBoxesExtra));
             PresenterVisibilityProperty = DependencyProperty.RegisterAttached("PresenterVisibility", typeof(Visibility), typeof(TextBoxesExtra));
             WrapperVisibilityProperty = DependencyProperty.RegisterAttached("WrapperVisibility", typeof(Visibility), typeof(TextBoxesExtra));
+            PseudoAccentVisibilityProperty = DependencyProperty.RegisterAttached("PseudoAccentVisibility", typeof(Visibility), typeof(TextBoxesExtra));
+            FieldVisibilityProperty = DependencyProperty.RegisterAttached("FieldVisibility", typeof(Visibility), typeof(TextBoxesExtra));
         }
 
         public static void SetPlaceholder(DependencyObject element, String value)
@@ -56,6 +60,26 @@ namespace RedSharp.ClearDesign.Extra
         public static Visibility GetWrapperVisibility(DependencyObject element)
         {
             return (Visibility)element.GetValue(WrapperVisibilityProperty);
+        }
+
+        public static void SetPseudoAccentVisibility(DependencyObject element, Visibility value)
+        {
+            element.SetValue(PseudoAccentVisibilityProperty, value);
+        }
+
+        public static Visibility GetPseudoAccentVisibility(DependencyObject element)
+        {
+            return (Visibility)element.GetValue(PseudoAccentVisibilityProperty);
+        }
+
+        public static void SetFieldVisibility(DependencyObject element, Visibility value)
+        {
+            element.SetValue(FieldVisibilityProperty, value);
+        }
+
+        public static Visibility GetFieldVisibility(DependencyObject element)
+        {
+            return (Visibility)element.GetValue(FieldVisibilityProperty);
         }
     }
 }

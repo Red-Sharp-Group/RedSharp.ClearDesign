@@ -77,11 +77,12 @@
             <TabItem Style="{StaticResource tabitem-title}"
                      Header="Jobs">
                 <StackPanel VerticalAlignment="Center" Name="Panel">
-                    <TextBox Style="{StaticResource textbox-default}" 
+                    <TextBox Style="{StaticResource textbox-default}"
                              Width="{x:Static system:Double.NaN}"
                              HorizontalAlignment="Center"
                              Margin="200,5"
-                             extra:TextBoxesExtra.Placeholder="Awersome placeholder..."/>
+                             extra:TextBoxesExtra.Placeholder="Awersome placeholder..."
+                             Text="{Binding Source={x:Static helpers:TestVM.Instance}, Path=Text, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <Button Style="{StaticResource button-primary}"
                             Margin="5"

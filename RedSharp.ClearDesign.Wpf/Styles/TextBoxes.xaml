@@ -10,6 +10,7 @@
         <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
         <ResourceDictionary Source="../Definitions/Fonts.xaml"/>
         <ResourceDictionary Source="../Styles/ScrollViewers.xaml"/>
+        <ResourceDictionary Source="../Styles/Common.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="textbox-default"
@@ -80,6 +81,9 @@
             <Setter Property="Cursor"
                     Value="IBeam"/>
 
+            <Setter Property="Validation.ErrorTemplate"
+                    Value="{StaticResource error-outstanding}"/>
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
@@ -87,7 +91,6 @@
                             <!--BORDER-->
                             <Border UseLayoutRounding="True" 
                                     Background="{TemplateBinding BorderBrush}"/>
-
 
                             <!--ACCENT-->
                             <Border UseLayoutRounding="True" 
@@ -196,5 +199,124 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="textbox-readonly"
+           TargetType="{x:Type TextBox}"
+           BasedOn="{StaticResource textbox-default}">
+        <Style.Setters>
+            <Setter Property="extra:TextBoxesExtra.PseudoAccentVisibility"
+                    Value="Visible"/>
+            <Setter Property="extra:TextBoxesExtra.FieldVisibility"
+                    Value="Hidden"/>
+
+            <Setter Property="IsReadOnly"
+                    Value="True"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid Background="Transparent">
+                            <!--BORDER-->
+                            <Border UseLayoutRounding="True"                                     
+                                    Visibility="{TemplateBinding extra:TextBoxesExtra.FieldVisibility}"
+                                    Background="{TemplateBinding BorderBrush}"/>
+
+                            <!--PSEUDO ACCENT-->
+                            <Border UseLayoutRounding="True" 
+                                    Visibility="{TemplateBinding extra:TextBoxesExtra.PseudoAccentVisibility}"
+                                    BorderBrush="{TemplateBinding extra:AccentsExtra.Color}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
+                            
+                            <!--ACCENT-->
+                            <Border UseLayoutRounding="True" 
+                                    Visibility="{TemplateBinding extra:TextBoxesExtra.FieldVisibility}"
+                                    Background="{TemplateBinding extra:AccentsExtra.Color}"
+                                    Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
+
+                            <!--BACKGROUND-->
+                            <Border UseLayoutRounding="False" 
+                                    Visibility="{TemplateBinding extra:TextBoxesExtra.FieldVisibility}"
+                                    Background="{TemplateBinding Background}"
+                                    Margin="{TemplateBinding BorderThickness}"/>
+
+                            <!--TEXT PRESENTER-->
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Visibility="{TemplateBinding extra:TextBoxesExtra.PresenterVisibility}"
+                                          Style="{StaticResource scrollviewer-min}"
+                                          Padding="{TemplateBinding Padding}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+                            <!--TEXT HOLDER-->
+                            <TextBlock Text="{TemplateBinding Text}"
+                                       Visibility="{TemplateBinding extra:TextBoxesExtra.WrapperVisibility}"
+                                       Padding="{TemplateBinding Padding}"
+                                       Margin="1.5,0"
+                                       Width="{Binding ElementName=PART_ContentHost, Path=ActualWidth}"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontWeight="{TemplateBinding FontWeight}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       TextTrimming="CharacterEllipsis"
+                                       IsHitTestVisible="False"/>
+
+                            <!--PLACE HOLDER-->
+                            <TextBlock Text="{TemplateBinding extra:TextBoxesExtra.Placeholder}"
+                                       Visibility="{TemplateBinding extra:TextBoxesExtra.PlaceholderVisibility}"
+                                       Padding="{TemplateBinding Padding}"
+                                       Margin="1.5,0"
+                                       Width="{Binding ElementName=PART_ContentHost, Path=ActualWidth}"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontWeight="{TemplateBinding FontWeight}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       TextTrimming="CharacterEllipsis"
+                                       IsHitTestVisible="False"
+                                       Opacity="0.5"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Trigger.Setters>
+                    <Setter Property="extra:TextBoxesExtra.PresenterVisibility" 
+                            Value="Visible"/>
+                    <Setter Property="extra:TextBoxesExtra.WrapperVisibility" 
+                            Value="Hidden"/>
+                    <Setter Property="extra:TextBoxesExtra.PlaceholderVisibility" 
+                            Value="Hidden"/>
+                    <Setter Property="extra:TextBoxesExtra.PseudoAccentVisibility" 
+                            Value="Hidden"/>
+                    <Setter Property="extra:TextBoxesExtra.FieldVisibility" 
+                            Value="Visible"/>
+                </Trigger.Setters>
+            </Trigger>
+            
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="OpacityMask"
+                        Value="{StaticResource S_DisabledStateMaskColorBrush_}"/>
+                <Setter Property="Background"
+                        Value="{StaticResource S_DefaultDisabledAccentColorBrush_}"/>
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+                <Setter Property="Foreground"
+                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+                
+                <Setter Property="extra:TextBoxesExtra.PseudoAccentVisibility" 
+                            Value="Hidden"/>
+                <Setter Property="extra:TextBoxesExtra.FieldVisibility" 
+                            Value="Visible"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    
     
 </ResourceDictionary>

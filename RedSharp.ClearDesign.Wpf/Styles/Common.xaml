@@ -86,6 +86,24 @@
         </Style.Setters>
     </Style>
 
+    <!--TODO potentially defective-->
+    <ControlTemplate x:Key="error-default" 
+                     TargetType="{x:Type Control}">
+        <Border BorderBrush="{StaticResource S_ErrorColorBrush_}"
+                BorderThickness="{DynamicResource D_DefaultFocusThicknessFull_}">
+            <AdornedElementPlaceholder />
+        </Border>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="error-outstanding" 
+                     TargetType="{x:Type Control}">
+        <Border BorderBrush="{StaticResource S_ErrorColorBrush_}"
+                BorderThickness="{DynamicResource D_DefaultFocusThicknessFull_}"
+                Margin="{DynamicResource D_OutstandingFocusThicknessFull_}">
+            <AdornedElementPlaceholder Margin="-1"/>
+        </Border>
+    </ControlTemplate>
+
     <Style x:Key="focus-outstanding-checkbox"
            TargetType="{x:Type Control}"
            BasedOn="{StaticResource focus-default}">
