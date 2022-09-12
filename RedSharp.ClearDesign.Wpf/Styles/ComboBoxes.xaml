@@ -13,7 +13,8 @@
         <ResourceDictionary Source="../Styles/Common.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <!--<Style x:Key="combobox-default">
+    <Style x:Key="combobox-default"
+           TargetType="ComboBox">
         <Style.Setters>
             <Setter Property="Width"
                     Value="{DynamicResource D_DefaultWidth_}"/>
@@ -66,21 +67,21 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
                         <Grid>
-                            --><!--BORDER--><!--
+                            <!--BORDER-->
                             <Border UseLayoutRounding="True" 
                                     Background="{TemplateBinding BorderBrush}"/>
 
-                            --><!--ACCENT--><!--
+                            <!--ACCENT-->
                             <Border UseLayoutRounding="True" 
                                     Background="{TemplateBinding extra:AccentsExtra.Color}"
                                     Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
 
-                            --><!--BACKGROUND--><!--
+                            <!--BACKGROUND-->
                             <Border UseLayoutRounding="False" 
                                     Background="{TemplateBinding Background}"
                                     Margin="{TemplateBinding BorderThickness}"/>
 
-                            --><!--TEXT HOLDER--><!--
+                            <!--TEXT HOLDER-->
                             <TextBlock Text="{TemplateBinding Text}"
                                        Visibility="{TemplateBinding extra:TextBoxesExtra.WrapperVisibility}"
                                        Padding="{TemplateBinding Padding}"
@@ -103,6 +104,6 @@
         <Style.Triggers>
             
         </Style.Triggers>
-    </Style>-->
+    </Style>
     
 </ResourceDictionary>
