@@ -76,11 +76,12 @@
                                         <Rectangle Grid.Row="0"
                                                    Grid.Column="0"
                                                    Fill="Transparent"
-                                                   Height="{DynamicResource D_DefaultHeight_}"
+                                                   VerticalAlignment="Stretch"
                                                    WindowChrome.IsHitTestVisibleInChrome="True"
                                                    MouseDown="TitleMouseDown"
                                                    MouseMove="TitleMouseMove"
-                                                   MouseUp="TitleMouseUp"/>
+                                                   MouseUp="TitleMouseUp"
+                                                   Margin="0,5,0,0"/>
 
                                         <ContentPresenter Grid.Row="0"
                                                           Grid.Column="0"

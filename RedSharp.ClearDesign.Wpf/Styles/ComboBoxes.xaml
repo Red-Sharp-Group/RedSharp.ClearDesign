@@ -9,10 +9,101 @@
         <ResourceDictionary Source="../Definitions/Colors.xaml"/>
         <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
         <ResourceDictionary Source="../Definitions/Fonts.xaml"/>
+        <ResourceDictionary Source="../Styles/ToggleButtons.xaml"/>
         <ResourceDictionary Source="../Styles/ScrollViewers.xaml"/>
         <ResourceDictionary Source="../Styles/Common.xaml"/>
+        <ResourceDictionary Source="../Styles/Icons.xaml"/>
+        <ResourceDictionary Source="../Styles/ItemsControls.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
+
+    <Style x:Key="combobboxitem-default"
+           TargetType="{x:Type ComboBoxItem}">
+        <Style.Setters>
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch"/>
+            <Setter Property="VerticalAlignment"
+                    Value="Center"/>
+
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Left"/>
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center"/>
+
+            <Setter Property="FontFamily"
+                    Value="{DynamicResource D_DefaultCommonFontFamily_}"/>
+            <Setter Property="FontSize"
+                    Value="{DynamicResource D_DefaultCommonFontSize_}"/>
+            <Setter Property="FontWeight"
+                    Value="{DynamicResource D_DefaultCommonFontWeight_}"/>
+
+            <Setter Property="extra:AccentsExtra.Color"
+                    Value="{StaticResource S_DefaultDarkAccentColorBrush_}"/>
+            <Setter Property="extra:AccentsExtra.Opacity"
+                    Value="0.0"/>
+
+            <Setter Property="SnapsToDevicePixels" 
+                    Value="False"/>
+            <Setter Property="UseLayoutRounding" 
+                    Value="True"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                        <Grid>                            
+                            <!--BACKGROUND-->
+                            <Border Style="{StaticResource itemscontrol-item-border-default}"
+                                    Height="24"/>
+
+                            <!--ACCENT-->
+                            <Border UseLayoutRounding="True" 
+                                    Background="{TemplateBinding extra:AccentsExtra.Color}"
+                                    Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
+
+                            <ContentControl UseLayoutRounding="False"
+                                            Focusable="False"                                             
+                                            Content="{TemplateBinding Content}"
+                                            Margin="{TemplateBinding Padding}"
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                            FontFamily="{TemplateBinding FontFamily}"
+                                            FontWeight="{TemplateBinding FontWeight}"
+                                            Foreground="{TemplateBinding Foreground}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <StaticResource ResourceKey="S_AccentHoverEnterAnimation"/>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <StaticResource ResourceKey="S_AccentHoverExitAnimation"/>
+                </Trigger.ExitActions>
+            </Trigger>
+
+            <Trigger Property="IsMouseCaptured" Value="True">
+                <Trigger.EnterActions>
+                    <StaticResource ResourceKey="S_AccentPressedEnterAnimation"/>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <StaticResource ResourceKey="S_AccentPressedExitAnimation"/>
+                </Trigger.ExitActions>
+            </Trigger>
+
+            <Trigger Property="IsSelected" Value="True">
+                <Trigger.EnterActions>
+                    <StaticResource ResourceKey="S_AccentToggledEnterAnimation"/>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <StaticResource ResourceKey="S_AccentToggledExitAnimation"/>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
     <Style x:Key="combobox-default"
            TargetType="ComboBox">
         <Style.Setters>
@@ -24,7 +115,7 @@
                     Value="{DynamicResource D_DefaultPaddingThicknessLeftRight_}"/>
 
             <Setter Property="HorizontalAlignment"
-                    Value="Center"/>
+                    Value="Stretch"/>
             <Setter Property="VerticalAlignment"
                     Value="Center"/>
 
@@ -63,47 +154,98 @@
             <Setter Property="UseLayoutRounding" 
                     Value="True"/>
 
+            <Setter Property="AlternationCount"
+                    Value="2"/>
+
+            <Setter Property="ItemContainerStyle"
+                    Value="{StaticResource combobboxitem-default}"/>
+
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Grid>
-                            <!--BORDER-->
-                            <Border UseLayoutRounding="True" 
-                                    Background="{TemplateBinding BorderBrush}"/>
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Grid HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            
+                            <ToggleButton Style="{StaticResource togglebutton-secondary}"
+                                          Focusable="False"
+                                          Width="{TemplateBinding Width}"
+                                          Height="{TemplateBinding Height}"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch"
+                                          HorizontalContentAlignment="Stretch"
+                                          VerticalContentAlignment="Stretch"
+                                          Padding="0"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          Background="{TemplateBinding Background}"
+                                          IsChecked="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsDropDownOpen, Mode=TwoWay}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                            <!--ACCENT-->
-                            <Border UseLayoutRounding="True" 
-                                    Background="{TemplateBinding extra:AccentsExtra.Color}"
-                                    Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
+                                    <ContentControl Grid.Column="0" 
+                                                    UseLayoutRounding="False"
+                                                    Focusable="False"                                             
+                                                    Margin="{TemplateBinding Padding}"
+                                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                    FontFamily="{TemplateBinding FontFamily}"
+                                                    FontWeight="{TemplateBinding FontWeight}"
+                                                    Foreground="{TemplateBinding Foreground}"
+                                                    Content="{TemplateBinding SelectionBoxItem}"
+                                                    ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                    ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
 
-                            <!--BACKGROUND-->
-                            <Border UseLayoutRounding="False" 
-                                    Background="{TemplateBinding Background}"
-                                    Margin="{TemplateBinding BorderThickness}"/>
+                                    <Border Grid.Column="1" 
+                                            Width="{DynamicResource D_DefaultHeight_}"
+                                            Height="{DynamicResource D_DefaultHeight_}">
+                                        <Path Fill="{StaticResource S_CommonFontColorBrush_}">
+                                            <Path.Style>
+                                                <Style TargetType="{x:Type Path}"
+                                                       BasedOn="{StaticResource icon-default}">
+                                                    <Style.Setters>
+                                                        <Setter Property="Data"
+                                                                Value="{StaticResource S_BottomArrowLineIconGeometry}"/>
+                                                    </Style.Setters>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsDropDownOpen}"
+                                                                     Value="True">
+                                                            <Setter Property="Data"
+                                                                    Value="{StaticResource S_TopArrowLineIconGeometry}"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Path.Style>
+                                        </Path>
+                                    </Border>
+                                </Grid>
+                            </ToggleButton>
 
-                            <!--TEXT HOLDER-->
-                            <TextBlock Text="{TemplateBinding Text}"
-                                       Visibility="{TemplateBinding extra:TextBoxesExtra.WrapperVisibility}"
-                                       Padding="{TemplateBinding Padding}"
-                                       Margin="1.5,0"
-                                       Width="{Binding ElementName=PART_ContentHost, Path=ActualWidth}"
-                                       Foreground="{TemplateBinding Foreground}"
-                                       FontSize="{TemplateBinding FontSize}"
-                                       FontWeight="{TemplateBinding FontWeight}"
-                                       FontFamily="{TemplateBinding FontFamily}"
-                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                       TextTrimming="CharacterEllipsis"
-                                       IsHitTestVisible="False"/>
-
+                            <Popup x:Name="PART_Popup"
+                                   Placement="Bottom"
+                                   IsOpen="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsDropDownOpen}"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Slide">
+                                <Border Background="{TemplateBinding Background}"
+                                        MinWidth="{TemplateBinding ActualWidth}"
+                                        MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="1,0,1,1">
+                                        <ScrollViewer Style="{StaticResource scrollviewer-min}">
+                                            <ItemsPresenter Name="ItemsPresenter"
+                                                            KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Border>
+                            </Popup>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style.Setters>
-        <Style.Triggers>
-            
-        </Style.Triggers>
     </Style>
     
 </ResourceDictionary>

@@ -78,19 +78,31 @@
                      Header="Jobs">
                 <StackPanel VerticalAlignment="Center" 
                             Name="Panel">
-                    <ComboBox Margin="200,0">
-                        <ComboBoxItem Content="Option1"/>
-                        <ComboBoxItem Content="Option2"/>
-                        <ComboBoxItem Content="Option3"/>
-                        <ComboBoxItem Content="Option4"/>
-                        <ComboBoxItem Content="Option5"/>
-                    </ComboBox>
 
-                    <Button Style="{StaticResource button-primary}"
-                            Margin="5"
-                            Click="Button_Click">AWERSOME</Button>
-                    <Button Style="{StaticResource button-menu}"
+                    <GroupBox Style="{StaticResource groupbox-default}"
+                              Margin="5"
+                              Header="Test group box:">
+                        <StackPanel Margin="5">
+                            <ComboBox Margin="200,0"
+                                      Style="{StaticResource combobox-default}"
+                                      Width="{x:Static system:Double.NaN}"
+                                      HorizontalAlignment="Stretch">
+                                <ComboBoxItem Content="Option1"/>
+                                <ComboBoxItem Content="Option2"/>
+                                <ComboBoxItem Content="Option3"/>
+                                <ComboBoxItem Content="Option4"/>
+                                <ComboBoxItem Content="Option5"/>
+                            </ComboBox>
+
+                            <Button Style="{StaticResource button-primary}"
+                                    Margin="5"
+                                    Click="Button_Click">AWERSOME</Button>
+                            <Button Style="{StaticResource button-menu}"
                             Margin="5">AWERSOME</Button>
+                        </StackPanel>
+                    </GroupBox>
+                    
+
 
                     <CheckBox Style="{StaticResource checkbox-default}" 
                               HorizontalAlignment="Center"
