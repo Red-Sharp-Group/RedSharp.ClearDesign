@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using RedSharp.ClearDesign.Extra;
 
 namespace RedSharp.ClearDesign.Styles
 {
@@ -33,10 +34,7 @@ namespace RedSharp.ClearDesign.Styles
         {
             var window = FindParent<Window>(sender as Button);
 
-            if (window.WindowState == WindowState.Normal)
-                window.WindowState = WindowState.Maximized;
-            else
-                window.WindowState = WindowState.Normal;
+            TryMaximizeMinimize(window);
         }
 
         private void CloseButtonClick(Object sender, RoutedEventArgs arguments)
@@ -65,10 +63,7 @@ namespace RedSharp.ClearDesign.Styles
 
             var window = FindParent<Window>(sender as Rectangle);
 
-            if (window.WindowState == WindowState.Normal)
-                window.WindowState = WindowState.Maximized;
-            else
-                window.WindowState = WindowState.Normal;
+            TryMaximizeMinimize(window);
         }
 
         private void TitleMouseMove(Object sender, MouseEventArgs arguments)
@@ -108,6 +103,19 @@ namespace RedSharp.ClearDesign.Styles
         private void TitleMouseUp(Object sender, MouseButtonEventArgs arguments)
         {
             _lastPosition = null;
+        }
+
+        private bool TryMaximizeMinimize(Window window)
+        {
+            if (WindowsExtra.GetMaximizeVisibility(window) != Visibility.Visible)
+                return false;
+
+            if (window.WindowState == WindowState.Normal)
+                window.WindowState = WindowState.Maximized;
+            else
+                window.WindowState = WindowState.Normal;
+
+            return true;
         }
     }
 }

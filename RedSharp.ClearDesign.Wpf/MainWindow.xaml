@@ -12,7 +12,7 @@
         Title="MainWindow" 
         Height="450" 
         Width="800"
-        Style="{StaticResource Test}"
+        Style="{StaticResource window-default}"
         Background="{StaticResource S_WindowBackgroundColorBrush_}">
 
     <Grid>
@@ -76,39 +76,33 @@
                     extra:TabPanelsExtra.Margin="197,0,0,0" Grid.ColumnSpan="2">
             <TabItem Style="{StaticResource tabitem-title}"
                      Header="Jobs">
-                <StackPanel VerticalAlignment="Center" Name="Panel">
-                    <TextBox Style="{StaticResource textbox-default}"
-                             Width="{x:Static system:Double.NaN}"
-                             HorizontalAlignment="Center"
-                             Margin="200,5"
-                             extra:TextBoxesExtra.Placeholder="Awersome placeholder..."
-                             Text="{Binding Source={x:Static helpers:TestVM.Instance}, Path=Text, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+                <StackPanel VerticalAlignment="Center" 
+                            Name="Panel">
 
-                    <Button Style="{StaticResource button-primary}"
-                            Margin="5"
-                            Click="Button_Click">AWERSOME</Button>
-                    <Button Style="{StaticResource button-menu}"
+                    <GroupBox Style="{StaticResource groupbox-default}"
+                              Margin="5"
+                              Header="Test group box:">
+                        <StackPanel Margin="5">
+                            <ComboBox Margin="200,0"
+                                      Style="{StaticResource combobox-default}"
+                                      Width="{x:Static system:Double.NaN}"
+                                      HorizontalAlignment="Stretch">
+                                <ComboBoxItem Content="Option1"/>
+                                <ComboBoxItem Content="Option2"/>
+                                <ComboBoxItem Content="Option3"/>
+                                <ComboBoxItem Content="Option4"/>
+                                <ComboBoxItem Content="Option5"/>
+                            </ComboBox>
+
+                            <Button Style="{StaticResource button-primary}"
+                                    Margin="5"
+                                    Click="Button_Click">AWERSOME</Button>
+                            <Button Style="{StaticResource button-menu}"
                             Margin="5">AWERSOME</Button>
+                        </StackPanel>
+                    </GroupBox>
+                    
 
-                    <!--<ItemsControl Style="{StaticResource itemscontrol-default}">
-                        
-                        <system:String>Option 1</system:String>
-                        <system:String>Option 2</system:String>
-                        <system:String>Option 3</system:String>
-                        <system:String>Option 4</system:String>
-                        <system:String>Option 5</system:String>
-                        <system:String>Option 6</system:String>
-
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border Style="{StaticResource itemscontrol-item-border-default}">
-                                    <ContentPresenter Content="{TemplateBinding DataContext}"
-                                                      HorizontalAlignment="Left"
-                                                      VerticalAlignment="Center"/>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>-->
 
                     <CheckBox Style="{StaticResource checkbox-default}" 
                               HorizontalAlignment="Center"

@@ -53,6 +53,27 @@
         </Storyboard>
     </BeginStoryboard>
 
+    <BeginStoryboard x:Key="S_AccentToggledEnterAnimation"
+                     x:Shared="false">
+        <Storyboard>
+            <DoubleAnimation Storyboard.TargetProperty="(extra:AccentsExtra.Opacity)"
+                             To="0.25" 
+                             Duration="0:0:0.075" 
+                             AutoReverse="False"/>
+        </Storyboard>
+    </BeginStoryboard>
+
+    <BeginStoryboard x:Key="S_AccentToggledExitAnimation"
+                     x:Shared="false">
+        <Storyboard>
+            <DoubleAnimation Storyboard.TargetProperty="(extra:AccentsExtra.Opacity)"
+                             To="0.25" 
+                             Duration="0:0:0.075" 
+                             AutoReverse="False"
+                             FillBehavior="Stop"/>
+        </Storyboard>
+    </BeginStoryboard>
+
     <Style x:Key="focus-default"
            TargetType="{x:Type Control}">
         <Style.Setters>

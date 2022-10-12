@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Definitions/Sizes.xaml"/>
                 <ResourceDictionary Source="Styles/Windows.xaml"/>
                 <ResourceDictionary Source="Styles/Buttons.xaml"/>
+                <ResourceDictionary Source="Styles/Comboboxes.xaml"/>
                 <ResourceDictionary Source="Styles/ItemsControls.xaml"/>
                 <ResourceDictionary Source="Styles/GroupBoxes.xaml"/>
                 <ResourceDictionary Source="Styles/RepeatButtons.xaml"/>
@@ -20,6 +21,7 @@
                 <ResourceDictionary Source="Styles/Tabs.xaml"/>
                 <ResourceDictionary Source="Styles/TextBlocks.xaml"/>
                 <ResourceDictionary Source="Styles/TextBoxes.xaml"/>
+                <ResourceDictionary Source="Styles/ToggleButtons.xaml"/>
                 <ResourceDictionary Source="Styles/Toggles.xaml"/>
                 <ResourceDictionary Source="Styles/Common.xaml"/>
             </ResourceDictionary.MergedDictionaries>

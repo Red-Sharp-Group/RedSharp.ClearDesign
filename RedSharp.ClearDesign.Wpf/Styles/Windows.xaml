@@ -16,7 +16,8 @@
              RelativeSource="{RelativeSource AncestorType=Window}"
              Path="WindowState"/>
 
-    <Style x:Key="Test" TargetType="{x:Type Window}">
+    <Style x:Key="window-default" 
+           TargetType="{x:Type Window}">
         <Style.Setters>
             <Setter Property="Background" 
                     Value="{StaticResource S_BackgroundColorBrush_}"/>
@@ -26,6 +27,13 @@
 
             <Setter Property="BorderThickness" 
                     Value="{DynamicResource D_DefaultBorderThicknessFull_}"/>
+
+            <Setter Property="extra:WindowsExtra.MinimizeVisibility" 
+                    Value="Visible"/>
+            <Setter Property="extra:WindowsExtra.MaximizeVisibility" 
+                    Value="Visible"/>
+            <Setter Property="extra:WindowsExtra.CloseVisibility" 
+                    Value="Visible"/>
 
             <Setter Property="WindowStyle"
                     Value="SingleBorderWindow"/>
@@ -68,11 +76,12 @@
                                         <Rectangle Grid.Row="0"
                                                    Grid.Column="0"
                                                    Fill="Transparent"
-                                                   Height="{DynamicResource D_DefaultHeight_}"
+                                                   VerticalAlignment="Stretch"
                                                    WindowChrome.IsHitTestVisibleInChrome="True"
                                                    MouseDown="TitleMouseDown"
                                                    MouseMove="TitleMouseMove"
-                                                   MouseUp="TitleMouseUp"/>
+                                                   MouseUp="TitleMouseUp"
+                                                   Margin="0,5,0,0"/>
 
                                         <ContentPresenter Grid.Row="0"
                                                           Grid.Column="0"
@@ -92,7 +101,8 @@
                                                     Style="{StaticResource button-menu}"
                                                     Width="46"
                                                     Click="MinimizeButtonClick"
-                                                    WindowChrome.IsHitTestVisibleInChrome="True">
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"
+                                                    Visibility="{TemplateBinding extra:WindowsExtra.MinimizeVisibility}">
                                                 <Path Style="{StaticResource icon-default}" 
                                                       Stroke="{StaticResource S_CommonFontColorBrush_}"
                                                       StrokeThickness="1"
@@ -103,7 +113,8 @@
                                                     Style="{StaticResource button-menu}"
                                                     Width="46"
                                                     Click="MaximizeButtonClick"
-                                                    WindowChrome.IsHitTestVisibleInChrome="True">
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"
+                                                    Visibility="{TemplateBinding extra:WindowsExtra.MaximizeVisibility}">
                                                 <Grid>
                                                     <Path Stroke="{StaticResource S_CommonFontColorBrush_}"
                                                           StrokeThickness="1"
@@ -153,7 +164,8 @@
                                                     Style="{StaticResource button-menu}"
                                                     Width="46"
                                                     Click="CloseButtonClick"
-                                                    WindowChrome.IsHitTestVisibleInChrome="True">
+                                                    WindowChrome.IsHitTestVisibleInChrome="True"
+                                                    Visibility="{TemplateBinding extra:WindowsExtra.MaximizeVisibility}">
                                                 <Path Style="{StaticResource icon-default}" 
                                                       Stroke="{StaticResource S_CommonFontColorBrush_}"
                                                       StrokeThickness="1"
