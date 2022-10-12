@@ -31,14 +31,14 @@ namespace RedSharp.ClearDesign.Wpf
         {
             InitializeComponent();
 
-            _colorsDefinition = new ColorsDefinition(Application.Current.Resources);
-            _fontsDefinition = new FontsDefinition(Application.Current.Resources);
-            _sizesDefinition = new SizesDefinition(Application.Current.Resources);
+            //_colorsDefinition = new ColorsDefinition(Application.Current.Resources);
+            //_fontsDefinition = new FontsDefinition(Application.Current.Resources);
+            //_sizesDefinition = new SizesDefinition(Application.Current.Resources);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _colorsDefinition.PrimaryColor = Color.FromRgb(218, 36, 123);
+            Definitions.Colors.PrimaryColor = Color.FromRgb(218, 36, 123);
         }
     }
 }
