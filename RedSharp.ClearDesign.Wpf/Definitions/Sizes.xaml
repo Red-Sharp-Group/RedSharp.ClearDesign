@@ -19,6 +19,7 @@
 
     <system:Double x:Key="D_DefaultBorder_">1</system:Double>
     <system:Double x:Key="D_DefaultFocus_">3</system:Double>
+    <system:Double x:Key="D_DefaultFocus2_">3</system:Double>
 
     <system:Double x:Key="D_DefaultAccentHoverOpacity_">0.15</system:Double>
     <system:Double x:Key="D_DefaultAccentPressedOpacity_">0.25</system:Double>

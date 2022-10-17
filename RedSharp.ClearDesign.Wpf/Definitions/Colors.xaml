@@ -1,8 +1,10 @@
 ﻿<ResourceDictionary x:Class="RedSharp.ClearDesign.Definitions.Colors"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils"
-                    xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers">
+                    xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers"
+                    xmlns:shared="clr-namespace:RedSharp.ClearDesign.Shared.Utils;assembly=RedSharp.ClearDesign.Shared">
 
     <!--################################################################################################################-->
     <!--COLORS DEFINITIONS-->
@@ -77,14 +79,23 @@
     <!--LIGHT ACCENT COLOR-->
 
     <!--COMPUTED: D_DefaultLightAccentColor_(Alpha 5%)-->
+    <utils:OpacityModifier x:Key="D_Light1Modifier_">D_Light1Color_ = D_DefaultLightAccentColor_ (5%)</utils:OpacityModifier>    
     <Color x:Key="D_Light1Color_">#0DFFFFFF</Color>
+
     <!--COMPUTED: D_DefaultLightAccentColor_(Alpha 10%)-->
+    <utils:OpacityModifier x:Key="D_Light2Modifier_">D_Light2Color_ = D_DefaultLightAccentColor_ (10%)</utils:OpacityModifier>    
     <Color x:Key="D_Light2Color_">#1AFFFFFF</Color>
+
     <!--COMPUTED: D_DefaultLightAccentColor_(Alpha 15%)-->
+    <utils:OpacityModifier x:Key="D_Light3Modifier_">D_Light3Color_ = D_DefaultLightAccentColor_ (15%)</utils:OpacityModifier>    
     <Color x:Key="D_Light3Color_">#26FFFFFF</Color>
+
     <!--COMPUTED: D_DefaultLightAccentColor_(Alpha 20%)-->
+    <utils:OpacityModifier x:Key="D_Light4Modifier_">D_Light4Color_ = D_DefaultLightAccentColor_ (20%)</utils:OpacityModifier>    
     <Color x:Key="D_Light4Color_">#33FFFFFF</Color>
+
     <!--COMPUTED: D_DefaultLightAccentColor_(Alpha 25%)-->
+    <utils:OpacityModifier x:Key="D_Light5Modifier_">D_Light5Color_ = D_DefaultLightAccentColor_ (25%)</utils:OpacityModifier>    
     <Color x:Key="D_Light5Color_">#40FFFFFF</Color>
 
     <SolidColorBrush x:Key="S_Light1ColorBrush_"
@@ -102,16 +113,25 @@
     <!--DARK ACCENT COLOR-->
 
     <!--COMPUTED: D_DefaultDarkAccentColor_(Alpha 5%)-->
+    <utils:OpacityModifier x:Key="D_Dark1Modifier_">D_Dark1Color_ = D_DefaultDarkAccentColor_ (5%)</utils:OpacityModifier>
     <Color x:Key="D_Dark1Color_">#0D000000</Color>
-    <!--COMPUTED: D_DefaultDarkAccentColor_(Alpha 10%)-->
-    <Color x:Key="D_Dark2Color_">#1A000000</Color>
-    <!--COMPUTED: D_DefaultDarkAccentColor_(Alpha 15%)-->
-    <Color x:Key="D_Dark3Color_">#26000000</Color>
-    <!--COMPUTED: D_DefaultDarkAccentColor_(Alpha 20%)-->
-    <Color x:Key="D_Dark4Color_">#33000000</Color>
-    <!--COMPUTED: D_DefaultDarkAccentColor_(Alpha 25%)-->
-    <Color x:Key="D_Dark5Color_">#40000000</Color>
     
+    <!--COMPUTED: D_DefaultDarkAccentColor_(Alpha 10%)-->
+    <utils:OpacityModifier x:Key="D_Dark2Modifier_">D_Dark2Color_ = D_DefaultDarkAccentColor_ (10%)</utils:OpacityModifier>
+    <Color x:Key="D_Dark2Color_">#1A000000</Color>
+
+    <!--COMPUTED: D_DefaultDarkAccentColor_(Alpha 15%)-->
+    <utils:OpacityModifier x:Key="D_Dark3Modifier_">D_Dark3Color_ = D_DefaultDarkAccentColor_ (15%)</utils:OpacityModifier>
+    <Color x:Key="D_Dark3Color_">#26000000</Color>
+
+    <!--COMPUTED: D_DefaultDarkAccentColor_(Alpha 20%)-->
+    <utils:OpacityModifier x:Key="D_Dark4Modifier_">D_Dark4Color_ = D_DefaultDarkAccentColor_ (20%)</utils:OpacityModifier>
+    <Color x:Key="D_Dark4Color_">#33000000</Color>
+
+    <!--COMPUTED: D_DefaultDarkAccentColor_(Alpha 25%)-->
+    <utils:OpacityModifier x:Key="D_Dark5Modifier_">D_Dark5Color_ = D_DefaultDarkAccentColor_ (25%)</utils:OpacityModifier>
+    <Color x:Key="D_Dark5Color_">#40000000</Color>
+
     <SolidColorBrush x:Key="S_Dark1ColorBrush_"
                      Color="{DynamicResource D_Dark1Color_}"/>
     <SolidColorBrush x:Key="S_Dark2ColorBrush_"
@@ -127,14 +147,23 @@
     <!--DISABLED ACCENT COLOR-->
 
     <!--COMPUTED: D_DefaultDisabledAccentColor_(Alpha 10%)-->
+    <utils:OpacityModifier x:Key="D_Disabled1Modifier_">D_Disabled1Color_ = D_DefaultDisabledAccentColor_ (10%)</utils:OpacityModifier>
     <Color x:Key="D_Disabled1Color_">#1ABBBBBB</Color>
+    
     <!--COMPUTED: D_DefaultDisabledAccentColor_(Alpha 25%)-->
+    <utils:OpacityModifier x:Key="D_Disabled2Modifier_">D_Disabled2Color_ = D_DefaultDisabledAccentColor_ (25%)</utils:OpacityModifier>
     <Color x:Key="D_Disabled2Color_">#40BBBBBB</Color>
+
     <!--COMPUTED: D_DefaultDisabledAccentColor_(Alpha 40%)-->
+    <utils:OpacityModifier x:Key="D_Disabled3Modifier_">D_Disabled3Color_ = D_DefaultDisabledAccentColor_ (40%)</utils:OpacityModifier>
     <Color x:Key="D_Disabled3Color_">#66BBBBBB</Color>
+
     <!--COMPUTED: D_DefaultDisabledAccentColor_(Alpha 55%)-->
+    <utils:OpacityModifier x:Key="D_Disabled4Modifier_">D_Disabled4Color_ = D_DefaultDisabledAccentColor_ (55%)</utils:OpacityModifier>
     <Color x:Key="D_Disabled4Color_">#8CBBBBBB</Color>
+    
     <!--COMPUTED: D_DefaultDisabledAccentColor_(Alpha 70%)-->
+    <utils:OpacityModifier x:Key="D_Disabled5Modifier_">D_Disabled5Color_ = D_DefaultDisabledAccentColor_ (70%)</utils:OpacityModifier>
     <Color x:Key="D_Disabled5Color_">#B3BBBBBB</Color>
 
     <SolidColorBrush x:Key="S_Disabled1ColorBrush_"
@@ -152,14 +181,23 @@
     <!--STEP ACCENT COLOR-->
 
     <!--COMPUTED: D_DefaultStepAccentColor_(Alpha 3%)-->
+    <utils:OpacityModifier x:Key="D_Step1Modifier_">D_Disabled1Color_ = D_DefaultStepAccentColor_ (3%)</utils:OpacityModifier>
     <Color x:Key="D_Step1Color_">#08000000</Color>
+
     <!--COMPUTED: D_DefaultStepAccentColor_(Alpha 6%)-->
+    <utils:OpacityModifier x:Key="D_Step2Modifier_">D_Disabled2Color_ = D_DefaultStepAccentColor_ (6%)</utils:OpacityModifier>
     <Color x:Key="D_Step2Color_">#0F000000</Color>
+    
     <!--COMPUTED: D_DefaultStepAccentColor_(Alpha 9%)-->
+    <utils:OpacityModifier x:Key="D_Step3Modifier_">D_Disabled3Color_ = D_DefaultStepAccentColor_ (9%)</utils:OpacityModifier>
     <Color x:Key="D_Step3Color_">#17000000</Color>
+    
     <!--COMPUTED: D_DefaultStepAccentColor_(Alpha 12%)-->
+    <utils:OpacityModifier x:Key="D_Step4Modifier_">D_Disabled4Color_ = D_DefaultStepAccentColor_ (12%)</utils:OpacityModifier>
     <Color x:Key="D_Step4Color_">#1F000000</Color>
+    
     <!--COMPUTED: D_DefaultStepAccentColor_(Alpha 15%)-->
+    <utils:OpacityModifier x:Key="D_Step5Modifier_">D_Disabled5Color_ = D_DefaultStepAccentColor_ (15%)</utils:OpacityModifier>
     <Color x:Key="D_Step5Color_">#26000000</Color>
     
     <SolidColorBrush x:Key="S_Step1ColorBrush_" 
@@ -181,6 +219,7 @@
     <!--SPECIAL COLORS-->
 
     <!--COMPUTED: D_Dark5Color_ + D_Dark5Color_-->
+    <utils:BlendingModifier x:Key="D_ScrollThumbBackgroundModifier_">D_ScrollThumbBackgroundColor_ = D_Dark5Color_ + D_Dark5Color_</utils:BlendingModifier>
     <Color x:Key="D_ScrollThumbBackgroundColor_">#6F000000</Color>
     
     <SolidColorBrush x:Key="S_ScrollThumbBackgroundBrush_"
@@ -190,14 +229,23 @@
     <!--BORDER COLORS-->
 
     <!--COMPUTED: D_DefaultPrimaryColor_ + D_Light5Color_-->
-    <Color x:Key="D_FocusBorderColor_">#FF6DB3FD</Color>    
+    <utils:BlendingModifier x:Key="D_FocusBorderModifier_">D_FocusBorderColor_ = D_DefaultPrimaryColor_ + D_Light5Color_</utils:BlendingModifier>
+    <Color x:Key="D_FocusBorderColor_">#FF6DB3FD</Color>
+
     <!--COMPUTED: D_DefaultPrimaryColor_ + D_Dark5Color_-->
+    <utils:BlendingModifier x:Key="D_PrimaryBorderModifier_">D_PrimaryBorderColor_ = D_DefaultPrimaryColor_ + D_Dark5Color_</utils:BlendingModifier>
     <Color x:Key="D_PrimaryBorderColor_">#FF2D73BD</Color>
+
     <!--COMPUTED: D_Dark5Color_-->
+    <utils:BlendingModifier x:Key="D_SecondaryBorderModifier_">D_SecondaryBorderColor_ = D_Dark5Color_</utils:BlendingModifier>
     <Color x:Key="D_SecondaryBorderColor_">#40000000</Color>
+
     <!--COMPUTED: D_Disabled3Color_ + D_Dark4Color_-->
+    <utils:BlendingModifier x:Key="D_DisabledBorderModifier_">D_DisabledBorderColor_ = D_Disabled3Color_ + D_Dark4Color_</utils:BlendingModifier>
     <Color x:Key="D_DisabledBorderColor_">#843C3C3C</Color>
+
     <!--COMPUTED: D_PrimaryBorderColor_(Alpha 100%)-->
+    <utils:OpacityModifier x:Key="D_DisabledBorderNoOpacityModifier_">D_DisabledBorderNoOpacityColor_ = D_PrimaryBorderColor_ (100%)</utils:OpacityModifier>
     <Color x:Key="D_DisabledBorderNoOpacityColor_">#FF3C3C3C</Color>
     
 
@@ -216,6 +264,7 @@
     <!--FONT COLORS-->
 
     <!--COMPUTED: D_DefaultSecondaryFontColor_ + D_Light3Color_-->
+    <utils:BlendingModifier x:Key="D_CommonFontModifier_">D_CommonFontColor_ = D_DefaultSecondaryFontColor_ + D_Light3Color_</utils:BlendingModifier>
     <Color x:Key="D_CommonFontColor_">#FF383838</Color>
     
     <!--Brush from the modifiers (you have to use them instead of modifiers)-->

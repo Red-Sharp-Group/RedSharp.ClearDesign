@@ -23,22 +23,14 @@ namespace RedSharp.ClearDesign.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ColorsDefinition _colorsDefinition;
-        private FontsDefinition _fontsDefinition;
-        private SizesDefinition _sizesDefinition;
-
         public MainWindow()
         {
             InitializeComponent();
-
-            //_colorsDefinition = new ColorsDefinition(Application.Current.Resources);
-            //_fontsDefinition = new FontsDefinition(Application.Current.Resources);
-            //_sizesDefinition = new SizesDefinition(Application.Current.Resources);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Definitions.Colors.PrimaryColor = Color.FromRgb(218, 36, 123);
+            Application.Current.Resources["D_DefaultPrimaryColor_"] = Color.FromRgb(218, 36, 123);
         }
     }
 }

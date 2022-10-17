@@ -40,6 +40,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RedSharp.ClearDesign.Shared\RedSharp.ClearDesign.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\Fonts\OpenSans\OpenSans-Bold.ttf" />
     <Resource Include="Resources\Fonts\OpenSans\OpenSans-BoldItalic.ttf" />
     <Resource Include="Resources\Fonts\OpenSans\OpenSans-ExtraBold.ttf" />
