@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using RedSharp.ClearDesign.Abstractions;
 using RedSharp.ClearDesign.Helpers;
 using RedSharp.ClearDesign.Wpf.Abstracts;
 
@@ -14,25 +15,11 @@ namespace RedSharp.ClearDesign.Utils
     [TypeConverter(typeof(BlendingExpressionConverter))]
     public class BlendingModifier : MultiInputModifierBase
     {
-        public class BlendingExpressionConverter : TypeConverter
+        public class BlendingExpressionConverter : StringConverterBase
         {
-            public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+            protected override object Parse(string value)
             {
-                if (sourceType == typeof(string))
-                    return true;
-
-                return base.CanConvertFrom(context, sourceType);
-            }
-
-            public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
-            {
-                if (value == null || !(value is string))
-                    throw GetConvertFromException(value);
-
-                if (value == null)
-                    return base.ConvertFrom(context, culture, value);
-
-                return BlendingModifier.ParseExpression((String)value);
+                return ParseExpression(value);
             }
         }
 

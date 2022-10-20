@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
+using RedSharp.ClearDesign.Abstractions;
 using RedSharp.ClearDesign.Wpf.Abstracts;
 
 namespace RedSharp.ClearDesign.Utils
@@ -10,25 +11,11 @@ namespace RedSharp.ClearDesign.Utils
     [TypeConverter(typeof(ThicknessModifierExpressionConverter))]
     public class ThicknessModifier : SingleInputModifierBase
     {
-        public class ThicknessModifierExpressionConverter : TypeConverter
+        public class ThicknessModifierExpressionConverter : StringConverterBase
         {
-            public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+            protected override object Parse(string value)
             {
-                if (sourceType == typeof(string))
-                    return true;
-
-                return base.CanConvertFrom(context, sourceType);
-            }
-
-            public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
-            {
-                if (value == null || !(value is string))
-                    throw GetConvertFromException(value);
-
-                if (value == null)
-                    return base.ConvertFrom(context, culture, value);
-
-                return ThicknessModifier.ParseExpression((String)value);
+                return ParseExpression(value);
             }
         }
 

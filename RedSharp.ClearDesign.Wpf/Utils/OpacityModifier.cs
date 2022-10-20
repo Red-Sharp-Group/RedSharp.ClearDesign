@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Media;
+using RedSharp.ClearDesign.Abstractions;
 using RedSharp.ClearDesign.Helpers;
 using RedSharp.ClearDesign.Wpf.Abstracts;
 
@@ -11,25 +12,11 @@ namespace RedSharp.ClearDesign.Utils
     [TypeConverter(typeof(OpacityExpressionConverter))]
     public class OpacityModifier : SingleInputModifierBase
     {
-        public class OpacityExpressionConverter : TypeConverter
+        public class OpacityExpressionConverter : StringConverterBase
         {
-            public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+            protected override object Parse(string value)
             {
-                if (sourceType == typeof(string))
-                    return true;
-
-                return base.CanConvertFrom(context, sourceType);
-            }
-
-            public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
-            {
-                if (value == null || !(value is string))
-                    throw GetConvertFromException(value);
-
-                if (value == null)
-                    return base.ConvertFrom(context, culture, value);
-
-                return OpacityModifier.ParseExpression((String)value);
+                return ParseExpression(value);
             }
         }
 
