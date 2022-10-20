@@ -1,5 +1,7 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<ResourceDictionary x:Class="Tkx.Lps.Client.Theme.Definitions.Sizes"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:RedSharp.ClearDesign.Definitions"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils"
                     xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers">
@@ -19,65 +21,108 @@
 
     <system:Double x:Key="D_DefaultBorder_">1</system:Double>
     <system:Double x:Key="D_DefaultFocus_">3</system:Double>
-    <system:Double x:Key="D_DefaultFocus2_">3</system:Double>
 
     <system:Double x:Key="D_DefaultAccentHoverOpacity_">0.15</system:Double>
     <system:Double x:Key="D_DefaultAccentPressedOpacity_">0.25</system:Double>
-    
+
     <!--#################################################################################################-->
     <!--COMPUTED SIZES-->
     <!--All next sizes has to be computed using the sizes above.-->
-    
+
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--COMPUTED SIZES-->
 
-    
+
     <!--COMPUTED: D_DefaultBorder_ - D_DefaultFocus_-->
+    <utils:DelegateModifier x:Key="D_OutstandingFocusModifier_"
+                            ResultKey="D_OutstandingFocus_"
+                            InputKeys="D_DefaultBorder_, D_DefaultFocus_"
+                            Delegate="{x:Static local:Sizes.OutstandingFocus}"/>
+
     <system:Double x:Key="D_OutstandingFocus_">-2</system:Double>
+
     <!--COMPUTED: D_DefaultToggleHeight_ + 2 * D_DefaultBorder_-->
+    <utils:DelegateModifier x:Key="D_RoundToggleHeightModifier_"
+                            ResultKey="D_RoundToggleHeight_"
+                            InputKeys="D_DefaultToggleHeight_, D_DefaultBorder_"
+                            Delegate="{x:Static local:Sizes.RoundToggleHeight}"/>
+
     <system:Double x:Key="D_RoundToggleHeight_">16</system:Double>
+
     <!--COMPUTED: D_DefaultToggleHeight_ * 2-->
+    <utils:DelegateModifier x:Key="D_SwitchToggleWidthModifier_"
+                            ResultKey="D_SwitchToggleWidth_"
+                            InputKeys="D_DefaultToggleHeight_"
+                            Delegate="{x:Static local:Sizes.SwitchToggleWidth}"/>
+
     <system:Double x:Key="D_SwitchToggleWidth_">28</system:Double>
 
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--MARGINS-->
 
-    
+
     <!--COMPUTED: Thickness(1) * D_DefaultMargin_-->
+    <utils:ThicknessModifier x:Key="D_DefaultMarginThicknessFullModifier_">D_DefaultMarginThicknessFull_ = D_DefaultMargin_ (1)</utils:ThicknessModifier>
     <Thickness x:Key="D_DefaultMarginThicknessFull_">5</Thickness>
+
     <!--COMPUTED: Thickness(1,0) * D_DefaultMargin_-->
+    <utils:ThicknessModifier x:Key="D_DefaultMarginThicknessLeftRightModifier_">D_DefaultMarginThicknessLeftRight_ = D_DefaultMargin_ (1,0)</utils:ThicknessModifier>
     <Thickness x:Key="D_DefaultMarginThicknessLeftRight_">5,0</Thickness>
+
     <!--COMPUTED: Thickness(0,1) * D_DefaultMargin_-->
+    <utils:ThicknessModifier x:Key="D_DefaultMarginThicknessTopBottomModifier_">D_DefaultMarginThicknessTopBottom_ = D_DefaultMargin_ (0,1)</utils:ThicknessModifier>
     <Thickness x:Key="D_DefaultMarginThicknessTopBottom_">0,5</Thickness>
+
     <!--COMPUTED: Thickness(0,0,1,0) * D_DefaultMargin_-->
+    <utils:ThicknessModifier x:Key="D_DefaultMarginThicknessRightModifier_">D_DefaultMarginThicknessRight_ = D_DefaultMargin_ (0,0,1,0)</utils:ThicknessModifier>
     <Thickness x:Key="D_DefaultMarginThicknessRight_">0,0,5,0</Thickness>
+
     <!--COMPUTED: Thickness(1) * D_OutstandingFocus_-->
+    <utils:ThicknessModifier x:Key="D_OutstandingFocusThicknessFullModifier_">D_OutstandingFocusThicknessFull_ = D_OutstandingFocus_ (1)</utils:ThicknessModifier>
     <Thickness x:Key="D_OutstandingFocusThicknessFull_">-2</Thickness>
 
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--PADDINGS-->
-    
+
 
     <!--COMPUTED: Thickness(1) * D_DefaultPadding_-->
+    <utils:ThicknessModifier x:Key="D_DefaultPaddingThicknessFullModifier_">D_DefaultPaddingThicknessFull_ = D_DefaultPadding_ (1)</utils:ThicknessModifier>
     <Thickness x:Key="D_DefaultPaddingThicknessFull_">8</Thickness>
+
     <!--COMPUTED: Thickness(1,0,0,0) * D_DefaultPadding_-->
+    <utils:ThicknessModifier x:Key="D_DefaultPaddingThicknessLeftModifier_">D_DefaultPaddingThicknessLeft_ = D_DefaultPadding_ (1,0,0,0)</utils:ThicknessModifier>
     <Thickness x:Key="D_DefaultPaddingThicknessLeft_">8,0,0,0</Thickness>
+
     <!--COMPUTED: Thickness(1,0) * D_DefaultPadding_-->
+    <utils:ThicknessModifier x:Key="D_DefaultPaddingThicknessLeftRightModifier_">D_DefaultPaddingThicknessLeftRight_ = D_DefaultPadding_ (1,0)</utils:ThicknessModifier>
     <Thickness x:Key="D_DefaultPaddingThicknessLeftRight_">8,0</Thickness>
 
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--BORDERS-->
 
-    
+
     <!--COMPUTED: Thickness(1) * D_DefaultBorder_-->
+    <utils:ThicknessModifier x:Key="D_DefaultBorderThicknessFullModifier_">D_DefaultBorderThicknessFull_ = D_DefaultBorder_ (1)</utils:ThicknessModifier>
     <Thickness x:Key="D_DefaultBorderThicknessFull_">1</Thickness>
+
     <!--COMPUTED: Thickness(0,1,0,0) * D_DefaultBorder_-->
+    <utils:ThicknessModifier x:Key="D_DefaultBorderThicknessTopModifier_">D_DefaultBorderThicknessTop_ = D_DefaultBorder_ (0,1,0,0)</utils:ThicknessModifier>
     <Thickness x:Key="D_DefaultBorderThicknessTop_">0,1,0,0</Thickness>
+
+    <!--COMPUTED: Thickness(0,0,0,1) * D_DefaultBorder_-->
+    <utils:ThicknessModifier x:Key="D_DefaultBorderThicknessBottomModifier_">D_DefaultBorderThicknessBottom_ = D_DefaultBorder_ (0,0,0,1)</utils:ThicknessModifier>
+    <Thickness x:Key="D_DefaultBorderThicknessBottom_">0,0,0,1</Thickness>
+
     <!--COMPUTED: Thickness(1,0) * D_DefaultBorder_-->
+    <utils:ThicknessModifier x:Key="D_DefaultBorderThicknessLeftRightModifier_">D_DefaultBorderThicknessLeftRight_ = D_DefaultBorder_ (1,0)</utils:ThicknessModifier>
     <Thickness x:Key="D_DefaultBorderThicknessLeftRight_">1,0</Thickness>
+
     <!--COMPUTED: Thickness(1,1,1,0) * D_DefaultBorder_-->
+    <utils:ThicknessModifier x:Key="D_DefaultBorderThicknessLeftTopRightModifier_">D_DefaultBorderThicknessLeftTopRight_ = D_DefaultBorder_ (1,1,1,0)</utils:ThicknessModifier>
     <Thickness x:Key="D_DefaultBorderThicknessLeftTopRight_">1,1,1,0</Thickness>
+
     <!--COMPUTED: Thickness(1) * D_DefaultFocus_-->
+    <utils:ThicknessModifier x:Key="D_DefaultFocusThicknessFullModifier_">D_DefaultFocusThicknessFull_ = D_DefaultFocus_ (1)</utils:ThicknessModifier>
     <Thickness x:Key="D_DefaultFocusThicknessFull_">3</Thickness>
 
 </ResourceDictionary>

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RedSharp.ClearDesign.Utils;
+using Definitions = RedSharp.ClearDesign.Definitions;
 
 namespace RedSharp.Wpf.Test
 {
@@ -20,9 +22,27 @@ namespace RedSharp.Wpf.Test
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ResourceSchema _testGridResourceSchema;
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Resources[Definitions.Colors.PrimaryColorKey] = Color.FromRgb(218, 36, 123);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if(_testGridResourceSchema == null)
+            {
+                _testGridResourceSchema = new ResourceSchema(TestGrid.Resources);
+                _testGridResourceSchema.InitializeFromInternalDictionary();
+            }
+
+            TestGrid.Resources[Definitions.Colors.PrimaryColorKey] = Color.FromRgb(218, 36, 123);
         }
     }
 }

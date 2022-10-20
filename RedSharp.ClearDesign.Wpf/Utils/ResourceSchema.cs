@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using RedSharp.ClearDesign.Shared.Interfaces;
+using System.Windows.Navigation;
+using RedSharp.ClearDesign.Wpf.Interfaces;
 
 namespace RedSharp.ClearDesign.Utils
 {
@@ -13,7 +14,6 @@ namespace RedSharp.ClearDesign.Utils
         private Dictionary<object, ResourceNotifier> _notifiers;
         private Dictionary<object, List<IResourceModifier>> _modifiers;
         private HashSet<IResourceModifier> _allModifiers;
-        private HashSet<Type> _initializedDictionaries;
 
         public ResourceSchema(ResourceDictionary dictionary)
         {
@@ -23,32 +23,40 @@ namespace RedSharp.ClearDesign.Utils
             _allModifiers = new HashSet<IResourceModifier>();
         }
 
-        public static ResourceSchema ApplicationResources { get; } = new ResourceSchema(Application.Current.Resources);
-
-        public bool IsFilledFrom(ResourceDictionary dictionary)
-        {
-            return _initializedDictionaries != null && _initializedDictionaries.Contains(dictionary.GetType());
-        }
-
-        public void FillFrom(ResourceDictionary dictionary)
-        {
-            if (_initializedDictionaries == null)
-                _initializedDictionaries = new HashSet<Type>();
-
-            if (_initializedDictionaries.Add(dictionary.GetType()))
-                foreach (DictionaryEntry item in dictionary)
-                    if (item.Value is IResourceModifier modifier)
-                        Add(modifier);
-        }
+        public static ResourceSchema ApplicationResources { get; private set; }
 
         public int Count => _allModifiers.Count();
 
         public bool IsReadOnly => false;
 
+        public void InitializeFromInternalDictionary()
+        {
+            InitializeFromDictionary(_dictionary);
+        }
+
+        public void InitializeFromDictionary(ResourceDictionary dictionary)
+        {
+            foreach (var key in dictionary.Keys)
+            {
+                if (!(key is String keyString) || !keyString.Contains("modifier", StringComparison.InvariantCultureIgnoreCase))
+                    continue;
+
+                var value = _dictionary[key];
+
+                if (value is IResourceModifier modifier)
+                    Add(modifier);
+            }
+
+            foreach (var item in dictionary.MergedDictionaries)
+                InitializeFromDictionary(item);
+        }
+
         public void Add(IResourceModifier item)
         {
             if (!_allModifiers.Add(item))
                 return;
+
+            var tempNotifiers = new List<ResourceNotifier>();
 
             foreach (var key in item.InputKeys)
             {
@@ -62,8 +70,17 @@ namespace RedSharp.ClearDesign.Utils
                 modifiersList.Add(item);
 
                 if (!_notifiers.ContainsKey(key))
-                    _notifiers.Add(key, new ResourceNotifier(this, _dictionary, key));
+                {
+                    var notifier = new ResourceNotifier(this, key);
+
+                    tempNotifiers.Add(notifier);
+
+                    _notifiers.Add(key, notifier);
+                }
             }
+
+            foreach(var notifier in tempNotifiers)
+                notifier.Initialize(_dictionary);
         }
 
         public bool Contains(IResourceModifier item)
@@ -110,6 +127,16 @@ namespace RedSharp.ClearDesign.Utils
             return _allModifiers.GetEnumerator();
         }
 
+        internal static void InitializeApplicationResources()
+        {
+            if (ApplicationResources != null)
+                return;
+
+            ApplicationResources = new ResourceSchema(Application.Current.Resources);
+
+            Application.Current.Startup += ApplicationLoadCompleted;
+        }
+
         internal void UpdateResource(object key)
         {
             if (!_modifiers.TryGetValue(key, out List<IResourceModifier> modifiers))
@@ -122,10 +149,17 @@ namespace RedSharp.ClearDesign.Utils
                 arguments.Clear();
 
                 foreach (var targetKey in item.InputKeys)
-                    arguments.Add(_notifiers[targetKey].Value);
+                    arguments.Add(_dictionary[targetKey]);
 
                 _dictionary[item.ResultKey] = item.Modify(arguments);
             }
+        }
+
+        private static void ApplicationLoadCompleted(object sender, StartupEventArgs arguments)
+        {
+            ((Application)sender).Startup -= ApplicationLoadCompleted;
+
+            ApplicationResources.InitializeFromInternalDictionary();
         }
     }
 }

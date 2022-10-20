@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Media;
 using RedSharp.ClearDesign.Helpers;
-using RedSharp.ClearDesign.Shared.Abstracts;
+using RedSharp.ClearDesign.Wpf.Abstracts;
 
 namespace RedSharp.ClearDesign.Utils
 {
@@ -23,29 +23,41 @@ namespace RedSharp.ClearDesign.Utils
 
             public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
             {
-                if (value == null)
+                if (value == null || !(value is string))
                     throw GetConvertFromException(value);
 
-                string source = value as string;
-
-                if (source == null)
+                if (value == null)
                     return base.ConvertFrom(context, culture, value);
 
-                var splitted = source.Split('=', '(', '%', ')')
-                                     .Select(item => item.Trim())
-                                     .Where(item => !String.IsNullOrEmpty(item))
-                                     .ToList();
-
-                return new OpacityModifier()
-                {
-                    ResultKey = splitted[0],
-                    InputKey = splitted[1],
-                    Parameter = double.Parse(splitted[2]) / 100.0
-                };
+                return OpacityModifier.ParseExpression((String)value);
             }
         }
 
+        private static readonly char[] _separators = new char[] { '=', '(', '%', ')' };
+
         public double Parameter { get; set; }
+
+        /// <summary>
+        /// Parsed and filled an instance of <see cref="OpacityModifier"/>
+        /// </summary>
+        /// <example>
+        /// D_Disabled5Color_ = D_DefaultStepAccentColor_ (15%)
+        /// </example>
+        public static OpacityModifier ParseExpression(String expression)
+        {
+            var result = new OpacityModifier();
+
+            if (String.IsNullOrWhiteSpace(expression))
+                return result;
+
+            var splitted = expression.Split(_separators, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+
+            result.ResultKey = splitted[0];
+            result.InputKey = splitted[1];
+            result.Parameter = double.Parse(splitted[2]) / 100.0;
+
+            return result;
+        }
 
         protected override object InternalModify(object value)
         {

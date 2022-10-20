@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using RedSharp.ClearDesign.Helpers;
-using RedSharp.ClearDesign.Shared.Abstracts;
+using RedSharp.ClearDesign.Wpf.Abstracts;
 
 namespace RedSharp.ClearDesign.Utils
 {
@@ -26,28 +26,39 @@ namespace RedSharp.ClearDesign.Utils
 
             public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
             {
-                if (value == null)
+                if (value == null || !(value is string))
                     throw GetConvertFromException(value);
 
-                string source = value as string;
-
-                if (source == null)
+                if (value == null)
                     return base.ConvertFrom(context, culture, value);
 
-                var splitted = source.Split('=', '+')
-                                     .Select(item => item.Trim())
-                                     .ToList();
-
-                var result = new BlendingModifier()
-                {
-                    ResultKey = splitted[0]
-                };
-
-                for (int i = 1; i < splitted.Count; i++)
-                    result.InputKeys.Add(splitted[i]);
-
-                return result;
+                return BlendingModifier.ParseExpression((String)value);
             }
+        }
+
+        private static readonly char[] _separators = new char[] { '=', '+' };
+
+        /// <summary>
+        /// Parsed and filled an instance of <see cref="BlendingModifier"/>
+        /// </summary>
+        /// <example>
+        /// D_Background1Color_ = D_DefaultBackgroundColor_ + D_Step1Color_
+        /// </example>
+        public static BlendingModifier ParseExpression(String expression)
+        {
+            var result = new BlendingModifier();
+
+            if (String.IsNullOrWhiteSpace(expression))
+                return result;
+
+            var splitted = expression.Split(_separators, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+
+            result.ResultKey = splitted[0];
+
+            for (int i = 1; i < splitted.Length; i++)
+                result.InputKeys.Add(splitted[i]);
+
+            return result;
         }
 
         protected override object InternalModify(IList<object> values)

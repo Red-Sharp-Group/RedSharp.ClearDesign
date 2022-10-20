@@ -25,21 +25,24 @@ namespace RedSharp.ClearDesign.Utils
             _addOwnerMethod = typeof(ResourceDictionary).GetTypeInfo().DeclaredMethods.First(item => item.Name.StartsWith("AddOwner"));
         }
 
-        public ResourceNotifier(ResourceSchema schema, ResourceDictionary dictionary, object key)
+        public ResourceNotifier(ResourceSchema schema, object key)
+        {
+            _schema = schema;
+            _key = key;
+        }
+
+        public void Initialize(ResourceDictionary dictionary)
         {
             _addOwnerMethod.Invoke(dictionary, new object[] { this });
 
             lock (_extension)
             {
-                _extension.ResourceKey = key;
+                _extension.ResourceKey = _key;
 
                 Value = _extension.ProvideValue(null);
 
                 _extension.ResourceKey = string.Empty;
             }
-
-            _schema = schema;
-            _key = key;
         }
 
         public object Value

@@ -1,12 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <RootNamespace>RedSharp.ClearDesign</RootNamespace>
   </PropertyGroup>
 
+  <Import Project="$(ProjectDir)..\Definitions.props" />
+  
   <ItemGroup>
     <None Remove="Resources\Fonts\OpenSans\OpenSans-Bold.ttf" />
     <None Remove="Resources\Fonts\OpenSans\OpenSans-BoldItalic.ttf" />
@@ -36,11 +37,6 @@
     <None Remove="Resources\Fonts\Roboto\Roboto-Regular.ttf" />
     <None Remove="Resources\Fonts\Roboto\Roboto-Thin.ttf" />
     <None Remove="Resources\Fonts\Roboto\Roboto-ThinItalic.ttf" />
-    <None Remove="Resources\Images\ApplicationLogo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\RedSharp.ClearDesign.Shared\RedSharp.ClearDesign.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,7 +68,6 @@
     <Resource Include="Resources\Fonts\Roboto\Roboto-Regular.ttf" />
     <Resource Include="Resources\Fonts\Roboto\Roboto-Thin.ttf" />
     <Resource Include="Resources\Fonts\Roboto\Roboto-ThinItalic.ttf" />
-    <Resource Include="Resources\Images\ApplicationLogo.png" />
   </ItemGroup>
 
 </Project>

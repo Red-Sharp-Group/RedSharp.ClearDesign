@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using RedSharp.ClearDesign.Shared.Interfaces;
+using RedSharp.ClearDesign.Wpf.Interfaces;
 
-namespace RedSharp.ClearDesign.Shared.Abstracts
+namespace RedSharp.ClearDesign.Wpf.Abstracts
 {
     public abstract class MultiInputModifierBase : IResourceModifier
     {
@@ -19,36 +19,17 @@ namespace RedSharp.ClearDesign.Shared.Abstracts
                 return base.CanConvertFrom(context, sourceType);
             }
 
-            public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
-            {
-                if (destinationType == typeof(string))
-                    return true;
-
-                return base.CanConvertTo(context, destinationType);
-            }
-
             public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
             {
-                if (value == null)
+                if (value == null || !(value is string))
                     throw GetConvertFromException(value);
 
-                string source = value as string;
-
-                if (source == null)
+                if (value == null)
                     return base.ConvertFrom(context, culture, value);
 
-                return value.ToString()
-                            .Split(',')
-                            .Select(item => (object)item.Trim())
-                            .ToList();
-            }
-
-            public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
-            {
-                if (value == null)
-                    return base.ConvertTo(context, culture, value, destinationType);
-
-                return string.Join(", ", ((IEnumerable<object>)value).Select(item => item.ToString()));
+                return ((String)value).Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
+                                      .Cast<object>()
+                                      .ToList();
             }
         }
 

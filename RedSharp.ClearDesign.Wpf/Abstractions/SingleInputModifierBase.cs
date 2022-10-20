@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using RedSharp.ClearDesign.Shared.Interfaces;
+using RedSharp.ClearDesign.Wpf.Interfaces;
 
-namespace RedSharp.ClearDesign.Shared.Abstracts
+namespace RedSharp.ClearDesign.Wpf.Abstracts
 {
     public abstract class SingleInputModifierBase : IResourceModifier
     {

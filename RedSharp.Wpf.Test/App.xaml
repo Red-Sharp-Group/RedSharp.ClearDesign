@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:RedSharp.Wpf.Test"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/RedSharp.ClearDesign.Wpf;component/General.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
