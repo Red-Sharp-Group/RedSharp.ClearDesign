@@ -1,0 +1,389 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Globalization" #>
+<#@ output extension=".xaml" #>
+<#
+    var defaultBackgroundColor = Color.Parse("#FAFAFA");
+    var primaryBackgroundColor = Color.Parse("#3B99FC");
+    var areasBackgroundColor = Color.Parse("#1F000000");
+
+    var defaultBackgroundColorSet = new Color[5];
+
+    var step = 1.0d / defaultBackgroundColorSet.Length;
+        
+    for(int i = 0; i < defaultBackgroundColorSet.Length; i++)
+        defaultBackgroundColorSet[i] = Normal(MultiplyOpacity(areasBackgroundColor, (i + 1) * step), defaultBackgroundColor);
+
+#>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--#################################################################################################-->
+    <!--BACKGROUND COLORS-->
+
+    <SolidColorBrush x:Key="BrushPrimaryBackground"><#=primaryBackgroundColor#></SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDefaultBackground"><#=defaultBackgroundColor#></SolidColorBrush>
+
+
+    <SolidColorBrush x:Key="BrushElementsBackground">#F9F9F9</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushFieldsBackground">#FFFFFF</SolidColorBrush>
+
+
+    <SolidColorBrush x:Key="BrushDisabledBackground">#D7D7D7</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushHighlightBackground">#59000000</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushPanelsBackground"><#=areasBackgroundColor#></SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushSelectedBackground">#4D000000</SolidColorBrush>
+
+
+    <SolidColorBrush x:Key="BrushDefault1Background"><#=defaultBackgroundColorSet[0]#></SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDefault2Background"><#=defaultBackgroundColorSet[1]#></SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDefault3Background"><#=defaultBackgroundColorSet[2]#></SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDefault4Background"><#=defaultBackgroundColorSet[3]#></SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDefault5Background"><#=defaultBackgroundColorSet[4]#></SolidColorBrush>
+
+    <!--#################################################################################################-->
+    <!--FOREGROUND COLORS-->
+    
+    <SolidColorBrush x:Key="BrushPrimaryForeground">#FAFAFA</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDefaultForeground">#232526</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDisabledForeground">#232526</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushSubtitleForeground">#797979</SolidColorBrush>
+
+    <!--#################################################################################################-->
+    <!--BORDER COLORS-->
+
+    <SolidColorBrush x:Key="BrushPrimaryBorder"><#=primaryBackgroundColor#></SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDefaultBorder">#1A000000</SolidColorBrush>
+
+
+    <SolidColorBrush x:Key="BrushElementsBorder">#1D000000</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushPanelsBorder">#40FFFFFF</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushSelectedBorder"><#=Overlay("#40000000", primaryBackgroundColor)#></SolidColorBrush>
+
+
+
+    <SolidColorBrush x:Key="BrushFocusedBorder"><#=Normal("#40FFFFFF", primaryBackgroundColor)#></SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushErrorBorder"><#=Normal("#40FFFFFF", "#F54343")#></SolidColorBrush>
+
+</ResourceDictionary>
+<#+
+    public struct Color
+    {
+        public byte R;
+        public byte G;
+        public byte B;
+        public byte A;
+    
+        public static implicit operator Color(string operand) => Color.Parse(operand);
+
+        public override string ToString()
+        {
+            if (A == 255)
+                return $"#{R.ToString("X2")}{G.ToString("X2")}{B.ToString("X2")}";
+            else
+                return $"#{A.ToString("X2")}{R.ToString("X2")}{G.ToString("X2")}{B.ToString("X2")}";
+        }
+    
+        public static Color Parse(string hex)
+        {
+            hex = hex.TrimStart('#');
+    
+            if (hex.Length != 6 && hex.Length != 8)
+                throw new Exception("Invalid HEX color");
+    
+            var red = byte.MaxValue;
+            var green = byte.MaxValue;
+            var blue = byte.MaxValue;
+
+            var alpha = byte.MaxValue;
+
+            if (hex.Length != 6)
+            {
+                alpha = byte.Parse(hex.Substring(0, 2), NumberStyles.HexNumber);
+
+                red = byte.Parse(hex.Substring(2, 2), NumberStyles.HexNumber);
+                green = byte.Parse(hex.Substring(4, 2), NumberStyles.HexNumber);
+                blue = byte.Parse(hex.Substring(6, 2), NumberStyles.HexNumber);
+            }
+            else
+            {
+                red = byte.Parse(hex.Substring(0, 2), NumberStyles.HexNumber);
+                green = byte.Parse(hex.Substring(2, 2), NumberStyles.HexNumber);
+                blue = byte.Parse(hex.Substring(4, 2), NumberStyles.HexNumber);
+            }
+    
+            return new Color()
+            {
+                R = red,
+                G = green,
+                B = blue,
+                A = alpha
+            };
+        }
+
+        public static Color FromArgb(byte a, byte r, byte g, byte b)
+        {
+            return new Color()
+            {
+                R = r,
+                G = g,
+                B = b,
+                A = a
+            };
+        }
+    }
+
+    
+    public static Color Normal(Color top, Color bottom)
+    {
+        return AlphaBlending(bottom, top);
+    }
+
+    //=========================================================================//
+    //Darken +
+    //Multiply +
+    //Color burn +
+        
+    public static Color Darken(Color top, Color bottom)
+    {
+        return Color.FromArgb(DarkenChannel(top.A, bottom.A),
+                              DarkenChannel(top.R, bottom.R),
+                              DarkenChannel(top.G, bottom.G),
+                              DarkenChannel(top.B, bottom.B));
+    }
+        
+    public static Color Multiply(Color top, Color bottom)
+    {
+        return Color.FromArgb(MultiplyChannel(top.A, bottom.A),
+                              MultiplyChannel(top.R, bottom.R),
+                              MultiplyChannel(top.G, bottom.G),
+                              MultiplyChannel(top.B, bottom.B));
+    }
+        
+    public static Color ColorBurn(Color top, Color bottom)
+    {
+        return Color.FromArgb(ColorBurnChannel(top.A, bottom.A),
+                              ColorBurnChannel(top.R, bottom.R),
+                              ColorBurnChannel(top.G, bottom.G),
+                              ColorBurnChannel(top.B, bottom.B));
+    }
+
+    //=========================================================================//
+    //Lighten +
+    //Screen +
+    //Color dodge + 
+        
+    public static Color Lighten(Color top, Color bottom)
+    {
+        return Color.FromArgb(LightenChannel(top.A, bottom.A),
+                              LightenChannel(top.R, bottom.R),
+                              LightenChannel(top.G, bottom.G),
+                              LightenChannel(top.B, bottom.B));
+    }
+        
+    public static Color Screen(Color top, Color bottom)
+    {
+        return Color.FromArgb(ScreenChannel(top.A, bottom.A),
+                              ScreenChannel(top.R, bottom.R),
+                              ScreenChannel(top.G, bottom.G),
+                              ScreenChannel(top.B, bottom.B));
+    }
+        
+    public static Color ColorDodge(Color top, Color bottom)
+    {
+        return Color.FromArgb(ColorDodgeChannel(top.A, bottom.A),
+                              ColorDodgeChannel(top.R, bottom.R),
+                              ColorDodgeChannel(top.G, bottom.G),
+                              ColorDodgeChannel(top.B, bottom.B));
+    }
+
+    //=========================================================================//
+    //Overlay +
+    //Soft light +
+    //Hard light +
+        
+    public static Color Overlay(Color top, Color bottom)
+    {
+        var result = Color.FromArgb(top.A,
+                                    OverlayChannel(top.R, bottom.R),
+                                    OverlayChannel(top.G, bottom.G),
+                                    OverlayChannel(top.B, bottom.B));
+
+        return AlphaBlending(bottom, result);
+    }
+        
+    public static Color SoftLight(Color top, Color bottom)
+    {
+        return Color.FromArgb(SoftLightChannel(bottom.A, top.A),
+                              SoftLightChannel(bottom.R, top.R),
+                              SoftLightChannel(bottom.G, top.G),
+                              SoftLightChannel(bottom.B, top.B));
+    }
+        
+    public static Color HardLight(Color top, Color bottom)
+    {
+        return Color.FromArgb(OverlayChannel(bottom.A, top.A),
+                              OverlayChannel(bottom.R, top.R),
+                              OverlayChannel(bottom.G, top.G),
+                              OverlayChannel(bottom.B, top.B));
+    }
+
+    //=========================================================================//
+    //Hue
+    //Saturation
+    //Color
+    //Luminosity
+        
+    private static byte DarkenChannel(byte a, byte b)
+    {
+        return Math.Min(a, b);
+    }
+        
+    private static byte MultiplyChannel(byte a, byte b)
+    {
+        var value = ToFloat(a) * ToFloat(b);
+
+        return FromFloat(value);
+    }
+        
+    private static byte ColorBurnChannel(byte a, byte b)
+    {
+        var value = 1f - ((1f - ToFloat(b)) / ToFloat(a));
+
+        return FromFloat(value);
+    }
+        
+    private static byte ScreenChannel(byte a, byte b)
+    {
+        var value = 1f - (1f - ToFloat(a)) * (1f - ToFloat(b));
+
+        return FromFloat(value);
+    }
+        
+    private static byte ColorDodgeChannel(byte a, byte b)
+    {
+        var value = ToFloat(b) / (1f - ToFloat(a));
+
+        return FromFloat(value);
+    }
+        
+    private static byte LightenChannel(byte a, byte b)
+    {
+        return Math.Max(a, b);
+    }
+    
+    private static byte OverlayChannel(byte a, byte b)
+    {
+        var floatA = ToFloat(a);
+        var floatB = ToFloat(b);
+
+        var value = default(float);
+
+        if (floatB <= 0.5f)
+        {
+            value = 2f * floatA * floatB;
+        }
+        else
+        {
+            value = 1f - 2f * (1f - floatA) * (1f - floatB);
+        }
+
+        return FromFloat(value);
+    }
+    
+    private static byte SoftLightChannel(byte a, byte b)
+    {
+        var floatA = ToFloat(a);
+        var floatB = ToFloat(b);
+
+        var value = default(float);
+
+        if (floatA <= 0.5f)
+        {
+            value = (2f * floatA - 1f) * (floatB - floatB * floatB) + floatB;
+        }
+        else
+        {
+            value = (2f * floatA - 1f) * ((float)Math.Sqrt(floatB) - floatB) + floatB;
+        }
+
+        return FromFloat(value);
+    }
+    
+    public static float ToFloat(byte value)
+    {
+        return (float)value / byte.MaxValue;
+    }
+        
+    public static byte FromFloat(float value)
+    {
+        return (byte)Math.Min(Math.Max(value * byte.MaxValue, 0), byte.MaxValue);
+    }
+    
+    public static Color MultiplyOpacity(Color input, double opacity)
+    {
+        var alpha = (byte)Math.Min(Math.Round(input.A * opacity), byte.MaxValue);
+
+        return Color.FromArgb(alpha, input.R, input.G, input.B);
+    }
+    
+    public static Color AlphaBlending(Color background, Color foreground)
+    {
+        var alphaF = (float)foreground.A / byte.MaxValue;
+        var alphaB = (float)background.A / byte.MaxValue;
+
+        var resultColor = SumColor(MultiplyColor(foreground, alphaF), MultiplyColor(background, (1 - alphaF) * alphaB));
+
+        var resultAlpha = (byte)((alphaF + (1 - alphaF) * alphaB) * byte.MaxValue);
+
+        return Color.FromArgb(resultAlpha, resultColor.R, resultColor.G, resultColor.B);
+    }
+        
+    public static Color SumColor(Color first, Color second)
+    {
+        var alpha = SumChannel(first.A, second.A);
+        var red = SumChannel(first.R, second.R);
+        var green = SumChannel(first.G, second.G);
+        var blue = SumChannel(first.B, second.B);
+
+        return Color.FromArgb(alpha, red, green, blue);
+    }
+    
+    public static Color MultiplyColor(Color input, float coefficient)
+    {
+        var alpha = MultiplyChannel(input.A, coefficient);
+        var red = MultiplyChannel(input.R, coefficient);
+        var green = MultiplyChannel(input.G, coefficient);
+        var blue = MultiplyChannel(input.B, coefficient);
+
+        return Color.FromArgb(alpha, red, green, blue);
+    }
+    
+    private static byte SumChannel(byte first, byte second)
+    {
+        return (byte)Math.Min(first + second, byte.MaxValue);
+    }
+    
+    private static byte MultiplyChannel(byte channel, float coefficient)
+    {
+        return (byte)Math.Ceiling(channel * coefficient);
+    }
+#>

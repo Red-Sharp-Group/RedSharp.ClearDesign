@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="http://red-sharp.org/clear-design/controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Definitions/Brushes.xaml"/>
+        <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+    <ControlTemplate x:Key="ValidationDefault"
+                     TargetType="{x:Type Control}">
+        <controls:AdornedPlaceholder CornerRadius="{DynamicResource SizeDefaultRadiusAll}"
+                                     UseLayoutRounding="True"
+                                     SnapsToDevicePixels="False">
+            <controls:RoundBorder BorderBrush="{DynamicResource BrushErrorBorder}"
+                                  BorderThickness="{DynamicResource SizeFocusedBorderAll}"
+                                  CornerRadius="{Binding RelativeSource={RelativeSource AncestorType=controls:AdornedPlaceholder}, Path=ActualCornerRadius}"
+                                  UseOuterCornerRadius="True"/>
+        </controls:AdornedPlaceholder>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ValidationDefaultOutstanding"
+                     TargetType="{x:Type Control}">
+        <controls:AdornedPlaceholder CornerRadius="{DynamicResource SizeDefaultRadiusAll}"
+                                     UseLayoutRounding="True"
+                                     SnapsToDevicePixels="False">
+            <controls:RoundBorder BorderBrush="{DynamicResource BrushErrorBorder}"
+                                  BorderThickness="{DynamicResource SizeFocusedBorderAll}"
+                                  Margin="{DynamicResource SizeFocusedMarginAll}"
+                                  CornerRadius="{Binding RelativeSource={RelativeSource AncestorType=controls:AdornedPlaceholder}, Path=ActualCornerRadius}"
+                                  UseOuterCornerRadius="False"/>
+        </controls:AdornedPlaceholder>
+    </ControlTemplate>
+</ResourceDictionary>

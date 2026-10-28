@@ -1,0 +1,9 @@
+﻿<ResourceDictionary x:Class="RedSharp.ClearDesign.Wpf.GoogleFonts.GoogleFontsDictionary"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <FontFamily x:Key="FontHeader">Resources/Fonts/Roboto/#Roboto</FontFamily>
+    <FontFamily x:Key="FontText">Resources/Fonts/Roboto/#Roboto</FontFamily>
+    <FontFamily x:Key="FontCode">Resources/Fonts/RobotoMono/#RobotoMono</FontFamily>
+    <FontFamily x:Key="FontQuote">Resources/Fonts/Caveat/#Caveat</FontFamily>
+</ResourceDictionary>

@@ -1,0 +1,16 @@
+﻿<Application x:Class="RedSharp.ClearDesign.Wpf.Test.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:RedSharp.ClearDesign.Wpf.Test"
+             xmlns:style="http://red-sharp.org/clear-design/style"
+             xmlns:fonts="http://red-sharp.org/clear-design/fonts"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <style:MergedStyleDictionary/>
+                <fonts:GoogleFontsDictionary/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,44 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:utils="http://red-sharp.org/clear-design/utils">
+
+    <utils:DoubleAnimationDescription x:Key="AnimationDescriptionHovered"
+                                      TargetProperty="(utils:Highlight.Opacity)"
+                                      From="0.0"
+                                      To="0.3"
+                                      Duration="0:0:0.075"/>
+
+    <utils:DoubleAnimationDescription x:Key="AnimationDescriptionPressed"
+                                      TargetProperty="(utils:Highlight.Opacity)"
+                                      From="0.3"
+                                      To="0.5"
+                                      Duration="0:0:0.075"/>
+
+    <utils:DoubleAnimationDescription x:Key="AnimationDescriptionSelected"
+                                      TargetProperty="(utils:Selection.Opacity)"
+                                      From="0.0"
+                                      To="1.0"
+                                      Duration="0:0:0.075"/>
+    
+    <!--<BeginStoryboard x:Key="AnimationHighlightToggledEnterAnimation"
+                     x:Shared="false">
+        <Storyboard>
+            <DoubleAnimation Storyboard.TargetProperty="(utils:Highlight.Opacity)"
+                             To="0.30" 
+                             Duration="0:0:0.075" 
+                             AutoReverse="False"/>
+        </Storyboard>
+    </BeginStoryboard>
+
+    <BeginStoryboard x:Key="AnimationHighlightToggledExitAnimation"
+                     x:Shared="false">
+        <Storyboard>
+            <DoubleAnimation Storyboard.TargetProperty="(utils:Highlight.Opacity)"
+                             To="0.30" 
+                             Duration="0:0:0.075" 
+                             AutoReverse="False"
+                             FillBehavior="Stop"/>
+        </Storyboard>
+    </BeginStoryboard>-->
+
+</ResourceDictionary>

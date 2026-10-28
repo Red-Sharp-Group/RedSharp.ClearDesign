@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="RedSharp.Avalonia.Test/RedSharp.Avalonia.Test.csproj" />
+  <Project Path="RedSharp.ClearDesign.Avalonia/RedSharp.ClearDesign.Avalonia.csproj" />
+  <Project Path="RedSharp.ClearDesign.Wpf.Controls/RedSharp.ClearDesign.Wpf.Controls.csproj" />
+  <Project Path="RedSharp.ClearDesign.Wpf.GoogleFonts/RedSharp.ClearDesign.Wpf.GoogleFonts.csproj" />
+  <Project Path="RedSharp.ClearDesign.Wpf.Test/RedSharp.ClearDesign.Wpf.Test.csproj" />
+  <Project Path="RedSharp.ClearDesign.Wpf.Utils/RedSharp.ClearDesign.Wpf.Utils.csproj" />
+  <Project Path="RedSharp.ClearDesign.Wpf/RedSharp.ClearDesign.Wpf.csproj" />
+</Solution>

@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Interop;
-using System.Windows.Media;
 using System.Windows.Shapes;
-using RedSharp.ClearDesign.Extra;
+using RedSharp.ClearDesign.Wpf.Helpers;
 
-namespace RedSharp.ClearDesign.Styles
+namespace RedSharp.ClearDesign.Wpf.Styles
 {
     public partial class Windows : ResourceDictionary
     {
@@ -22,56 +15,44 @@ namespace RedSharp.ClearDesign.Styles
         //but I don't think that your level of magic so high that you can move two windows at the same time
         private Point? _lastPosition;
 
-        private void MinimizeButtonClick(Object sender, RoutedEventArgs arguments)
+        private void MinimizeButtonClick(object sender, RoutedEventArgs arguments)
         {
-            var window = FindParent<Window>(sender as Button);
+            var window = ControlsHelper.FindParent<Window>(sender as Button);
 
             if (window.WindowState != WindowState.Minimized)
                 window.WindowState = WindowState.Minimized;
         }
 
-        private void MaximizeButtonClick(Object sender, RoutedEventArgs arguments)
+        private void MaximizeButtonClick(object sender, RoutedEventArgs arguments)
         {
-            var window = FindParent<Window>(sender as Button);
+            var window = ControlsHelper.FindParent<Window>(sender as Button);
 
             TryMaximizeMinimize(window);
         }
 
-        private void CloseButtonClick(Object sender, RoutedEventArgs arguments)
+        private void CloseButtonClick(object sender, RoutedEventArgs arguments)
         {
-            var window = FindParent<Window>(sender as Button);
+            var window = ControlsHelper.FindParent<Window>(sender as Button);
 
             window.Close();
         }
 
-        private TType FindParent<TType>(DependencyObject child) where TType : DependencyObject
-        {
-            var parent = VisualTreeHelper.GetParent(child);
-
-            if (parent == null)
-                return null;
-            else if (parent is TType)
-                return (TType)parent;
-            else
-                return FindParent<TType>(parent);
-        }
-
-        private void TitleMouseDown(Object sender, MouseButtonEventArgs arguments)
+        private void TitleMouseDown(object sender, MouseButtonEventArgs arguments)
         {
             if (arguments.LeftButton != MouseButtonState.Pressed || arguments.ClickCount != 2)
                 return;
 
-            var window = FindParent<Window>(sender as Rectangle);
+            var window = ControlsHelper.FindParent<Window>(sender as Rectangle);
 
             TryMaximizeMinimize(window);
         }
 
-        private void TitleMouseMove(Object sender, MouseEventArgs arguments)
+        private void TitleMouseMove(object sender, MouseEventArgs arguments)
         {
             if (arguments.LeftButton != MouseButtonState.Pressed)
                 return;
 
-            var window = FindParent<Window>(sender as Rectangle);
+            var window = ControlsHelper.FindParent<Window>(sender as Rectangle);
 
             if (!_lastPosition.HasValue)
             {
@@ -81,8 +62,16 @@ namespace RedSharp.ClearDesign.Styles
             {
                 if (window.WindowState == WindowState.Maximized)
                 {
-                    //TODO this is not ok to move it to zero position.
-                    var windowPosition = new Point(0, 0);
+                    var windowPosition = window.PointToScreen(new Point(0, 0));
+
+                    var source = PresentationSource.FromVisual(window);
+
+                    var dpiX = 96.0 * source.CompositionTarget.TransformToDevice.M11;
+                    var dpiY = 96.0 * source.CompositionTarget.TransformToDevice.M22;
+
+                    windowPosition.X = windowPosition.X * 96.0 / dpiX;
+                    windowPosition.Y = windowPosition.Y * 96.0 / dpiY;
+
                     var windowSize = new Size(window.ActualWidth, window.ActualHeight);
                     var mousePosition = arguments.GetPosition(window);
 
@@ -93,23 +82,20 @@ namespace RedSharp.ClearDesign.Styles
                     var newWindowSize = new Size(window.ActualWidth, window.ActualHeight);
 
                     window.Left = globalMousePosition.X - (mousePosition.X * newWindowSize.Width / windowSize.Width);
-                    window.Top = windowPosition.Y;
+                    window.Top = windowPosition.Y + 7;//this magic number is actually padding that is used in maximized state
                 }
 
                 window.DragMove();
             }
         }
 
-        private void TitleMouseUp(Object sender, MouseButtonEventArgs arguments)
+        private void TitleMouseUp(object sender, MouseButtonEventArgs arguments)
         {
             _lastPosition = null;
         }
 
         private bool TryMaximizeMinimize(Window window)
         {
-            if (WindowsExtra.GetMaximizeVisibility(window) != Visibility.Visible)
-                return false;
-
             if (window.WindowState == WindowState.Normal)
                 window.WindowState = WindowState.Maximized;
             else

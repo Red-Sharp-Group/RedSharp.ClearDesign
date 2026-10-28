@@ -1,0 +1,94 @@
+﻿<Window x:Class="RedSharp.ClearDesign.Wpf.Test.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RedSharp.ClearDesign.Wpf.Test"
+        xmlns:controls="clr-namespace:RedSharp.ClearDesign.Wpf.Controls;assembly=RedSharp.ClearDesign.Wpf"
+        mc:Ignorable="d"
+        Style="{StaticResource WindowDefault}"
+        Background="{DynamicResource BrushDefault2Background}"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ContentControl Grid.Column="1"
+                        Style="{StaticResource PanelRight}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <ToolBarTray Margin="5">
+                    <ToolBar>
+                        <ToggleButton Style="{StaticResource ToggleButtonMenuToolBar}">
+                            bla1
+                        </ToggleButton>
+                        <ToggleButton Style="{StaticResource ToggleButtonMenuToolBar}">
+                            bla2
+                        </ToggleButton>
+                        <ToggleButton Style="{StaticResource ToggleButtonMenuToolBar}">
+                            bla3
+                        </ToggleButton>
+                    </ToolBar>
+                    <ToolBar>
+                        <Button Style="{StaticResource ButtonMenuToolBar}">
+                            bla4
+                        </Button>
+                        <Button Style="{StaticResource ButtonMenuToolBar}">
+                            bla5
+                        </Button>
+                    </ToolBar>
+                    <ToolBar>
+                        <Button Style="{StaticResource ButtonMenuToolBar}">
+                            bla6
+                        </Button>
+                        <Button Style="{StaticResource ButtonMenuToolBar}">
+                            bla7
+                        </Button>
+                    </ToolBar>
+                </ToolBarTray>
+
+                <!--<Grid Grid.Row="2">
+                    <Path Data="M22 10H20.6562C19.5957 10 18.5781 9.57861 17.8281 8.82837L11 2L4.17188 8.82837C3.4209 9.57861 2.4043 10 1.34277 10H0"
+                          Stroke="Black"
+                          StrokeThickness="4"
+                          VerticalAlignment="Top"/>
+                    <Path Data="M11 2L17.8281 8.82837C18.5781 9.57861 19.5957 10 20.6562 10H22V17.5H0V10H1.34277C2.4043 10 3.4209 9.57861 4.17188 8.82837L11 2Z"
+                          Fill="Gray"
+                          VerticalAlignment="Top"
+                          x:Name="ClipShape"/>
+                    <Path Data="M22 10H20.6562C19.5957 10 18.5781 9.57861 17.8281 8.82837L11 2L4.17188 8.82837C3.4209 9.57861 2.4043 10 1.34277 10H0"
+                          Stroke="Red"
+                          StrokeThickness="4"
+                          VerticalAlignment="Top">
+                        <Path.Clip>
+                            <PathGeometry Figures="M11 2L17.8281 8.82837C18.5781 9.57861 19.5957 10 20.6562 10H22V17.5H0V10H1.34277C2.4043 10 3.4209 9.57861 4.17188 8.82837L11 2Z"/>
+                        </Path.Clip>
+                    </Path>
+                </Grid>-->
+
+                <ToggleButton Grid.Row="2">
+                    Bla
+                </ToggleButton>
+
+                
+                <StackPanel Grid.Row="3"
+                            HorizontalAlignment="Center"
+                            Orientation="Vertical"
+                            Margin="10">
+                    <CheckBox Content="CheckBox 1"/>
+                    <CheckBox Content="CheckBox 2" IsThreeState="True"/>
+                    <CheckBox Style="{StaticResource CheckBoxRadioButton}" Content="RadioButton 3" IsThreeState="True"/>
+                    <CheckBox Style="{StaticResource CheckboxSwitch}" Content="SwitchBox 4"/>
+                </StackPanel>
+            </Grid>
+        </ContentControl>
+    </Grid>
+</Window>

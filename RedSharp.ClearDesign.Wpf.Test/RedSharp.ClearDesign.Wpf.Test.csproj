@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RedSharp.ClearDesign.Wpf.Controls\RedSharp.ClearDesign.Wpf.Controls.csproj" />
+    <ProjectReference Include="..\RedSharp.ClearDesign.Wpf.GoogleFonts\RedSharp.ClearDesign.Wpf.GoogleFonts.csproj" />
+    <ProjectReference Include="..\RedSharp.ClearDesign.Wpf.Utils\RedSharp.ClearDesign.Wpf.Utils.csproj" />
+    <ProjectReference Include="..\RedSharp.ClearDesign.Wpf\RedSharp.ClearDesign.Wpf.csproj" />
+  </ItemGroup>
+
+</Project>

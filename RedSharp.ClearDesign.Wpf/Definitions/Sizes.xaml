@@ -1,128 +1,298 @@
-﻿<ResourceDictionary x:Class="Tkx.Lps.Client.Theme.Definitions.Sizes"
-                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:RedSharp.ClearDesign.Definitions"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils"
-                    xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers">
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <!--#################################################################################################-->
+    <!--UI ELEMENT DEFAULT SIZES-->
+
+    <system:Double x:Key="SizeDefaultMinHeight">30</system:Double>
+    <system:Double x:Key="SizeDefaultMinWidth">120</system:Double>
+ 
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <system:Double x:Key="SizeDefaultBorder">1</system:Double>
+
+    <Thickness x:Key="SizeDefaultBorderAll">1</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultBorderLeft">1,0,0,0</Thickness>
+    <Thickness x:Key="SizeDefaultBorderTop">0,1,0,0</Thickness>
+    <Thickness x:Key="SizeDefaultBorderRight">0,0,1,0</Thickness>
+    <Thickness x:Key="SizeDefaultBorderBottom">0,0,0,1</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultBorderLeftRight">1,0</Thickness>
+    <Thickness x:Key="SizeDefaultBorderTopBottom">0,1</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultBorderLeftTop">1,1,0,0</Thickness>
+    <Thickness x:Key="SizeDefaultBorderLeftBottom">1,0,0,1</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultBorderRightTop">0,1,1,0</Thickness>
+    <Thickness x:Key="SizeDefaultBorderRightBottom">0,0,1,1</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultBorderLeftTopBottom">1,1,1,0</Thickness>
+    <Thickness x:Key="SizeDefaultBorderRightTopBottom">0,1,1,1</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultBorderLeftRightTop">1,1,1,0</Thickness>
+    <Thickness x:Key="SizeDefaultBorderLeftRightBottom">1,0,1,1</Thickness>
+ 
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <system:Double x:Key="SizeDefaultPadding">10</system:Double>
+
+    <Thickness x:Key="SizeDefaultPaddingAll">10</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultPaddingLeft">10,0,0,0</Thickness>
+    <Thickness x:Key="SizeDefaultPaddingTop">0,10,0,0</Thickness>
+    <Thickness x:Key="SizeDefaultPaddingRight">0,0,10,0</Thickness>
+    <Thickness x:Key="SizeDefaultPaddingBottom">0,0,0,10</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultPaddingLeftRight">10,0</Thickness>
+    <Thickness x:Key="SizeDefaultPaddingTopBottom">0,10</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultPaddingLeftTop">10,10,0,0</Thickness>
+    <Thickness x:Key="SizeDefaultPaddingLeftBottom">10,0,0,10</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultPaddingRightTop">0,10,10,0</Thickness>
+    <Thickness x:Key="SizeDefaultPaddingRightBottom">0,0,10,10</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultPaddingLeftTopBottom">10,10,10,0</Thickness>
+    <Thickness x:Key="SizeDefaultPaddingRightTopBottom">0,10,10,10</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultPaddingLeftRightTop">10,10,10,0</Thickness>
+    <Thickness x:Key="SizeDefaultPaddingLeftRightBottom">10,0,10,10</Thickness>
+ 
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <system:Double x:Key="SizeDefaultMargin">5</system:Double>
+
+    <Thickness x:Key="SizeDefaultMarginAll">5</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultMarginLeft">5,0,0,0</Thickness>
+    <Thickness x:Key="SizeDefaultMarginTop">0,5,0,0</Thickness>
+    <Thickness x:Key="SizeDefaultMarginRight">0,0,5,0</Thickness>
+    <Thickness x:Key="SizeDefaultMarginBottom">0,0,0,5</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultMarginLeftRight">5,0</Thickness>
+    <Thickness x:Key="SizeDefaultMarginTopBottom">0,5</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultMarginLeftTop">5,5,0,0</Thickness>
+    <Thickness x:Key="SizeDefaultMarginLeftBottom">5,0,0,5</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultMarginRightTop">0,5,5,0</Thickness>
+    <Thickness x:Key="SizeDefaultMarginRightBottom">0,0,5,5</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultMarginLeftTopBottom">5,5,5,0</Thickness>
+    <Thickness x:Key="SizeDefaultMarginRightTopBottom">0,5,5,5</Thickness>
+ 
+    <Thickness x:Key="SizeDefaultMarginLeftRightTop">5,5,5,0</Thickness>
+    <Thickness x:Key="SizeDefaultMarginLeftRightBottom">5,0,5,5</Thickness>
+ 
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <system:Double x:Key="SizeDefaultRadius">5</system:Double>
+
+    <CornerRadius x:Key="SizeDefaultRadiusAll">5</CornerRadius>
+ 
+    <CornerRadius x:Key="SizeDefaultRadiusLeftTop">5,0,0,0</CornerRadius>
+    <CornerRadius x:Key="SizeDefaultRadiusRightTop">0,5,0,0</CornerRadius>
+    <CornerRadius x:Key="SizeDefaultRadiusLeftBottom">0,0,5,0</CornerRadius>
+    <CornerRadius x:Key="SizeDefaultRadiusRightBottom">0,0,0,5</CornerRadius>
+ 
+    <CornerRadius x:Key="SizeDefaultRadiusLeftTopRightTop">5,5,0,0</CornerRadius>
+    <CornerRadius x:Key="SizeDefaultRadiusLeftBottomRightBottom">0,0,5,5</CornerRadius>
+ 
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <system:Double x:Key="SizePanelRadius">8</system:Double>
+
+    <CornerRadius x:Key="SizePanelRadiusAll">8</CornerRadius>
+ 
+    <CornerRadius x:Key="SizePanelRadiusLeftTop">8,0,0,0</CornerRadius>
+    <CornerRadius x:Key="SizePanelRadiusRightTop">0,8,0,0</CornerRadius>
+    <CornerRadius x:Key="SizePanelRadiusLeftBottom">0,0,8,0</CornerRadius>
+    <CornerRadius x:Key="SizePanelRadiusRightBottom">0,0,0,8</CornerRadius>
+ 
+    <CornerRadius x:Key="SizePanelRadiusLeftTopRightTop">8,8,0,0</CornerRadius>
+    <CornerRadius x:Key="SizePanelRadiusLeftBottomRightBottom">0,0,8,8</CornerRadius>
+ 
+    <!--#################################################################################################-->
+    <!--SELECTION BORDER SIZES-->
+
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <system:Double x:Key="SizeSelectedBorder">2</system:Double>
+
+    <Thickness x:Key="SizeSelectedBorderAll">2</Thickness>
+ 
+    <Thickness x:Key="SizeSelectedBorderLeft">2,0,0,0</Thickness>
+    <Thickness x:Key="SizeSelectedBorderTop">0,2,0,0</Thickness>
+    <Thickness x:Key="SizeSelectedBorderRight">0,0,2,0</Thickness>
+    <Thickness x:Key="SizeSelectedBorderBottom">0,0,0,2</Thickness>
+ 
+    <Thickness x:Key="SizeSelectedBorderLeftRight">2,0</Thickness>
+    <Thickness x:Key="SizeSelectedBorderTopBottom">0,2</Thickness>
+ 
+    <Thickness x:Key="SizeSelectedBorderLeftTop">2,2,0,0</Thickness>
+    <Thickness x:Key="SizeSelectedBorderLeftBottom">2,0,0,2</Thickness>
+ 
+    <Thickness x:Key="SizeSelectedBorderRightTop">0,2,2,0</Thickness>
+    <Thickness x:Key="SizeSelectedBorderRightBottom">0,0,2,2</Thickness>
+ 
+    <Thickness x:Key="SizeSelectedBorderLeftTopBottom">2,2,2,0</Thickness>
+    <Thickness x:Key="SizeSelectedBorderRightTopBottom">0,2,2,2</Thickness>
+ 
+    <Thickness x:Key="SizeSelectedBorderLeftRightTop">2,2,2,0</Thickness>
+    <Thickness x:Key="SizeSelectedBorderLeftRightBottom">2,0,2,2</Thickness>
+ 
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <system:Double x:Key="SizeSelectedMargin">-1</system:Double>
+
+    <Thickness x:Key="SizeSelectedMarginAll">-1</Thickness>
+ 
+    <Thickness x:Key="SizeSelectedMarginLeft">-1,0,0,0</Thickness>
+    <Thickness x:Key="SizeSelectedMarginTop">0,-1,0,0</Thickness>
+    <Thickness x:Key="SizeSelectedMarginRight">0,0,-1,0</Thickness>
+    <Thickness x:Key="SizeSelectedMarginBottom">0,0,0,-1</Thickness>
+ 
+    <Thickness x:Key="SizeSelectedMarginLeftRight">-1,0</Thickness>
+    <Thickness x:Key="SizeSelectedMarginTopBottom">0,-1</Thickness>
+ 
+    <Thickness x:Key="SizeSelectedMarginLeftTop">-1,-1,0,0</Thickness>
+    <Thickness x:Key="SizeSelectedMarginLeftBottom">-1,0,0,-1</Thickness>
+ 
+    <Thickness x:Key="SizeSelectedMarginRightTop">0,-1,-1,0</Thickness>
+    <Thickness x:Key="SizeSelectedMarginRightBottom">0,0,-1,-1</Thickness>
+ 
+    <Thickness x:Key="SizeSelectedMarginLeftTopBottom">-1,-1,-1,0</Thickness>
+    <Thickness x:Key="SizeSelectedMarginRightTopBottom">0,-1,-1,-1</Thickness>
+ 
+    <Thickness x:Key="SizeSelectedMarginLeftRightTop">-1,-1,-1,0</Thickness>
+    <Thickness x:Key="SizeSelectedMarginLeftRightBottom">-1,0,-1,-1</Thickness>
+ 
+    <!--#################################################################################################-->
+    <!--ERROR BORDER SIZES-->
+
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <system:Double x:Key="SizeErrorBorder">3</system:Double>
+
+    <Thickness x:Key="SizeErrorBorderAll">3</Thickness>
+ 
+    <Thickness x:Key="SizeErrorBorderLeft">3,0,0,0</Thickness>
+    <Thickness x:Key="SizeErrorBorderTop">0,3,0,0</Thickness>
+    <Thickness x:Key="SizeErrorBorderRight">0,0,3,0</Thickness>
+    <Thickness x:Key="SizeErrorBorderBottom">0,0,0,3</Thickness>
+ 
+    <Thickness x:Key="SizeErrorBorderLeftRight">3,0</Thickness>
+    <Thickness x:Key="SizeErrorBorderTopBottom">0,3</Thickness>
+ 
+    <Thickness x:Key="SizeErrorBorderLeftTop">3,3,0,0</Thickness>
+    <Thickness x:Key="SizeErrorBorderLeftBottom">3,0,0,3</Thickness>
+ 
+    <Thickness x:Key="SizeErrorBorderRightTop">0,3,3,0</Thickness>
+    <Thickness x:Key="SizeErrorBorderRightBottom">0,0,3,3</Thickness>
+ 
+    <Thickness x:Key="SizeErrorBorderLeftTopBottom">3,3,3,0</Thickness>
+    <Thickness x:Key="SizeErrorBorderRightTopBottom">0,3,3,3</Thickness>
+ 
+    <Thickness x:Key="SizeErrorBorderLeftRightTop">3,3,3,0</Thickness>
+    <Thickness x:Key="SizeErrorBorderLeftRightBottom">3,0,3,3</Thickness>
+ 
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <system:Double x:Key="SizeErrorMargin">-2</system:Double>
+
+    <Thickness x:Key="SizeErrorMarginAll">-2</Thickness>
+ 
+    <Thickness x:Key="SizeErrorMarginLeft">-2,0,0,0</Thickness>
+    <Thickness x:Key="SizeErrorMarginTop">0,-2,0,0</Thickness>
+    <Thickness x:Key="SizeErrorMarginRight">0,0,-2,0</Thickness>
+    <Thickness x:Key="SizeErrorMarginBottom">0,0,0,-2</Thickness>
+ 
+    <Thickness x:Key="SizeErrorMarginLeftRight">-2,0</Thickness>
+    <Thickness x:Key="SizeErrorMarginTopBottom">0,-2</Thickness>
+ 
+    <Thickness x:Key="SizeErrorMarginLeftTop">-2,-2,0,0</Thickness>
+    <Thickness x:Key="SizeErrorMarginLeftBottom">-2,0,0,-2</Thickness>
+ 
+    <Thickness x:Key="SizeErrorMarginRightTop">0,-2,-2,0</Thickness>
+    <Thickness x:Key="SizeErrorMarginRightBottom">0,0,-2,-2</Thickness>
+ 
+    <Thickness x:Key="SizeErrorMarginLeftTopBottom">-2,-2,-2,0</Thickness>
+    <Thickness x:Key="SizeErrorMarginRightTopBottom">0,-2,-2,-2</Thickness>
+ 
+    <Thickness x:Key="SizeErrorMarginLeftRightTop">-2,-2,-2,0</Thickness>
+    <Thickness x:Key="SizeErrorMarginLeftRightBottom">-2,0,-2,-2</Thickness>
+ 
+    <!--#################################################################################################-->
+    <!--FOCUS BORDER SIZES-->
+
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <system:Double x:Key="SizeFocusedBorder">3</system:Double>
+
+    <Thickness x:Key="SizeFocusedBorderAll">3</Thickness>
+ 
+    <Thickness x:Key="SizeFocusedBorderLeft">3,0,0,0</Thickness>
+    <Thickness x:Key="SizeFocusedBorderTop">0,3,0,0</Thickness>
+    <Thickness x:Key="SizeFocusedBorderRight">0,0,3,0</Thickness>
+    <Thickness x:Key="SizeFocusedBorderBottom">0,0,0,3</Thickness>
+ 
+    <Thickness x:Key="SizeFocusedBorderLeftRight">3,0</Thickness>
+    <Thickness x:Key="SizeFocusedBorderTopBottom">0,3</Thickness>
+ 
+    <Thickness x:Key="SizeFocusedBorderLeftTop">3,3,0,0</Thickness>
+    <Thickness x:Key="SizeFocusedBorderLeftBottom">3,0,0,3</Thickness>
+ 
+    <Thickness x:Key="SizeFocusedBorderRightTop">0,3,3,0</Thickness>
+    <Thickness x:Key="SizeFocusedBorderRightBottom">0,0,3,3</Thickness>
+ 
+    <Thickness x:Key="SizeFocusedBorderLeftTopBottom">3,3,3,0</Thickness>
+    <Thickness x:Key="SizeFocusedBorderRightTopBottom">0,3,3,3</Thickness>
+ 
+    <Thickness x:Key="SizeFocusedBorderLeftRightTop">3,3,3,0</Thickness>
+    <Thickness x:Key="SizeFocusedBorderLeftRightBottom">3,0,3,3</Thickness>
+ 
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <system:Double x:Key="SizeFocusedMargin">-2</system:Double>
+
+    <Thickness x:Key="SizeFocusedMarginAll">-2</Thickness>
+ 
+    <Thickness x:Key="SizeFocusedMarginLeft">-2,0,0,0</Thickness>
+    <Thickness x:Key="SizeFocusedMarginTop">0,-2,0,0</Thickness>
+    <Thickness x:Key="SizeFocusedMarginRight">0,0,-2,0</Thickness>
+    <Thickness x:Key="SizeFocusedMarginBottom">0,0,0,-2</Thickness>
+ 
+    <Thickness x:Key="SizeFocusedMarginLeftRight">-2,0</Thickness>
+    <Thickness x:Key="SizeFocusedMarginTopBottom">0,-2</Thickness>
+ 
+    <Thickness x:Key="SizeFocusedMarginLeftTop">-2,-2,0,0</Thickness>
+    <Thickness x:Key="SizeFocusedMarginLeftBottom">-2,0,0,-2</Thickness>
+ 
+    <Thickness x:Key="SizeFocusedMarginRightTop">0,-2,-2,0</Thickness>
+    <Thickness x:Key="SizeFocusedMarginRightBottom">0,0,-2,-2</Thickness>
+ 
+    <Thickness x:Key="SizeFocusedMarginLeftTopBottom">-2,-2,-2,0</Thickness>
+    <Thickness x:Key="SizeFocusedMarginRightTopBottom">0,-2,-2,-2</Thickness>
+ 
+    <Thickness x:Key="SizeFocusedMarginLeftRightTop">-2,-2,-2,0</Thickness>
+    <Thickness x:Key="SizeFocusedMarginLeftRightBottom">-2,0,-2,-2</Thickness>
+ 
+    <!--#################################################################################################-->
+    <!--TEXT SIZES-->
+
+    <system:Double x:Key="SizeHeader1">26</system:Double>     
+    <system:Double x:Key="SizeHeader2">22</system:Double>    
+    <system:Double x:Key="SizeHeader3">16</system:Double>    
+    <system:Double x:Key="SizeHeader4">14</system:Double>    
+    <system:Double x:Key="SizeHeader5">13</system:Double>
+    <system:Double x:Key="SizeHeader6">12</system:Double>
+
+    <system:Double x:Key="SizeText">12</system:Double>
+    <system:Double x:Key="SizeCode">12</system:Double>
+    <system:Double x:Key="SizeQuote">14</system:Double>
 
     <!--#################################################################################################-->
-    <!--SIZES DEFINITIONS-->
-    <!--The next set of sizes is all sizes that used in the application on they are basic for another sizes.-->
-    <!--If you want to modify your theme you have to change only that sizes.-->
+    <!--TEXT WEIGHTS-->
 
-    <system:Double x:Key="D_DefaultHeight_">30</system:Double>
-    <system:Double x:Key="D_DefaultWidth_">120</system:Double>
-
-    <system:Double x:Key="D_DefaultToggleHeight_">14</system:Double>
-
-    <system:Double x:Key="D_DefaultMargin_">5</system:Double>
-    <system:Double x:Key="D_DefaultPadding_">8</system:Double>
-
-    <system:Double x:Key="D_DefaultBorder_">1</system:Double>
-    <system:Double x:Key="D_DefaultFocus_">3</system:Double>
-
-    <system:Double x:Key="D_DefaultAccentHoverOpacity_">0.15</system:Double>
-    <system:Double x:Key="D_DefaultAccentPressedOpacity_">0.25</system:Double>
-
-    <!--#################################################################################################-->
-    <!--COMPUTED SIZES-->
-    <!--All next sizes has to be computed using the sizes above.-->
-
-    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-    <!--COMPUTED SIZES-->
-
-
-    <!--COMPUTED: D_DefaultBorder_ - D_DefaultFocus_-->
-    <utils:DelegateModifier x:Key="D_OutstandingFocusModifier_"
-                            ResultKey="D_OutstandingFocus_"
-                            InputKeys="D_DefaultBorder_, D_DefaultFocus_"
-                            Delegate="{x:Static local:Sizes.OutstandingFocus}"/>
-
-    <system:Double x:Key="D_OutstandingFocus_">-2</system:Double>
-
-    <!--COMPUTED: D_DefaultToggleHeight_ + 2 * D_DefaultBorder_-->
-    <utils:DelegateModifier x:Key="D_RoundToggleHeightModifier_"
-                            ResultKey="D_RoundToggleHeight_"
-                            InputKeys="D_DefaultToggleHeight_, D_DefaultBorder_"
-                            Delegate="{x:Static local:Sizes.RoundToggleHeight}"/>
-
-    <system:Double x:Key="D_RoundToggleHeight_">16</system:Double>
-
-    <!--COMPUTED: D_DefaultToggleHeight_ * 2-->
-    <utils:DelegateModifier x:Key="D_SwitchToggleWidthModifier_"
-                            ResultKey="D_SwitchToggleWidth_"
-                            InputKeys="D_DefaultToggleHeight_"
-                            Delegate="{x:Static local:Sizes.SwitchToggleWidth}"/>
-
-    <system:Double x:Key="D_SwitchToggleWidth_">28</system:Double>
-
-    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-    <!--MARGINS-->
-
-
-    <!--COMPUTED: Thickness(1) * D_DefaultMargin_-->
-    <utils:ThicknessModifier x:Key="D_DefaultMarginThicknessFullModifier_">D_DefaultMarginThicknessFull_ = D_DefaultMargin_ (1)</utils:ThicknessModifier>
-    <Thickness x:Key="D_DefaultMarginThicknessFull_">5</Thickness>
-
-    <!--COMPUTED: Thickness(1,0) * D_DefaultMargin_-->
-    <utils:ThicknessModifier x:Key="D_DefaultMarginThicknessLeftRightModifier_">D_DefaultMarginThicknessLeftRight_ = D_DefaultMargin_ (1,0)</utils:ThicknessModifier>
-    <Thickness x:Key="D_DefaultMarginThicknessLeftRight_">5,0</Thickness>
-
-    <!--COMPUTED: Thickness(0,1) * D_DefaultMargin_-->
-    <utils:ThicknessModifier x:Key="D_DefaultMarginThicknessTopBottomModifier_">D_DefaultMarginThicknessTopBottom_ = D_DefaultMargin_ (0,1)</utils:ThicknessModifier>
-    <Thickness x:Key="D_DefaultMarginThicknessTopBottom_">0,5</Thickness>
-
-    <!--COMPUTED: Thickness(0,0,1,0) * D_DefaultMargin_-->
-    <utils:ThicknessModifier x:Key="D_DefaultMarginThicknessRightModifier_">D_DefaultMarginThicknessRight_ = D_DefaultMargin_ (0,0,1,0)</utils:ThicknessModifier>
-    <Thickness x:Key="D_DefaultMarginThicknessRight_">0,0,5,0</Thickness>
-
-    <!--COMPUTED: Thickness(1) * D_OutstandingFocus_-->
-    <utils:ThicknessModifier x:Key="D_OutstandingFocusThicknessFullModifier_">D_OutstandingFocusThicknessFull_ = D_OutstandingFocus_ (1)</utils:ThicknessModifier>
-    <Thickness x:Key="D_OutstandingFocusThicknessFull_">-2</Thickness>
-
-    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-    <!--PADDINGS-->
-
-
-    <!--COMPUTED: Thickness(1) * D_DefaultPadding_-->
-    <utils:ThicknessModifier x:Key="D_DefaultPaddingThicknessFullModifier_">D_DefaultPaddingThicknessFull_ = D_DefaultPadding_ (1)</utils:ThicknessModifier>
-    <Thickness x:Key="D_DefaultPaddingThicknessFull_">8</Thickness>
-
-    <!--COMPUTED: Thickness(1,0,0,0) * D_DefaultPadding_-->
-    <utils:ThicknessModifier x:Key="D_DefaultPaddingThicknessLeftModifier_">D_DefaultPaddingThicknessLeft_ = D_DefaultPadding_ (1,0,0,0)</utils:ThicknessModifier>
-    <Thickness x:Key="D_DefaultPaddingThicknessLeft_">8,0,0,0</Thickness>
-
-    <!--COMPUTED: Thickness(1,0) * D_DefaultPadding_-->
-    <utils:ThicknessModifier x:Key="D_DefaultPaddingThicknessLeftRightModifier_">D_DefaultPaddingThicknessLeftRight_ = D_DefaultPadding_ (1,0)</utils:ThicknessModifier>
-    <Thickness x:Key="D_DefaultPaddingThicknessLeftRight_">8,0</Thickness>
-
-    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-    <!--BORDERS-->
-
-
-    <!--COMPUTED: Thickness(1) * D_DefaultBorder_-->
-    <utils:ThicknessModifier x:Key="D_DefaultBorderThicknessFullModifier_">D_DefaultBorderThicknessFull_ = D_DefaultBorder_ (1)</utils:ThicknessModifier>
-    <Thickness x:Key="D_DefaultBorderThicknessFull_">1</Thickness>
-
-    <!--COMPUTED: Thickness(0,1,0,0) * D_DefaultBorder_-->
-    <utils:ThicknessModifier x:Key="D_DefaultBorderThicknessTopModifier_">D_DefaultBorderThicknessTop_ = D_DefaultBorder_ (0,1,0,0)</utils:ThicknessModifier>
-    <Thickness x:Key="D_DefaultBorderThicknessTop_">0,1,0,0</Thickness>
-
-    <!--COMPUTED: Thickness(0,0,0,1) * D_DefaultBorder_-->
-    <utils:ThicknessModifier x:Key="D_DefaultBorderThicknessBottomModifier_">D_DefaultBorderThicknessBottom_ = D_DefaultBorder_ (0,0,0,1)</utils:ThicknessModifier>
-    <Thickness x:Key="D_DefaultBorderThicknessBottom_">0,0,0,1</Thickness>
-
-    <!--COMPUTED: Thickness(1,0) * D_DefaultBorder_-->
-    <utils:ThicknessModifier x:Key="D_DefaultBorderThicknessLeftRightModifier_">D_DefaultBorderThicknessLeftRight_ = D_DefaultBorder_ (1,0)</utils:ThicknessModifier>
-    <Thickness x:Key="D_DefaultBorderThicknessLeftRight_">1,0</Thickness>
-
-    <!--COMPUTED: Thickness(1,1,1,0) * D_DefaultBorder_-->
-    <utils:ThicknessModifier x:Key="D_DefaultBorderThicknessLeftTopRightModifier_">D_DefaultBorderThicknessLeftTopRight_ = D_DefaultBorder_ (1,1,1,0)</utils:ThicknessModifier>
-    <Thickness x:Key="D_DefaultBorderThicknessLeftTopRight_">1,1,1,0</Thickness>
-
-    <!--COMPUTED: Thickness(1) * D_DefaultFocus_-->
-    <utils:ThicknessModifier x:Key="D_DefaultFocusThicknessFullModifier_">D_DefaultFocusThicknessFull_ = D_DefaultFocus_ (1)</utils:ThicknessModifier>
-    <Thickness x:Key="D_DefaultFocusThicknessFull_">3</Thickness>
-
+    <FontWeight x:Key="WeightHeader1">Regular</FontWeight>
+    <FontWeight x:Key="WeightHeader2">Regular</FontWeight>
+    <FontWeight x:Key="WeightHeader3">Regular</FontWeight>
+    <FontWeight x:Key="WeightHeader4">Regular</FontWeight>
+    <FontWeight x:Key="WeightHeader5">SemiBold</FontWeight>
+    <FontWeight x:Key="WeightHeader6">Bold</FontWeight>
+    
+    <FontWeight x:Key="WeightText">Regular</FontWeight>
+    <FontWeight x:Key="WeightCode">Regular</FontWeight>
+    <FontWeight x:Key="WeightQuote">Regular</FontWeight> 
+    
 </ResourceDictionary>

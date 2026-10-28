@@ -1,73 +1,42 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
     <UseWPF>true</UseWPF>
-    <RootNamespace>RedSharp.ClearDesign</RootNamespace>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
-  <Import Project="$(ProjectDir)..\Definitions.props" />
-  
   <ItemGroup>
-    <None Remove="Resources\Fonts\OpenSans\OpenSans-Bold.ttf" />
-    <None Remove="Resources\Fonts\OpenSans\OpenSans-BoldItalic.ttf" />
-    <None Remove="Resources\Fonts\OpenSans\OpenSans-ExtraBold.ttf" />
-    <None Remove="Resources\Fonts\OpenSans\OpenSans-ExtraBoldItalic.ttf" />
-    <None Remove="Resources\Fonts\OpenSans\OpenSans-Italic.ttf" />
-    <None Remove="Resources\Fonts\OpenSans\OpenSans-Light.ttf" />
-    <None Remove="Resources\Fonts\OpenSans\OpenSans-LightItalic.ttf" />
-    <None Remove="Resources\Fonts\OpenSans\OpenSans-Regular.ttf" />
-    <None Remove="Resources\Fonts\OpenSans\OpenSans-SemiBold.ttf" />
-    <None Remove="Resources\Fonts\OpenSans\OpenSans-SemiBoldItalic.ttf" />
-    <None Remove="Resources\Fonts\Oswald\Oswald-Bold.ttf" />
-    <None Remove="Resources\Fonts\Oswald\Oswald-ExtraLight.ttf" />
-    <None Remove="Resources\Fonts\Oswald\Oswald-Light.ttf" />
-    <None Remove="Resources\Fonts\Oswald\Oswald-Medium.ttf" />
-    <None Remove="Resources\Fonts\Oswald\Oswald-Regular.ttf" />
-    <None Remove="Resources\Fonts\Oswald\Oswald-SemiBold.ttf" />
-    <None Remove="Resources\Fonts\Roboto\Roboto-Black.ttf" />
-    <None Remove="Resources\Fonts\Roboto\Roboto-BlackItalic.ttf" />
-    <None Remove="Resources\Fonts\Roboto\Roboto-Bold.ttf" />
-    <None Remove="Resources\Fonts\Roboto\Roboto-BoldItalic.ttf" />
-    <None Remove="Resources\Fonts\Roboto\Roboto-Italic.ttf" />
-    <None Remove="Resources\Fonts\Roboto\Roboto-Light.ttf" />
-    <None Remove="Resources\Fonts\Roboto\Roboto-LightItalic.ttf" />
-    <None Remove="Resources\Fonts\Roboto\Roboto-Medium.ttf" />
-    <None Remove="Resources\Fonts\Roboto\Roboto-MediumItalic.ttf" />
-    <None Remove="Resources\Fonts\Roboto\Roboto-Regular.ttf" />
-    <None Remove="Resources\Fonts\Roboto\Roboto-Thin.ttf" />
-    <None Remove="Resources\Fonts\Roboto\Roboto-ThinItalic.ttf" />
+    <ProjectReference Include="..\RedSharp.ClearDesign.Wpf.Controls\RedSharp.ClearDesign.Wpf.Controls.csproj" />
+    <ProjectReference Include="..\RedSharp.ClearDesign.Wpf.Utils\RedSharp.ClearDesign.Wpf.Utils.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\Fonts\OpenSans\OpenSans-Bold.ttf" />
-    <Resource Include="Resources\Fonts\OpenSans\OpenSans-BoldItalic.ttf" />
-    <Resource Include="Resources\Fonts\OpenSans\OpenSans-ExtraBold.ttf" />
-    <Resource Include="Resources\Fonts\OpenSans\OpenSans-ExtraBoldItalic.ttf" />
-    <Resource Include="Resources\Fonts\OpenSans\OpenSans-Italic.ttf" />
-    <Resource Include="Resources\Fonts\OpenSans\OpenSans-Light.ttf" />
-    <Resource Include="Resources\Fonts\OpenSans\OpenSans-LightItalic.ttf" />
-    <Resource Include="Resources\Fonts\OpenSans\OpenSans-Regular.ttf" />
-    <Resource Include="Resources\Fonts\OpenSans\OpenSans-SemiBold.ttf" />
-    <Resource Include="Resources\Fonts\OpenSans\OpenSans-SemiBoldItalic.ttf" />
-    <Resource Include="Resources\Fonts\Oswald\Oswald-Bold.ttf" />
-    <Resource Include="Resources\Fonts\Oswald\Oswald-ExtraLight.ttf" />
-    <Resource Include="Resources\Fonts\Oswald\Oswald-Light.ttf" />
-    <Resource Include="Resources\Fonts\Oswald\Oswald-Medium.ttf" />
-    <Resource Include="Resources\Fonts\Oswald\Oswald-Regular.ttf" />
-    <Resource Include="Resources\Fonts\Oswald\Oswald-SemiBold.ttf" />
-    <Resource Include="Resources\Fonts\Roboto\Roboto-Black.ttf" />
-    <Resource Include="Resources\Fonts\Roboto\Roboto-BlackItalic.ttf" />
-    <Resource Include="Resources\Fonts\Roboto\Roboto-Bold.ttf" />
-    <Resource Include="Resources\Fonts\Roboto\Roboto-BoldItalic.ttf" />
-    <Resource Include="Resources\Fonts\Roboto\Roboto-Italic.ttf" />
-    <Resource Include="Resources\Fonts\Roboto\Roboto-Light.ttf" />
-    <Resource Include="Resources\Fonts\Roboto\Roboto-LightItalic.ttf" />
-    <Resource Include="Resources\Fonts\Roboto\Roboto-Medium.ttf" />
-    <Resource Include="Resources\Fonts\Roboto\Roboto-MediumItalic.ttf" />
-    <Resource Include="Resources\Fonts\Roboto\Roboto-Regular.ttf" />
-    <Resource Include="Resources\Fonts\Roboto\Roboto-Thin.ttf" />
-    <Resource Include="Resources\Fonts\Roboto\Roboto-ThinItalic.ttf" />
+    <None Update="Definitions\Brushes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Brushes.xaml</LastGenOutput>
+    </None>
+    <None Update="Definitions\Sizes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Sizes.xaml</LastGenOutput>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Page Update="Definitions\Brushes.xaml">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Brushes.tt</DependentUpon>
+    </Page>
+    <Page Update="Definitions\Sizes.xaml">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Sizes.tt</DependentUpon>
+    </Page>
+</ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
 </Project>

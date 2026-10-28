@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Fonts\Caveat\OFL.txt" />
+    <None Remove="Resources\Fonts\RobotoMono\LICENSE.txt" />
+    <None Remove="Resources\Fonts\Roboto\LICENSE.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\Caveat\OFL.txt" />
+    <EmbeddedResource Include="Resources\Fonts\RobotoMono\LICENSE.txt" />
+    <EmbeddedResource Include="Resources\Fonts\Roboto\LICENSE.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Fonts\Caveat\Caveat-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Caveat\Caveat-Medium.ttf" />
+    <Resource Include="Resources\Fonts\Caveat\Caveat-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Caveat\Caveat-SemiBold.ttf" />
+    <Resource Include="Resources\Fonts\RobotoMono\RobotoMono-Bold.ttf" />
+    <Resource Include="Resources\Fonts\RobotoMono\RobotoMono-BoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\RobotoMono\RobotoMono-ExtraLight.ttf" />
+    <Resource Include="Resources\Fonts\RobotoMono\RobotoMono-ExtraLightItalic.ttf" />
+    <Resource Include="Resources\Fonts\RobotoMono\RobotoMono-Italic.ttf" />
+    <Resource Include="Resources\Fonts\RobotoMono\RobotoMono-Light.ttf" />
+    <Resource Include="Resources\Fonts\RobotoMono\RobotoMono-LightItalic.ttf" />
+    <Resource Include="Resources\Fonts\RobotoMono\RobotoMono-Medium.ttf" />
+    <Resource Include="Resources\Fonts\RobotoMono\RobotoMono-MediumItalic.ttf" />
+    <Resource Include="Resources\Fonts\RobotoMono\RobotoMono-Regular.ttf" />
+    <Resource Include="Resources\Fonts\RobotoMono\RobotoMono-SemiBold.ttf" />
+    <Resource Include="Resources\Fonts\RobotoMono\RobotoMono-SemiBoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\RobotoMono\RobotoMono-Thin.ttf" />
+    <Resource Include="Resources\Fonts\RobotoMono\RobotoMono-ThinItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Black.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Italic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Light.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-LightItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Medium.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Thin.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-ThinItalic.ttf" />
+  </ItemGroup>
+
+</Project>

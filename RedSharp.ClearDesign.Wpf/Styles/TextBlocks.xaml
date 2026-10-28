@@ -1,69 +1,157 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="../Definitions/Colors.xaml"/>
-        <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
+        <ResourceDictionary Source="../Definitions/Brushes.xaml"/>
         <ResourceDictionary Source="../Definitions/Fonts.xaml"/>
+        <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-
-    <Style x:Key="textblock-common"
-           TargetType="{x:Type TextBlock}">
+    
+    <Style x:Key="TextBlockDefault" 
+           TargetType="TextBlock">
         <Style.Setters>
             <Setter Property="Foreground"
-                    Value="{StaticResource S_CommonFontColorBrush_}"/>
+                    Value="{DynamicResource BrushDefaultForeground}"/>
 
             <Setter Property="FontFamily"
-                    Value="{DynamicResource D_DefaultCommonFontFamily_}"/>
+                    Value="{DynamicResource FontText}"/>
             <Setter Property="FontSize"
-                    Value="{DynamicResource D_DefaultCommonFontSize_}"/>
+                    Value="{DynamicResource SizeText}"/>
             <Setter Property="FontWeight"
-                    Value="{DynamicResource D_DefaultCommonFontWeight_}"/>
+                    Value="{DynamicResource WeightText}"/>
+            
+            <Setter Property="TextTrimming"
+                    Value="CharacterEllipsis"/>
+            
+            <Setter Property="SnapsToDevicePixels"
+                    Value="True"/>
+        </Style.Setters>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" 
+                     Value="False">
+                <Setter Property="Foreground"
+                        Value="{DynamicResource BrushDisabledForeground}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBlock"
+           BasedOn="{StaticResource TextBlockDefault}"/>
+
+    <Style x:Key="__TextBlockEmptyStyle" 
+           TargetType="{x:Type TextBlock}">
+        <Style.Setters>
+            <Setter Property="SnapsToDevicePixels"
+                    Value="True"/>
         </Style.Setters>
     </Style>
 
-    <Style x:Key="textblock-title1"
-           TargetType="{x:Type TextBlock}">
-        <Style.Setters>
-            <Setter Property="Foreground"
-                    Value="{StaticResource S_CommonFontColorBrush_}"/>
+    <DataTemplate DataType="{x:Type system:String}">
+        <TextBlock Text="{Binding}" Style="{StaticResource __TextBlockEmptyStyle}"/>
+    </DataTemplate>
 
+    <Style x:Key="TextBlockCode" 
+           TargetType="TextBlock"
+           BasedOn="{StaticResource TextBlockDefault}">
+        <Style.Setters>
             <Setter Property="FontFamily"
-                    Value="{DynamicResource D_DefaultTitle1FontFamily_}"/>
+                    Value="{DynamicResource FontCode}"/>
             <Setter Property="FontSize"
-                    Value="{DynamicResource D_DefaultTitle1FontSize_}"/>
+                    Value="{DynamicResource SizeCode}"/>
             <Setter Property="FontWeight"
-                    Value="{DynamicResource D_DefaultTitle1FontWeight_}"/>
+                    Value="{DynamicResource WeightCode}"/>
         </Style.Setters>
     </Style>
 
-    <Style x:Key="textblock-title2"
-           TargetType="{x:Type TextBlock}">
+    <Style x:Key="TextBlockQuote" 
+           TargetType="TextBlock"
+           BasedOn="{StaticResource TextBlockDefault}">
         <Style.Setters>
-            <Setter Property="Foreground"
-                    Value="{StaticResource S_CommonFontColorBrush_}"/>
-
             <Setter Property="FontFamily"
-                    Value="{DynamicResource D_DefaultTitle2FontFamily_}"/>
+                    Value="{DynamicResource FontQuote}"/>
             <Setter Property="FontSize"
-                    Value="{DynamicResource D_DefaultTitle2FontSize_}"/>
+                    Value="{DynamicResource SizeQuote}"/>
             <Setter Property="FontWeight"
-                    Value="{DynamicResource D_DefaultTitle2FontWeight_}"/>
+                    Value="{DynamicResource WeightQuote}"/>
         </Style.Setters>
     </Style>
 
-    <Style x:Key="textblock-title3"
-           TargetType="{x:Type TextBlock}">
+    <Style x:Key="TextBlockSubtitle" 
+           TargetType="TextBlock"
+           BasedOn="{StaticResource TextBlockDefault}">
         <Style.Setters>
             <Setter Property="Foreground"
-                    Value="{StaticResource S_CommonFontColorBrush_}"/>
+                    Value="{DynamicResource BrushSubtitleForeground}"/>
+        </Style.Setters>
+    </Style>
 
+    
+    <Style x:Key="TextBlockHeader1" 
+           TargetType="TextBlock"
+           BasedOn="{StaticResource TextBlockDefault}">
+        <Style.Setters>
             <Setter Property="FontFamily"
-                    Value="{DynamicResource D_DefaultTitle3FontFamily_}"/>
+                    Value="{DynamicResource FontHeader}"/>
             <Setter Property="FontSize"
-                    Value="{DynamicResource D_DefaultTitle3FontSize_}"/>
+                    Value="{DynamicResource SizeHeader1}"/>
             <Setter Property="FontWeight"
-                    Value="{DynamicResource D_DefaultTitle3FontWeight_}"/>
+                    Value="{DynamicResource WeightHeader1}"/>
+        </Style.Setters>
+    </Style>
+    
+    <Style x:Key="TextBlockHeader2" 
+           TargetType="TextBlock"
+           BasedOn="{StaticResource TextBlockHeader1}">
+        <Style.Setters>
+            <Setter Property="FontSize"
+                    Value="{DynamicResource SizeHeader2}"/>
+            <Setter Property="FontWeight"
+                    Value="{DynamicResource WeightHeader2}"/>
+        </Style.Setters>
+    </Style>
+    
+    <Style x:Key="TextBlockHeader3" 
+           TargetType="TextBlock"
+           BasedOn="{StaticResource TextBlockHeader1}">
+        <Style.Setters>
+            <Setter Property="FontSize"
+                    Value="{DynamicResource SizeHeader3}"/>
+            <Setter Property="FontWeight"
+                    Value="{DynamicResource WeightHeader3}"/>
+        </Style.Setters>
+    </Style>
+    
+    <Style x:Key="TextBlockHeader4" 
+           TargetType="TextBlock"
+           BasedOn="{StaticResource TextBlockHeader1}">
+        <Style.Setters>
+            <Setter Property="FontSize"
+                    Value="{DynamicResource SizeHeader4}"/>
+            <Setter Property="FontWeight"
+                    Value="{DynamicResource WeightHeader4}"/>
+        </Style.Setters>
+    </Style>
+    
+    <Style x:Key="TextBlockHeader5" 
+           TargetType="TextBlock"
+           BasedOn="{StaticResource TextBlockHeader1}">
+        <Style.Setters>
+            <Setter Property="FontSize"
+                    Value="{DynamicResource SizeHeader5}"/>
+            <Setter Property="FontWeight"
+                    Value="{DynamicResource WeightHeader5}"/>
+        </Style.Setters>
+    </Style>
+    
+    <Style x:Key="TextBlockHeader6" 
+           TargetType="TextBlock"
+           BasedOn="{StaticResource TextBlockHeader1}">
+        <Style.Setters>
+            <Setter Property="FontSize"
+                    Value="{DynamicResource SizeHeader6}"/>
+            <Setter Property="FontWeight"
+                    Value="{DynamicResource WeightHeader6}"/>
         </Style.Setters>
     </Style>
 </ResourceDictionary>

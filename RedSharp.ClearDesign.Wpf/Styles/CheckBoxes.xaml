@@ -1,0 +1,402 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:utils="http://red-sharp.org/clear-design/utils"
+                    xmlns:controls="http://red-sharp.org/clear-design/controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Definitions/Brushes.xaml"/>
+        <ResourceDictionary Source="../Definitions/Fonts.xaml"/>
+        <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
+        
+        <ResourceDictionary Source="Animations.xaml"/>
+        <ResourceDictionary Source="Focuses.xaml"/>
+        <ResourceDictionary Source="Icons.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="CheckBoxDefault"
+           TargetType="{x:Type CheckBox}">
+        <Style.Setters>
+            <Setter Property="MinHeight" 
+                    Value="{DynamicResource SizeDefaultMinHeight}"/>
+
+            <Setter Property="BorderBrush" 
+                    Value="{DynamicResource BrushElementsBorder}"/>
+            <Setter Property="BorderThickness"
+                    Value="{DynamicResource SizeDefaultBorderAll}"/>
+
+            <Setter Property="Background"
+                    Value="{DynamicResource BrushFieldsBackground}"/>
+            <Setter Property="Foreground"
+                    Value="{DynamicResource BrushDefaultForeground}"/>
+
+            <Setter Property="FontFamily"
+                    Value="{DynamicResource FontText}"/>
+            <Setter Property="FontSize"
+                    Value="{DynamicResource SizeText}"/>
+            <Setter Property="FontWeight"
+                    Value="{DynamicResource WeightText}"/>
+
+            <Setter Property="Padding"
+                    Value="{DynamicResource SizeDefaultPaddingLeft}"/>
+
+            <Setter Property="HorizontalAlignment" 
+                    Value="Left"/>
+            <Setter Property="VerticalAlignment" 
+                    Value="Center"/>
+
+            <Setter Property="HorizontalContentAlignment" 
+                    Value="Left"/>
+            <Setter Property="VerticalContentAlignment" 
+                    Value="Center"/>
+
+            <Setter Property="utils:Highlight.Fill"
+                    Value="{DynamicResource BrushHighlightBackground}"/>
+            <Setter Property="utils:Highlight.Opacity"
+                    Value="0.0"/>
+
+            <Setter Property="utils:CheckBox.FalseStateFill"
+                    Value="{DynamicResource BrushDefaultForeground}"/>
+
+            <Setter Property="utils:CheckBox.NullStateFill"
+                    Value="{DynamicResource BrushPrimaryForeground}"/>
+
+            <Setter Property="utils:CheckBox.TrueStateFill"
+                    Value="{DynamicResource BrushPrimaryForeground}"/>
+
+            <Setter Property="SnapsToDevicePixels" 
+                    Value="False"/>
+            <Setter Property="UseLayoutRounding" 
+                    Value="True"/>
+
+            <Setter Property="FocusVisualStyle"
+                    Value="{StaticResource FocusDefaultOutstanding}"/>
+
+            <Setter Property="utils:Control.CornerRadius"
+                    Value="{DynamicResource SizeDefaultRadiusAll}"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid Background="Transparent"
+                              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0"
+                                  Width="16"
+                                  Height="16"
+                                  UseLayoutRounding="True">
+
+                                <!--BACKGROUND-->
+                                <controls:LayeredBorder UseLayoutRounding="False" 
+                                                        Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        CornerRadius="{TemplateBinding utils:Control.CornerRadius}"
+                                                        controls:AdornedPlaceholder.IsFocusTarget="True"/>
+
+                                <!--ACCENT-->
+                                <controls:LayeredBorder UseLayoutRounding="False" 
+                                                        Background="{TemplateBinding utils:Highlight.Fill}"
+                                                        CornerRadius="{TemplateBinding utils:Control.CornerRadius}"
+                                                        Opacity="{TemplateBinding utils:Highlight.Opacity}"/>
+
+                                <!--ICONS-->
+                                <Path x:Name="PART_TrueStateIcon" 
+                                      Width="12"
+                                      Height="12"
+                                      StrokeStartLineCap="Round"
+                                      StrokeEndLineCap="Round"
+                                      StrokeThickness="2"
+                                      Stroke="{TemplateBinding utils:CheckBox.TrueStateFill}"
+                                      Visibility="Collapsed"
+                                      Data="{StaticResource PathGeometryCheck}"
+                                      UseLayoutRounding="False"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Center"/>
+
+                                <Path x:Name="PART_NullStateIcon" 
+                                      Width="12"
+                                      Height="12"
+                                      StrokeStartLineCap="Round"
+                                      StrokeEndLineCap="Round"
+                                      StrokeThickness="2"
+                                      Stroke="{TemplateBinding utils:CheckBox.NullStateFill}"
+                                      Visibility="Collapsed"
+                                      Data="{StaticResource PathGeometryNull}"
+                                      UseLayoutRounding="False"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Center"/>
+                            </Grid>
+
+                            <!--CONTENT-->
+                            <ContentPresenter UseLayoutRounding="False"
+                                              Grid.Column="1"
+                                              Focusable="False"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" 
+                                     Value="True">
+                                <Setter TargetName="PART_TrueStateIcon"
+                                        Property="Visibility"
+                                        Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" 
+                                     Value="{x:Null}">
+                                <Setter TargetName="PART_NullStateIcon"
+                                        Property="Visibility"
+                                        Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+        <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Background" 
+                        Value="{DynamicResource BrushPrimaryBackground}"/>
+                <Setter Property="BorderBrush" 
+                        Value="{DynamicResource BrushPrimaryBorder}"/>
+            </Trigger>
+
+            <Trigger Property="IsChecked" Value="{x:Null}">
+                <Setter Property="Background" 
+                        Value="{DynamicResource BrushPrimaryBackground}"/>
+                <Setter Property="BorderBrush" 
+                        Value="{DynamicResource BrushPrimaryBorder}"/>
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <utils:DoubleAnimationGenerator IsEnter="True">
+                        <StaticResource ResourceKey="AnimationDescriptionHovered"/>
+                    </utils:DoubleAnimationGenerator>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <utils:DoubleAnimationGenerator IsEnter="False">
+                        <StaticResource ResourceKey="AnimationDescriptionHovered"/>
+                    </utils:DoubleAnimationGenerator>
+                </Trigger.ExitActions>
+            </Trigger>
+
+            <Trigger Property="IsMouseCaptured" Value="True">
+                <Trigger.EnterActions>
+                    <utils:DoubleAnimationGenerator IsEnter="True">
+                        <StaticResource ResourceKey="AnimationDescriptionPressed"/>
+                    </utils:DoubleAnimationGenerator>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <utils:DoubleAnimationGenerator IsEnter="False">
+                        <StaticResource ResourceKey="AnimationDescriptionPressed"/>
+                    </utils:DoubleAnimationGenerator>
+                </Trigger.ExitActions>
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity"
+                        Value="0.40"/>
+                <Setter Property="BorderThickness"
+                        Value="0"/>
+                
+                <Setter Property="Background"
+                        Value="{DynamicResource BrushDisabledBackground}"/>
+                <Setter Property="Foreground"
+                        Value="{DynamicResource BrushDisabledForeground}"/>
+
+                <Setter Property="utils:CheckBox.TrueStateFill"
+                        Value="{DynamicResource BrushDisabledForeground}"/>
+                <Setter Property="utils:CheckBox.NullStateFill"
+                        Value="{DynamicResource BrushDisabledForeground}"/>
+                <Setter Property="utils:CheckBox.FalseStateFill"
+                        Value="{DynamicResource BrushDisabledForeground}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type CheckBox}" 
+           BasedOn="{StaticResource CheckBoxDefault}"/>
+
+    <Style x:Key="CheckBoxRadioButton"
+           TargetType="{x:Type CheckBox}"
+           BasedOn="{StaticResource CheckBoxDefault}">
+        <Style.Setters>
+            
+            <Setter Property="utils:Control.CornerRadius"
+                    Value="0"/>
+            
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Width="16"
+                                  Height="16"
+                                  UseLayoutRounding="True">
+
+                                <!--BACKGROUND-->
+                                <controls:LayeredBorder UseLayoutRounding="False" 
+                                                        Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        CornerRadius="1000"
+                                                        controls:AdornedPlaceholder.IsFocusTarget="True"/>
+
+                                <!--ACCENT-->
+                                <controls:LayeredBorder UseLayoutRounding="False" 
+                                                        Background="{TemplateBinding utils:Highlight.Fill}"
+                                                        CornerRadius="1000"
+                                                        Opacity="{TemplateBinding utils:Highlight.Opacity}"/>
+
+                                <!--ICONS-->
+                                <Ellipse x:Name="PART_TrueStateIcon" 
+                                         VerticalAlignment="Stretch"
+                                         HorizontalAlignment="Stretch"
+                                         Margin="5"                           
+                                         Fill="{TemplateBinding utils:CheckBox.TrueStateFill}"
+                                         Visibility="Collapsed"/>
+
+                                <Path x:Name="PART_NullStateIcon" 
+                                      Width="12"
+                                      Height="12"
+                                      StrokeStartLineCap="Round"
+                                      StrokeEndLineCap="Round"
+                                      StrokeThickness="2"
+                                      Margin="1"
+                                      Stroke="{TemplateBinding utils:CheckBox.NullStateFill}"
+                                      Visibility="Collapsed"
+                                      Data="{StaticResource PathGeometryNull}"/>
+                            </Grid>
+
+                            <ContentPresenter UseLayoutRounding="False" 
+                                              Focusable="False"
+                                              Grid.Column="1"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" 
+                                     Value="True">
+                                <Setter TargetName="PART_TrueStateIcon"
+                                        Property="Visibility"
+                                        Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" 
+                                     Value="{x:Null}">
+                                <Setter TargetName="PART_NullStateIcon"
+                                        Property="Visibility"
+                                        Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="CheckboxSwitch"
+           TargetType="{x:Type CheckBox}"
+           BasedOn="{StaticResource CheckBoxDefault}">
+        <Style.Setters>
+            <Setter Property="utils:Control.CornerRadius"
+                    Value="0"/>
+            
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid Background="Transparent"
+                              Width="{TemplateBinding Width}"
+                              Height="{TemplateBinding Height}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0"
+                                  Width="30"
+                                  Height="18"
+                                  UseLayoutRounding="False">
+
+                                <!--BACKGROUND-->
+                                <controls:LayeredBorder UseLayoutRounding="False" 
+                                                        Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        CornerRadius="1000"
+                                                        controls:AdornedPlaceholder.IsFocusTarget="True"/>
+
+                                <!--ACCENT-->
+                                <controls:LayeredBorder UseLayoutRounding="False" 
+                                                        Background="{TemplateBinding utils:Highlight.Fill}"
+                                                        CornerRadius="1000"
+                                                        Opacity="{TemplateBinding utils:Highlight.Opacity}"/>
+
+                                <!--ICONS-->
+                                <Grid UseLayoutRounding="False" 
+                                      Margin="{TemplateBinding BorderThickness}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Ellipse x:Name="PART_FalseStateIcon" 
+                                             Grid.Column="0"
+                                             VerticalAlignment="Stretch"
+                                             HorizontalAlignment="Stretch"
+                                             Margin="3,3,0,3"
+                                             Fill="{TemplateBinding utils:CheckBox.FalseStateFill}"
+                                             Visibility="Collapsed"/>
+
+                                    <Ellipse x:Name="PART_TrueStateIcon" 
+                                             Grid.Column="2"
+                                             VerticalAlignment="Stretch"
+                                             HorizontalAlignment="Stretch"
+                                             Margin="0,3,3,3"
+                                             Fill="{TemplateBinding utils:CheckBox.TrueStateFill}"
+                                             Visibility="Collapsed"/>
+                                </Grid>
+                            </Grid>
+
+                            <ContentPresenter UseLayoutRounding="False"
+                                              Grid.Column="1"
+                                              Focusable="False"                                            
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" 
+                                     Value="True">
+                                <Setter TargetName="PART_TrueStateIcon"
+                                        Property="Visibility"
+                                        Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" 
+                                     Value="False">
+                                <Setter TargetName="PART_FalseStateIcon"
+                                        Property="Visibility"
+                                        Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+</ResourceDictionary>

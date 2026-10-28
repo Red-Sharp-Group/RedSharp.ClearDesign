@@ -1,139 +1,75 @@
-﻿<ResourceDictionary x:Class="RedSharp.ClearDesign.Styles.ScrollBars"
-                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers"
-                    xmlns:extra="clr-namespace:RedSharp.ClearDesign.Extra">
-    
+                    xmlns:utils="http://red-sharp.org/clear-design/utils"
+                    xmlns:controls="http://red-sharp.org/clear-design/controls">
+
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="../Definitions/Colors.xaml"/>
-        <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
-        <ResourceDictionary Source="../Definitions/Fonts.xaml"/>
-        <ResourceDictionary Source="../Styles/RepeatButtons.xaml"/>
+        <ResourceDictionary Source="Animations.xaml"/>
+        <ResourceDictionary Source="Icons.xaml"/>
+        <ResourceDictionary Source="RepeatButtons.xaml"/>
+        <ResourceDictionary Source="Thumbs.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <BeginStoryboard x:Key="S_ScrollFullResizableHoverEnterAnimation"
-                     x:Shared="false">
-        <Storyboard>
-            <DoubleAnimation Storyboard.TargetProperty="(extra:ScrollsExtra.TrackWidth)"
-                             To="8.0" 
-                             Duration="0:0:0.075" 
-                             AutoReverse="False"/>
-            <DoubleAnimation Storyboard.TargetProperty="(extra:ScrollsExtra.TrackHeight)"
-                             To="8.0" 
-                             Duration="0:0:0.075" 
-                             AutoReverse="False"/>
-            <DoubleAnimation Storyboard.TargetProperty="(extra:ScrollsExtra.RepeatButtonsOpacity)"
-                             To="1.0" 
-                             Duration="0:0:0.075" 
-                             AutoReverse="False"/>
-        </Storyboard>
-    </BeginStoryboard>
+    <utils:DoubleAnimationDescription x:Key="__AnimationDescriptionThumbAppeared"
+                                      TargetName="PART_Thumb"
+                                      TargetProperty="Opacity"
+                                      From="0.5"
+                                      To="1.0"
+                                      Duration="0:0:0.075"/>
 
-    <BeginStoryboard x:Key="S_ScrollFullHoverEnterAnimation"
-                     x:Shared="false">
-        <Storyboard>
-            <DoubleAnimation Storyboard.TargetProperty="(extra:ScrollsExtra.RepeatButtonsOpacity)"
-                             To="1.0" 
-                             Duration="0:0:0.075" 
-                             AutoReverse="False"/>
-        </Storyboard>
-    </BeginStoryboard>
+    <utils:DoubleAnimationDescription x:Key="__AnimationDescriptionLineUpAppeared"
+                                      TargetName="PART_LineUpButton"
+                                      TargetProperty="Opacity"
+                                      From="0.0"
+                                      To="1.0"
+                                      Duration="0:0:0.075"/>
 
-    <BeginStoryboard x:Key="S_ScrollFullResizableHoverExitAnimation"
-                     x:Shared="false">
-        <Storyboard>
-            <DoubleAnimation Storyboard.TargetProperty="(extra:ScrollsExtra.TrackWidth)"
-                             To="4.0" 
-                             Duration="0:0:0.075" 
-                             AutoReverse="False"
-                             FillBehavior="Stop"/>
-            <DoubleAnimation Storyboard.TargetProperty="(extra:ScrollsExtra.TrackHeight)"
-                             To="4.0" 
-                             Duration="0:0:0.075" 
-                             AutoReverse="False"
-                             FillBehavior="Stop"/>
-            <DoubleAnimation Storyboard.TargetProperty="(extra:ScrollsExtra.RepeatButtonsOpacity)"
-                             To="0.0" 
-                             Duration="0:0:0.075" 
-                             AutoReverse="False"
-                             FillBehavior="Stop"/>
-        </Storyboard>
-    </BeginStoryboard>
+    <utils:DoubleAnimationDescription x:Key="__AnimationDescriptionLineDownAppeared"
+                                      TargetName="PART_LineDownButton"
+                                      TargetProperty="Opacity"
+                                      From="0.0"
+                                      To="1.0"
+                                      Duration="0:0:0.075"/>
 
-    <BeginStoryboard x:Key="S_ScrollFullHoverExitAnimation"
-                     x:Shared="false">
-        <Storyboard>
-            <DoubleAnimation Storyboard.TargetProperty="(extra:ScrollsExtra.RepeatButtonsOpacity)"
-                             To="0.0" 
-                             Duration="0:0:0.075" 
-                             AutoReverse="False"
-                             FillBehavior="Stop"/>
-        </Storyboard>
-    </BeginStoryboard>
+    <utils:ThicknessAnimationDescription x:Key="__AnimationDescriptionHorizontalScrollAppeared"
+                                         TargetProperty="Padding"
+                                         From="0,6"
+                                         To="0,4"
+                                         Duration="0:0:0.075"/>
 
-    <Style x:Key="repeatbutton-scroll"
+    <utils:ThicknessAnimationDescription x:Key="__AnimationDescriptionVerticalScrollAppeared"
+                                         TargetProperty="Padding"
+                                         From="6,0"
+                                         To="4,0"
+                                         Duration="0:0:0.075"/>
+
+
+
+    <Style x:Key="__RepeatButtonScroll"
            TargetType="{x:Type RepeatButton}"
-           BasedOn="{StaticResource repeatbutton-secondary}">
+           BasedOn="{StaticResource RepeatButtonMenu}">
         <Style.Setters>
+            <Setter Property="MinWidth"
+                    Value="16"/>
+            <Setter Property="MinHeight"
+                    Value="16"/>
+
             <Setter Property="Width"
                     Value="16"/>
             <Setter Property="Height"
                     Value="16"/>
-
-            <Setter Property="BorderBrush" 
-                    Value="Transparent"/>
-            <Setter Property="BorderThickness" 
-                    Value="0"/>
 
             <Setter Property="Padding"
                     Value="0"/>
 
             <Setter Property="Focusable"
                     Value="False"/>
-
-            <Setter Property="Background"
-                    Value="Transparent"/>
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type RepeatButton}">
-                        <Grid>
-                            <!--BACKGROUND-->
-                            <Border UseLayoutRounding="True" 
-                                    SizeChanged="OnBorderSizeChanged"
-                                    Background="{TemplateBinding BorderBrush}">
-                                <Border UseLayoutRounding="False" 
-                                        SizeChanged="OnBorderSizeChanged"
-                                        Background="{TemplateBinding Background}"
-                                        Margin="{TemplateBinding BorderThickness}"/>
-                            </Border>
-
-                            <!--ACCENT-->
-                            <Border UseLayoutRounding="True"
-                                    SizeChanged="OnBorderSizeChanged"
-                                    Background="{TemplateBinding extra:AccentsExtra.Color}"
-                                    Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
-
-                            <ContentControl UseLayoutRounding="False"
-                                            Focusable="False"
-                                            Margin="{TemplateBinding Padding}"
-                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                            FontFamily="{TemplateBinding FontFamily}"
-                                            FontWeight="{TemplateBinding FontWeight}"
-                                            Foreground="{TemplateBinding Foreground}"
-                                            Content="{TemplateBinding Content}"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
         </Style.Setters>
     </Style>
 
-    <Style x:Key="repeatbutton-scroll-track"
-           TargetType="{x:Type RepeatButton}"
-           BasedOn="{StaticResource repeatbutton-scroll}">
+    <Style x:Key="__RepeatButtonScrollTrack"
+           TargetType="{x:Type RepeatButton}">
         <Style.Setters>
             <Setter Property="Width"
                     Value="{x:Static system:Double.NaN}"/>
@@ -145,383 +81,523 @@
             <Setter Property="VerticalAlignment"
                     Value="Stretch"/>
 
-            <Setter Property="extra:AccentsExtra.Color"
-                    Value="Transparent"/>
-        </Style.Setters>
-    </Style>
-
-    <Style x:Key="thumb-scroll"
-           TargetType="{x:Type Thumb}">
-        <Style.Setters>
-            <Setter Property="BorderBrush"
-                    Value="Transparent"/>
-            <Setter Property="BorderThickness"
-                    Value="0"/>
-
             <Setter Property="Focusable"
                     Value="False"/>
 
-            <Setter Property="extra:AccentsExtra.Color"
-                    Value="{StaticResource S_DefaultDarkAccentColorBrush_}"/>
-            <Setter Property="extra:AccentsExtra.Opacity"
-                    Value="0.0"/>
-
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Thumb}">
-                        <Grid>
-                            <!--BACKGROUND-->
-                            <Border UseLayoutRounding="True" 
-                                    SizeChanged="OnBorderSizeChanged"
-                                    Background="{TemplateBinding BorderBrush}">
-                                <Border UseLayoutRounding="False" 
-                                        SizeChanged="OnBorderSizeChanged"
-                                        Background="{TemplateBinding Background}"
-                                        Margin="{TemplateBinding BorderThickness}"/>
-                            </Border>
-
-                            <!--ACCENT-->
-                            <Border UseLayoutRounding="True"
-                                    SizeChanged="OnBorderSizeChanged"
-                                    Background="{TemplateBinding extra:AccentsExtra.Color}"
-                                    Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
-
-                        </Grid>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Rectangle Fill="Transparent"/>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style.Setters>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Trigger.EnterActions>
-                    <StaticResource ResourceKey="S_AccentHoverEnterAnimation"/>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <StaticResource ResourceKey="S_AccentHoverExitAnimation"/>
-                </Trigger.ExitActions>
-            </Trigger>
-
-            <Trigger Property="IsMouseCaptured" Value="True">
-                <Trigger.EnterActions>
-                    <StaticResource ResourceKey="S_AccentPressedEnterAnimation"/>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <StaticResource ResourceKey="S_AccentPressedExitAnimation"/>
-                </Trigger.ExitActions>
-            </Trigger>            
-        </Style.Triggers>
     </Style>
 
-    <Style x:Key="scrollbar-vertical"
+    <Style x:Key="__ThumbScroll"
+           TargetType="{x:Type Thumb}"
+           BasedOn="{StaticResource ThumbDefault}">
+        <Style.Setters>
+            <Setter Property="utils:Control.CornerRadius"
+                    Value="1000"/>
+        </Style.Setters>
+    </Style>
+
+    <!--#################################################################################################-->
+    <!--VERTICAL-->
+
+    <Style x:Key="ScrollBarVerticalFull"
            TargetType="{x:Type ScrollBar}">
         <Style.Setters>
+            <Setter Property="MinWidth"
+                    Value="0"/>
+            
             <Setter Property="Width"
                     Value="16"/>
+
+            <Setter Property="Padding"
+                    Value="6,0"/>
+
+            <Setter Property="Background"
+                    Value="{DynamicResource BrushPanelsBackground}"/>
+            <Setter Property="Foreground"
+                    Value="{DynamicResource BrushSubtitleForeground}"/>
 
             <Setter Property="Orientation"
                     Value="Vertical"/>
 
-            <Setter Property="extra:ScrollsExtra.TrackColor"
-                    Value="{StaticResource S_Step3ColorBrush_}"/>
-
-            <Setter Property="extra:ScrollsExtra.ThumbColor"
-                    Value="{StaticResource S_Dark5ColorBrush_}"/>
-
-            <Setter Property="extra:ScrollsExtra.RepeatButtonsVisible"
-                    Value="Hidden"/>
-            <Setter Property="extra:ScrollsExtra.RepeatButtonsOpacity"
-                    Value="0"/>
-
-            <Setter Property="extra:ScrollsExtra.TrackWidth"
-                    Value="8"/>
+            <Setter Property="SnapsToDevicePixels" 
+                    Value="False"/>
+            <Setter Property="UseLayoutRounding" 
+                    Value="True"/>
 
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ScrollBar}">
-                        <Border>
-                            <Grid Width="{TemplateBinding Width}"
-                                  Background="Transparent">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="auto"/>
-                                </Grid.RowDefinitions>
+                        <Grid Background="Transparent">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
 
-                                <RepeatButton Grid.Row="0"
-                                              Name="PART_LineUpButton"
-                                              UseLayoutRounding="True"
-                                              Style="{StaticResource repeatbutton-scroll}"
-                                              Opacity="{TemplateBinding extra:ScrollsExtra.RepeatButtonsOpacity}"
-                                              Visibility="{TemplateBinding extra:ScrollsExtra.RepeatButtonsVisible}"
-                                              Command="{x:Static ScrollBar.LineUpCommand}">
-                                    <Path Style="{StaticResource icon-default}"
-                                          Fill="{StaticResource S_CommonFontColorBrush_}"
-                                          Data="{StaticResource S_TopArrowLineIconGeometry}"/>
-                                </RepeatButton>
+                            <RepeatButton Grid.Row="0"
+                                          Name="PART_LineUpButton"
+                                          Margin="0,0,0,2"
+                                          Style="{StaticResource __RepeatButtonScroll}"
+                                          Opacity="0.0"
+                                          Command="{x:Static ScrollBar.LineUpCommand}">
+                                <Image Width="16"
+                                       Height="16"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Source="{StaticResource DrawingImageSimpleArrowTop}"/>
+                            </RepeatButton>
 
-                                <Border Grid.Row="1"
-                                        Margin="0,2"
-                                        SizeChanged="OnBorderSizeChanged"
-                                        Background="{TemplateBinding extra:ScrollsExtra.TrackColor}"
-                                        Width="{TemplateBinding extra:ScrollsExtra.TrackWidth}"/>
+                            <controls:RoundBorder Grid.Row="1" 
+                                                  CornerRadius="1000"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  Background="{TemplateBinding Background}"/>
 
-                                <Track Grid.Row="1"
-                                       Margin="0,2"
-                                       Name="PART_Track"
-                                       Width="{TemplateBinding extra:ScrollsExtra.TrackWidth}"
-                                       Minimum="{TemplateBinding Minimum}"
-                                       Maximum="{TemplateBinding Maximum}"
-                                       Value="{TemplateBinding Value}"
-                                       ViewportSize="{TemplateBinding ViewportSize}"
-                                       Orientation="{TemplateBinding Orientation}"
-                                       IsDirectionReversed="True">
-                                    <Track.DecreaseRepeatButton>
-                                        <RepeatButton Name="PART_PageUpButton"
-                                                      Style="{StaticResource repeatbutton-scroll-track}"
-                                                      Command="{x:Static ScrollBar.PageUpCommand}"/>
-                                    </Track.DecreaseRepeatButton>
-                                    <Track.IncreaseRepeatButton>
-                                        <RepeatButton Name="PART_PageDownButton"
-                                                      Style="{StaticResource repeatbutton-scroll-track}"
-                                                      Command="{x:Static ScrollBar.PageDownCommand}"/>
-                                    </Track.IncreaseRepeatButton>
-                                    <Track.Thumb>
-                                        <Thumb Style="{StaticResource thumb-scroll}"
-                                               Background="{TemplateBinding extra:ScrollsExtra.ThumbColor}"/>
-                                    </Track.Thumb>
-                                </Track>
+                            <Track Grid.Row="1"
+                                   Margin="{TemplateBinding Padding}"
+                                   Name="PART_Track"
+                                   Minimum="{TemplateBinding Minimum}"
+                                   Maximum="{TemplateBinding Maximum}"
+                                   Value="{TemplateBinding Value}"
+                                   ViewportSize="{TemplateBinding ViewportSize}"
+                                   Orientation="{TemplateBinding Orientation}"
+                                   IsDirectionReversed="True">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Name="PART_PageUpButton"
+                                                  Style="{StaticResource __RepeatButtonScrollTrack}"
+                                                  Command="{x:Static ScrollBar.PageUpCommand}"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Name="PART_PageDownButton"
+                                                  Style="{StaticResource __RepeatButtonScrollTrack}"
+                                                  Command="{x:Static ScrollBar.PageDownCommand}"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb Name="PART_Thumb"
+                                           Style="{StaticResource __ThumbScroll}"
+                                           Background="{TemplateBinding Foreground}"
+                                           Opacity="0.5"/>
+                                </Track.Thumb>
+                            </Track>
 
-                                <RepeatButton Grid.Row="2"
-                                              Name="PART_LineDownButton"
-                                              UseLayoutRounding="True"
-                                              Style="{StaticResource repeatbutton-scroll}"
-                                              Opacity="{TemplateBinding extra:ScrollsExtra.RepeatButtonsOpacity}"
-                                              Visibility="{TemplateBinding extra:ScrollsExtra.RepeatButtonsVisible}"
-                                              Command="{x:Static ScrollBar.LineDownCommand}" >
-                                    <Path Style="{StaticResource icon-default}"
-                                          Fill="{StaticResource S_CommonFontColorBrush_}"
-                                          Data="{StaticResource S_BottomArrowLineIconGeometry}"/>
-                                </RepeatButton>
-                            </Grid>
-                        </Border>
+                            <RepeatButton Grid.Row="2"
+                                          Name="PART_LineDownButton"
+                                          Margin="0,2,0,0"
+                                          Style="{StaticResource __RepeatButtonScroll}"
+                                          Opacity="0.0"
+                                          Command="{x:Static ScrollBar.LineDownCommand}" >
+                                <Image Width="16"
+                                       Height="16"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Source="{StaticResource DrawingImageSimpleArrowDown}"/>
+                            </RepeatButton>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" 
+                                     Value="True">
+                                <Trigger.EnterActions>
+                                    <utils:DoubleAnimationGenerator IsEnter="True">
+                                        <StaticResource ResourceKey="__AnimationDescriptionThumbAppeared"/>
+                                        <StaticResource ResourceKey="__AnimationDescriptionLineUpAppeared"/>
+                                        <StaticResource ResourceKey="__AnimationDescriptionLineDownAppeared"/>
+                                    </utils:DoubleAnimationGenerator>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <utils:DoubleAnimationGenerator IsEnter="False">
+                                        <StaticResource ResourceKey="__AnimationDescriptionThumbAppeared"/>
+                                        <StaticResource ResourceKey="__AnimationDescriptionLineUpAppeared"/>
+                                        <StaticResource ResourceKey="__AnimationDescriptionLineDownAppeared"/>
+                                    </utils:DoubleAnimationGenerator>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                            <Trigger Property="IsEnabled"
+                                     Value="False">
+                                <Setter TargetName="PART_Thumb"
+                                        Property="Opacity"
+                                        Value="1.0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style.Setters>
-    </Style>
-
-    <Style x:Key="scrollbar-vertical-full"
-           TargetType="{x:Type ScrollBar}"
-           BasedOn="{StaticResource scrollbar-vertical}">
-        <Style.Setters>
-            <Setter Property="extra:ScrollsExtra.RepeatButtonsVisible"
-                    Value="Visible"/>
-        </Style.Setters>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Trigger.EnterActions>
-                    <StaticResource ResourceKey="S_ScrollFullHoverEnterAnimation"/>
+                    <utils:ThicknessAnimationGenerator IsEnter="True">
+                        <StaticResource ResourceKey="__AnimationDescriptionVerticalScrollAppeared"/>
+                    </utils:ThicknessAnimationGenerator>
                 </Trigger.EnterActions>
                 <Trigger.ExitActions>
-                    <StaticResource ResourceKey="S_ScrollFullHoverExitAnimation"/>
+                    <utils:ThicknessAnimationGenerator IsEnter="False">
+                        <StaticResource ResourceKey="__AnimationDescriptionVerticalScrollAppeared"/>
+                    </utils:ThicknessAnimationGenerator>
                 </Trigger.ExitActions>
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity"
+                        Value="0.40"/>
+                <Setter Property="Background"
+                        Value="{DynamicResource BrushDisabledBackground}"/>
+                <Setter Property="Foreground"
+                        Value="{DynamicResource BrushDisabledForeground}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="scrollbar-vertical-resizable"
-           TargetType="{x:Type ScrollBar}"
-           BasedOn="{StaticResource scrollbar-vertical}">
-        <Style.Setters>
-            <Setter Property="extra:ScrollsExtra.TrackWidth"
-                    Value="4"/>
-        </Style.Setters>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Trigger.EnterActions>
-                    <StaticResource ResourceKey="S_ScrollFullResizableHoverEnterAnimation"/>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <StaticResource ResourceKey="S_ScrollFullResizableHoverExitAnimation"/>
-                </Trigger.ExitActions>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="scrollbar-vertical-resizable-full"
-           TargetType="{x:Type ScrollBar}"
-           BasedOn="{StaticResource scrollbar-vertical-resizable}">
-        <Style.Setters>
-            <Setter Property="extra:ScrollsExtra.RepeatButtonsVisible"
-                    Value="Visible"/>
-        </Style.Setters>
-    </Style>
-
-    <Style x:Key="scrollbar-vertical-min"
-           TargetType="{x:Type ScrollBar}"
-           BasedOn="{StaticResource scrollbar-vertical}">
-        <Style.Setters>
-            <Setter Property="Width"
-                    Value="8"/>
-            <Setter Property="extra:ScrollsExtra.TrackWidth"
-                    Value="4"/>
-        </Style.Setters>
-    </Style>
-
-    <Style x:Key="scrollbar-horizontal"
+    <Style x:Key="ScrollBarVerticalMinimal"
            TargetType="{x:Type ScrollBar}">
         <Style.Setters>
+            <Setter Property="MinWidth"
+                    Value="0"/>
+            
+            <Setter Property="Width"
+                    Value="12"/>
+
+            <Setter Property="Padding"
+                    Value="4,0"/>
+
+            <Setter Property="Background"
+                    Value="{DynamicResource BrushPanelsBackground}"/>
+            <Setter Property="Foreground"
+                    Value="{DynamicResource BrushSubtitleForeground}"/>
+
+            <Setter Property="Orientation"
+                    Value="Vertical"/>
+
+            <Setter Property="SnapsToDevicePixels" 
+                    Value="False"/>
+            <Setter Property="UseLayoutRounding" 
+                    Value="True"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid Background="Transparent">
+                            <controls:RoundBorder Grid.Row="0" 
+                                                  CornerRadius="1000"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  Background="{TemplateBinding Background}"/>
+
+                            <Track Grid.Row="0"
+                                   Margin="{TemplateBinding Padding}"
+                                   Name="PART_Track"
+                                   Minimum="{TemplateBinding Minimum}"
+                                   Maximum="{TemplateBinding Maximum}"
+                                   Value="{TemplateBinding Value}"
+                                   ViewportSize="{TemplateBinding ViewportSize}"
+                                   Orientation="{TemplateBinding Orientation}"
+                                   IsDirectionReversed="True">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Name="PART_PageUpButton"
+                                                  Style="{StaticResource __RepeatButtonScrollTrack}"
+                                                  Command="{x:Static ScrollBar.PageUpCommand}"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Name="PART_PageDownButton"
+                                                  Style="{StaticResource __RepeatButtonScrollTrack}"
+                                                  Command="{x:Static ScrollBar.PageDownCommand}"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb x:Name="PART_Thumb" 
+                                           Style="{StaticResource __ThumbScroll}"
+                                           Background="{TemplateBinding Foreground}"
+                                           Opacity="0.5"/>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" 
+                                     Value="True">
+                                <Trigger.EnterActions>
+                                    <utils:DoubleAnimationGenerator IsEnter="True">
+                                        <StaticResource ResourceKey="__AnimationDescriptionThumbAppeared"/>
+                                    </utils:DoubleAnimationGenerator>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <utils:DoubleAnimationGenerator IsEnter="False">
+                                        <StaticResource ResourceKey="__AnimationDescriptionThumbAppeared"/>
+                                    </utils:DoubleAnimationGenerator>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                            <Trigger Property="IsEnabled"
+                                     Value="False">
+                                <Setter TargetName="PART_Thumb"
+                                        Property="Opacity"
+                                        Value="1.0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity"
+                        Value="0.40"/>
+                <Setter Property="Background"
+                        Value="{DynamicResource BrushDisabledBackground}"/>
+                <Setter Property="Foreground"
+                        Value="{DynamicResource BrushDisabledForeground}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--#################################################################################################-->
+    <!--HORIZONTAL-->
+
+    <Style x:Key="ScrollBarHorizontalFull"
+           TargetType="{x:Type ScrollBar}">
+        <Style.Setters>
+            <Setter Property="MinHeight"
+                    Value="0"/>
+            
             <Setter Property="Height"
                     Value="16"/>
+
+            <Setter Property="Padding"
+                    Value="0,6"/>
+
+            <Setter Property="Background"
+                    Value="{DynamicResource BrushPanelsBackground}"/>
+            <Setter Property="Foreground"
+                    Value="{DynamicResource BrushSubtitleForeground}"/>
 
             <Setter Property="Orientation"
                     Value="Horizontal"/>
 
-            <Setter Property="extra:ScrollsExtra.TrackColor"
-                    Value="{StaticResource S_Step3ColorBrush_}"/>
-
-            <Setter Property="extra:ScrollsExtra.ThumbColor"
-                    Value="{StaticResource S_Dark5ColorBrush_}"/>
-
-            <Setter Property="extra:ScrollsExtra.RepeatButtonsVisible"
-                    Value="Hidden"/>
-            <Setter Property="extra:ScrollsExtra.RepeatButtonsOpacity"
-                    Value="0"/>
-
-            <Setter Property="extra:ScrollsExtra.TrackHeight"
-                    Value="8"/>
+            <Setter Property="SnapsToDevicePixels" 
+                    Value="False"/>
+            <Setter Property="UseLayoutRounding" 
+                    Value="True"/>
 
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ScrollBar}">
-                        <Border>
-                            <Grid Height="{TemplateBinding Height}"
-                                  Background="Transparent">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
 
-                                <RepeatButton Grid.Column="0"
-                                              Name="PART_LineUpButton"
-                                              UseLayoutRounding="True"
-                                              Style="{StaticResource repeatbutton-scroll}"
-                                              Opacity="{TemplateBinding extra:ScrollsExtra.RepeatButtonsOpacity}"
-                                              Visibility="{TemplateBinding extra:ScrollsExtra.RepeatButtonsVisible}"
-                                              Command="{x:Static ScrollBar.LineLeftCommand}">
-                                    <Path Style="{StaticResource icon-default}"
-                                          Fill="{StaticResource S_CommonFontColorBrush_}"
-                                          Data="{StaticResource S_LeftArrowLineIconGeometry}"/>
-                                </RepeatButton>
+                            <RepeatButton Grid.Column="0"
+                                          Name="PART_LineUpButton"
+                                          Margin="0,0,2,0"
+                                          Style="{StaticResource __RepeatButtonScroll}"
+                                          Opacity="0.0"
+                                          Command="{x:Static ScrollBar.LineLeftCommand}">
+                                <Image Width="16"
+                                       Height="16"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Source="{StaticResource DrawingImageSimpleArrowLeft}"/>
+                            </RepeatButton>
 
-                                <Border Grid.Column="1"
-                                        Margin="2,0"
-                                        SizeChanged="OnBorderSizeChanged"
-                                        Background="{TemplateBinding extra:ScrollsExtra.TrackColor}"
-                                        Height="{TemplateBinding extra:ScrollsExtra.TrackHeight}"/>
+                            <controls:RoundBorder Grid.Column="1"
+                                                  CornerRadius="1000"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  Background="{TemplateBinding Background}"/>
 
-                                <Track Grid.Column="1"
-                                       Margin="2,0"
-                                       Name="PART_Track"
-                                       Height="{TemplateBinding extra:ScrollsExtra.TrackHeight}"
-                                       Minimum="{TemplateBinding Minimum}"
-                                       Maximum="{TemplateBinding Maximum}"
-                                       Value="{TemplateBinding Value}"
-                                       ViewportSize="{TemplateBinding ViewportSize}"
-                                       Orientation="{TemplateBinding Orientation}"
-                                       IsDirectionReversed="False">
-                                    <Track.DecreaseRepeatButton>
-                                        <RepeatButton Name="PART_PageUpButton"
-                                                      Style="{StaticResource repeatbutton-scroll-track}"
-                                                      Command="{x:Static ScrollBar.PageLeftCommand}"/>
-                                    </Track.DecreaseRepeatButton>
-                                    <Track.IncreaseRepeatButton>
-                                        <RepeatButton Name="PART_PageDownButton"
-                                                      Style="{StaticResource repeatbutton-scroll-track}"
-                                                      Command="{x:Static ScrollBar.PageRightCommand}"/>
-                                    </Track.IncreaseRepeatButton>
-                                    <Track.Thumb>
-                                        <Thumb Style="{StaticResource thumb-scroll}"
-                                               Background="{TemplateBinding extra:ScrollsExtra.ThumbColor}"/>
-                                    </Track.Thumb>
-                                </Track>
+                            <Track Grid.Column="1"
+                                   Margin="{TemplateBinding Padding}"
+                                   Name="PART_Track"
+                                   Minimum="{TemplateBinding Minimum}"
+                                   Maximum="{TemplateBinding Maximum}"
+                                   Value="{TemplateBinding Value}"
+                                   ViewportSize="{TemplateBinding ViewportSize}"
+                                   Orientation="{TemplateBinding Orientation}"
+                                   IsDirectionReversed="False">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Name="PART_PageUpButton"
+                                                  Style="{StaticResource __RepeatButtonScrollTrack}"
+                                                  Command="{x:Static ScrollBar.PageLeftCommand}"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Name="PART_PageDownButton"
+                                                  Style="{StaticResource __RepeatButtonScrollTrack}"
+                                                  Command="{x:Static ScrollBar.PageRightCommand}"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb x:Name="PART_Thumb" 
+                                           Style="{StaticResource __ThumbScroll}"
+                                           Background="{TemplateBinding Foreground}"
+                                           Opacity="0.5"/>
+                                </Track.Thumb>
+                            </Track>
 
-                                <RepeatButton Grid.Column="2"
-                                              Name="PART_LineDownButton"
-                                              UseLayoutRounding="True"
-                                              Style="{StaticResource repeatbutton-scroll}"
-                                              Opacity="{TemplateBinding extra:ScrollsExtra.RepeatButtonsOpacity}"
-                                              Visibility="{TemplateBinding extra:ScrollsExtra.RepeatButtonsVisible}"
-                                              Command="{x:Static ScrollBar.LineRightCommand}" >
-                                    <Path Style="{StaticResource icon-default}"
-                                          Fill="{StaticResource S_CommonFontColorBrush_}"
-                                          Data="{StaticResource S_RightArrowLineIconGeometry}"/>
-                                </RepeatButton>
-                            </Grid>
-                        </Border>
+                            <RepeatButton Grid.Column="2"
+                                          Name="PART_LineDownButton"
+                                          Margin="2,0,0,0"
+                                          Style="{StaticResource __RepeatButtonScroll}"
+                                          Opacity="0.0"
+                                          Command="{x:Static ScrollBar.LineRightCommand}" >
+                                <Image Width="16"
+                                       Height="16"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Source="{StaticResource DrawingImageSimpleArrowRight}"/>
+                            </RepeatButton>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" 
+                                     Value="True">
+                                <Trigger.EnterActions>
+                                    <utils:DoubleAnimationGenerator IsEnter="True">
+                                        <StaticResource ResourceKey="__AnimationDescriptionThumbAppeared"/>
+                                        <StaticResource ResourceKey="__AnimationDescriptionLineUpAppeared"/>
+                                        <StaticResource ResourceKey="__AnimationDescriptionLineDownAppeared"/>
+                                    </utils:DoubleAnimationGenerator>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <utils:DoubleAnimationGenerator IsEnter="False">
+                                        <StaticResource ResourceKey="__AnimationDescriptionThumbAppeared"/>
+                                        <StaticResource ResourceKey="__AnimationDescriptionLineUpAppeared"/>
+                                        <StaticResource ResourceKey="__AnimationDescriptionLineDownAppeared"/>
+                                    </utils:DoubleAnimationGenerator>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                            <Trigger Property="IsEnabled"
+                                     Value="False">
+                                <Setter TargetName="PART_Thumb"
+                                        Property="Opacity"
+                                        Value="1.0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style.Setters>
-    </Style>
-
-
-    <Style x:Key="scrollbar-horizontal-full"
-           TargetType="{x:Type ScrollBar}"
-           BasedOn="{StaticResource scrollbar-horizontal}">
-        <Style.Setters>
-            <Setter Property="extra:ScrollsExtra.RepeatButtonsVisible"
-                    Value="Visible"/>
-        </Style.Setters>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Trigger.EnterActions>
-                    <StaticResource ResourceKey="S_ScrollFullHoverEnterAnimation"/>
+                    <utils:ThicknessAnimationGenerator IsEnter="True">
+                        <StaticResource ResourceKey="__AnimationDescriptionHorizontalScrollAppeared"/>
+                    </utils:ThicknessAnimationGenerator>
                 </Trigger.EnterActions>
                 <Trigger.ExitActions>
-                    <StaticResource ResourceKey="S_ScrollFullHoverExitAnimation"/>
+                    <utils:ThicknessAnimationGenerator IsEnter="False">
+                        <StaticResource ResourceKey="__AnimationDescriptionHorizontalScrollAppeared"/>
+                    </utils:ThicknessAnimationGenerator>
                 </Trigger.ExitActions>
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity"
+                        Value="0.40"/>
+                <Setter Property="Background"
+                        Value="{DynamicResource BrushDisabledBackground}"/>
+                <Setter Property="Foreground"
+                        Value="{DynamicResource BrushDisabledForeground}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="scrollbar-horizontal-resizable"
-           TargetType="{x:Type ScrollBar}"
-           BasedOn="{StaticResource scrollbar-horizontal}">
+    <Style x:Key="ScrollBarHorizontalMinimal"
+           TargetType="{x:Type ScrollBar}">
         <Style.Setters>
-            <Setter Property="extra:ScrollsExtra.TrackHeight"
-                    Value="4"/>
-        </Style.Setters>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Trigger.EnterActions>
-                    <StaticResource ResourceKey="S_ScrollFullResizableHoverEnterAnimation"/>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <StaticResource ResourceKey="S_ScrollFullResizableHoverExitAnimation"/>
-                </Trigger.ExitActions>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="scrollbar-horizontal-resizable-full"
-           TargetType="{x:Type ScrollBar}"
-           BasedOn="{StaticResource scrollbar-horizontal-resizable}">
-        <Style.Setters>
-            <Setter Property="extra:ScrollsExtra.RepeatButtonsVisible"
-                    Value="Visible"/>
-        </Style.Setters>
-    </Style>
-
-    <Style x:Key="scrollbar-horizontal-min"
-           TargetType="{x:Type ScrollBar}"
-           BasedOn="{StaticResource scrollbar-horizontal}">
-        <Style.Setters>
+            <Setter Property="MinHeight"
+                    Value="0"/>
+            
             <Setter Property="Height"
-                    Value="8"/>
-            <Setter Property="extra:ScrollsExtra.TrackHeight"
-                    Value="4"/>
+                    Value="12"/>
+
+            <Setter Property="Padding"
+                    Value="0,4"/>
+
+            <Setter Property="Background"
+                    Value="{DynamicResource BrushPanelsBackground}"/>
+            <Setter Property="Foreground"
+                    Value="{DynamicResource BrushSubtitleForeground}"/>
+
+            <Setter Property="Orientation"
+                    Value="Horizontal"/>
+
+            <Setter Property="SnapsToDevicePixels" 
+                    Value="False"/>
+            <Setter Property="UseLayoutRounding" 
+                    Value="True"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid Background="Transparent">
+
+                            <controls:RoundBorder Grid.Column="0"
+                                                  CornerRadius="1000"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  Background="{TemplateBinding Background}"/>
+
+                            <Track Grid.Column="0"
+                                   Margin="{TemplateBinding Padding}"
+                                   Name="PART_Track"
+                                   Minimum="{TemplateBinding Minimum}"
+                                   Maximum="{TemplateBinding Maximum}"
+                                   Value="{TemplateBinding Value}"
+                                   ViewportSize="{TemplateBinding ViewportSize}"
+                                   Orientation="{TemplateBinding Orientation}"
+                                   IsDirectionReversed="False">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Name="PART_PageUpButton"
+                                                  Style="{StaticResource __RepeatButtonScrollTrack}"
+                                                  Command="{x:Static ScrollBar.PageLeftCommand}"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Name="PART_PageDownButton"
+                                                  Style="{StaticResource __RepeatButtonScrollTrack}"
+                                                  Command="{x:Static ScrollBar.PageRightCommand}"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb x:Name="PART_Thumb" 
+                                           Style="{StaticResource __ThumbScroll}"
+                                           Background="{TemplateBinding Foreground}"
+                                           Opacity="0.5"/>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" 
+                                     Value="True">
+                                <Trigger.EnterActions>
+                                    <utils:DoubleAnimationGenerator IsEnter="True">
+                                        <StaticResource ResourceKey="__AnimationDescriptionThumbAppeared"/>
+                                    </utils:DoubleAnimationGenerator>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <utils:DoubleAnimationGenerator IsEnter="False">
+                                        <StaticResource ResourceKey="__AnimationDescriptionThumbAppeared"/>
+                                    </utils:DoubleAnimationGenerator>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                            <Trigger Property="IsEnabled"
+                                     Value="False">
+                                <Setter TargetName="PART_Thumb"
+                                        Property="Opacity"
+                                        Value="1.0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style.Setters>
+        <Style.Triggers>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity"
+                        Value="0.40"/>
+                <Setter Property="Background"
+                        Value="{DynamicResource BrushDisabledBackground}"/>
+                <Setter Property="Foreground"
+                        Value="{DynamicResource BrushDisabledForeground}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

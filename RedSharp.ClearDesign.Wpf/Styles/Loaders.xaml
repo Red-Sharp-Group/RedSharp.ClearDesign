@@ -1,0 +1,386 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:utils="http://red-sharp.org/clear-design/utils"
+                    xmlns:controls="http://red-sharp.org/clear-design/controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Definitions/Brushes.xaml"/>
+        <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="__ArcLoader"
+           TargetType="{x:Type controls:Arc}">
+        <Style.Setters>
+            <Setter Property="ArcThickness"
+                    Value="0"/>
+
+            <Setter Property="Height"
+                    Value="16"/>
+            <Setter Property="Width"
+                    Value="16"/>
+
+            <Setter Property="Stretch"
+                    Value="None"/>
+
+            <Setter Property="Visibility"
+                    Value="Collapsed"/>
+
+            <Setter Property="Stroke"
+                    Value="Black"/>
+            <Setter Property="StrokeThickness"
+                    Value="1"/>
+            <Setter Property="StrokeDashCap"
+                    Value="Round"/>
+            <Setter Property="StrokeStartLineCap"
+                    Value="Round"/>
+            <Setter Property="StrokeEndLineCap"
+                    Value="Round"/>
+
+            <Setter Property="StartAngle"
+                    Value="-360"/>
+            <Setter Property="EndAngle"
+                    Value="-360"/>
+
+            <Setter Property="VerticalAlignment"
+                    Value="Center"/>
+            <Setter Property="HorizontalAlignment"
+                    Value="Center"/>
+
+            <Setter Property="RenderTransformOrigin"
+                    Value="0.5,0.5"/>
+
+            <Setter Property="utils:Loader.IsActive"
+                    Value="False"/>
+
+            <!--I do not know how much is this correct, but at least it works-->
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <RotateTransform/>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+        <Style.Triggers>
+            <Trigger Property="utils:Loader.IsActive"
+                     Value="True">
+                <Setter Property="Visibility"
+                        Value="Visible"/>
+
+                <Trigger.EnterActions>
+                    <BeginStoryboard x:Name="AnimationBeginStoryboard">
+                        <Storyboard RepeatBehavior="Forever" 
+                                    SpeedRatio="1.5">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="EndAngle" 
+                                                           FillBehavior="Stop">
+                                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="-20">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase EasingMode="EaseInOut"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="-1">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase EasingMode="EaseInOut"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="StartAngle" 
+                                                           FillBehavior="Stop">
+                                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="-360"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="-21">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <CircleEase EasingMode="EaseInOut"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                            </DoubleAnimationUsingKeyFrames>
+
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(RenderTransform).(RotateTransform.Angle)"
+                                                           FillBehavior="Stop">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:1.96" Value="360"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+
+                <Trigger.ExitActions>
+                    <RemoveStoryboard BeginStoryboardName="AnimationBeginStoryboard"/>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LoaderTiny"
+           TargetType="{x:Type ContentControl}">
+        <Style.Setters>
+            <Setter Property="Focusable"
+                    Value="False"/>
+
+            <Setter Property="Background"
+                    Value="{DynamicResource BrushPanelsBackground}"/>
+
+            <Setter Property="utils:Loader.Fill"
+                    Value="{DynamicResource BrushPrimaryBackground}"/>
+            
+            <Setter Property="utils:Loader.IsActive"
+                    Value="False"/>
+            
+            <Setter Property="utils:Loader.Size"
+                    Value="16"/>
+
+            <Setter Property="utils:Loader.Thickness"
+                    Value="3"/>
+
+            <Setter Property="SnapsToDevicePixels" 
+                    Value="False"/>
+            <Setter Property="UseLayoutRounding" 
+                    Value="True"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                        <Grid>
+                            <Grid x:Name="PART_Loader">
+                                <Ellipse Height="{TemplateBinding utils:Loader.Size}"
+                                         Width="{TemplateBinding utils:Loader.Size}"
+                                         Stroke="{TemplateBinding Background}"
+                                         StrokeThickness="{TemplateBinding utils:Loader.Thickness}"
+                                         Opacity="0.5"/>
+
+                                <controls:Arc Style="{StaticResource __ArcLoader}"
+                                              Height="{TemplateBinding utils:Loader.Size}"
+                                              Width="{TemplateBinding utils:Loader.Size}" 
+                                              Stroke="{TemplateBinding utils:Loader.Fill}" 
+                                              StrokeThickness="{TemplateBinding utils:Loader.Thickness}"
+                                              utils:Loader.IsActive="{TemplateBinding utils:Loader.IsActive}"/>
+                            </Grid>
+
+                            <ContentPresenter x:Name="PART_ContentPresenter"
+                                              Content="{TemplateBinding Content}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="utils:Loader.IsActive"
+                                     Value="False">
+                                <Setter TargetName="PART_Loader"
+                                        Property="Visibility"
+                                        Value="Collapsed"/>
+                                <Setter TargetName="PART_ContentPresenter"
+                                        Property="Visibility"
+                                        Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="utils:Loader.IsActive"
+                                     Value="True">
+                                <Setter TargetName="PART_Loader"
+                                        Property="Visibility"
+                                        Value="Visible"/>
+                                <Setter TargetName="PART_ContentPresenter"
+                                        Property="Visibility"
+                                        Value="Hidden"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LoaderButtonDefault"
+       TargetType="{x:Type ContentControl}"
+       BasedOn="{StaticResource LoaderTiny}">
+        <Style.Setters>
+            <Setter Property="Foreground"
+                Value="{DynamicResource BrushDefaultForeground}"/>
+
+            <Setter Property="utils:Loader.Fill"
+                Value="{DynamicResource BrushDefaultForeground}"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LoaderButtonPrimary"
+       TargetType="{x:Type ContentControl}"
+       BasedOn="{StaticResource LoaderTiny}">
+        <Style.Setters>
+            <Setter Property="Foreground"
+                Value="{DynamicResource BrushPrimaryForeground}"/>
+
+            <Setter Property="utils:Loader.Fill"
+                Value="{DynamicResource BrushPrimaryForeground}"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LoaderMini"
+       TargetType="{x:Type ContentControl}"
+       BasedOn="{StaticResource LoaderTiny}">
+        <Style.Setters>
+            <Setter Property="utils:Loader.Size"
+                Value="24"/>
+            <Setter Property="utils:Loader.Thickness"
+                Value="4"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LoaderMedium"
+       TargetType="{x:Type ContentControl}"
+       BasedOn="{StaticResource LoaderTiny}">
+        <Style.Setters>
+            <Setter Property="utils:Loader.Size"
+                Value="36"/>
+            <Setter Property="utils:Loader.Thickness"
+                Value="5"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LoaderLarge"
+       TargetType="{x:Type ContentControl}"
+       BasedOn="{StaticResource LoaderTiny}">
+        <Style.Setters>
+            <Setter Property="utils:Loader.Size"
+                Value="48"/>
+            <Setter Property="utils:Loader.Thickness"
+                Value="6"/>
+        </Style.Setters>
+    </Style>
+    
+
+    <Style x:Key="LoaderDockTiny"
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource LoaderTiny}">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                        <Grid>
+                            <Grid x:Name="PART_Loader"
+                                  VerticalAlignment="Stretch"
+                                  HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <ContentPresenter Grid.Column="1" 
+                                                  Grid.Row="0" 
+                                                  Content="{TemplateBinding utils:DockContent.Top}"/>
+                                
+                                <ContentPresenter Grid.Column="0" 
+                                                  Grid.Row="1" 
+                                                  Content="{TemplateBinding utils:DockContent.Left}"/>
+
+                                <Ellipse Grid.Column="1" 
+                                         Grid.Row="1" 
+                                         Height="{TemplateBinding utils:Loader.Size}"
+                                         Width="{TemplateBinding utils:Loader.Size}"
+                                         Stroke="{TemplateBinding Background}"
+                                         StrokeThickness="{TemplateBinding utils:Loader.Thickness}"
+                                         Opacity="0.5"/>
+
+                                <controls:Arc Grid.Column="1" 
+                                              Grid.Row="1" 
+                                              Style="{StaticResource __ArcLoader}"
+                                              Height="{TemplateBinding utils:Loader.Size}"
+                                              Width="{TemplateBinding utils:Loader.Size}" 
+                                              Stroke="{TemplateBinding utils:Loader.Fill}" 
+                                              StrokeThickness="{TemplateBinding utils:Loader.Thickness}"
+                                              utils:Loader.IsActive="{TemplateBinding utils:Loader.IsActive}"/>
+
+                                <ContentPresenter Grid.Column="2" 
+                                                  Grid.Row="1" 
+                                                  Content="{TemplateBinding utils:DockContent.Right}"/>
+                                
+                                <ContentPresenter Grid.Column="1" 
+                                                  Grid.Row="2" 
+                                                  Content="{TemplateBinding utils:DockContent.Bottom}"/>
+                            </Grid>
+
+                            <ContentPresenter x:Name="PART_ContentPresenter"
+                                              Content="{TemplateBinding Content}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="utils:Loader.IsActive"
+                                     Value="False">
+                                <Setter TargetName="PART_Loader"
+                                        Property="Visibility"
+                                        Value="Collapsed"/>
+                                <Setter TargetName="PART_ContentPresenter"
+                                        Property="Visibility"
+                                        Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="utils:Loader.IsActive"
+                                     Value="True">
+                                <Setter TargetName="PART_Loader"
+                                        Property="Visibility"
+                                        Value="Visible"/>
+                                <Setter TargetName="PART_ContentPresenter"
+                                        Property="Visibility"
+                                        Value="Hidden"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LoaderDockButtonDefault"
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource LoaderDockTiny}">
+        <Style.Setters>
+            <Setter Property="Foreground"
+                    Value="{DynamicResource BrushDefaultForeground}"/>
+
+            <Setter Property="utils:Loader.Fill"
+                    Value="{DynamicResource BrushDefaultForeground}"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LoaderDockButtonPrimary"
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource LoaderDockTiny}">
+        <Style.Setters>
+            <Setter Property="Foreground"
+                    Value="{DynamicResource BrushPrimaryForeground}"/>
+
+            <Setter Property="utils:Loader.Fill"
+                    Value="{DynamicResource BrushPrimaryForeground}"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LoaderDockMini"
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource LoaderDockTiny}">
+        <Style.Setters>                        
+            <Setter Property="utils:Loader.Size"
+                    Value="24"/>
+            <Setter Property="utils:Loader.Thickness"
+                    Value="4"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LoaderDockMedium"
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource LoaderDockTiny}">
+        <Style.Setters>                        
+            <Setter Property="utils:Loader.Size"
+                    Value="36"/>
+            <Setter Property="utils:Loader.Thickness"
+                    Value="5"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="LoaderDockLarge"
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource LoaderDockTiny}">
+        <Style.Setters>                        
+            <Setter Property="utils:Loader.Size"
+                    Value="48"/>
+            <Setter Property="utils:Loader.Thickness"
+                    Value="6"/>
+        </Style.Setters>
+    </Style>
+</ResourceDictionary>

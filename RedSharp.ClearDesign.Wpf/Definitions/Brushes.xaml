@@ -1,0 +1,66 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--#################################################################################################-->
+    <!--BACKGROUND COLORS-->
+
+    <SolidColorBrush x:Key="BrushPrimaryBackground">#3B99FC</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDefaultBackground">#FAFAFA</SolidColorBrush>
+
+
+    <SolidColorBrush x:Key="BrushElementsBackground">#F9F9F9</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushFieldsBackground">#FFFFFF</SolidColorBrush>
+
+
+    <SolidColorBrush x:Key="BrushDisabledBackground">#D7D7D7</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushHighlightBackground">#59000000</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushPanelsBackground">#1F000000</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushSelectedBackground">#4D000000</SolidColorBrush>
+
+
+    <SolidColorBrush x:Key="BrushDefault1Background">#F5F5F5</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDefault2Background">#EFEFEF</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDefault3Background">#E8E8E8</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDefault4Background">#E2E2E2</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDefault5Background">#DCDCDC</SolidColorBrush>
+
+    <!--#################################################################################################-->
+    <!--FOREGROUND COLORS-->
+    
+    <SolidColorBrush x:Key="BrushPrimaryForeground">#FAFAFA</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDefaultForeground">#232526</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDisabledForeground">#232526</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushSubtitleForeground">#797979</SolidColorBrush>
+
+    <!--#################################################################################################-->
+    <!--BORDER COLORS-->
+
+    <SolidColorBrush x:Key="BrushPrimaryBorder">#3B99FC</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushDefaultBorder">#1A000000</SolidColorBrush>
+
+
+    <SolidColorBrush x:Key="BrushElementsBorder">#1D000000</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushPanelsBorder">#40FFFFFF</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushSelectedBorder">#2D80FC</SolidColorBrush>
+
+
+
+    <SolidColorBrush x:Key="BrushFocusedBorder">#6DB3FD</SolidColorBrush>
+
+    <SolidColorBrush x:Key="BrushErrorBorder">#F87373</SolidColorBrush>
+
+</ResourceDictionary>

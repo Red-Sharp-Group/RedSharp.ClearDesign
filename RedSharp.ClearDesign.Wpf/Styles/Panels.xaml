@@ -1,0 +1,362 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:utils="http://red-sharp.org/clear-design/utils"
+                    xmlns:localUtils="clr-namespace:RedSharp.ClearDesign.Wpf.Utils"
+                    xmlns:controls="http://red-sharp.org/clear-design/controls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Definitions/Brushes.xaml"/>
+        <ResourceDictionary Source="../Definitions/Fonts.xaml"/>
+        <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
+
+        <ResourceDictionary Source="Shadows.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <localUtils:ThicknessToTopConverter x:Key="__ThicknessToTopConverter"/>
+
+    <Style x:Key="PanelDefault" 
+           TargetType="{x:Type ContentControl}">
+        <Style.Setters>
+            <Setter Property="Background"
+                    Value="{DynamicResource BrushDefaultBackground}"/>
+
+            <Setter Property="BorderBrush"
+                    Value="{DynamicResource BrushDefaultBorder}"/>
+            <Setter Property="BorderThickness"
+                    Value="{DynamicResource SizeDefaultBorderAll}"/>
+
+            <Setter Property="utils:Panel.BorderBrush"
+                    Value="{DynamicResource BrushPanelsBorder}"/>
+            <Setter Property="utils:Panel.BorderThickness"
+                    Value="{DynamicResource SizeDefaultBorderAll}"/>
+            
+            <Setter Property="utils:Control.CornerRadius"
+                    Value="{DynamicResource SizePanelRadiusAll}"/>
+
+            <Setter Property="Effect"
+                    Value="{StaticResource ShadowDefault}"/>
+
+            <Setter Property="Focusable"
+                    Value="False"/>
+
+            <Setter Property="SnapsToDevicePixels" 
+                    Value="False"/>
+            <Setter Property="UseLayoutRounding" 
+                    Value="True"/>
+
+            <Setter Property="HorizontalAlignment"
+                    Value="Center"/>
+            <Setter Property="VerticalAlignment"
+                    Value="Center"/>
+
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment"
+                    Value="Stretch"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                        <controls:LayeredBorder UseLayoutRounding="False" 
+                                                EnableChildClipping="True"
+                                                UseOuterCornerRadius="False"
+                                                Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                CornerRadius="{TemplateBinding utils:Control.CornerRadius}">
+                            <Grid>
+                                <ContentPresenter UseLayoutRounding="True"
+                                                  Focusable="False"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Content="{TemplateBinding Content}"/>
+
+                                <controls:RoundBorder UseLayoutRounding="False"
+                                                      IsHitTestVisible="False"
+                                                      UseOuterCornerRadius="True"
+                                                      BorderBrush="{TemplateBinding utils:Panel.BorderBrush}"
+                                                      BorderThickness="{TemplateBinding utils:Panel.BorderThickness}"
+                                                      CornerRadius="{TemplateBinding utils:Control.CornerRadius}"/>
+                            </Grid>
+                        </controls:LayeredBorder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="PanelLeft" 
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource PanelDefault}">
+        <Style.Setters>
+
+            <Setter Property="BorderThickness"
+                    Value="{DynamicResource SizeDefaultBorderRight}"/>
+            <Setter Property="utils:Panel.BorderThickness"
+                    Value="{DynamicResource SizeDefaultBorderRight}"/>
+
+            <Setter Property="utils:Control.CornerRadius"
+                    Value="0"/>
+
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch"/>
+            <Setter Property="VerticalAlignment"
+                    Value="Stretch"/>
+
+            <Setter Property="Effect"
+                    Value="{StaticResource ShadowPanels}"/>
+            
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                        <Grid>
+                            <controls:LayeredBorder UseLayoutRounding="False" 
+                                                    IsHitTestVisible="False"
+                                                    Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"/>
+
+                            <controls:LayeredBorder Margin="{TemplateBinding BorderThickness}"
+                                                    ClipToBounds="True">
+                                <ContentPresenter UseLayoutRounding="True"
+                                                  Focusable="False"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Content="{TemplateBinding Content}"/>
+                            </controls:LayeredBorder>
+
+                            <controls:RoundBorder UseLayoutRounding="False"
+                                                  IsHitTestVisible="False"
+                                                  Margin="{TemplateBinding BorderThickness}"
+                                                  BorderBrush="{TemplateBinding utils:Panel.BorderBrush}"
+                                                  BorderThickness="{TemplateBinding utils:Panel.BorderThickness}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="PanelRight" 
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource PanelLeft}">
+        <Style.Setters>
+            <Setter Property="BorderThickness"
+                    Value="{DynamicResource SizeDefaultBorderLeft}"/>
+            <Setter Property="utils:Panel.BorderThickness"
+                    Value="{DynamicResource SizeDefaultBorderLeft}"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="PanelTop" 
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource PanelLeft}">
+        <Style.Setters>
+            <Setter Property="BorderThickness"
+                    Value="{DynamicResource SizeDefaultBorderBottom}"/>
+            <Setter Property="utils:Panel.BorderThickness"
+                    Value="{DynamicResource SizeDefaultBorderBottom}"/>
+        </Style.Setters>
+    </Style>
+    
+    <Style x:Key="PanelBottom" 
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource PanelLeft}">
+        <Style.Setters>
+            <Setter Property="BorderThickness"
+                    Value="{DynamicResource SizeDefaultBorderTop}"/>
+            <Setter Property="utils:Panel.BorderThickness"
+                    Value="{DynamicResource SizeDefaultBorderTop}"/>            
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="PanelPopup" 
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource PanelDefault}">
+        <Style.Setters>
+            <Setter Property="Effect"
+                    Value="{StaticResource ShadowPopup}"/>
+
+            <Setter Property="Margin"
+                    Value="10,0,10,15"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                        <controls:RoundBorder UseLayoutRounding="False"
+                                              UseOuterCornerRadius="False"
+                                              DrawBackgroundUnderBorder="True"
+                                              Margin="0,5,0,0"
+                                              Background="{TemplateBinding Background}"
+                                              BorderBrush="{TemplateBinding BorderBrush}"
+                                              BorderThickness="{TemplateBinding BorderThickness}"
+                                              CornerRadius="{TemplateBinding utils:Control.CornerRadius}">
+                            <Grid>
+                                <ContentPresenter UseLayoutRounding="True"
+                                                  Focusable="False"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Content="{TemplateBinding Content}"/>
+
+                                <controls:RoundBorder UseLayoutRounding="False"
+                                                      IsHitTestVisible="False"
+                                                      UseOuterCornerRadius="True"
+                                                      BorderBrush="{TemplateBinding utils:Panel.BorderBrush}"
+                                                      BorderThickness="{TemplateBinding utils:Panel.BorderThickness}"
+                                                      CornerRadius="{TemplateBinding utils:Control.CornerRadius}"/>
+                            </Grid>
+                        </controls:RoundBorder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="PanelPopupLeft" 
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource PanelPopup}">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                        <controls:RoundBorder UseLayoutRounding="False"
+                                              UseOuterCornerRadius="False"
+                                              DrawBackgroundUnderBorder="True"
+                                              Margin="0,14,0,0"
+                                              Background="{TemplateBinding Background}"
+                                              BorderBrush="{TemplateBinding BorderBrush}"
+                                              BorderThickness="{TemplateBinding BorderThickness}"
+                                              CornerRadius="{TemplateBinding utils:Control.CornerRadius}">
+                            <Grid>
+                                <ContentPresenter UseLayoutRounding="True"
+                                                  Focusable="False"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Content="{TemplateBinding Content}"/>
+
+                                <controls:RoundBorder UseLayoutRounding="False"
+                                                      IsHitTestVisible="False"
+                                                      UseOuterCornerRadius="True"
+                                                      BorderBrush="{TemplateBinding utils:Panel.BorderBrush}"
+                                                      BorderThickness="{TemplateBinding utils:Panel.BorderThickness}"
+                                                      CornerRadius="{TemplateBinding utils:Control.CornerRadius}"/>
+
+                                <controls:ToolTipPointer Fill="{TemplateBinding Background}"
+                                                         Margin="8,-14,0,0"
+                                                         Width="22"
+                                                         Height="22"
+                                                         VerticalAlignment="Top"
+                                                         HorizontalAlignment="Left"
+                                                         OuterStroke="{TemplateBinding BorderBrush}"
+                                                         OuterStrokeThickness="{TemplateBinding BorderThickness, Converter={StaticResource __ThicknessToTopConverter}}"
+                                                         InnerStroke="{TemplateBinding utils:Panel.BorderBrush}"
+                                                         InnerStrokeThickness="{TemplateBinding utils:Panel.BorderThickness, Converter={StaticResource __ThicknessToTopConverter}}"/>
+
+                            </Grid>
+                        </controls:RoundBorder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="PanelPopupCenter" 
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource PanelPopup}">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                        <controls:RoundBorder UseLayoutRounding="False"
+                                              UseOuterCornerRadius="False"
+                                              DrawBackgroundUnderBorder="True"
+                                              Margin="0,14,0,0"
+                                              Background="{TemplateBinding Background}"
+                                              BorderBrush="{TemplateBinding BorderBrush}"
+                                              BorderThickness="{TemplateBinding BorderThickness}"
+                                              CornerRadius="{TemplateBinding utils:Control.CornerRadius}">
+                            <Grid>
+                                <ContentPresenter UseLayoutRounding="True"
+                                                  Focusable="False"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Content="{TemplateBinding Content}"/>
+
+                                <controls:RoundBorder UseLayoutRounding="False"
+                                                      IsHitTestVisible="False"
+                                                      UseOuterCornerRadius="True"
+                                                      BorderBrush="{TemplateBinding utils:Panel.BorderBrush}"
+                                                      BorderThickness="{TemplateBinding utils:Panel.BorderThickness}"
+                                                      CornerRadius="{TemplateBinding utils:Control.CornerRadius}"/>
+
+                                <controls:ToolTipPointer Margin="0, -14,0,0"
+                                                         Width="22"
+                                                         Height="22"
+                                                         VerticalAlignment="Top"
+                                                         HorizontalAlignment="Center"
+                                                         Fill="{TemplateBinding Background}"
+                                                         OuterStroke="{TemplateBinding BorderBrush}"
+                                                         OuterStrokeThickness="{TemplateBinding BorderThickness, Converter={StaticResource __ThicknessToTopConverter}}"
+                                                         InnerStroke="{TemplateBinding utils:Panel.BorderBrush}"
+                                                         InnerStrokeThickness="{TemplateBinding utils:Panel.BorderThickness, Converter={StaticResource __ThicknessToTopConverter}}"/>
+                            </Grid>
+                        </controls:RoundBorder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="PanelPopupRight" 
+           TargetType="{x:Type ContentControl}"
+           BasedOn="{StaticResource PanelPopup}">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                        <controls:RoundBorder UseLayoutRounding="False"
+                                              UseOuterCornerRadius="False"
+                                              DrawBackgroundUnderBorder="True"
+                                              Margin="0,14,0,0"
+                                              Background="{TemplateBinding Background}"
+                                              BorderBrush="{TemplateBinding BorderBrush}"
+                                              BorderThickness="{TemplateBinding BorderThickness}"
+                                              CornerRadius="{TemplateBinding utils:Control.CornerRadius}">
+                            <Grid>
+                                <ContentPresenter UseLayoutRounding="True"
+                                                  Focusable="False"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Content="{TemplateBinding Content}"/>
+
+                                <controls:RoundBorder UseLayoutRounding="False"
+                                                      IsHitTestVisible="False"
+                                                      UseOuterCornerRadius="True"
+                                                      BorderBrush="{TemplateBinding utils:Panel.BorderBrush}"
+                                                      BorderThickness="{TemplateBinding utils:Panel.BorderThickness}"
+                                                      CornerRadius="{TemplateBinding utils:Control.CornerRadius}"/>
+                                
+                                <controls:ToolTipPointer Margin="0, -14,8,0"
+                                                         Width="22"
+                                                         Height="22"
+                                                         VerticalAlignment="Top"
+                                                         HorizontalAlignment="Right"
+                                                         Fill="{TemplateBinding Background}"
+                                                         OuterStroke="{TemplateBinding BorderBrush}"
+                                                         OuterStrokeThickness="{TemplateBinding BorderThickness, Converter={StaticResource __ThicknessToTopConverter}}"
+                                                         InnerStroke="{TemplateBinding utils:Panel.BorderBrush}"
+                                                         InnerStrokeThickness="{TemplateBinding utils:Panel.BorderThickness, Converter={StaticResource __ThicknessToTopConverter}}"/>
+
+                            </Grid>
+                        </controls:RoundBorder>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+</ResourceDictionary>

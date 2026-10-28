@@ -1,0 +1,185 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".xaml" #>
+<#
+
+
+#>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <!--#################################################################################################-->
+    <!--UI ELEMENT DEFAULT SIZES-->
+
+    <system:Double x:Key="SizeDefaultMinHeight">30</system:Double>
+    <system:Double x:Key="SizeDefaultMinWidth">120</system:Double>
+ 
+<#  
+    GenerateThickness("SizeDefaultBorder", 1); 
+    GenerateThickness("SizeDefaultPadding", 10); 
+    GenerateThickness("SizeDefaultMargin", 5); 
+    GenerateRadius   ("SizeDefaultRadius", 5);
+    
+    GenerateRadius   ("SizePanelRadius", 8);
+#>
+    <!--#################################################################################################-->
+    <!--SELECTION BORDER SIZES-->
+
+<#  
+    GenerateThickness("SizeSelectedBorder", 2); 
+    GenerateThickness("SizeSelectedMargin", -1);
+#>
+    <!--#################################################################################################-->
+    <!--ERROR BORDER SIZES-->
+
+<#  
+    GenerateThickness("SizeErrorBorder", 3); 
+    GenerateThickness("SizeErrorMargin", -2);
+#>
+    <!--#################################################################################################-->
+    <!--FOCUS BORDER SIZES-->
+
+<#  
+    GenerateThickness("SizeFocusedBorder", 3); 
+    GenerateThickness("SizeFocusedMargin", -2);
+#>
+    <!--#################################################################################################-->
+    <!--TEXT SIZES-->
+
+    <system:Double x:Key="SizeHeader1">26</system:Double>     
+    <system:Double x:Key="SizeHeader2">22</system:Double>    
+    <system:Double x:Key="SizeHeader3">16</system:Double>    
+    <system:Double x:Key="SizeHeader4">14</system:Double>    
+    <system:Double x:Key="SizeHeader5">13</system:Double>
+    <system:Double x:Key="SizeHeader6">12</system:Double>
+
+    <system:Double x:Key="SizeText">12</system:Double>
+    <system:Double x:Key="SizeCode">12</system:Double>
+    <system:Double x:Key="SizeQuote">14</system:Double>
+
+    <!--#################################################################################################-->
+    <!--TEXT WEIGHTS-->
+
+    <FontWeight x:Key="WeightHeader1">Regular</FontWeight>
+    <FontWeight x:Key="WeightHeader2">Regular</FontWeight>
+    <FontWeight x:Key="WeightHeader3">Regular</FontWeight>
+    <FontWeight x:Key="WeightHeader4">Regular</FontWeight>
+    <FontWeight x:Key="WeightHeader5">SemiBold</FontWeight>
+    <FontWeight x:Key="WeightHeader6">Bold</FontWeight>
+    
+    <FontWeight x:Key="WeightText">Regular</FontWeight>
+    <FontWeight x:Key="WeightCode">Regular</FontWeight>
+    <FontWeight x:Key="WeightQuote">Regular</FontWeight> 
+    
+</ResourceDictionary>
+<#+ public void PlaceBinaryLeftScalarOperator(string leftType, string rightType, string outType, string operation) { #>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static <#=outType#>2 operator<#=operation#>(<#=leftType#> left, <#=rightType#>2 right)
+        {
+            return new <#=outType#>2(left <#=operation#> right.x, left <#=operation#> right.y);
+        }
+
+<#+ } #>
+<#+
+    public void GenerateThickness(string prefix, int input)
+    {
+        var map = new Dictionary<string, int[]>()
+        {
+            { "All",                new int[] { 1 }},
+            { "E1", null},
+            { "Left",               new int[] { 1, 0, 0, 0 }},
+            { "Top",                new int[] { 0, 1, 0, 0 }},
+            { "Right",              new int[] { 0, 0, 1, 0 }},
+            { "Bottom",             new int[] { 0, 0, 0, 1 }},
+            { "E2", null},
+            { "LeftRight",          new int[] { 1, 0 }},
+            { "TopBottom",          new int[] { 0, 1 }},
+            { "E3", null},
+            { "LeftTop",            new int[] { 1, 1, 0, 0 }},
+            { "LeftBottom",         new int[] { 1, 0, 0, 1 }},
+            { "E4", null},
+            { "RightTop",           new int[] { 0, 1, 1, 0 }},
+            { "RightBottom",        new int[] { 0, 0, 1, 1 }},
+            { "E5", null},
+            { "LeftTopBottom",      new int[] { 1, 1, 1, 0 }},
+            { "RightTopBottom",     new int[] { 0, 1, 1, 1 }},
+            { "E6", null},
+            { "LeftRightTop",       new int[] { 1, 1, 1, 0 }},
+            { "LeftRightBottom",    new int[] { 1, 0, 1, 1 }},
+        };
+
+#>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <system:Double x:Key="<#=prefix#>"><#=input#></system:Double>
+
+<#+
+        foreach (var item in map)
+        {
+            if(item.Value == null)
+            {
+#>
+ 
+<#+
+            }
+            else
+            {
+            var name = prefix + item.Key;
+            var value = string.Join(",", item.Value.Select(item => item * input));
+#>
+    <Thickness x:Key="<#=name#>"><#=value#></Thickness>
+<#+
+            }
+
+        }        
+#>
+ 
+<#+
+    }
+#>
+<#+
+    public void GenerateRadius(string prefix, int input)
+    {
+        var map = new Dictionary<string, int[]>()
+        {
+            { "All",                    new int[] { 1 }},
+            { "E1", null},
+            { "LeftTop",                new int[] { 1, 0, 0, 0 }},
+            { "RightTop",               new int[] { 0, 1, 0, 0 }},
+            { "LeftBottom",             new int[] { 0, 0, 1, 0 }},
+            { "RightBottom",            new int[] { 0, 0, 0, 1 }},
+            { "E2", null},
+            { "LeftTopRightTop",        new int[] { 1, 1, 0, 0 }},
+            { "LeftBottomRightBottom",  new int[] { 0, 0, 1, 1 }},
+        };
+
+#>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <system:Double x:Key="<#=prefix#>"><#=input#></system:Double>
+
+<#+
+        foreach (var item in map)
+        {
+            if(item.Value == null)
+            {
+#>
+ 
+<#+
+            }
+            else
+            {
+            var name = prefix + item.Key;
+            var value = string.Join(",", item.Value.Select(item => item * input));
+#>
+    <CornerRadius x:Key="<#=name#>"><#=value#></CornerRadius>
+<#+
+            }
+
+        }        
+#>
+ 
+<#+
+    }
+#>

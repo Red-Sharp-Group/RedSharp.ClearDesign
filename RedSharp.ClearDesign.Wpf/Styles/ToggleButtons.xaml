@@ -1,26 +1,183 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:helpers="clr-namespace:RedSharp.ClearDesign.Helpers"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    xmlns:utils="clr-namespace:RedSharp.ClearDesign.Utils"
-                    xmlns:extra="clr-namespace:RedSharp.ClearDesign.Extra">
-
+                    xmlns:utils="http://red-sharp.org/clear-design/utils"
+                    xmlns:controls="http://red-sharp.org/clear-design/controls">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="../Definitions/Colors.xaml"/>
-        <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
+        <ResourceDictionary Source="../Definitions/Brushes.xaml"/>
         <ResourceDictionary Source="../Definitions/Fonts.xaml"/>
-        <ResourceDictionary Source="../Styles/Common.xaml"/>
+        <ResourceDictionary Source="../Definitions/Sizes.xaml"/>
+
+        <ResourceDictionary Source="Animations.xaml"/>
+        <ResourceDictionary Source="Shadows.xaml"/>
+        <ResourceDictionary Source="Focuses.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="togglebutton-secondary" 
+    <Style x:Key="ToggleButtonDefault" 
            TargetType="{x:Type ToggleButton}">
         <Style.Setters>
-            <Setter Property="Width"
-                    Value="{DynamicResource D_DefaultWidth_}"/>
-            <Setter Property="Height"
-                    Value="{DynamicResource D_DefaultHeight_}"/>
+            <Setter Property="MinWidth"
+                Value="{DynamicResource SizeDefaultMinWidth}"/>
+            <Setter Property="MinHeight"
+                Value="{DynamicResource SizeDefaultMinHeight}"/>
+
             <Setter Property="Padding"
-                    Value="{DynamicResource D_DefaultPaddingThicknessLeftRight_}"/>
+                Value="{DynamicResource SizeDefaultPaddingLeftRight}"/>
+
+            <Setter Property="BorderThickness"
+                Value="{DynamicResource SizeDefaultBorderAll}"/>
+
+            <Setter Property="HorizontalAlignment"
+                Value="Center"/>
+            <Setter Property="VerticalAlignment"
+                Value="Center"/>
+
+            <Setter Property="HorizontalContentAlignment"
+                Value="Center"/>
+            <Setter Property="VerticalContentAlignment"
+                Value="Center"/>
+
+            <Setter Property="Background"
+                Value="{DynamicResource BrushElementsBackground}"/>
+            <Setter Property="BorderBrush"
+                Value="{DynamicResource BrushElementsBorder}"/>
+            <Setter Property="Foreground"
+                Value="{DynamicResource BrushDefaultForeground}"/>
+
+
+            <Setter Property="FontFamily"
+                Value="{DynamicResource FontText}"/>
+            <Setter Property="FontSize"
+                Value="{DynamicResource SizeText}"/>
+            <Setter Property="FontWeight"
+                Value="{DynamicResource WeightText}"/>
+
+
+            <Setter Property="utils:Control.CornerRadius"
+                Value="{DynamicResource SizeDefaultRadiusAll}"/>
+
+            <Setter Property="utils:Highlight.Fill"
+                Value="{DynamicResource BrushHighlightBackground}"/>
+            <Setter Property="utils:Highlight.Opacity"
+                Value="0.0"/>
+
+            <Setter Property="SnapsToDevicePixels" 
+                Value="False"/>
+            <Setter Property="UseLayoutRounding" 
+                Value="True"/>
+
+            <Setter Property="Effect" 
+                Value="{StaticResource ShadowDefault}"/>
+
+            <Setter Property="FocusVisualStyle"
+                Value="{StaticResource FocusDefaultOutstanding}"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Grid>
+                            <!--BACKGROUND-->
+                            <controls:LayeredBorder UseLayoutRounding="False" 
+                                                Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                CornerRadius="{TemplateBinding utils:Control.CornerRadius}"/>
+
+                            <!--HIGHLIGHT-->
+                            <controls:LayeredBorder UseLayoutRounding="False" 
+                                                Background="{TemplateBinding utils:Highlight.Fill}"
+                                                CornerRadius="{TemplateBinding utils:Control.CornerRadius}"
+                                                Opacity="{TemplateBinding utils:Highlight.Opacity}"/>
+
+                            <ContentPresenter UseLayoutRounding="False"
+                                              Focusable="False"                                             
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <utils:DoubleAnimationGenerator IsEnter="True">
+                        <StaticResource ResourceKey="AnimationDescriptionHovered"/>
+                    </utils:DoubleAnimationGenerator>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <utils:DoubleAnimationGenerator IsEnter="False">
+                        <StaticResource ResourceKey="AnimationDescriptionHovered"/>
+                    </utils:DoubleAnimationGenerator>
+                </Trigger.ExitActions>
+            </Trigger>
+
+            <Trigger Property="IsMouseCaptured" Value="True">
+                <Trigger.EnterActions>
+                    <utils:DoubleAnimationGenerator IsEnter="True">
+                        <StaticResource ResourceKey="AnimationDescriptionPressed"/>
+                    </utils:DoubleAnimationGenerator>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <utils:DoubleAnimationGenerator IsEnter="False">
+                        <StaticResource ResourceKey="AnimationDescriptionPressed"/>
+                    </utils:DoubleAnimationGenerator>
+                </Trigger.ExitActions>
+            </Trigger>
+
+            <Trigger Property="IsChecked" Value="False">
+                <Setter Property="Background"
+                        Value="Transparent"/>
+                <Setter Property="BorderBrush"
+                        Value="Transparent"/>
+                <Setter Property="Effect" 
+                        Value="{x:Null}"/>
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity"
+                    Value="0.40"/>
+                <Setter Property="Background"
+                    Value="{DynamicResource BrushDisabledBackground}"/>
+                <Setter Property="Foreground"
+                    Value="{DynamicResource BrushDisabledForeground}"/>
+                <Setter Property="BorderThickness"
+                        Value="0"/>
+                <Setter Property="Effect" 
+                        Value="{x:Null}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type ToggleButton}" 
+           BasedOn="{StaticResource ToggleButtonDefault}"/>
+
+    <Style x:Key="ToggleButtonMenuToolBar"
+           TargetType="{x:Type ToggleButton}"
+           BasedOn="{StaticResource ToggleButtonDefault}">
+        <Style.Setters>
+            <Setter Property="MinWidth"
+                    Value="40"/>
+
+            <Setter Property="Padding"
+                    Value="0"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="ToggleButtonAltDefault"
+           TargetType="{x:Type ToggleButton}">
+        <Style.Setters>
+            <Setter Property="MinWidth"
+                    Value="{DynamicResource SizeDefaultMinWidth}"/>
+            <Setter Property="MinHeight"
+                    Value="{DynamicResource SizeDefaultMinHeight}"/>
+
+            <Setter Property="Padding"
+                    Value="{DynamicResource SizeDefaultPaddingLeftRight}"/>
+
+            <Setter Property="BorderThickness"
+                    Value="{DynamicResource SizeDefaultBorderAll}"/>
 
             <Setter Property="HorizontalAlignment"
                     Value="Center"/>
@@ -33,28 +190,26 @@
                     Value="Center"/>
 
             <Setter Property="Background"
-                    Value="{StaticResource S_SecondaryColorBrush_}"/>
-            <Setter Property="Foreground"
-                    Value="{StaticResource S_CommonFontColorBrush_}"/>
-
+                    Value="{DynamicResource BrushElementsBackground}"/>
             <Setter Property="BorderBrush"
-                    Value="{StaticResource S_SecondaryBorderColorBrush_}"/>
-            <Setter Property="BorderThickness"
-                    Value="{DynamicResource D_DefaultBorderThicknessFull_}"/>
+                    Value="{DynamicResource BrushElementsBorder}"/>
+            <Setter Property="Foreground"
+                    Value="{DynamicResource BrushDefaultForeground}"/>
 
             <Setter Property="FontFamily"
-                    Value="{DynamicResource D_DefaultCommonFontFamily_}"/>
+                    Value="{DynamicResource FontText}"/>
             <Setter Property="FontSize"
-                    Value="{DynamicResource D_DefaultCommonFontSize_}"/>
+                    Value="{DynamicResource SizeText}"/>
             <Setter Property="FontWeight"
-                    Value="{DynamicResource D_DefaultCommonFontWeight_}"/>
+                    Value="{DynamicResource WeightText}"/>
 
-            <Setter Property="FocusVisualStyle"
-                    Value="{StaticResource focus-outstanding}"/>
 
-            <Setter Property="extra:AccentsExtra.Color"
-                    Value="{StaticResource S_DefaultDarkAccentColorBrush_}"/>
-            <Setter Property="extra:AccentsExtra.Opacity"
+            <Setter Property="utils:Control.CornerRadius"
+                    Value="{DynamicResource SizeDefaultRadiusAll}"/>
+
+            <Setter Property="utils:Highlight.Fill"
+                    Value="{DynamicResource BrushHighlightBackground}"/>
+            <Setter Property="utils:Highlight.Opacity"
                     Value="0.0"/>
 
             <Setter Property="SnapsToDevicePixels" 
@@ -62,33 +217,65 @@
             <Setter Property="UseLayoutRounding" 
                     Value="True"/>
 
+            <Setter Property="Effect" 
+                    Value="{StaticResource ShadowDefault}"/>
+
+            <Setter Property="FocusVisualStyle"
+                    Value="{StaticResource FocusDefaultOutstanding}"/>
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ToggleButton}">
                         <Grid>
                             <!--BACKGROUND-->
-                            <Border UseLayoutRounding="True" 
-                                    Background="{TemplateBinding BorderBrush}">
-                                <Border UseLayoutRounding="False" 
-                                        Background="{TemplateBinding Background}"
-                                        Margin="{TemplateBinding BorderThickness}"/>
-                            </Border>
+                            <controls:LayeredBorder UseLayoutRounding="False" 
+                                                    Background="{TemplateBinding Background}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    CornerRadius="{TemplateBinding utils:Control.CornerRadius}"/>
 
-                            <!--ACCENT-->
-                            <Border UseLayoutRounding="True" 
-                                    Background="{TemplateBinding extra:AccentsExtra.Color}"
-                                    Opacity="{TemplateBinding extra:AccentsExtra.Opacity}"/>
+                            <!--HIGHLIGHT-->
+                            <controls:LayeredBorder UseLayoutRounding="False" 
+                                                    Background="{TemplateBinding utils:Highlight.Fill}"
+                                                    CornerRadius="{TemplateBinding utils:Control.CornerRadius}"
+                                                    Opacity="{TemplateBinding utils:Highlight.Opacity}"/>
 
-                            <ContentControl UseLayoutRounding="False"
-                                            Focusable="False"                                             
-                                            Margin="{TemplateBinding Padding}"
-                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                            FontFamily="{TemplateBinding FontFamily}"
-                                            FontWeight="{TemplateBinding FontWeight}"
-                                            Foreground="{TemplateBinding Foreground}"
-                                            Content="{TemplateBinding Content}"/>
+                            <ContentPresenter x:Name="PART_RegularContent" 
+                                              UseLayoutRounding="False"
+                                              Focusable="False"                                             
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}"/>
+
+                            <ContentPresenter x:Name="PART_AlternativeContent" 
+                                              UseLayoutRounding="False"
+                                              Focusable="False"                                             
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding utils:Content.Alternative}"/>
                         </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked"
+                                     Value="False">
+                                <Setter TargetName="PART_RegularContent"
+                                        Property="Visibility"
+                                        Value="Visible"/>
+                                <Setter TargetName="PART_AlternativeContent"
+                                        Property="Visibility"
+                                        Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked"
+                                     Value="True">
+                                <Setter TargetName="PART_RegularContent"
+                                        Property="Visibility"
+                                        Value="Collapsed"/>
+                                <Setter TargetName="PART_AlternativeContent"
+                                        Property="Visibility"
+                                        Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -96,108 +283,128 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Trigger.EnterActions>
-                    <StaticResource ResourceKey="S_AccentHoverEnterAnimation"/>
+                    <utils:DoubleAnimationGenerator IsEnter="True">
+                        <StaticResource ResourceKey="AnimationDescriptionHovered"/>
+                    </utils:DoubleAnimationGenerator>
                 </Trigger.EnterActions>
                 <Trigger.ExitActions>
-                    <StaticResource ResourceKey="S_AccentHoverExitAnimation"/>
+                    <utils:DoubleAnimationGenerator IsEnter="False">
+                        <StaticResource ResourceKey="AnimationDescriptionHovered"/>
+                    </utils:DoubleAnimationGenerator>
                 </Trigger.ExitActions>
             </Trigger>
 
             <Trigger Property="IsMouseCaptured" Value="True">
                 <Trigger.EnterActions>
-                    <StaticResource ResourceKey="S_AccentPressedEnterAnimation"/>
+                    <utils:DoubleAnimationGenerator IsEnter="True">
+                        <StaticResource ResourceKey="AnimationDescriptionPressed"/>
+                    </utils:DoubleAnimationGenerator>
                 </Trigger.EnterActions>
                 <Trigger.ExitActions>
-                    <StaticResource ResourceKey="S_AccentPressedExitAnimation"/>
-                </Trigger.ExitActions>
-            </Trigger>
-
-            <Trigger Property="IsChecked" Value="True">
-                <Trigger.EnterActions>
-                    <StaticResource ResourceKey="S_AccentToggledEnterAnimation"/>
-                </Trigger.EnterActions>
-                <Trigger.ExitActions>
-                    <StaticResource ResourceKey="S_AccentToggledExitAnimation"/>
+                    <utils:DoubleAnimationGenerator IsEnter="False">
+                        <StaticResource ResourceKey="AnimationDescriptionPressed"/>
+                    </utils:DoubleAnimationGenerator>
                 </Trigger.ExitActions>
             </Trigger>
 
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="OpacityMask"
-                        Value="{StaticResource S_DisabledStateMaskColorBrush_}"/>
+                <Setter Property="Opacity"
+                        Value="0.40"/>
                 <Setter Property="Background"
-                        Value="{StaticResource S_DefaultDisabledAccentColorBrush_}"/>
-                <Setter Property="BorderBrush"
-                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+                        Value="{DynamicResource BrushDisabledBackground}"/>
                 <Setter Property="Foreground"
-                        Value="{StaticResource S_DisabledBorderColorNoOpacityBrush_}"/>
+                        Value="{DynamicResource BrushDisabledForeground}"/>
+                <Setter Property="Effect"
+                        Value="{x:Null}"/>
+                <Setter Property="BorderThickness"
+                        Value="0"/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="togglebutton-secondary-icon"
-           TargetType="{x:Type ToggleButton}"
-           BasedOn="{StaticResource button-secondary}">
-        <Style.Setters>
-            <Setter Property="Width"
-                    Value="{DynamicResource D_DefaultHeight_}"/>
-            <Setter Property="Padding"
-                    Value="0"/>
-        </Style.Setters>
-    </Style>
-
-    <Style x:Key="togglebutton-primary"
-           TargetType="{x:Type ToggleButton}"
-           BasedOn="{StaticResource button-secondary}">
+    <Style x:Key="ToggleButtonAltPrimary"
+           TargetType="{x:Type ToggleButton}" 
+           BasedOn="{StaticResource ToggleButtonAltDefault}">
         <Style.Setters>
             <Setter Property="Background"
-                    Value="{StaticResource S_PrimaryColorBrush_}"/>
+                    Value="{DynamicResource BrushPrimaryBackground}"/>
+            <Setter Property="BorderBrush"
+                    Value="{DynamicResource BrushPrimaryBorder}"/>
             <Setter Property="Foreground"
-                    Value="{StaticResource S_PrimaryFontColorBrush_}"/>
-            <Setter Property="BorderBrush"
-                    Value="{StaticResource S_PrimaryBorderColorBrush_}"/>
+                    Value="{DynamicResource BrushPrimaryForeground}"/>
         </Style.Setters>
     </Style>
 
-    <Style x:Key="togglebutton-primary-icon"
+    <Style x:Key="ToggleButtonAltMenu"
            TargetType="{x:Type ToggleButton}"
-           BasedOn="{StaticResource button-secondary}">
+           BasedOn="{StaticResource ToggleButtonAltDefault}">
         <Style.Setters>
-            <Setter Property="Width"
-                    Value="{DynamicResource D_DefaultHeight_}"/>
-            <Setter Property="Padding"
+            <Setter Property="MinWidth"
                     Value="0"/>
-        </Style.Setters>
-    </Style>
-
-    <Style x:Key="togglebutton-menu"
-           TargetType="{x:Type ToggleButton}"
-           BasedOn="{StaticResource button-secondary}">
-        <Style.Setters>
-            <Setter Property="Width"
-                    Value="{x:Static system:Double.NaN}"/>
-
-            <Setter Property="Background"
-                    Value="Transparent"/>
-
-            <Setter Property="BorderBrush"
-                    Value="Transparent"/>
 
             <Setter Property="BorderThickness"
                     Value="0"/>
 
+            <Setter Property="Background"
+                    Value="Transparent"/>
+
+            <Setter Property="BorderBrush"
+                    Value="Transparent"/>
+
+            <Setter Property="Effect"
+                    Value="{x:Null}"/>
+
             <Setter Property="FocusVisualStyle"
-                    Value="{StaticResource focus-default}"/>
+                    Value="{StaticResource FocusDefault}"/>
         </Style.Setters>
     </Style>
 
-    <Style x:Key="togglebutton-menu-icon"
+    <Style x:Key="ToggleButtonAltIcon"
            TargetType="{x:Type ToggleButton}"
-           BasedOn="{StaticResource button-menu}">
+           BasedOn="{StaticResource ToggleButtonAltDefault}">
         <Style.Setters>
-            <Setter Property="Width"
-                    Value="{DynamicResource D_DefaultHeight_}"/>
+            <Setter Property="MinWidth"
+                    Value="{DynamicResource SizeDefaultMinHeight}"/>
+
             <Setter Property="Padding"
                     Value="0"/>
         </Style.Setters>
     </Style>
+
+    <Style x:Key="ToggleButtonAltPrimaryIcon"
+           TargetType="{x:Type ToggleButton}"
+           BasedOn="{StaticResource ToggleButtonAltPrimary}">
+        <Style.Setters>
+            <Setter Property="MinWidth"
+                    Value="{DynamicResource SizeDefaultMinHeight}"/>
+
+            <Setter Property="Padding"
+                    Value="0"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="ToggleButtonAltMenuIcon"
+           TargetType="{x:Type ToggleButton}"
+           BasedOn="{StaticResource ToggleButtonAltMenu}">
+        <Style.Setters>
+            <Setter Property="MinWidth"
+                    Value="{DynamicResource SizeDefaultMinHeight}"/>
+
+            <Setter Property="Padding"
+                    Value="0"/>
+        </Style.Setters>
+    </Style>
+
+    <Style x:Key="ToggleButtonAltMenuToolBar"
+           TargetType="{x:Type ToggleButton}"
+           BasedOn="{StaticResource ToggleButtonAltMenu}">
+        <Style.Setters>
+            <Setter Property="MinWidth"
+                    Value="40"/>
+
+            <Setter Property="Padding"
+                    Value="0"/>
+        </Style.Setters>
+    </Style>
+
 </ResourceDictionary>
